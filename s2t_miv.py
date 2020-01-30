@@ -27,7 +27,7 @@ if 'SUMO_HOME' in os.environ:
 else:
     sys.exit("please declare environment variable 'SUMO_HOME'")
 
-from common import dictWriter_writeheader, dictWriter_writeheader, csv_sequence_generator
+from common import csv_sequence_generator
 from constants import TH, THX, SX, SP, BACKGROUND_TRAFFIC_SUFFIX
 from get_trips import get_conn
 

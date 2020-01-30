@@ -30,12 +30,12 @@ else:
     sys.exit("please declare environment variable 'SUMO_HOME'")
 
 import sumolib
-from sumolib.miscutils import working_dir, benchmark, uMin, uMax
+from sumolib.miscutils import working_dir, benchmark, uMin, uMax, euclidean
 
 import assign
 from constants import TH, THX, SX, SVC, MODE, CAR_MODES, TAPAS_DAY_OVERLAP_MINUTES, BACKGROUND_TRAFFIC_SUFFIX
 from edgemapper import EdgeMapper
-from common import csv_sequence_generator, dictWriter_writeheader, euclidean, abspath_in_dir, build_uid
+from common import csv_sequence_generator, abspath_in_dir, build_uid
 
 class MappingError(Exception):
     pass
@@ -198,7 +198,7 @@ def rectify_input(options):
             open(options.rectified, 'w'),
             THX.fieldnames,
             extrasaction='ignore', lineterminator='\n')
-        dictWriter_writeheader(writer)
+        writer.writeheader()
 
         persons = 0
         rows = 0
@@ -340,7 +340,7 @@ def map_to_edges(options):
         open(options.mapped_trips, 'w'),
         THX.fieldnames,
         extrasaction='ignore')
-    dictWriter_writeheader(writer)
+    writer.writeheader()
 
     persons = 0
     rows = 0

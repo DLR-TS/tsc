@@ -18,7 +18,6 @@ import time
 import os
 import imp
 import csv
-import math
 
 import constants
 
@@ -108,15 +107,6 @@ def csv_sequence_generator(csvfile, fields, assertUniqe=False):
         assertUniqe)
     for item in gen:
         yield item
-
-# TODO in python 2.7 dictWriter gets a writeheader method which makes this obsolete
-def dictWriter_writeheader(dictWriter):
-    dictWriter.writerow(dict((fn, fn) for fn in dictWriter.fieldnames))
-
-# TODO should be replaced by math.hypot
-def euclidean(x1, x2):
-    return math.sqrt(sum([(u - v) ** 2 for u, v in zip(x1, x2)]))
-
 
 def build_uid(row, clone_idx=0):
     # build unique id for each trip
