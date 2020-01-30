@@ -44,7 +44,6 @@ def call(cmd):
         cmd = filter(lambda a: a != '', cmd.split(' '))
     subprocess.call(cmd)
 
-#TODO recheck usage
 def import_tool(name, required_env_var, path):
     # Fast path: see if the module has already been imported.
     try:
