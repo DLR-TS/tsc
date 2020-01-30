@@ -8,8 +8,12 @@
 
 parse sumo trip log from MIV trips and upload the results to the database
 
-Copyright (C) 2013-2015 DLR/TS, Germany
-All rights reserved
+# Copyright (C) 2010-2020 German Aerospace Center (DLR) and others.
+# This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v2.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v20.html
+# SPDX-License-Identifier: EPL-2.0
 """
 
 from __future__ import print_function
@@ -20,12 +24,13 @@ from optparse import OptionParser
 
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
-    sys.path.append(os.path.join(tools))
-    from sumolib import output
-    from sumolib.miscutils import Statistics, benchmark, uMin, uMax
-    from sumolib.net import readNet
-else:
+    sys.path.append(tools)
+else:   
     sys.exit("please declare environment variable 'SUMO_HOME'")
+
+from sumolib import output
+from sumolib.miscutils import Statistics, benchmark, uMin, uMax
+from sumolib.net import readNet
 
 from common import csv_sequence_generator
 from constants import TH, THX, SX, SP, BACKGROUND_TRAFFIC_SUFFIX

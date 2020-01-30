@@ -8,8 +8,12 @@
 
 create a SUMO network from NavTeQ input
 
-Copyright (C) 2013-2015 DLR/TS, Germany
-All rights reserved
+# Copyright (C) 2010-2020 German Aerospace Center (DLR) and others.
+# This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v2.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v20.html
+# SPDX-License-Identifier: EPL-2.0
 """
 from __future__ import print_function
 import os
@@ -22,9 +26,12 @@ from optparse import OptionParser
 from common import ensure_dir
 from constants import SVC
 
-if 'SUMO_HOME' not in os.environ:
+if 'SUMO_HOME' in os.environ:
+    tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
+    sys.path.append(tools)
+else:   
     sys.exit("please declare environment variable 'SUMO_HOME'")
-sys.path += [os.path.join(os.environ['SUMO_HOME'], 'tools')]
+
 import sumolib
 from sumolib.miscutils import benchmark
 
