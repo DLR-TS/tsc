@@ -21,49 +21,43 @@ import os
 import sys
 import shutil
 import subprocess
-import optparse
 import glob
 from xml.sax import parse
+
+if 'SUMO_HOME' in os.environ:
+    sys.path.append(os.path.join(os.environ['SUMO_HOME'], 'tools'))
+else:
+    sys.exit("please declare environment variable 'SUMO_HOME'")
+import sumolib
+import edgesInDistricts
+import generateBidiDistricts
 
 import import_navteq
 import get_germany_taz
 from common import listdir_skip_hidden
 
-if 'SUMO_HOME' in os.environ:
-    tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
-    sys.path.append(tools)
-else:   
-    sys.exit("please declare environment variable 'SUMO_HOME'")
-
-import sumolib
-import edgesInDistricts
-import generateBidiDistricts
-
 
 def getOptions():
-    optParser = optparse.OptionParser()
-    optParser.add_option("-c", "--clean", action="store_true", default=False,
-                         help="remove any old data before processing")
-    optParser.add_option("-v", "--verbose", action="store_true",
-                         default=False, help="tell me what you are doing")
-    optParser.add_option("-p", "--pre", default=os.path.join(os.getcwd(), 'scenario_pre'),
-                         help="input dir with pre scenarios")
-    optParser.add_option("-t", "--templates", default=os.path.join(os.getcwd(), 'scenario_templates'),
-                         help="output dir with scenario templates")
-    optParser.add_option("-s", "--scenarios",
-                         help="only process selected scenarios")
-    optParser.add_option("-i", "--shape-id-column", default="*:NO,RBS_OD_ORT_1412:ORT,Berlin_1223:VBZ_ID",
-                         help="name of the column in the shape files which contains the taz id")
-    optParser.add_option("--suburb-taz", default="suburb",
-                         help="name of taz file for surrounding districts")
-    optParser.add_option("--landmarks", default="landmarks",
-                         help="name of file listing landmark edges")
-    optParser.add_option("--no-network", action="store_true", default=False,
-                         help="skip network building")
-
-    (options, args) = optParser.parse_args()
-
-    return options
+    argParser = sumolib.options.ArgumentParser()
+    argParser.add_argument("--clean", action="store_true", default=False,
+                           help="remove any old data before processing")
+    argParser.add_argument("-v", "--verbose", action="store_true",
+                           default=False, help="tell me what you are doing")
+    argParser.add_argument("-p", "--pre", default=os.path.join(os.getcwd(), 'scenario_pre'),
+                           help="input dir with pre scenarios")
+    argParser.add_argument("-t", "--templates", default=os.path.join(os.getcwd(), 'scenario_templates'),
+                           help="output dir with scenario templates")
+    argParser.add_argument("-s", "--scenarios",
+                           help="only process selected scenarios")
+    argParser.add_argument("-i", "--shape-id-column", default="*:NO,RBS_OD_ORT_1412:ORT,Berlin_1223:VBZ_ID",
+                           help="name of the column in the shape files which contains the taz id")
+    argParser.add_argument("--suburb-taz", default="suburb",
+                           help="name of taz file for surrounding districts")
+    argParser.add_argument("--landmarks", default="landmarks",
+                           help="name of file listing landmark edges")
+    argParser.add_argument("--no-network", action="store_true", default=False,
+                           help="skip network building")
+    return argParser.parse_args()
 
 
 def evaluate_pre_scen(options):
