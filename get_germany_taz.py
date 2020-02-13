@@ -26,7 +26,7 @@ import get_trips
 def parse_args():
     USAGE = "Usage: " + sys.argv[0] + " <options>"
     optParser = OptionParser()
-    optParser.add_option("-s", "--server", default="herakles", help="postgres server name")
+    optParser.add_option("-s", "--server", default="athene", help="postgres server name")
     optParser.add_option("-o", "--output", default="d-modell.poly.xml", help="output file")
 
     options, args = optParser.parse_args()
@@ -35,7 +35,7 @@ def parse_args():
     return options
 
 
-def get_polys(server="herakles", table='quesadillas.zonierung_d_modell', net=None):
+def get_polys(server="athene", table='quesadillas.zonierung_d_modell', net=None):
     conn = get_trips.get_conn(server)
     command = "SELECT vbz_6561, ST_ASTEXT(ST_TRANSFORM(the_geom, 4326)) FROM %s" % table
     cursor = conn.cursor()
