@@ -121,14 +121,11 @@ def create_template_folder(scenario_name, options):
             import_navteq.importNavteq(importOptions)
 
             # find netfile
-            absPath_net_tmp = []
+            for root, _, files in os.walk(tmp_output_dir):
+                if net_name in files:
+                    os.rename(os.path.join(root, net_name), net_path)
+                    break
 
-            def find_net(args, dirname, names):
-                if net_name in names:
-                    absPath_net_tmp.append(os.path.join(dirname, net_name))
-
-            os.path.walk(tmp_output_dir, find_net, None)
-            os.rename(absPath_net_tmp[0], net_path)
             shutil.rmtree(tmp_output_dir)
     setup_file = os.path.join(scenario_pre_dir, 'setup.py')
     if os.path.exists(setup_file):

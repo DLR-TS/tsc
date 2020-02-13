@@ -16,7 +16,7 @@ parse sumo trip log from MIV trips and upload the results to the database
 # SPDX-License-Identifier: EPL-2.0
 """
 
-from __future__ import print_function
+from __future__ import print_function, division
 import os
 import sys
 import collections
