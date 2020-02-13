@@ -1,29 +1,31 @@
 #!/usr/bin/env python
-"""
-@file    tsc_main.py
-@author  Marek.Heinrich@dlr.de
-@author  Michael.Behrisch@dlr.de
-@date    2014-12-15
-@version $Id: tsc_main.py 7914 2019-08-22 13:17:57Z behr_mi $
 
-This script runs permanently in the background and triggers sumo runs (t2s, s2t)
+# Copyright (C) 2014-2020 German Aerospace Center (DLR) and others.
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License 2.0 which is available at
+# https://www.eclipse.org/legal/epl-2.0/
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the Eclipse
+# Public License 2.0 are satisfied: GNU General Public License, version 2
+# or later which is available at
+# https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 
-The following things must be done before this script can run:
- - python install_scenario_templates.py 
+# @file    s2t_miv.py
+# @author  Marek Heinrich
+# @author  Michael Behrisch
+# @date    2014-12-15
 
-for legacy operation call:
-    python tsc_main.py --server achilles
-     --sim-key 2014y_08m_18d_15h_12m_21s_540ms --iteration 0
+# This script runs permanently in the background and triggers sumo runs (t2s, s2t)
 
-# Copyright (C) 2010-2020 German Aerospace Center (DLR) and others.
-# This program and the accompanying materials
-# are made available under the terms of the Eclipse Public License v2.0
-# which accompanies this distribution, and is available at
-# http://www.eclipse.org/legal/epl-v20.html
-# SPDX-License-Identifier: EPL-2.0
-"""
+# The following things must be done before this script can run:
+#  - python install_scenario_templates.py 
 
-from __future__ import print_function
+# for legacy operation call:
+#     python tsc_main.py --server achilles
+#      --sim-key 2014y_08m_18d_15h_12m_21s_540ms --iteration 0
+
+from __future__ import print_function, division
 import os
 import sys
 import shutil
@@ -78,6 +80,8 @@ def getOptions(args, optParser):
                          help="additional parameters of faked simulation requests [default: %default].\nUse only for testing")
     optParser.add_option('--net-param', default="{}",
                          help="network restrictions of faked simulation requests.\nUse only for testing")
+    optParser.add_option('--phemlight-path', metavar="FILE", action="store_true", dest="phemlight_path",
+                         help="Determines where to load PHEMlight \ndefinitions from.")
 
     options, remaining_args = optParser.parse_args(args=args)
     if len(args) == 0:
@@ -126,11 +130,11 @@ def build_restricted_network(restrictions, destination_path, netfile):
         types.write("""<?xml version="1.0" encoding="UTF-8"?>
 <types xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/types_file.xsd">
 """)
-        for list_file, res in restrictions.iteritems():
+        for list_file, res in restrictions.items():
             if "allowed" in res:
                 allowed = ' allow="%s"' % (" ".join(res["allowed"]))
             types.write('    <type id="%s"%s>\n' % (list_file, allowed))
-            for vClass, speed in res.get("maxSpeed", {}).iteritems():
+            for vClass, speed in res.get("maxSpeed", {}).items():
                 types.write(
                     '        <restriction vClass="%s" speed="%s"/>\n' % (vClass, speed))
             types.write('    </type>\n')
@@ -141,7 +145,7 @@ def build_restricted_network(restrictions, destination_path, netfile):
         edges.write("""<?xml version="1.0" encoding="UTF-8"?>
 <edges xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/edgediff_file.xsd">
 """)
-        for list_file in restrictions.iterkeys():
+        for list_file in restrictions.keys():
             if ".taz.xml" in list_file:
                 f, tazId = list_file.split("@")
                 for taz in sumolib.output.parse_fast(os.path.join(os.path.dirname(netfile), f), 'taz', ['id', 'edges']):
@@ -290,7 +294,7 @@ def cleanup(save, iteration_dir, sim_key, iteration, params, conn):
             write_status(
                 'deleting all intermediate iterations', sim_key, params, conn)
             basedir = os.path.dirname(iteration_dir)
-            for i in xrange(iteration):
+            for i in range(iteration):
                 shutil.rmtree(os.path.join(basedir, "iteration%03i" % i))
 
 
@@ -319,7 +323,7 @@ def get_script_module(options, template):
         import scripts
         if hasattr(scripts, template):
             return getattr(scripts, template)
-    except ImportError, m:
+    except ImportError as m:
         # print("Import failed", m, sys.path)
         pass
     return None
@@ -416,9 +420,9 @@ def simulation_request(options, optParser, request):
 
         write_status(
             "< End", sim_key, params, conn, constants.MSG_TYPE.finished)
-    except (AssertionError, IOError, subprocess.CalledProcessError, t2s.MappingError), message:
+    except (AssertionError, IOError, subprocess.CalledProcessError, t2s.MappingError) as message:
         write_status(message, sim_key, params, conn, constants.MSG_TYPE.error)
-    except ProgrammingError, message:
+    except ProgrammingError as message:
         conn.rollback()
         write_status(message, sim_key, params, conn, constants.MSG_TYPE.error)
 

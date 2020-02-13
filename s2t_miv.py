@@ -1,20 +1,22 @@
 #!/usr/bin/env python
-"""
-@file    s2t_miv.py
-@author  Jakob.Erdmann@dlr.de
-@author  Michael.Behrisch@dlr.de
-@date    2013-12-15
-@version $Id: s2t_miv.py 7220 2018-10-10 13:46:10Z behr_mi $
 
-parse sumo trip log from MIV trips and upload the results to the database
+# Copyright (C) 2013-2020 German Aerospace Center (DLR) and others.
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License 2.0 which is available at
+# https://www.eclipse.org/legal/epl-2.0/
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the Eclipse
+# Public License 2.0 are satisfied: GNU General Public License, version 2
+# or later which is available at
+# https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 
-# Copyright (C) 2010-2020 German Aerospace Center (DLR) and others.
-# This program and the accompanying materials
-# are made available under the terms of the Eclipse Public License v2.0
-# which accompanies this distribution, and is available at
-# http://www.eclipse.org/legal/epl-v20.html
-# SPDX-License-Identifier: EPL-2.0
-"""
+# @file    s2t_miv.py
+# @author  Jakob Erdmann
+# @author  Michael Behrisch
+# @date    2013-12-15
+
+# parse sumo trip log from MIV trips and upload the results to the database
 
 from __future__ import print_function, division
 import os
@@ -50,7 +52,7 @@ def aggregate_weights(weights_in, timeline):
                 weights_out.write('    </interval>\n')
             weights_out.write(
                 '    <interval begin="%s" end="%s">\n' % (begin, end))
-            for e in sorted(samples.iterkeys()):
+            for e in sorted(samples.keys()):
                 weights_out.write(
                     '        <edge id="%s" traveltime="%s"/>\n' % (e, samples[e] / travel_time_ratios[e]))
 
