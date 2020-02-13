@@ -1,20 +1,22 @@
-"""
-@file    assign.py
-@author  Jakob.Erdmann@dlr.de
-@author  Michael.Behrisch@dlr.de
-@date    2013-12-15
-@version $Id: assign.py 8151 2020-01-20 12:02:14Z behr_mi $
+# Copyright (C) 2013-2020 German Aerospace Center (DLR) and others.
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License 2.0 which is available at
+# https://www.eclipse.org/legal/epl-2.0/
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the Eclipse
+# Public License 2.0 are satisfied: GNU General Public License, version 2
+# or later which is available at
+# https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 
-assignment methods for tapas trips
+# @file    assign.py
+# @author  Jakob Erdmann
+# @author  Michael Behrisch
+# @date    2013-12-15
 
-# Copyright (C) 2010-2020 German Aerospace Center (DLR) and others.
-# This program and the accompanying materials
-# are made available under the terms of the Eclipse Public License v2.0
-# which accompanies this distribution, and is available at
-# http://www.eclipse.org/legal/epl-v20.html
-# SPDX-License-Identifier: EPL-2.0
-"""
-from __future__ import print_function
+# assignment methods for tapas trips
+
+from __future__ import print_function, division
 import os
 import sys
 import subprocess
@@ -32,7 +34,7 @@ from sumolib.miscutils import working_dir, benchmark
 import cutRoutes
 import sort_routes
 
-from common import abspath_in_dir, PHEMLIGHT_PATH
+from common import abspath_in_dir
 from constants import TAPAS_EXTRA_TIME
 
 @benchmark
@@ -100,7 +102,7 @@ def run_duaiterate(options, first_depart, last_depart, trip_file, weight_file, m
             'sumo--meso-junction-control.limited',
         ]
     params += [
-        'sumo--phemlight-path', PHEMLIGHT_PATH,
+        'sumo--phemlight-path', options.phemlight_path,
         # city traffic has shorter headways than highway traffic...
         'sumo--max-depart-delay', '300',
         'duarouter--additional-files', ','.join(additional),
@@ -208,7 +210,7 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
                        ','.join(additional),
                        oneshot_routes, suffix,
                        begin, last_depart + TAPAS_EXTRA_TIME,
-                       addOpt, PHEMLIGHT_PATH
+                       addOpt, options.phemlight_path
                        )
         )
 
