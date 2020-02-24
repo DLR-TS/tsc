@@ -24,55 +24,43 @@ import sys
 import collections
 import random
 import math
-from optparse import OptionParser
-
-import psycopg2 as pgdb
+sys.path.append(os.path.join(os.environ['SUMO_HOME'], 'tools'))
+from sumolib.options import ArgumentParser
 
 from constants import TH, MODE, THX, SP, CAR_MODES
+import db_manipulator
 
 ALL_PAIRS = 'all_pairs'
 
 
 def parse_args():
-    USAGE = "Usage: " + sys.argv[0] + " <options>"
-    optParser = OptionParser()
-    optParser.add_option("-a", "--all-pairs", dest="all_pairs",
-                         default=False, action="store_true",
-                         help="Generate trips for all pairs of traffic zones")
-    optParser.add_option("-d", "--departure", type=int, default=3600 * 16,
-                         help="When used with --all-pairs, set departure second to <INT>")
-    optParser.add_option("-k", "--simkey", help="simulation key to retrieve")
-    optParser.add_option("-l", "--limit", type=int,
-                         help="maximum number of trips to retrieve")
-    optParser.add_option("--seed", type=int, default=23432, help="random seed")
-    optParser.add_option("-s", "--server", default="test", help="postgres server name")
-    optParser.add_option("--representatives", default='berlin_location_representatives',
-                         help="set the table to read representatives from")
-    optParser.add_option("--triptable", default='berlin_trips',
-                         help="set the table to receive trips from")
-    optParser.add_option("--taztable", default='berlin_taz',
-                         help="set the table to read districts from")
-    optParser.add_option("-m", "--modes", default=','.join(CAR_MODES),
-                         help="the traffic modes to retrieve as a list of integers (default '%default')")
-
-    options, args = optParser.parse_args()
-    if len(args) != 0:
-        sys.exit(USAGE)
+    argParser = ArgumentParser()
+    db_manipulator.add_db_arguments(argParser)
+    argParser.add_argument("-a", "--all-pairs", dest="all_pairs",
+                           default=False, action="store_true",
+                           help="Generate trips for all pairs of traffic zones")
+    argParser.add_argument("-d", "--departure", type=int, default=3600 * 16,
+                           help="When used with --all-pairs, set departure second to <INT>")
+    argParser.add_argument("-k", "--simkey", help="simulation key to retrieve")
+    argParser.add_argument("-l", "--limit", type=int,
+                           help="maximum number of trips to retrieve")
+    argParser.add_argument("--seed", type=int, default=23432, help="random seed")
+    argParser.add_argument("--representatives", default='berlin_location_representatives',
+                           help="set the table to read representatives from")
+    argParser.add_argument("--triptable", default='berlin_trips',
+                           help="set the table to receive trips from")
+    argParser.add_argument("--taztable", default='berlin_taz',
+                           help="set the table to read districts from")
+    argParser.add_argument("-m", "--modes", default=','.join(CAR_MODES),
+                           help="the traffic modes to retrieve as a list of integers (default '%default')")
+    options = argParser.parse_args()
     options.limit_sql = "" if options.limit is None else "LIMIT %s" % options.limit
     return options
 
 
-# TODO create a config file with the credentials
-def get_conn(server, db_credentials):
-    if server is None:
-        return None
-    db = db_credentials[server]
-    return pgdb.connect(host=db['db_host'], port=db['db_port'], user=db['db_user'], password=db['db_password'], database=db['database'])
-
-
-def get_active_sim_keys(server, overrides):
+def get_active_sim_keys(server_options, overrides):
     sys.stdout.flush()
-    conn = get_conn(server)
+    conn = db_manipulator.get_conn(server_options)
     # get any open combination of sim_key and iteration
     cursor_open = conn.cursor()
     command = """SELECT sim_key, param_value::float::integer AS iteration FROM public.simulation_parameters
@@ -259,7 +247,7 @@ def tripfile_name(key, limit=None, target_dir='iteration/trips'):
 
 def main():
     options = parse_args()
-    conn = get_conn(options.server)
+    conn = db_manipulator.get_conn(options)
     if options.all_pairs:
         params = {SP.representatives: options.representatives,
                   SP.taz_table: options.taztable,
@@ -278,7 +266,7 @@ def main():
                       options.simkey, sim_keys.keys()))
         else:
             # get all
-            for sim_key, _, params in get_active_sim_keys(options.server):
+            for sim_key, _, params in get_active_sim_keys(options):
                 write_trips(conn, sim_key, options.limit_sql,
                             tripfile_name(sim_key, options.limit), params)
     conn.close()

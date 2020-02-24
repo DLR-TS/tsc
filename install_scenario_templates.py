@@ -35,6 +35,7 @@ import sumolib
 import edgesInDistricts
 import generateBidiDistricts
 
+import db_manipulator
 import import_navteq
 import get_germany_taz
 from common import listdir_skip_hidden
@@ -42,6 +43,7 @@ from common import listdir_skip_hidden
 
 def getOptions():
     argParser = sumolib.options.ArgumentParser()
+    db_manipulator.add_db_arguments(argParser)
     argParser.add_argument("--clean", action="store_true", default=False,
                            help="remove any old data before processing")
     argParser.add_argument("-v", "--verbose", action="store_true",
@@ -197,7 +199,7 @@ def create_template_folder(scenario_name, options):
                 polys = []
                 if net is None:
                     net = sumolib.net.readNet(net_path, withConnections=False, withFoes=False)
-                for tazid, shapes in get_germany_taz.get_polys(net=net):
+                for tazid, shapes in get_germany_taz.get_polys(options, net=net):
                     for idx, shape in enumerate(shapes):
                         polys.append(sumolib.shapes.polygon.Polygon("%s:%s" % (tazid, idx), shape=shape))
                 reader = edgesInDistricts.DistrictEdgeComputer(net)

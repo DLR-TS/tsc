@@ -24,15 +24,19 @@ import subprocess
 import multiprocessing
 import time
 from optparse import OptionParser
+import psycopg2
 
-from get_trips import get_conn
+
+def add_db_arguments(argParser):
+    argParser.add_argument("--host", help="postgres server name or IP")
+    argParser.add_argument("--port", default=5432, type=int, help="postgres server port")
+    argParser.add_argument("--user", help="postgres server credentials (username)")
+    argParser.add_argument("--password", help="postgres server credentials")
+    argParser.add_argument("--database", default="tapas", help="postgres server database name")
 
 
-def get_options():
-    optParser = OptionParser()
-    optParser.add_option(
-        "-s", "--server", default='test', help="postgres server name")
-    return optParser.parse_args()
+def get_conn(options):
+    return psycopg2.connect(host=options.host, port=options.port, user=options.user, password=options.password, database=options.database)
 
 
 def run_sql(conn, sql):

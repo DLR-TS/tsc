@@ -23,7 +23,7 @@ import sys
 import ast
 from optparse import OptionParser
 
-import get_trips
+import db_manipulator
 
 
 def parse_args():
@@ -38,8 +38,8 @@ def parse_args():
     return options
 
 
-def get_polys(server="athene", table='quesadillas.zonierung_d_modell', net=None):
-    conn = get_trips.get_conn(server)
+def get_polys(server_options, table='quesadillas.zonierung_d_modell', net=None):
+    conn = db_manipulator.get_conn(server_options)
     command = "SELECT vbz_6561, ST_ASTEXT(ST_TRANSFORM(the_geom, 4326)) FROM %s" % table
     cursor = conn.cursor()
     cursor.execute(command)
