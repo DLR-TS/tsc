@@ -25,7 +25,6 @@ import math
 import csv
 import random
 import shutil
-import optparse
 import subprocess
 import collections
 
@@ -37,6 +36,7 @@ else:
 
 import sumolib
 from sumolib.miscutils import working_dir, benchmark, uMin, uMax, euclidean
+from sumolib.options import ArgumentParser
 
 import assign
 from constants import TH, THX, SX, SVC, MODE, CAR_MODES, TAPAS_DAY_OVERLAP_MINUTES, BACKGROUND_TRAFFIC_SUFFIX
@@ -47,60 +47,60 @@ class MappingError(Exception):
     pass
 
 
-def fillOptions(optParser):
-    optParser.add_option("--net-file", help="specifying the net file of the scenario to use")
-    optParser.add_option("--vtype-file", help="specifying the vehicle type file of the scenario to use")
-    optParser.add_option("--taz-file", help="specifying the district file of the scenario to use")
-    optParser.add_option("--iteration-dir",
-                         help="directory holding all files and directories of this SUMO-Tapas iteration")
-    optParser.add_option("--trips-dir", help="directory holding all trip output files")
-    optParser.add_option("--tapas-trips", help="trip file with information received from tapas (csv)")
-    optParser.add_option("-R", "--no-rectify", action="store_false", dest="rectify", default=True,
-                         help="skip rectifying trips")
-    optParser.add_option("--rectify-only", action="store_true", dest="rectify_only", default=False,
-                         help="skip everything, just rectify the trips ")
-    optParser.add_option("-M", "--no-map", action="store_false", dest="domap", default=True,
-                         help="skip mapping trips")
-    optParser.add_option("-T", "--no-tripdefs", action="store_false", dest="dotripdefs", default=True,
-                         help="skip generating trips")
-    optParser.add_option("--map-and-exit", action="store_true", dest="map_and_exit", default=False,
-                         help="skip everything after having mapped the trips ")
-    optParser.add_option("--ignore-gaps", action="store_true", dest="ignore_gaps", default=False,
-                         help="keep trips after a geographic gap in the trip sequence")
-    optParser.add_option("--max-radius", type="float", default=2000.,
-                         help="maximum radius when mapping trips")
-    optParser.add_option("--weights", help="weight file for routing")
-    optParser.add_option("-s", "--scale", type="float", default=1.0, help="scale value")
-    optParser.add_option("--routing-algorithm", default='CHWrapper',
-                         help="algorithm to use when calling DUAROUTER")
-    optParser.add_option("-l", "--last-step", type="int", dest="last_step", default=50,
-                         help="number of duaiterate iterations")
-    optParser.add_option("-A", "--assignment", type="choice",
-                         choices=("oneshot", "gawron", "oneshot+gawron", "marouter", "marouter+gawron", "marouter+oneshot", "bulk"),
-                         default="oneshot", help="run with the given assignment algorithm")
-    optParser.add_option("--seed", type=int, default=23432, help="random seed")
-    optParser.add_option("--time-diffusion", type=int, default=900, help="time diffusion window")
-    optParser.add_option("--spatial-diffusion", type=float, default=50.,
-                         help="(minimum) standard deviation for spatial diffusion")
-    optParser.add_option("--max-spatial-diffusion", type=float,
-                         default=100., help="maximum standard deviation for spatial diffusion when using bounds")
-    optParser.add_option("--spatial-diffusion-bounds", default="500,5000",
-                         help="lower and upper cutoff for spatial diffusion")
-    optParser.add_option("--generate-taz-file",
-                         help="build a district file based on proximity to the trip locations")
-    optParser.add_option("--bidi-taz-file", default="",
-                         help="generate trips that use the given taz file for bidirectional departure and arrival")
-    optParser.add_option("--location-priority-file", default="",
-                         help="map given locations to edges of the given priority (or better)")
-    optParser.add_option("--default-vtype",
-                         help="default vehicle type if none is given in the input")
-    optParser.add_option("--bike-type", default="ped_bike", help="treat bicycles as pedestrians with the given type")
-    optParser.add_option("--shift-departure-hours", type="int", default=24, dest="shiftdeparthours",
-                         help="shift departure times by the given number of hours (to handle trips that depart before midnight)")
-    optParser.add_option("-m", "--modes", default=','.join(CAR_MODES),
-                         help="the traffic modes to retrieve as a list of integers (default '%default')")
-    optParser.add_option('--phemlight-path', metavar="PATH", default=os.path.join(os.environ.get("TSC_DATA", ""), "PHEMlight"),
-                         help="Determines where to load PHEMlight \ndefinitions from.")
+def fillOptions(argParser):
+    argParser.add_argument("--net-file", help="specifying the net file of the scenario to use")
+    argParser.add_argument("--vtype-file", help="specifying the vehicle type file of the scenario to use")
+    argParser.add_argument("--taz-file", help="specifying the district file of the scenario to use")
+    argParser.add_argument("--iteration-dir",
+                           help="directory holding all files and directories of this SUMO-Tapas iteration")
+    argParser.add_argument("--trips-dir", help="directory holding all trip output files")
+    argParser.add_argument("--tapas-trips", help="trip file with information received from tapas (csv)")
+    argParser.add_argument("-R", "--no-rectify", action="store_false", dest="rectify", default=True,
+                           help="skip rectifying trips")
+    argParser.add_argument("--rectify-only", action="store_true", dest="rectify_only", default=False,
+                           help="skip everything, just rectify the trips ")
+    argParser.add_argument("-M", "--no-map", action="store_false", dest="domap", default=True,
+                           help="skip mapping trips")
+    argParser.add_argument("-T", "--no-tripdefs", action="store_false", dest="dotripdefs", default=True,
+                           help="skip generating trips")
+    argParser.add_argument("--map-and-exit", action="store_true", dest="map_and_exit", default=False,
+                           help="skip everything after having mapped the trips ")
+    argParser.add_argument("--ignore-gaps", action="store_true", dest="ignore_gaps", default=False,
+                           help="keep trips after a geographic gap in the trip sequence")
+    argParser.add_argument("--max-radius", type=float, default=2000.,
+                           help="maximum radius when mapping trips")
+    argParser.add_argument("--weights", help="weight file for routing")
+    argParser.add_argument("-s", "--scale", type=float, default=1.0, help="scale value")
+    argParser.add_argument("--routing-algorithm", default='CHWrapper',
+                           help="algorithm to use when calling DUAROUTER")
+    argParser.add_argument("-l", "--last-step", type=int, dest="last_step", default=50,
+                           help="number of duaiterate iterations")
+    argParser.add_argument("-A", "--assignment",
+                           choices=("oneshot", "gawron", "oneshot+gawron", "marouter", "marouter+gawron", "marouter+oneshot", "bulk"),
+                           default="oneshot", help="run with the given assignment algorithm")
+    argParser.add_argument("--seed", type=int, default=23432, help="random seed")
+    argParser.add_argument("--time-diffusion", type=int, default=900, help="time diffusion window")
+    argParser.add_argument("--spatial-diffusion", type=float, default=50.,
+                           help="(minimum) standard deviation for spatial diffusion")
+    argParser.add_argument("--max-spatial-diffusion", type=float,
+                           default=100., help="maximum standard deviation for spatial diffusion when using bounds")
+    argParser.add_argument("--spatial-diffusion-bounds", default="500,5000",
+                           help="lower and upper cutoff for spatial diffusion")
+    argParser.add_argument("--generate-taz-file",
+                           help="build a district file based on proximity to the trip locations")
+    argParser.add_argument("--bidi-taz-file", default="",
+                           help="generate trips that use the given taz file for bidirectional departure and arrival")
+    argParser.add_argument("--location-priority-file", default="",
+                           help="map given locations to edges of the given priority (or better)")
+    argParser.add_argument("--default-vtype",
+                           help="default vehicle type if none is given in the input")
+    argParser.add_argument("--bike-type", default="ped_bike", help="treat bicycles as pedestrians with the given type")
+    argParser.add_argument("--shift-departure-hours", type=int, default=24, dest="shiftdeparthours",
+                           help="shift departure times by the given number of hours (to handle trips that depart before midnight)")
+    argParser.add_argument("-m", "--modes", default=','.join(CAR_MODES),
+                           help="the traffic modes to retrieve as a list of integers (default '%default')")
+    argParser.add_argument('--phemlight-path', metavar="PATH", default=os.path.join(os.environ.get("TSC_DATA", ""), "PHEMlight"),
+                           help="Determines where to load PHEMlight \ndefinitions from.")
 
 
 def getSumoTripfileName(trips_dir, tapas_trips):
@@ -564,7 +564,7 @@ def main(options):
 
 
 if __name__ == "__main__":
-    optParser = optparse.OptionParser()
-    fillOptions(optParser)
-    options, _ = optParser.parse_args(args=sys.argv[1:])
+    argParser = ArgumentParser()
+    fillOptions(argParser)
+    options = argParser.parse_args(args=sys.argv[1:])
     main(options)

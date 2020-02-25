@@ -22,7 +22,6 @@ from __future__ import print_function, division
 import os
 import sys
 import collections
-from optparse import OptionParser
 
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
@@ -33,10 +32,11 @@ else:
 from sumolib import output
 from sumolib.miscutils import Statistics, benchmark, uMin, uMax
 from sumolib.net import readNet
+from sumolib.options import ArgumentParser
 
 from common import csv_sequence_generator
 from constants import TH, THX, SX, SP, BACKGROUND_TRAFFIC_SUFFIX
-from get_trips import get_conn
+from db_manipulator import get_conn
 
 
 @benchmark
@@ -279,27 +279,25 @@ CREATE TABLE temp.%s
 
 @benchmark
 def main():
-    optParser = OptionParser()
-    optParser.add_option("-n", "--net-file",
-                         help="specifying the net file of the scenario to use")
-    optParser.add_option("-k", "--simkey", default="test",
-                         help="simulation key to use")
-    optParser.add_option("-s", "--server", default="test",
-                         help="postgres server name")
-    optParser.add_option("-l", "--limit", type=int,
-                         help="maximum number of trips to retrieve")
-    optParser.add_option("--representatives", default="",
-                         help="set the route alternatives file to read representative travel times from")
-    optParser.add_option("--real-trips", default="",
-                         help="set the route file to read travel times for real trips from")
-    optParser.add_option("-a", "--all-pairs",
-                         default=False, action="store_true",
-                         help="Only write the all pairs table")
-    options, args = optParser.parse_args()
+    argParser = ArgumentParser()
+    argParser.add_argument("-n", "--net-file",
+                           help="specifying the net file of the scenario to use")
+    argParser.add_argument("-k", "--simkey", default="test",
+                           help="simulation key to use")
+    argParser.add_argument("-l", "--limit", type=int,
+                           help="maximum number of trips to retrieve")
+    argParser.add_argument("--representatives", default="",
+                           help="set the route alternatives file to read representative travel times from")
+    argParser.add_argument("--real-trips", default="",
+                           help="set the route file to read travel times for real trips from")
+    argParser.add_argument("-a", "--all-pairs",
+                           default=False, action="store_true",
+                           help="Only write the all pairs table")
+    options, args = argParser.parse_known_args()
     if len(args) == 2:
         aggregate_weights(args[0], [float(x) for x in args[1].split(",")])
         return
-    conn = get_conn(options.server)
+    conn = get_conn(options)
     if os.path.isfile(options.real_trips) and not options.all_pairs:
         upload_trip_results(conn, options.simkey, SP.OPTIONAL, options.real_trips, options.limit)
     if os.path.isfile(options.representatives):

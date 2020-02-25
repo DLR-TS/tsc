@@ -11,7 +11,7 @@
 # https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later
 
-# @file    s2t_miv.py
+# @file    tsc_main.py
 # @author  Marek Heinrich
 # @author  Michael Behrisch
 # @date    2014-12-15
@@ -29,7 +29,6 @@ from __future__ import print_function, division
 import os
 import sys
 import shutil
-import optparse
 import glob
 import json
 import datetime
@@ -45,9 +44,11 @@ else:
     sys.exit("please declare environment variable 'SUMO_HOME'")
 
 import sumolib
+from sumolib.options import ArgumentParser
 
 import common
 import constants
+import db_manipulator
 import get_trips
 import t2s
 import s2t_miv
@@ -56,38 +57,36 @@ import get_motorway_access
 
 DEFAULT_SIMKEY = "berlin_2010"
 
-def getOptions(args, optParser):
-    t2s.fillOptions(optParser)
-    optParser.add_option("--server", help="specify the database server to sync with (e.g. test)")
-    optParser.add_option("--workdir-folder", default='scenario_workdir',
-                         help="specifying the workdir directory of the scenarios to use")
-    optParser.add_option("--template-folder", default='scenario_templates',
-                         help="specifying the template directory of the scenarios to use")
-    optParser.add_option("-t", "--fake-tripfile",
-                         help="use this trip file as input instead of database (use only for debug and testing)")
-    optParser.add_option("--limit", type=int, help="maximum number of trips to retrieve")
-    optParser.add_option("--parallel", type=int, default=1,
-                         help="maximum number of parallel simulations to run")
-    optParser.add_option("--clean", action="store_true", default=False,
-                         help="cleanup working dir and status table and exit")
-    optParser.add_option("--daemon", action="store_true", default=False, help="run as daemon")
-    optParser.add_option("--daemon-run-time", type=int, default=-1,
-                         help="limit the up time of the daemon in seconds - e.g. for debugging ")
-    optParser.add_option('--iteration', help="iterations of faked simulation requests (ranges and ints are possible)")
-    optParser.add_option("--sim-key",
-                         help="sim_key of faked simulation requests.\nUse only for testing")
-    optParser.add_option("--sim-param", default="",
-                         help="additional parameters of faked simulation requests [default: %default].\nUse only for testing")
-    optParser.add_option('--net-param', default="{}",
-                         help="network restrictions of faked simulation requests.\nUse only for testing")
+def getOptions(args, argParser):
+    t2s.fillOptions(argParser)
+    db_manipulator.add_db_arguments(argParser)
+    argParser.add_argument("--workdir-folder", default='scenario_workdir',
+                           help="specifying the workdir directory of the scenarios to use")
+    argParser.add_argument("--template-folder", default='scenario_templates',
+                           help="specifying the template directory of the scenarios to use")
+    argParser.add_argument("-t", "--fake-tripfile",
+                           help="use this trip file as input instead of database (use only for debug and testing)")
+    argParser.add_argument("--limit", type=int, help="maximum number of trips to retrieve")
+    argParser.add_argument("--parallel", type=int, default=1,
+                           help="maximum number of parallel simulations to run")
+    argParser.add_argument("--clean", action="store_true", default=False,
+                           help="cleanup working dir and status table and exit")
+    argParser.add_argument("--daemon", action="store_true", default=False, help="run as daemon")
+    argParser.add_argument("--daemon-run-time", type=int, default=-1,
+                           help="limit the up time of the daemon in seconds - e.g. for debugging ")
+    argParser.add_argument('--iteration', help="iterations of faked simulation requests (ranges and ints are possible)")
+    argParser.add_argument("--sim-key",
+                           help="sim_key of faked simulation requests.\nUse only for testing")
+    argParser.add_argument("--sim-param", default="",
+                           help="additional parameters of faked simulation requests [default: %default].\nUse only for testing")
+    argParser.add_argument('--net-param', default="{}",
+                           help="network restrictions of faked simulation requests.\nUse only for testing")
 
-    options, remaining_args = optParser.parse_args(args=args)
+    options = argParser.parse_args(args=args)
     if len(args) == 0:
-        optParser.print_help()
+        argParser.print_help()
         sys.exit()
     options.limit = " LIMIT %s" % options.limit if options.limit else ""
-    assert len(remaining_args) == 0, "there are unknown options %s " % " ".join(
-        remaining_args)
     return options
 
 
@@ -119,7 +118,7 @@ def get_simulation_requests(options):
             sim_params.update(overrides)
             simulation_request_list.append((options.sim_key, i, sim_params))
         return simulation_request_list
-    return get_trips.get_active_sim_keys(options.server, overrides)
+    return get_trips.get_active_sim_keys(options, overrides)
 
 
 def build_restricted_network(restrictions, destination_path, netfile):
@@ -327,12 +326,12 @@ def get_script_module(options, template):
     return None
 
 
-def simulation_request(options, optParser, request):
+def simulation_request(options, request):
     conn = None
     sim_key, iteration, params = request
     try:
         # connect to the database (prod-system)
-        conn = get_trips.get_conn(options.server)
+        conn = db_manipulator.get_conn(options)
         if conn is None:
             print("Warning! No database connection given, operating on files only.")
 
@@ -431,12 +430,12 @@ def simulation_request(options, optParser, request):
 
 def main(args):
     # get the options
-    optParser = optparse.OptionParser()
-    options = getOptions(args, optParser)
+    argParser = ArgumentParser()
+    options = getOptions(args, argParser)
 
     if options.clean:
         shutil.rmtree(options.workdir_folder, True)
-        conn = get_trips.get_conn(options.server)
+        conn = db_manipulator.get_conn(options)
         if conn is None:
             print("Warning! No database connection given, deleting files only.")
         else:
@@ -465,7 +464,7 @@ def main(args):
             if len(processes) >= options.parallel:
                 break
             processes[request[0]] = multiprocessing.Process(
-                target=simulation_request, args=(options, optParser, request))
+                target=simulation_request, args=(options, request))
             processes[request[0]].start()
         if not options.daemon:
             break
