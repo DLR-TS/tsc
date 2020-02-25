@@ -257,7 +257,7 @@ def main():
                         tripfile_name(ALL_PAIRS, options.limit), params, options.seed)
     else:
         if options.simkey is not None:
-            sim_keys = dict([(k, p) for k, _, p in get_active_sim_keys(options.server, {SP.status: None})])
+            sim_keys = dict([(k, p) for k, _, p in get_active_sim_keys(options, {SP.status: None})])
             if options.simkey in sim_keys:
                 write_trips(conn, options.simkey, options.limit_sql,
                             tripfile_name(options.simkey, options.limit), sim_keys[options.simkey])

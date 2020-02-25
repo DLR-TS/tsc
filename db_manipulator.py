@@ -19,12 +19,17 @@
 # database methods for testing
 
 from __future__ import print_function
+import os
 import sys
 import subprocess
 import multiprocessing
 import time
-from optparse import OptionParser
+
 import psycopg2
+
+sys.path.append(os.path.join(os.environ['SUMO_HOME'], 'tools'))
+from sumolib.options import ArgumentParser
+
 
 
 def add_db_arguments(argParser):
@@ -35,7 +40,13 @@ def add_db_arguments(argParser):
     argParser.add_argument("--database", default="tapas", help="postgres server database name")
 
 
-def get_conn(options):
+def get_conn(options_or_config_file):
+    if isinstance(options_or_config_file, str):
+        argParser = ArgumentParser()
+        add_db_arguments(argParser)
+        options = argParser.parse_args(["-c", options_or_config_file])
+    else:
+        options = options_or_config_file
     return psycopg2.connect(host=options.host, port=options.port, user=options.user, password=options.password, database=options.database)
 
 
@@ -93,11 +104,13 @@ def start(server, call, pre_test, par_test, post_test):
 
 
 if __name__ == "__main__":
-    options, args = get_options()
+    argParser = ArgumentParser()
+    add_db_arguments(argParser)
+    options = argParser.parse_args(["-c", os.path.join(os.environ["TSC_DATA"], "test_server.tsccfg")])
     # get connection to (test) db
-    print('using server', options.server)
-    conn = get_conn(options.server)
+    print('using server', options)
+    conn = get_conn(options)
 
-    for a in args:
+    for a in []:
         run_sql(conn, open(a))
     conn.close()

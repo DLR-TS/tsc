@@ -99,6 +99,8 @@ def fillOptions(optParser):
                          help="shift departure times by the given number of hours (to handle trips that depart before midnight)")
     optParser.add_option("-m", "--modes", default=','.join(CAR_MODES),
                          help="the traffic modes to retrieve as a list of integers (default '%default')")
+    optParser.add_option('--phemlight-path', metavar="PATH", default=os.path.join(os.environ.get("TSC_DATA", ""), "PHEMlight"),
+                         help="Determines where to load PHEMlight \ndefinitions from.")
 
 
 def getSumoTripfileName(trips_dir, tapas_trips):

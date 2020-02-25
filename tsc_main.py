@@ -80,8 +80,6 @@ def getOptions(args, optParser):
                          help="additional parameters of faked simulation requests [default: %default].\nUse only for testing")
     optParser.add_option('--net-param', default="{}",
                          help="network restrictions of faked simulation requests.\nUse only for testing")
-    optParser.add_option('--phemlight-path', metavar="FILE", action="store_true", dest="phemlight_path",
-                         help="Determines where to load PHEMlight \ndefinitions from.")
 
     options, remaining_args = optParser.parse_args(args=args)
     if len(args) == 0:
