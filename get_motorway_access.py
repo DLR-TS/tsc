@@ -19,26 +19,28 @@
 # create motorway access points for special locations
 
 from __future__ import print_function
+import os
 import sys
-from optparse import OptionParser
 
-import get_trips
+if 'SUMO_HOME' in os.environ:
+    sys.path.append(os.path.join(os.environ['SUMO_HOME'], 'tools'))
+else:
+    sys.exit("please declare environment variable 'SUMO_HOME'")
+from sumolib.options import ArgumentParser
+
+import db_manipulator
 
 
 def parse_args():
-    USAGE = "Usage: " + sys.argv[0] + " <options>"
-    optParser = OptionParser()
-    optParser.add_option("-s", "--server", default="perseus", help="postgres server name")
-    optParser.add_option("-o", "--output", default="scenario_pre/berlin_2010/location_priorities.xml", help="output file")
-
-    options, args = optParser.parse_args()
-    if len(args) != 0:
-        sys.exit(USAGE)
+    argParser = ArgumentParser()
+    db_manipulator.add_db_arguments(argParser)
+    argParser.add_argument("-o", "--output", default="scenario_pre/berlin_2010/location_priorities.xml", help="output file")
+    options = argParser.parse_args()
     return options
 
 
 def get_locations(server, table):
-    conn = get_trips.get_conn(server)
+    conn = db_manipulator.get_conn(server)
     for suffix in ("start", "end"):
         command = """SELECT DISTINCT taz_id_%s, lon_%s, lat_%s FROM core.%s
                      WHERE taz_id_%s < -1000000""" % (suffix, suffix, suffix, table, suffix)
@@ -49,7 +51,7 @@ def get_locations(server, table):
     conn.close()
 
 
-def save_locations(output, server="perseus", table='berlin_grundlast_2010_ref'):
+def save_locations(output, server, table='berlin_grundlast_2010_ref'):
     with open(output, "w") as out:
         print("<additional>", file=out)
         for loc in sorted(get_locations(server, table)):
@@ -59,4 +61,4 @@ def save_locations(output, server="perseus", table='berlin_grundlast_2010_ref'):
 
 if __name__ == "__main__":
     options = parse_args()
-    save_locations(options.output, options.server)
+    save_locations(options.output, options)

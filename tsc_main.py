@@ -349,7 +349,7 @@ def simulation_request(options, request):
             get_trips.write_background_trips(
                 conn, params[SP.add_traffic_table], options.limit, options.tapas_trips, params)
             options.location_priority_file = os.path.abspath(os.path.join(scenario_basedir, 'location_priorities.xml'))
-            get_motorway_access.save_locations(options.location_priority_file, options.server, params[SP.add_traffic_table])
+            get_motorway_access.save_locations(options.location_priority_file, options, params[SP.add_traffic_table])
             options.trips_dir = scenario_basedir
             write_status('>> starting trip generation for background traffic using tripfile %s' %
                          options.tapas_trips, sim_key, params, conn)

@@ -183,7 +183,7 @@ def write_all_pairs(conn, vType, depart, limit, tripfile, params, seed):
     random.seed(seed)
     fieldnames = TH.KEEP_COLUMNS + [THX.depart_second]
     template = list(fieldnames)
-    template[fieldnames.index(TH.depart_minute)] = str(depart / 60)
+    template[fieldnames.index(TH.depart_minute)] = str(depart // 60)
     template[fieldnames.index(TH.mode)] = MODE.car
     template[fieldnames.index(TH.duration)] = '0'
     template[fieldnames.index(TH.activity_duration_minutes)] = '0'
@@ -216,7 +216,8 @@ def write_all_pairs(conn, vType, depart, limit, tripfile, params, seed):
             for end in keys:
                 end_reps = reps[end]
                 l = [s + e for s in start_reps for e in end_reps]
-                random.shuffle(l)
+                # the additional random parameter ensures the same results for python 2 and 3
+                random.shuffle(l, random=random.random)
                 for trip in l[:num_samples]:
                     num_rows += 1
                     columns = list(template)
