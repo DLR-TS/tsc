@@ -36,7 +36,7 @@ from sumolib.options import ArgumentParser
 
 from common import csv_sequence_generator
 from constants import TH, THX, SX, SP, BACKGROUND_TRAFFIC_SUFFIX
-from db_manipulator import get_conn
+import db_manipulator
 
 
 @benchmark
@@ -280,6 +280,7 @@ CREATE TABLE temp.%s
 @benchmark
 def main():
     argParser = ArgumentParser()
+    db_manipulator.add_db_arguments(argParser)
     argParser.add_argument("-n", "--net-file",
                            help="specifying the net file of the scenario to use")
     argParser.add_argument("-k", "--simkey", default="test",
@@ -297,7 +298,7 @@ def main():
     if len(args) == 2:
         aggregate_weights(args[0], [float(x) for x in args[1].split(",")])
         return
-    conn = get_conn(options)
+    conn = db_manipulator.get_conn(options)
     if os.path.isfile(options.real_trips) and not options.all_pairs:
         upload_trip_results(conn, options.simkey, SP.OPTIONAL, options.real_trips, options.limit)
     if os.path.isfile(options.representatives):

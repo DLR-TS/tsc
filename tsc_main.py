@@ -95,6 +95,11 @@ def get_simulation_requests(options):
     if options.fake_tripfile or options.sim_key:
         if options.sim_key is None:
             options.sim_key = DEFAULT_SIMKEY
+            initial_sim_params = dict(SP.OPTIONAL)
+        else:
+            conn = db_manipulator.get_conn(options)
+            initial_sim_params = get_trips.get_sim_params(conn, options.sim_key, overrides)
+            conn.close()
         if options.iteration is None:
             destination_path = os.path.join(options.workdir_folder, overrides.get(SP.destination, SP.OPTIONAL[SP.destination]))
             if os.path.isdir(destination_path):
@@ -111,7 +116,7 @@ def get_simulation_requests(options):
                 iterations = [int(options.iteration)]
         simulation_request_list = []
         for i in iterations:
-            sim_params = dict(SP.OPTIONAL)
+            sim_params = dict(initial_sim_params)
             sim_params.update({SP.net_param: options.net_param,
                                SP.iteration: str(i),
                                SP.max_iteration: str(max(iterations)+1)})

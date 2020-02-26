@@ -232,7 +232,7 @@ def rectify_input(options):
             previous_depart = None
             spatial_offset = None
             # smooth bursts due to low resolution
-            smoothing_offset = int(random.random() * options.time_diffusion) - options.time_diffusion // 2
+            smoothing_offset = int(random.random() * (options.time_diffusion+1)) - options.time_diffusion // 2
             for row in trip_sequence:
                 rows += 1
                 uid = build_uid(row)

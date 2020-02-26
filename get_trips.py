@@ -58,6 +58,25 @@ def parse_args():
     return options
 
 
+def get_sim_params(conn, sim_key, overrides):
+    cursor_open = conn.cursor()
+    command_dirs = """SELECT param_key, param_value FROM public.simulation_parameters
+                      WHERE sim_key = '%s' AND param_key IN ('%s')
+        """ % (sim_key, "','".join(SP.KEYS + SP.OPTIONAL.keys()))
+    cursor_open.execute(command_dirs)
+    sim_params = dict(SP.OPTIONAL)
+    sim_params.update(dict(cursor_open.fetchall()))
+    sim_params.update(overrides)
+    assert table_exists(conn, sim_params[SP.od_slice_table]), "Matrix timeline table does not exist"
+    command_timeline = """SELECT "matrixMap_distribution" FROM core.%s WHERE "matrixMap_name" = '%s'""" % (
+        sim_params[SP.od_slice_table], sim_params[SP.od_slice_key])
+    cursor_open.execute(command_timeline)
+    sim_params[SP.od_slices] = cursor_open.fetchone()[0]
+    missing_params = set(SP.KEYS + SP.OPTIONAL.keys()).difference(set(sim_params.keys()))
+    assert len(missing_params) == 0, "parameters missing: %s" % missing_params
+    return sim_params
+
+
 def get_active_sim_keys(server_options, overrides):
     sys.stdout.flush()
     conn = db_manipulator.get_conn(server_options)
@@ -73,25 +92,9 @@ def get_active_sim_keys(server_options, overrides):
     cursor_open.execute(command)
 
     for sim_key, iteration in cursor_open.fetchall():
-        command_dirs = """SELECT param_key, param_value FROM public.simulation_parameters
-                          WHERE sim_key = '%s' AND param_key IN ('%s')
-            """ % (sim_key, "','".join(SP.KEYS + SP.OPTIONAL.keys()))
-        cursor_open.execute(command_dirs)
-        sim_params = dict(SP.OPTIONAL)
-        sim_params.update(dict(cursor_open.fetchall()))
-        sim_params.update(overrides)
+        sim_params = get_sim_params(conn, sim_key, overrides)
         if iteration >= max_iterations[sim_key] and sim_params.get(SP.status) is not None:
             continue
-
-        assert table_exists(
-            conn, sim_params[SP.od_slice_table]), "Matrix timeline table does not exist"
-        command_timeline = """SELECT "matrixMap_distribution" FROM core.%s WHERE "matrixMap_name" = '%s'""" % (
-            sim_params[SP.od_slice_table], sim_params[SP.od_slice_key])
-        cursor_open.execute(command_timeline)
-        sim_params[SP.od_slices] = cursor_open.fetchone()[0]
-        missing_params = set(SP.KEYS + SP.OPTIONAL.keys()).difference(set(sim_params.keys()))
-        assert len(missing_params) == 0, "parameters missing: %s" % missing_params
-
         # check whether the iteration is or was already running
         if sim_params.get(SP.status):
             assert table_exists(
