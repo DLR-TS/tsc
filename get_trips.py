@@ -268,10 +268,10 @@ def main():
                             tripfile_name(options.simkey, options.limit), sim_keys[options.simkey])
             else:
                 print("Error: simkey '%s' not found. Available:\n%s" % (
-                      options.simkey, sim_keys.keys()))
+                      options.simkey, list(sim_keys.keys())))
         else:
             # get all
-            for sim_key, _, params in get_active_sim_keys(options):
+            for sim_key, _, params in get_active_sim_keys(options, {}):
                 write_trips(conn, sim_key, options.limit_sql,
                             tripfile_name(sim_key, options.limit), params)
     conn.close()
