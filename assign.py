@@ -105,6 +105,7 @@ def run_duaiterate(options, first_depart, last_depart, trip_file, weight_file, m
         'sumo--phemlight-path', options.phemlight_path,
         # city traffic has shorter headways than highway traffic...
         'sumo--max-depart-delay', '300',
+        'duarouter--phemlight-path', options.phemlight_path,
         'duarouter--additional-files', ','.join(additional),
         'duarouter--vtype-output', '/dev/null',
         'duarouter--routing-threads', '16',

@@ -75,12 +75,11 @@ def getOptions(args, argParser):
     argParser.add_argument("--daemon-run-time", type=int, default=-1,
                            help="limit the up time of the daemon in seconds - e.g. for debugging ")
     argParser.add_argument('--iteration', help="iterations of faked simulation requests (ranges and ints are possible)")
-    argParser.add_argument("--sim-key",
-                           help="sim_key of faked simulation requests.\nUse only for testing")
+    argParser.add_argument("--sim-key", help="sim_key to use when running only a single simulation")
     argParser.add_argument("--sim-param", default="",
-                           help="additional parameters of faked simulation requests [default: %default].\nUse only for testing")
+                           help="additional parameters for simulation requests (overwrite database values)")
     argParser.add_argument('--net-param', default="{}",
-                           help="network restrictions of faked simulation requests.\nUse only for testing")
+                           help="network restrictions of simulation requests (do not use in daemon mode).")
 
     options = argParser.parse_args(args=args)
     if len(args) == 0:
@@ -243,7 +242,6 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
     vTypes = set()
     for (t, ), _ in common.csv_sequence_generator(options.tapas_trips, "sumo_type"):
         vTypes.add(str(t))
-    orig_tapas_trips = options.tapas_trips
 
     write_status('>> starting all pairs calculation', sim_key, params, conn)
     options.assignment = "bulk"
@@ -313,8 +311,7 @@ def write_status(message, sim_key, params, conn=None, msg_type=constants.MSG_TYP
         """ % (params[SP.status], sim_key, params[SP.iteration])
         cursor.execute(command, (str(message), msg_type))
         conn.commit()
-        # make sure the time stamp is unique, otherwise the primary key is
-        # violated
+        # make sure the time stamp is unique, otherwise the primary key is violated
         time.sleep(0.01)
 
 
@@ -325,7 +322,7 @@ def get_script_module(options, template):
         import scripts
         if hasattr(scripts, template):
             return getattr(scripts, template)
-    except ImportError as m:
+    except ImportError:
         # print("Import failed", m, sys.path)
         pass
     return None
