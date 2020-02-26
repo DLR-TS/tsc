@@ -469,8 +469,7 @@ def create_sumo_tripdefs(options, scale, suffix, vtype_map):
         trip_lines.append((int(depart), entry))
         for idx in range(num_clones):
             # smooth bursts due to low resolution
-            smoothing_offset = random.randint(
-                -options.time_diffusion / 2, options.time_diffusion / 2)
+            smoothing_offset = int(random.random() * (options.time_diffusion+1)) - options.time_diffusion // 2
             depart = int(row[TH.depart_minute]) * 60 + smoothing_offset + 24 * 3600
             if mode in CAR_MODES:
                 entry = '    <trip id="%s" depart="%s"%s%s type="%s">%s</trip>\n' % (

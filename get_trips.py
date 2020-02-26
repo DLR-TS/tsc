@@ -60,9 +60,10 @@ def parse_args():
 
 def get_sim_params(conn, sim_key, overrides):
     cursor_open = conn.cursor()
+    param_keys = set(SP.KEYS + list(SP.OPTIONAL.keys()))
     command_dirs = """SELECT param_key, param_value FROM public.simulation_parameters
                       WHERE sim_key = '%s' AND param_key IN ('%s')
-        """ % (sim_key, "','".join(SP.KEYS + SP.OPTIONAL.keys()))
+        """ % (sim_key, "','".join(param_keys))
     cursor_open.execute(command_dirs)
     sim_params = dict(SP.OPTIONAL)
     sim_params.update(dict(cursor_open.fetchall()))
@@ -72,7 +73,7 @@ def get_sim_params(conn, sim_key, overrides):
         sim_params[SP.od_slice_table], sim_params[SP.od_slice_key])
     cursor_open.execute(command_timeline)
     sim_params[SP.od_slices] = cursor_open.fetchone()[0]
-    missing_params = set(SP.KEYS + SP.OPTIONAL.keys()).difference(set(sim_params.keys()))
+    missing_params = param_keys.difference(set(sim_params.keys()))
     assert len(missing_params) == 0, "parameters missing: %s" % missing_params
     return sim_params
 
