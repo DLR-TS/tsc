@@ -5,6 +5,9 @@
 if test x"$SUMO_HOME" = x; then
   export SUMO_HOME="$HOME/sumo"
 fi
+if test x"$SIP_HOME" = x; then
+  export SIP_HOME="$HOME/SiP"
+fi
 export ACTIVITYGEN_BINARY="$SUMO_HOME/bin/activitygen$SUFFIX"
 export DFROUTER_BINARY="$SUMO_HOME/bin/dfrouter$SUFFIX"
 export DUAROUTER_BINARY="$SUMO_HOME/bin/duarouter$SUFFIX"
@@ -17,8 +20,7 @@ export OD2TRIPS_BINARY="$SUMO_HOME/bin/od2trips$SUFFIX"
 export POLYCONVERT_BINARY="$SUMO_HOME/bin/polyconvert$SUFFIX"
 export SUMO_BINARY="$SUMO_HOME/bin/sumo$SUFFIX"
 export GUISIM_BINARY="$SUMO_HOME/bin/sumo-gui$SUFFIX"
-export SIP_HOME="$HOME/SiP"
-export TSC_HOME="$PWD/.."
+export TSC_HOME=$(dirname $(dirname $(realpath $0)))
 export TEXTTEST_HOME="$SIP_HOME/tests"
 export TSC_DATA="$SIP_HOME/projects/tapas"
 
