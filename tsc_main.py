@@ -322,8 +322,8 @@ def get_script_module(options, template):
         import scripts
         if hasattr(scripts, template):
             return getattr(scripts, template)
-    except ImportError:
-        # print("Import failed", m, sys.path)
+    except ImportError as m:
+        print("Import failed", m, sys.path)
         pass
     return None
 
