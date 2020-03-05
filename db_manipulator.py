@@ -47,6 +47,8 @@ def get_conn(options_or_config_file):
         options = argParser.parse_args(["-c", options_or_config_file])
     else:
         options = options_or_config_file
+    if options.host is None:
+        return None
     return psycopg2.connect(host=options.host, port=options.port, user=options.user, password=options.password, database=options.database)
 
 
