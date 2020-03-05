@@ -286,7 +286,7 @@ def cleanup(save, iteration_dir, sim_key, iteration, params, conn):
                      iteration, sim_key, params, conn)
         for f in save:
             shutil.move(f, iteration_dir)
-        _, dirnames, _ = os.walk(iteration_dir).next()
+        _, dirnames, _ = next(os.walk(iteration_dir))
         for d in dirnames:
             shutil.rmtree(os.path.join(iteration_dir, d))
     if params[SP.del_intermediate].lower() in ["1", "true", "yes"]:
@@ -455,7 +455,7 @@ def main(args):
         daemon_end_time = datetime.datetime.max
     while now < daemon_end_time:
         # clean up finished processes
-        for key in processes.keys():
+        for key in list(processes.keys()):
             if not processes[key].is_alive():
                 del processes[key]
         # check for a new simulation request
