@@ -49,13 +49,6 @@ def parse_routes(routefile):
     return result
 
 
-def person_ride(row, lines):
-    return '        <ride from="%s" to="%s" lines="%s"/>' % (
-        row[THX.source_edge],
-        row[THX.dest_edge],
-        lines)
-
-
 def sorted_trip_sequence(tripfile):
     # sort by daytrip start
     persons = []
@@ -122,24 +115,25 @@ def create_personfile(mapped_trips, input_routes, output_routes):
                     #                    stopping_time = max(0, float(row[THX.depart_second]) - previous_arrival)
                     # use fixed activity duration (maybe max with next depart
                     # would also be nice?)
-                    stopping_time = float(
-                        row[TH.activity_duration_minutes]) * 60
+                    stopping_time = float(row[TH.activity_duration_minutes]) * 60
                     # fixed starting time
                     # person_lines.append('        <stop until="%s" lane="%s_0"/>'
                     #       % (row[THX.depart_second], source_edge))
 
                     # fixed duration
+                    person_lines.append('        <walk from="%s" to="%s"/>' % (redges[-1], source_edge))
                     person_lines.append('        <stop duration="%s" lane="%s_0" endPos="%s" friendlyPos="true"/>'
                                         % (stopping_time, source_edge, previous_arrival_pos))
 
                 previous_dest_edge = dest_edge
-                previous_arrival = float(
-                    row[THX.depart_second]) + float(row[TH.duration])
+                previous_arrival = float(row[THX.depart_second]) + float(row[TH.duration])
                 previous_arrival_pos = row[THX.arrivalpos]
 
                 if mode in CAR_MODES:
                     route, vtype = routes[uid]
-                    person_lines.append(person_ride(row, uid))
+                    redges = route.edges.split()
+                    person_lines.append('        <walk from="%s" to="%s"/>' % (source_edge, redges[0]))
+                    person_lines.append('        <ride from="%s" to="%s" lines="%s"/>' % (redges[0], redges[-1], uid))
 
                     vehicle_lines.append('    <vehicle id="%s" depart="triggered" type="%s" departPos="%s" arrivalPos="%s">' %
                                          (uid, vtype, row[THX.departpos], row[THX.arrivalpos]))
