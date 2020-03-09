@@ -129,7 +129,7 @@ def fetch_and_write(conn, command, tripfile, columns, mode="w"):
         print(",".join(columns), file=f)
         for row in fetch_chunks(cursor):
             num_rows += 1
-            print(','.join(map(str, row)), file=f)
+            print(','.join(["%.10g" % e if isinstance(e, float) else str(e) for e in row]), file=f)
     print("wrote %s rows to %s" % (num_rows, tripfile))
 
 
