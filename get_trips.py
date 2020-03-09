@@ -227,10 +227,10 @@ def write_all_pairs(conn, vType, depart, limit, tripfile, params, seed):
                     columns = list(template)
                     columns[fieldnames.index(TH.person_id)] = str(trip[0])
                     columns[fieldnames.index(TH.household_id)] = str(trip[3])
-                    columns[fieldnames.index(TH.source_long)] = str(trip[1])
-                    columns[fieldnames.index(TH.source_lat)] = str(trip[2])
-                    columns[fieldnames.index(TH.dest_long)] = str(trip[4])
-                    columns[fieldnames.index(TH.dest_lat)] = str(trip[5])
+                    columns[fieldnames.index(TH.source_long)] = "%.10g" % trip[1]
+                    columns[fieldnames.index(TH.source_lat)] = "%.10g" % trip[2]
+                    columns[fieldnames.index(TH.dest_long)] = "%.10g" % trip[4]
+                    columns[fieldnames.index(TH.dest_lat)] = "%.10g" % trip[5]
                     columns[fieldnames.index(TH.taz_id_start)] = str(start)
                     columns[fieldnames.index(TH.taz_id_end)] = str(end)
                     print(','.join(columns), file=f)
