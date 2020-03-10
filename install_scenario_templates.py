@@ -31,9 +31,9 @@ if 'SUMO_HOME' in os.environ:
     sys.path.append(os.path.join(os.environ['SUMO_HOME'], 'tools'))
 else:
     sys.exit("please declare environment variable 'SUMO_HOME'")
-import sumolib
-import edgesInDistricts
-import generateBidiDistricts
+import sumolib  # noqa
+import edgesInDistricts  # noqa
+import generateBidiDistricts  # noqa
 
 import db_manipulator
 import import_navteq
@@ -176,21 +176,10 @@ def create_template_folder(scenario_name, options):
                 polys = polyReader.getPolygons()
                 if net is None:
                     net = sumolib.net.readNet(net_path, withConnections=False, withFoes=False)
+                eIDoptions, _ = edgesInDistricts.parse_args(["--assign-from", "--output", tazFile])
                 reader = edgesInDistricts.DistrictEdgeComputer(net)
-                options.maxspeed = 1000.
-                options.minspeed = 0.
-                options.complete = False
-                options.internal = False
-                options.vclass = None
-                options.assign_from = True
-                options.verbose = False
-                options.weighted = False
-                options.shapeinfo = False
-                options.output = tazFile
-                options.merge_separator = None
-                options.merge_param = None
-                reader.computeWithin(polys, options)
-                reader.writeResults(options)
+                reader.computeWithin(polys, eIDoptions)
+                reader.writeResults(eIDoptions)
         if options.suburb_taz:
             tazFile = os.path.join(scenario_template_dir, options.suburb_taz + ".taz.xml")
             if options.verbose:
@@ -202,20 +191,10 @@ def create_template_folder(scenario_name, options):
                 for tazid, shapes in get_germany_taz.get_polys(options, net=net):
                     for idx, shape in enumerate(shapes):
                         polys.append(sumolib.shapes.polygon.Polygon("%s:%s" % (tazid, idx), shape=shape))
+                eIDoptions, _ = edgesInDistricts.parse_args(["--assign-from", "--output", tazFile, "--merge-separator", ":"])
                 reader = edgesInDistricts.DistrictEdgeComputer(net)
-                options.maxspeed = 1000.
-                options.minspeed = 0.
-                options.complete = False
-                options.internal = False
-                options.vclass = None
-                options.assign_from = True
-                options.verbose = False
-                options.weighted = False
-                options.shapeinfo = False
-                options.output = tazFile
-                options.merge_separator = ":"
-                reader.computeWithin(polys, options)
-                reader.writeResults(options)
+                reader.computeWithin(polys, eIDoptions)
+                reader.writeResults(eIDoptions)
             add += "," + tazFile
     lm = os.path.join(scenario_pre_dir, options.landmarks)
     if os.path.isfile(lm):
