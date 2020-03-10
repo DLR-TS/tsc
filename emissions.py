@@ -30,19 +30,25 @@ from sumolib.miscutils import benchmark, uMax
 
 from common import csv_sequence_generator, abspath_in_dir, build_uid
 from constants import TH, THX, SX, TAPAS_EXTRA_TIME, SP
-from get_trips import table_exists
+from db_manipulator import table_exists
 
-SMALL_CARS = set([1, 2, 101])
-MEDIUM_CARS = set([3, 4, 9, 10, 102])
-LARGE_CARS = set([5, 6, 7, 8, 95, 103])
-TRANSPORTER = set([11, 12, 104])
+SMALL_CARS = (1, 2, 101)
+MEDIUM_CARS = (3, 4, 9, 10, 102)
+LARGE_CARS = (5, 6, 7, 8, 95, 103)
+TRANSPORTER = (11, 12, 104)
 
 FUEL_TYPES = ["G", "D", "O", "O", "O"]
 
 def get_emission_class(model, size, fuel, euro_norm):
-    assert size in SMALL_CARS or size in MEDIUM_CARS or size in LARGE_CARS or size in TRANSPORTER, "Unknown size class"
-    assert fuel < 2, "Unknown fuel type"
-    assert euro_norm in range(0, 7), "Unknown Euro norm"
+    if size not in SMALL_CARS + MEDIUM_CARS + LARGE_CARS + TRANSPORTER:
+        print("Warning! Unknown size class", size)
+        return None
+    if fuel >= 2:
+        print("Warning! Unknown fuel type", fuel)
+        return None
+    if euro_norm not in range(0, 7):
+        print("Warning! Unknown Euro norm", euro_norm)
+        return None
     if model == "HBEFA2 7":
         if size in TRANSPORTER:
             if FUEL_TYPES[fuel] == "G":

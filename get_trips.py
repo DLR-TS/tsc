@@ -24,11 +24,13 @@ import sys
 import collections
 import random
 import math
+
 sys.path.append(os.path.join(os.environ['SUMO_HOME'], 'tools'))
 from sumolib.options import ArgumentParser
 
 from constants import TH, MODE, THX, SP, CAR_MODES
 import db_manipulator
+from db_manipulator import table_exists
 
 ALL_PAIRS = 'all_pairs'
 
@@ -131,13 +133,6 @@ def fetch_and_write(conn, command, tripfile, columns, mode="w"):
             num_rows += 1
             print(','.join(["%.10g" % e if isinstance(e, float) else str(e) for e in row]), file=f)
     print("wrote %s rows to %s" % (num_rows, tripfile))
-
-
-def table_exists(conn, table):
-    cursor = conn.cursor()
-    cursor.execute(
-        "SELECT TRUE FROM pg_class WHERE relname = '%s' AND relkind='r'" % table)
-    return len(cursor.fetchall()) > 0
 
 
 def write_trips(conn, sim_key, limit, tripfile, params):

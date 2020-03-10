@@ -323,8 +323,7 @@ def get_script_module(options, template):
         if hasattr(scripts, template):
             return getattr(scripts, template)
     except ImportError as m:
-        print("Import failed", m, sys.path)
-        pass
+        print("No scenario specific assignment or post processing functions:", m)
     return None
 
 

@@ -52,6 +52,13 @@ def get_conn(options_or_config_file):
     return psycopg2.connect(host=options.host, port=options.port, user=options.user, password=options.password, database=options.database)
 
 
+def table_exists(conn, table):
+    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT TRUE FROM pg_class WHERE relname = '%s' AND relkind='r'" % table)
+    return len(cursor.fetchall()) > 0
+
+
 def run_sql(conn, sql):
     cursor = conn.cursor()
     command = ""

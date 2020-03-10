@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # Copyright (C) 2013-2020 German Aerospace Center (DLR) and others.
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License 2.0 which is available at
@@ -25,13 +26,15 @@ import subprocess
 import time
 from collections import defaultdict
 
+sys.path.append(os.path.join(os.environ['SUMO_HOME'], 'tools'))
 import sumolib
 from sumolib.miscutils import benchmark, uMax
 
 from common import csv_sequence_generator, abspath_in_dir, build_uid
 from constants import TH, THX, SX, TAPAS_EXTRA_TIME, CAR_MODES, SP
-from get_trips import table_exists
+import db_manipulator
 import emissions
+
 
 def call(cmd):
     proc = subprocess.Popen(cmd)
@@ -251,3 +254,14 @@ def run_emission_sumo(options, params, conn, routefile, emission_model="HBEFA3",
                         )
         )
     return call([sumolib.checkBinary("sumo"), "-c", sumocfg])
+
+
+if __name__ == "__main__":
+    argParser = sumolib.options.ArgumentParser()
+    db_manipulator.add_db_arguments(argParser)
+    argParser.add_argument("routes")
+    options = argParser.parse_args()
+    options.iteration_dir = "."
+    conn = db_manipulator.get_conn(options)
+    run_emission_sumo(options, SP.OPTIONAL, conn, options.routes)
+    conn.close()
