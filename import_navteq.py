@@ -88,7 +88,7 @@ def importNavteq(options):
     polyconvert = sumolib.checkBinary('polyconvert')
 
     for idx, config in enumerate(options.config.split(",")):
-        netconvert_call = [netconvert, '--aggregate-warnings', '5', '--output-file', options.netfile, '-c', config]
+        netconvert_call = [netconvert, '--output-file', options.netfile, '-c', config]
         if idx > 0:
             tmp_net = os.path.join(
                 options.output_dir, options.net_prefix + "_tmp.net.xml")
