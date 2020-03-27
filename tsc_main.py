@@ -55,7 +55,7 @@ import s2t_miv
 from constants import SP
 import get_motorway_access
 
-DEFAULT_SIMKEY = "berlin_2010"
+DEFAULT_SIMKEY = "mitte_net"
 
 def getOptions(args, argParser):
     t2s.fillOptions(argParser)

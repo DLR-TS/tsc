@@ -157,7 +157,7 @@ class SP:
     KEYS = [template, destination, modes, trip_table_prefix, od_output,
             iteration, max_iteration, status, taz_table, representatives,
             od_slice_table, od_slice_key]
-    OPTIONAL = {template: "berlin_2010", destination: "berlin_2010",
+    OPTIONAL = {template: "mitte_net", destination: "mitte_net",
                 modes: ";".join(CAR_MODES),
                 trip_table_prefix: "berlin_trips",
                 trip_output: "sumo_trip",

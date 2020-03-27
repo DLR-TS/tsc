@@ -34,7 +34,7 @@ import db_manipulator
 def parse_args():
     argParser = ArgumentParser()
     db_manipulator.add_db_arguments(argParser)
-    argParser.add_argument("-o", "--output", default="scenario_pre/berlin_2010/location_priorities.xml", help="output file")
+    argParser.add_argument("-o", "--output", default="osm_scenario_pre/mitte_net/location_priorities.xml", help="output file")
     options = argParser.parse_args()
     return options
 
