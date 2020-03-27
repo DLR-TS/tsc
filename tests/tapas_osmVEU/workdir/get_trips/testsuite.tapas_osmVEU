@@ -1,0 +1,8 @@
+# Test for reading trips from tapas database
+plain
+
+# Tests if error message if requested trip table does not exist.
+no_trip_table
+
+# Test for reading trips from tapas database
+all_pairs

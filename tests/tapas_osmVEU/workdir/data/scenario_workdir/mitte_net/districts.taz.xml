@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- generated on 2020-03-26 12:03:55.771000 by install_osm_scenario_templates.py v1_5_0+0705-cb3e5fa4c7
+  options: <doubleminus>clean -v -p osm_scenario_pre
+-->
+<tazs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/taz_file.xsd">
+</tazs>

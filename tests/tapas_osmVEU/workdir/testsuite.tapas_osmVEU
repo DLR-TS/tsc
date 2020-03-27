@@ -1,0 +1,11 @@
+# Test for reading trips from tapas database
+get_trips
+
+# Tests for manipulating trips received from tapas
+t2s
+
+# Tests for writing information back to tapas
+s2t_miv
+
+# Demon has to create a new iteration dir into an exisiting workdir
+tscDaemonWorkdirWithOneIteration

@@ -1,0 +1,46 @@
+import_config_file:../config_all
+kill_timeout:3600
+binary:$TEXTTEST_HOME/scenariorunner.py
+test_data_ignore:.git
+config_module:default
+create_catalogues:true
+
+copy_test_path_merge:data
+copy_test_path:scenariodefs.py
+copy_test_path:template_gen.netccfg
+
+[collate_file]
+log:log.txt
+rectifiedTrips:data/scenario_workdir/*/iteration000/trips/rectified*.csv
+resultingTripFile:data/scenario_workdir/*/*/trips/2*ms.csv
+resultingAllPairsFile:data/scenario_workdir/*/*/trips/all_pairs*.csv
+sumoTrips:data/scenario_workdir/*/iteration000/trips/miv*.trips.xml
+
+[run_dependent_text]
+output:\r{REPLACE \n}
+output:(\\)+{REPLACE /}
+output:[0-9\.]+ms{REPLACE (TIME)}
+output:^Performance:{->}^Vehicles:
+output:^using.*bin/sumo
+output:^function .* finished after .* seconds
+output:^function .* called at .*
+output:Begin time: 
+output:End time: 
+output:Duration:
+output:ended (duration:
+output:answered .* queries and explored
+output:{INTERNAL writedir}{REPLACE <texttest sandbox>}
+output:([A-Z]:)?/.*/bin/netconvert(.exe)?{REPLACE <netconvert>}
+output:([A-Z]:)?/.*/bin/polyconvert(.exe)?{REPLACE <polyconvert>}
+output:([A-Z]:)?/.*/osm_scenario_pre{REPLACE <osm_scenario_pre>}
+output:Simulation.*started with{REPLACE Simulation started with}
+errors:Ran
+errors:Exception AttributeError: AttributeError("'NoneType' object has no attribute 'Error_GetErrorCount'",) in <bound method
+catalogue:.pyc
+catalogue:__pycache__
+log:[0-9\.]+ms{REPLACE (TIME)}
+
+[floating_point_tolerance]
+output:0.0101
+rectifiedTrips:0.0101
+resultingTripFile:0.0000000001
