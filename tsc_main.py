@@ -55,7 +55,7 @@ import s2t_miv
 from constants import SP
 import get_motorway_access
 
-DEFAULT_SIMKEY = "mitte_net"
+DEFAULT_SIMKEY = "berlin_2010"
 
 def getOptions(args, argParser):
     t2s.fillOptions(argParser)
@@ -246,8 +246,7 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
     write_status('>> starting all pairs calculation', sim_key, params, conn)
     options.assignment = "bulk"
     options.bidi_taz_file = None
-    options.weights = s2t_miv.aggregate_weights(
-        final_weights, params[SP.od_slices])
+    options.weights = s2t_miv.aggregate_weights(final_weights, params[SP.od_slices])
     options.trips_dir = os.path.join(options.iteration_dir, 'allpairs')
     options.rectify = False
     options.scale = 1.0
@@ -403,21 +402,18 @@ def simulation_request(options, request):
         if conn is not None:
             print()
             # upload trip results to db
-            write_status(
-                '>> starting trip result database upload', sim_key, params, conn)
+            write_status('>> starting trip result database upload', sim_key, params, conn)
             s2t_miv.upload_trip_results(conn, sim_key, params, final_routes)
-            write_status(
-                '<< finished trip result database upload', sim_key, params, conn)
+            write_status('<< finished trip result database upload', sim_key, params, conn)
 
             print()
-            run_all_pairs(
-                options, conn, sim_key, params, final_routes, final_weights)
+            print(params)
+            run_all_pairs(options, conn, sim_key, params, final_routes, final_weights)
 
         cleanup([final_routes, final_weights], options.iteration_dir,
-                sim_key, iteration, params, conn)
+                 sim_key, iteration, params, conn)
 
-        write_status(
-            "< End", sim_key, params, conn, constants.MSG_TYPE.finished)
+        write_status("< End", sim_key, params, conn, constants.MSG_TYPE.finished)
     except (AssertionError, IOError, subprocess.CalledProcessError, t2s.MappingError) as message:
         write_status(message, sim_key, params, conn, constants.MSG_TYPE.error)
     except ProgrammingError as message:

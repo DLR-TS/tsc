@@ -191,7 +191,6 @@ def write_all_pairs(conn, vType, depart, limit, tripfile, params, seed):
     template[fieldnames.index(TH.vtype)] = vType
     template[fieldnames.index(THX.depart_second)] = str(depart)
     num_samples = 5
-    trips = []
     reps = collections.defaultdict(list)
     cursor = conn.cursor()
     command = """SELECT taz_num_id, id, X(representative_coordinate), Y(representative_coordinate)
