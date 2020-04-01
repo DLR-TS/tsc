@@ -26,6 +26,7 @@ import multiprocessing
 import time
 
 import psycopg2
+import sqlite3
 
 sys.path.append(os.path.join(os.environ['SUMO_HOME'], 'tools'))
 from sumolib.options import ArgumentParser
@@ -49,7 +50,11 @@ def get_conn(options_or_config_file):
         options = options_or_config_file
     if options.host is None:
         return None
-    return psycopg2.connect(host=options.host, port=options.port, user=options.user, password=options.password, database=options.database)
+    try:
+        return psycopg2.connect(host=options.host, port=options.port, user=options.user, password=options.password, database=options.database)
+    except psycopg2.OperationalError as e:
+        print(e, file=sys.stderr)
+        return None
 
 
 def table_exists(conn, table):
@@ -115,7 +120,8 @@ def start(server, call, pre_test, par_test, post_test):
 if __name__ == "__main__":
     argParser = ArgumentParser()
     add_db_arguments(argParser)
-    options = argParser.parse_args(["-c", os.path.join(os.environ["TSC_DATA"], "test_server.tsccfg")])
+    #options = argParser.parse_args(["-c", os.path.join(os.environ["TSC_DATA"], "test_server.tsccfg")])
+    options = argParser.parse_args()
     # get connection to (test) db
     print('using server', options)
     conn = get_conn(options)
