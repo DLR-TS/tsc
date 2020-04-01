@@ -1,12 +1,14 @@
-import_config_file:../config_all
+home_operating_system:posix
+batch_result_repository:$SCENARIO_BATCH_RESULT
+historical_report_location:$SCENARIO_REPORT
 kill_timeout:3600
-binary:$TEXTTEST_HOME/scenariorunner.py
-test_data_ignore:.git
+binary:runner.py
 config_module:default
 create_catalogues:true
 
 copy_test_path_merge:data
-copy_test_path:scenariodefs.py
+copy_test_path:tscdefs.py
+copy_test_path:runner.py
 copy_test_path:template_gen.netccfg
 
 [collate_file]

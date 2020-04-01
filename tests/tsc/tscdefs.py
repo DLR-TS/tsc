@@ -10,7 +10,7 @@ tscData = os.environ.get("TSC_DATA", os.path.join(os.environ["SIP_HOME"]))
 testServer = os.path.join(tscData, "test_server.tsccfg")
 
 def get_python_tool(rel_path, config=testServer):
-    call = '"' + python + '" "' + os.path.join(tscRoot, rel_path) + '"'
+    call = [python, os.path.join(tscRoot, rel_path)]
     if config:
-        return call + ' -c "%s"' % config
+        return call + ['-c', config]
     return call
