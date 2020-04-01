@@ -182,9 +182,9 @@ def create_template_folder(scenario_name, options):
                 reader.writeResults(eIDoptions)
         if options.suburb_taz:
             tazFile = os.path.join(scenario_template_dir, options.suburb_taz + ".taz.xml")
-            if options.verbose:
-                print("generating taz file %s" % tazFile)
             if not os.path.exists(tazFile) or os.path.getmtime(tazFile) < os.path.getmtime(net_path):
+                if options.verbose:
+                    print("generating taz file %s" % tazFile)
                 polys = []
                 if net is None:
                     net = sumolib.net.readNet(net_path, withConnections=False, withFoes=False)

@@ -19,27 +19,28 @@
 # pull taz for germany from the VF tapas server
 
 from __future__ import print_function
+import os
 import sys
 import ast
-from optparse import OptionParser
 
-import db_manipulator
+sys.path.append(os.path.join(os.environ['SUMO_HOME'], 'tools'))
+import sumolib  # noqa
+
+import db_manipulator  # noqa
 
 
 def parse_args():
-    USAGE = "Usage: " + sys.argv[0] + " <options>"
-    optParser = OptionParser()
-    optParser.add_option("-s", "--server", default="athene", help="postgres server name")
-    optParser.add_option("-o", "--output", default="d-modell.poly.xml", help="output file")
-
-    options, args = optParser.parse_args()
-    if len(args) != 0:
-        sys.exit(USAGE)
-    return options
+    argParser = sumolib.options.ArgumentParser()
+    db_manipulator.add_db_arguments(argParser)
+    argParser.add_argument("-o", "--output", default="d-modell.poly.xml", help="output file")
+    return argParser.parse_args()
 
 
 def get_polys(server_options, table='quesadillas.zonierung_d_modell', net=None):
     conn = db_manipulator.get_conn(server_options)
+    if conn is None:
+        print("Warning! No database, cannot retrieve suburbian TAZ.")
+        return
     command = "SELECT vbz_6561, ST_ASTEXT(ST_TRANSFORM(the_geom, 4326)) FROM %s" % table
     cursor = conn.cursor()
     cursor.execute(command)
@@ -73,7 +74,7 @@ def main():
     options = parse_args()
 #    assert db_manipulator.table_exists(conn, options.taztable), "No taz table (%s) found" % options.taztable
     with open(options.output, "w") as out:
-        for tazid, shapes in get_polys(options.server):
+        for tazid, shapes in get_polys(options):
             for idx, shape in enumerate(shapes):
                 print('    <poly id="%s:%s" shape="%s"/>' % (tazid, idx, " ".join(["%s,%s" % e for e in shape])), file=out)
 
