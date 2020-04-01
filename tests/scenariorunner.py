@@ -82,25 +82,24 @@ def get_options():
 # there are two ways in which this can be called:
 # 1) without arguments. This assumes texttest has created the appropriate sandbox
 # 2) with arguments for deployment. This means we have to create the sandbox manually and maybe clean up afterwards
-import stddefs
-stddefs.options = get_options();
-if stddefs.options.deploy:
+options = get_options();
+if options.deploy:
     # create the sandbox
     if os.path.isdir(DEPLOY_SANDBOX):
         shutil.rmtree(DEPLOY_SANDBOX)
-    if stddefs.options.verbose:
-        print("extracting text from '%s'" % stddefs.options.scenario)
+    if options.verbose:
+        print("extracting text from '%s'" % options.scenario)
     extractTest.main(extractTest.get_options(
             ['--skip-configuration',
-                "%s;%s" % (stddefs.options.scenario, DEPLOY_SANDBOX)])) 
+                "%s;%s" % (options.scenario, DEPLOY_SANDBOX)])) 
     os.chdir(DEPLOY_SANDBOX)
     # proceed from the sandbox
     sys.path.append(DEPLOY_SANDBOX)
-    import scenariodefs
-    run(scenariodefs.buildProcess, stddefs.options.verbose)
-    deploy(stddefs.options.dest, stddefs.options.verbose, scenariodefs.toRemove, scenariodefs.toDeploy)
+    import runner
+    run(runner.buildProcess, options.verbose)
+    deploy(options.dest, options.verbose, runner.toRemove, runner.toDeploy)
 else:
     sys.path.append('.')
-    import scenariodefs
-    run(scenariodefs.buildProcess, stddefs.options.verbose)
-    run(scenariodefs.runProcess, stddefs.options.verbose)
+    import runner
+    run(runner.buildProcess, options.verbose)
+    run(runner.runProcess, options.verbose)

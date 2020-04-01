@@ -1,0 +1,90 @@
+Warning: Ignoring track count 2 for edge '104765087'.
+Warning: Discarding unknown compound 'cycleway.track' in type 'cycleway.track|highway.primary' (first occurence for edge '4045243').
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|highway.primary' (first occurence for edge '4068078').
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|highway.secondary' (first occurence for edge '4383235').
+Warning: Discarding unknown compound 'cycleway.track' in type 'cycleway.track|highway.secondary' (first occurence for edge '4396503').
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|highway.tertiary' (first occurence for edge '4412886').
+Warning: Discarding unusable type 'railway.abandoned' (first occurence for edge '4741460').
+Warning: Ambiguous railway kilometrage direction for way '4741937' (assuming forward)
+Warning: Discarding unusable type 'railway.construction' (first occurence for edge '23439780').
+Warning: Discarding unusable type 'railway.proposed' (first occurence for edge '23707860').
+Warning: Ambiguous railway kilometrage direction for way '25005728' (assuming forward)
+Warning: Ambiguous railway kilometrage direction for way '25386365' (assuming forward)
+Warning: Ambiguous railway kilometrage direction for way '25946680' (assuming forward)
+Warning: Discarding unusable type 'highway.construction' (first occurence for edge '25959781').
+Warning: Discarding unusable type 'waterway.stream' (first occurence for edge '31112384').
+Warning: Ambiguous railway kilometrage direction for way '32572620' (assuming forward)
+Warning: direction of restriction relation could not be determined
+Warning: Ignoring restriction relation '1028113'.
+Warning: No way found for reference '3250129634' in relation '1123588'
+Warning: No way found for reference '49677302' in relation '3387178'
+Warning: Ignoring restriction relation '3387178' with unknown via.
+Warning: from-edge '287981944' of restriction relation could not be determined
+Warning: Ignoring restriction relation '3872985'.
+Warning: No way found for reference '160971199' in relation '5159676'
+Warning: Ignoring restriction relation '5159676' with unknown to-way.
+Warning: direction of restriction relation could not be determined
+Warning: Ignoring restriction relation '5303993'.
+Warning: No way found for reference '159081776' in relation '5349344'
+Warning: Ignoring restriction relation '5349344' with unknown from-way.
+Warning: No way found for reference '42091232' in relation '5506101'
+Warning: Ignoring restriction relation '5506101' with unknown to-way.
+Warning: Ignoring restriction relation '5506104' with unknown to-way.
+Warning: Ignoring restriction relation '5506105' with unknown from-way.
+Warning: direction of restriction relation could not be determined
+Warning: Ignoring restriction relation '6658641'.
+Warning: from-edge '112128417' of restriction relation could not be determined
+Warning: Ignoring restriction relation '9926308'.
+Warning: from-edge '194952583' of restriction relation could not be determined
+Warning: from-edge '336572471' of restriction relation could not be determined
+Warning: direction of restriction relation could not be determined
+Warning: to-edge '246044833' of restriction relation could not be determined
+Warning: Converting invalid rail_crossing to traffic_light at junction '29794318'.
+Warning: Not joining junctions 29794215,471801039 (parallel incoming 110862591#1,288762492#2).
+Warning: Not joining junctions 21487284,2659182540,283038325,283038326,283045467 (not compact (maxEdge=168514765#1 length=9.17)).
+Warning: Not joining junctions 260495252,283089493 (5 incoming edges).
+Warning: Not joining junctions 262482676,6460260300 (only 1 edge within and no cross-traffic).
+Warning: Not joining junctions 28373972,3513423889,3513425993 (not compact (maxEdge=4612964#0 length=7.39)).
+Warning: Reducing junction cluster 3619264717,3619264719,672913129 (5 incoming edges).
+Warning: Ambiguity in turnarounds computation at junction '1762976307'.
+Warning: Found sharp turn with radius 6.03 at the end of edge '-122820534#1'.
+Warning: Found angle of 105.59 degrees at edge '-154046793', segment 1.
+Warning: Found angle of 105.59 degrees at edge '-180331460#0', segment 0.
+Warning: Found sharp turn with radius 4.83 at the end of edge '-24243245#2'.
+Warning: Found sharp turn with radius 6.03 at the start of edge '122820534#0'.
+Warning: Found sharp turn with radius 4.83 at the start of edge '24243245#2'.
+Warning: Found angle of 111.05 degrees at edge '295627704#4', segment 2.
+Warning: Found angle of 111.05 degrees at edge '317183774#0', segment 16.
+Warning: Found sharp turn with radius 4.66 at the end of edge '4612981#0'.
+Warning: Found sharp turn with radius 4.46 at the end of edge '4615058#1'.
+Warning: Found sharp turn with radius 4.66 at the start of edge '72678523#2'.
+Warning: Edge '-28016312#3' is not connected to outgoing edges at junction '30731464'.
+Warning: Lane '-713731455_1' is not connected from any incoming edge at junction '295586470'.
+Warning: Lane '167893762#0_0' is not connected from any incoming edge at junction '1792333626'.
+Warning: Speed of straight connection '88421001_1->110862711#0_1' reduced by 5.23 due to turning radius of 13.63 (length=12.83, angle=72.29).
+Warning: Intersecting left turns at junction '20246137' from lane '103066047#4_1' and lane '-4688786#0_1' (increase junction radius to avoid this).
+Warning: Intersecting left turns at junction '20246137' from lane '33685647#1_1' and lane '11273911#3_1' (increase junction radius to avoid this).
+Warning: Speed of straight connection '-11845130#1_1->-176043805_1' reduced by 5.12 due to turning radius of 6.52 (length=2.65, angle=41.57).
+Warning: Intersecting left turns at junction 'cluster_1512593362_3231374964' from lane '26136571#0_1' and lane '137941889#0_1' (increase junction radius to avoid this).
+Warning: Intersecting left turns at junction 'cluster_1711812122_1711812125' from lane '159081777#0_1' and lane '159081775_1' (increase junction radius to avoid this).
+Warning: Intersecting left turns at junction 'cluster_1827996421_2121324874_29221504_29221506_341340973_3792418629_3792418641' from lane '24913523#2_2' and lane '202156994#0_5' (increase junction radius to avoid this).
+Warning: Speed of straight connection '-661400763_1->-8084132#17_1' reduced by 6.93 due to turning radius of 8.80 (length=2.90, angle=35.77).
+Warning: 30 total messages of type: Ambiguous railway kilometrage direction for way '%' (assuming forward)
+Warning: 36 total messages of type: Discarding unknown compound '%' in type '%' (first occurence for edge '%').
+Warning: 17 total messages of type: Discarding unusable type '%' (first occurence for edge '%').
+Warning: 9 total messages of type: Ignoring restriction relation '%'.
+Warning: 6 total messages of type: Intersecting left turns at junction '%' from lane '%' and lane '%' (increase junction radius to avoid this).
+Warning: 11 total messages of type: No way found for reference '%' in relation '%'
+Warning: 8 total messages of type: Not joining junctions % (%).
+Warning: Cannot derive file name for alternatives output, skipping it.
+Warning: No route input specified or all routes were invalid.
+Warning: Landmark '716810194' does not exist in the network.
+Warning: Landmark '744490123' does not exist in the network.
+Warning: Landmark '53488517' does not exist in the network.
+Warning: Landmark '572681727' does not exist in the network.
+Warning: Landmark '572713714' does not exist in the network.
+Warning: Landmark '718226900' does not exist in the network.
+Warning: Landmark '77306155' does not exist in the network.
+Warning: Landmark '53505362' does not exist in the network.
+Warning: Landmark '-53471099' does not exist in the network.
+Warning: Landmark '565027836' does not exist in the network.
