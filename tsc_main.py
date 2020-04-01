@@ -342,6 +342,9 @@ def simulation_request(options, request):
         scenario_basedir = create_new_destination_folder(options, sim_key, iteration, params)
 
         options.net_file = os.path.abspath(os.path.join(scenario_basedir, 'net.net.xml'))
+        if options.taz_file is None and ('DB_TABLE_TAZ', 'berlin_taz_1223') in params:
+            # just a hack to have a good taz file for the new scenarios
+            options.taz_file = os.path.abspath(os.path.join(scenario_basedir, 'Berlin_1223.taz.xml'))
         options.bidi_taz_file = os.path.abspath(os.path.join(scenario_basedir, 'bidi.taz.xml'))
         options.tapas_trips = os.path.join(scenario_basedir, "background_traffic.csv")
         options.modes = params[SP.modes].replace(";", ",")
