@@ -1,0 +1,3 @@
+<configuration>
+    <host value="sqlite3"/>
+</configuration>
