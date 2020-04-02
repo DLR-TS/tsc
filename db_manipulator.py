@@ -44,6 +44,7 @@ def get_conn(options_or_config_file):
     if isinstance(options_or_config_file, str):
         argParser = ArgumentParser()
         add_db_arguments(argParser)
+        print("parsing", options_or_config_file)
         options = argParser.parse_args(["-c", options_or_config_file])
     else:
         options = options_or_config_file
