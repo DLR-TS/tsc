@@ -1,0 +1,24 @@
+function main called at Thu, 02 Apr 2020 15:54:18 +0000
+function rectify_input called at Thu, 02 Apr 2020 15:54:18 +0000
+Warning: dropping trip 1000571_1000114_1700_0 because it starts on the wrong day (minute 1700)
+Warning: dropping trip 1000571_1000114_1732_0 because it starts on the wrong day (minute 1732)
+Read 326 persons with a total of 1000 trips from input file "C:\Users\arme_ma\.texttest\tmp\tsc.02Apr155416.16624\tsc\workdir\t2s\rectifyMap\data\2013y_03m_07d_16h_43m_41s_859ms_limit1000.csv".
+0 trips have inconsistent depart times.
+Dropped 4 trips because of gaps, avg: 2620.49714228, maximum: 4323.59972994 (for trip 1001047_1000209_1231_0).
+Dropped 2 trips because they start on the wrong day (maximum: 1732 for trip 1000571_1000114_1732_0).
+function rectify_input finished after 0.062000 seconds
+function map_to_edges called at Thu, 02 Apr 2020 15:54:18 +0000
+Warning: could not find an edge for departure of ('1000003', '1000000') from (52.5332686677, 13.328014876), depart_minute=967 (skipping trip)
+Warning: could not find an edge for departure of ('1000003', '1000000') from (52.5511230931, 13.3459360324), depart_minute=1168 (skipping trip)
+Warning: could not find an edge for departure of ('1000004', '1000000') from (52.5332686677, 13.328014876), depart_minute=833 (skipping trip)
+Warning: could not find an edge for departure of ('1000004', '1000000') from (52.5091703924, 13.3477539322), depart_minute=930 (skipping trip)
+Warning: could not find an edge for departure of ('1000005', '1000001') from (52.5328276635, 13.326906874), depart_minute=817 (skipping trip)
+Warning: could not find an edge for departure of ('1000005', '1000001') from (52.5166754925, 13.3151187323), depart_minute=839 (skipping trip)
+Warning: could not find an edge for departure of ('1000006', '1000001') from (52.5423726932, 13.5977416319), depart_minute=1035 (skipping trip)
+Warning: could not find an edge for departure of ('1000013', '1000002') from (52.5326306521, 13.3258568797), depart_minute=412 (skipping trip)
+Warning: could not find an edge for departure of ('1000013', '1000002') from (52.5717282935, 13.4094567322), depart_minute=765 (skipping trip)
+read 994 TAPAS trips for 326 persons (894 unmappable)
+Mapping deviations: count 123, min 9.89 (xycoord=(1975.2557716600131, 2738.839107026346), edge=4610352#0, uid=('1000388', '1000077')), max 1596.23 (xycoord=(-1188.6104955730261, 3457.708458337933), edge=286774655#0, uid=('1000348', '1000069')), mean 665.73 Q1 89.02, median 629.56, Q3 1176.21
+0 mappings did not find an edge in the correct taz
+function map_to_edges finished after 0.456000 seconds
+function main finished after 1.287000 seconds

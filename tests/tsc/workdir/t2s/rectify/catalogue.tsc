@@ -1,0 +1,10 @@
+The following new files/directories were created:
+<Test Directory>
+----data
+--------scenario_workdir
+------------mitte_net
+----------------iteration000
+--------------------trips
+------------------------rectified_2013y_11m_08d_14h_44m_44s_356ms_limit100000_negative_departures.csv
+------------------------t2s_rectify_2013y_11m_08d_14h_44m_44s_356ms_limit100000_negative_departures.log
+----tscdefs.pyc

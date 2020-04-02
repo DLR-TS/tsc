@@ -1,0 +1,86 @@
+function main called at Thu, 02 Apr 2020 18:29:58 +0000
+function rectify_input called at Thu, 02 Apr 2020 18:29:58 +0000
+Read 2 persons with a total of 4 trips from input file "C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\workdir\t2s\oneshotGawron\data\twoPersonsOnly.csv".
+0 trips have inconsistent depart times.
+function rectify_input finished after 0.016000 seconds
+function map_to_edges called at Thu, 02 Apr 2020 18:29:59 +0000
+Mapping (568.7532229983481, 913.0316369170323) to -4588215#5 (dist: 42.56) which is not in taz 110110312, best match in taz is 4597322#0 (dist: 108.25)
+read 4 TAPAS trips for 2 persons (0 unmappable)
+Mapping deviations: count 4, min 9.41 (xycoord=(720.7678498803871, 1303.540090534836), edge=320462164#2, uid=('1000005', '1000001')), max 42.56 (xycoord=(568.7532229983481, 913.0316369170323), edge=-4588215#5, uid=('1000019', '1000003')), mean 28.28 Q1 27.13, median 34.00, Q3 42.56
+1 mappings did not find an edge in the correct taz
+function map_to_edges finished after 0.209000 seconds
+function create_sumo_tripdefs called at Thu, 02 Apr 2020 18:29:59 +0000
+read trip definitions for 4 vehicles
+created trip definitions for 4 vehicles starting between 135131 and 137351
+function create_sumo_tripdefs finished after 0.000000 seconds
+function run_oneshot called at Thu, 02 Apr 2020 18:29:59 +0000
+Loading configuration ... done.
+Loading configuration ... done.
+Loading net-file from 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\workdir\t2s\oneshotGawron\data\scenario_workdir\mitte_net\net.net.xml' ... 
+done (489ms).
+Loading additional-files from 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\workdir\t2s\oneshotGawron\data\scenario_workdir\mitte_net\vtypes.xml' ... done (6ms).
+Loading additional-files from 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\workdir\t2s\oneshotGawron\data\scenario_workdir\mitte_net\iteration000\oneshot\dump_oneshot_meso.xml' ... done (7ms).
+Loading done.
+Simulation version v1_5_0+1066-d6f17e7308 started with time: 135131.00
+Simulation ended at time: 148151.00
+Reason: The final simulation step has been reached.
+Performance: 
+ Duration: 842ms
+ Real time factor: 15463.2
+ UPS: 2546.318290
+Vehicles: 
+ Inserted: 4
+ Running: 0
+ Waiting: 0
+
+AStarRouter answered 8 queries and explored 1799.00 edges on average.
+AStarRouter spent 8ms answering queries (1.00ms on average).
+AStarRouter answered 4 queries and explored 1106.00 edges on average.
+AStarRouter spent 2ms answering queries (0.50ms on average).
+function run_oneshot finished after 1.758000 seconds
+function run_duaiterate called at Thu, 02 Apr 2020 18:30:00 +0000
+Loading configuration ... done.
+Written configuration to 'iteration_000_vehroutes_oneshot_meso.duarcfg'
+> Executing step 0
+>> Running router on C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\workdir\t2s\oneshotGawron\data\scenario_workdir\mitte_net\iteration000\oneshot\vehroutes_oneshot_meso.rou.xml
+>>> Begin time: 2020-04-02 18:30:02.728000
+>>> End time: 2020-04-02 18:30:03.614000
+>>> Duration: 0:00:00.886000
+<<
+>> Running simulation
+>>> Begin time: 2020-04-02 18:30:03.614000
+>>> End time: 2020-04-02 18:30:04.711000
+>>> Duration: 0:00:01.097000
+<<
+>> Smoothing edge weights
+>>> Updated 103 edges
+>>> Decayed 0 unseen edges
+>>> Error avg:0 mean:0
+>>> Absolute Error avg:0 mean:0
+< Step 0 ended (duration: 0:00:01.983000)
+------------------
+
+Loading configuration ... done.
+Written configuration to 'iteration_001_vehroutes_oneshot_meso_000.duarcfg'
+> Executing step 1
+>> Running router on vehroutes_oneshot_meso_000.rou.alt.xml
+>>> Begin time: 2020-04-02 18:30:04.711000
+>>> End time: 2020-04-02 18:30:05.955000
+>>> Duration: 0:00:01.244000
+<<
+>> Running simulation
+>>> Begin time: 2020-04-02 18:30:05.955000
+>>> End time: 2020-04-02 18:30:06.959000
+>>> Duration: 0:00:01.004000
+<<
+>> Smoothing edge weights
+>>> Updated 103 edges
+>>> Decayed 0 unseen edges
+>>> Error avg:0 mean:0
+>>> Absolute Error avg:0 mean:0
+< Step 1 ended (duration: 0:00:02.248000)
+------------------
+
+dua-iterate ended (duration: 0:00:05.266000)
+function run_duaiterate finished after 5.981000 seconds
+function main finished after 8.715000 seconds

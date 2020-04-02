@@ -1,0 +1,29 @@
+The following new files/directories were created:
+<Test Directory>
+----data
+--------scenario_templates
+------------scripts.pyc
+------------mitte_net
+----------------__init__.pyc
+--------scenario_workdir
+------------mitte_net
+----------------Berlin_1223.taz.xml
+----------------RBS_OD_ORT_1412.taz.xml
+----------------bidi.taz.xml
+----------------districts.taz.xml
+----------------net.net.xml
+----------------vtypes.xml
+----------------iteration000
+--------------------aggregated_oneshot_meso.xml
+--------------------vehroutes_oneshot_meso.rou.xml
+----------------iteration001
+--------------------aggregated_oneshot_meso.xml
+--------------------vehroutes_oneshot_meso.rou.xml
+----------------iteration002
+--------------------aggregated_oneshot_meso.xml
+--------------------person_tripinfo.xml
+--------------------persons.sumo.log
+--------------------persons.sumocfg
+--------------------persons.xml
+--------------------vehroutes_oneshot_meso.rou.xml
+----tscdefs.pyc

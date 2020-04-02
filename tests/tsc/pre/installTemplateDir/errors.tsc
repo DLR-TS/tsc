@@ -78,13 +78,29 @@ Warning: 11 total messages of type: No way found for reference '%' in relation '
 Warning: 8 total messages of type: Not joining junctions % (%).
 Warning: Cannot derive file name for alternatives output, skipping it.
 Warning: No route input specified or all routes were invalid.
-Warning: Landmark '716810194' does not exist in the network.
-Warning: Landmark '744490123' does not exist in the network.
-Warning: Landmark '53488517' does not exist in the network.
-Warning: Landmark '572681727' does not exist in the network.
-Warning: Landmark '572713714' does not exist in the network.
-Warning: Landmark '718226900' does not exist in the network.
-Warning: Landmark '77306155' does not exist in the network.
-Warning: Landmark '53505362' does not exist in the network.
-Warning: Landmark '-53471099' does not exist in the network.
-Warning: Landmark '565027836' does not exist in the network.
+Warning: Not all network edges were found in the lookup table 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks' for landmark '4773463#1'. Saving missing values to 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv'.
+Warning: Not all network edges were found in the lookup table 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks' for landmark '4773464#1'. Saving missing values to 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv'.
+Warning: Not all network edges were found in the lookup table 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks' for landmark '4611696#4'. Saving missing values to 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv'.
+Warning: Not all network edges were found in the lookup table 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks' for landmark '120675240#0'. Saving missing values to 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv'.
+Warning: Not all network edges were found in the lookup table 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks' for landmark '15971197#0'. Saving missing values to 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv'.
+Warning: Not all network edges were found in the lookup table 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks' for landmark '251884680'. Saving missing values to 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv'.
+Warning: Not all network edges were found in the lookup table 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks' for landmark '-6228081'. Saving missing values to 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv'.
+Warning: Not all network edges were found in the lookup table 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks' for landmark '6228081'. Saving missing values to 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv'.
+Warning: Not all network edges were found in the lookup table 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks' for landmark '-339201185'. Saving missing values to 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv'.
+Warning: Not all network edges were found in the lookup table 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks' for landmark '-24243101'. Saving missing values to 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv'.
+Warning: Not all network edges were found in the lookup table 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks' for landmark '25086766'. Saving missing values to 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv'.
+Warning: Not all network edges were found in the lookup table 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks' for landmark '19001381#0'. Saving missing values to 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv'.
+Warning: Not all network edges were found in the lookup table 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks' for landmark '-4612875#3'. Saving missing values to 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv'.
+Warning: No connection between edge '251884680' and edge '-120948266' found.
+Warning: No connection between edge '15971197#0' and edge '-120948266' found.
+Warning: No connection between edge '6228081' and edge '-120948266' found.
+Warning: No connection between edge '-339201185' and edge '-120948266' found.
+Warning: No connection between edge '4773464#1' and edge '-120948266' found.
+Warning: Not all network edges were found in the lookup table 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks' for landmark '189037368#0'. Saving missing values to 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv'.
+Warning: Not all network edges were found in the lookup table 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks' for landmark '29548010'. Saving missing values to 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv'.
+Warning: Not all network edges were found in the lookup table 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks' for landmark '-461900066'. Saving missing values to 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv'.
+Warning: 131216 total messages of type: No connection between edge '%' and edge '%' found.
+could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host "ts-sim-postgres-ba.intra.dlr.de" (10.28.21.16) and accepting
+	TCP/IP connections on port 5432?
+
