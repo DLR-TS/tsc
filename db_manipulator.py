@@ -32,9 +32,8 @@ sys.path.append(os.path.join(os.environ['SUMO_HOME'], 'tools'))
 from sumolib.options import ArgumentParser
 
 
-
 def add_db_arguments(argParser):
-    argParser.add_argument("--host", help="postgres server name or IP")
+    argParser.add_argument("--host", help="postgres server name or IP (or 'sqlite3' for a local sqlite database)")
     argParser.add_argument("--port", default=5432, type=int, help="postgres server port")
     argParser.add_argument("--user", help="postgres server credentials (username)")
     argParser.add_argument("--password", help="postgres server credentials")
@@ -50,6 +49,8 @@ def get_conn(options_or_config_file):
         options = options_or_config_file
     if options.host is None:
         return None
+    if options.host == "sqlite3":
+        return sqlite3.connect(":memory:")
     try:
         return psycopg2.connect(host=options.host, port=options.port, user=options.user, password=options.password, database=options.database)
     except psycopg2.OperationalError as e:
@@ -59,8 +60,7 @@ def get_conn(options_or_config_file):
 
 def table_exists(conn, table):
     cursor = conn.cursor()
-    cursor.execute(
-        "SELECT TRUE FROM pg_class WHERE relname = '%s' AND relkind='r'" % table)
+    cursor.execute("SELECT TRUE FROM pg_class WHERE relname = '%s' AND relkind='r'" % table)
     return len(cursor.fetchall()) > 0
 
 
@@ -86,23 +86,23 @@ def run_sql(conn, sql):
     conn.commit()
 
 
-def run_instructions(server, sqlList):
-    conn_test = get_conn(server)
+def run_instructions(options, sqlList):
+    conn_test = get_conn(options)
     for sql in sqlList:
         run_sql(conn_test, sql)
     conn_test.close()
 
 
-def start(server, call, pre_test, par_test, post_test):
+def start(options, call, pre_test, par_test, post_test):
     if pre_test:
         print("running pre test instructions")
-        run_instructions(server, pre_test)
+        run_instructions(options, pre_test)
     process_db_manipulator = None
     if par_test:
         # run as parallel process
         print("starting parallel test instructions")
         process_db_manipulator = multiprocessing.Process(
-            target=run_instructions, args=(server, par_test))
+            target=run_instructions, args=(options, par_test))
         process_db_manipulator.start()
     print("starting main")
     sys.stdout.flush()
@@ -114,18 +114,14 @@ def start(server, call, pre_test, par_test, post_test):
         process_db_manipulator.join()
     if post_test:
         print("running post test instructions")
-        run_instructions(server, post_test)
+        run_instructions(options, post_test)
 
 
 if __name__ == "__main__":
     argParser = ArgumentParser()
     add_db_arguments(argParser)
-    #options = argParser.parse_args(["-c", os.path.join(os.environ["TSC_DATA"], "test_server.tsccfg")])
+    argParser.add_argument("sqlfile", nargs="*", help="SQL files to process")
     options = argParser.parse_args()
     # get connection to (test) db
     print('using server', options)
-    conn = get_conn(options)
-
-    for a in []:
-        run_sql(conn, open(a))
-    conn.close()
+    run_instructions(options, [open(o) for o in options.sqlfile])
