@@ -2,7 +2,7 @@
 @file    __init__.py
 @author  Michael.Behrisch@dlr.de
 @date    2015-06-10
-@version $Id: __init__.py 4829 2015-10-13 13:59:57Z biek_la $
+@version $Id: __init__.py 4620 2015-06-27 14:06:36Z behr_mi $
 
 custom script collection for berlin_2010
 
@@ -19,7 +19,6 @@ assign_trips = assign.run_default
 @benchmark
 def post(options, params, conn, routefile):
     procs = [postprocess.run_pedestrian_sumo(options, routefile),
-             postprocess.run_trajectory_sumo(options, routefile),
              postprocess.run_emission_sumo(options, params, conn, routefile)]
     err = None
     for p in procs:

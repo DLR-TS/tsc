@@ -1,0 +1,12 @@
+INSERT INTO simulation_parameters VALUES ('1969y_07m_21d_03h_56m_12s_345ms', 'DB_TABLE_SUMO_STATUS', 'global_sumo_status');
+INSERT INTO simulation_parameters VALUES ('1969y_07m_21d_03h_56m_12s_345ms', 'DB_TABLE_SUMO_TRIP_OUTPUT', 'sumo_berlin_trips');
+INSERT INTO simulation_parameters VALUES ('1969y_07m_21d_03h_56m_12s_345ms', 'DB_TABLE_SUMO_OD_OUTPUT', 'sumo_berlin_od');
+INSERT INTO simulation_parameters VALUES ('1969y_07m_21d_03h_56m_12s_345ms', 'DB_TABLE_REPRESENTATIVES', 'berlin_location_representatives');
+INSERT INTO simulation_parameters VALUES ('1969y_07m_21d_03h_56m_12s_345ms', 'DB_TABLE_TRIPS', 'berlin_trips');
+INSERT INTO simulation_parameters VALUES ('1969y_07m_21d_03h_56m_12s_345ms', 'ITERATION', '0');
+INSERT INTO simulation_parameters VALUES ('1969y_07m_21d_03h_56m_12s_345ms', 'MAX_SUMO_ITERATION', '1');
+INSERT INTO simulation_parameters VALUES ('1969y_07m_21d_03h_56m_12s_345ms', 'SUMO_DESTINATION_FOLDER', 'mitte_net');
+INSERT INTO simulation_parameters VALUES ('1969y_07m_21d_03h_56m_12s_345ms', 'SUMO_TEMPLATE_FOLDER', 'mitte_net');
+INSERT INTO simulation_parameters VALUES ('1969y_07m_21d_03h_56m_12s_345ms', 'SUMO_MODES', '2;4');
+INSERT INTO simulation_parameters VALUES ('1969y_07m_21d_03h_56m_12s_345ms', 'DB_NAME_MATRIX_TT_MIT_BASE', 'CAR_TT_B_2005');
+INSERT INTO simulation_parameters VALUES ('1969y_07m_21d_03h_56m_12s_345ms', 'DB_TABLE_MATRIXMAPS', 'berlin_matrixmap');
