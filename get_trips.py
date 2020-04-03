@@ -63,7 +63,7 @@ def parse_args():
 def get_sim_params(conn, sim_key, overrides):
     cursor_open = conn.cursor()
     param_keys = set(SP.KEYS + list(SP.OPTIONAL.keys()))
-    command_dirs = """SELECT param_key, param_value FROM simulation_parameters
+    command_dirs = """SELECT param_key, param_value FROM public.simulation_parameters
                       WHERE sim_key = '%s' AND param_key IN ('%s')
         """ % (sim_key, "','".join(param_keys))
     cursor_open.execute(command_dirs)
@@ -85,12 +85,12 @@ def get_active_sim_keys(server_options, overrides):
     conn = db_manipulator.get_conn(server_options)
     # get any open combination of sim_key and iteration
     cursor_open = conn.cursor()
-    command = """SELECT sim_key, CAST(param_value AS INT) AS iteration FROM simulation_parameters
+    command = """SELECT sim_key, CAST(param_value AS INT) AS iteration FROM public.simulation_parameters
                  WHERE param_key = '%s' ORDER BY sim_key, iteration""" % SP.max_iteration
     cursor_open.execute(command)
     max_iterations = dict(cursor_open.fetchall())
 
-    command = """SELECT sim_key, CAST(param_value AS INT) AS iteration FROM simulation_parameters
+    command = """SELECT sim_key, CAST(param_value AS INT) AS iteration FROM public.simulation_parameters
                  WHERE param_key = '%s' ORDER BY sim_key, iteration""" % SP.iteration
     cursor_open.execute(command)
 

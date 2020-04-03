@@ -51,10 +51,12 @@ def get_conn(options_or_config_file):
     if options.host is None:
         return None
     if options.host == "sqlite3":
+        conn = sqlite3.connect(":memory:", detect_types=sqlite3.PARSE_DECLTYPES)
+        sqlite3.register_converter("boolean", lambda v: bool(int(v)))  # sqlite has no native boolean type and would return ints
         database = options.database % os.environ
-        conn = sqlite3.connect(database)
         core = os.path.join(os.path.dirname(database), 'core.db')
         conn.execute("ATTACH ? AS core", (core,))
+        conn.execute("ATTACH ? AS public", (database,))  # attaching 'public' last makes it the default if name clashes should occur
         return conn
     try:
         return psycopg2.connect(host=options.host, port=options.port, user=options.user, password=options.password, database=options.database)
@@ -66,9 +68,9 @@ def get_conn(options_or_config_file):
 def table_exists(conn, table):
     cursor = conn.cursor()
     if isinstance(conn, sqlite3.Connection):
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name=?", (table,))
+        cursor.execute("SELECT name FROM public.sqlite_master WHERE type='table' AND name=? UNION SELECT name FROM core.sqlite_master WHERE type='table' AND name=?", (table, table))
     else:
-        cursor.execute("SELECT TRUE FROM pg_class WHERE relname=? AND relkind='r'", (table,))
+        cursor.execute("SELECT TRUE FROM pg_class WHERE relname='%s' AND relkind='r'" % table)
     return len(cursor.fetchall()) > 0
 
 
@@ -96,8 +98,11 @@ def run_sql(conn, sql):
 
 def run_instructions(options, sqlList):
     conn_test = get_conn(options)
-    for sql in sqlList:
-        run_sql(conn_test, sql)
+    try:
+        for sql in sqlList:
+            run_sql(conn_test, sql)
+    except psycopg2.ProgrammingError as e:
+        print(e)
     conn_test.close()
 
 

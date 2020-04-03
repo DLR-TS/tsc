@@ -1,3 +1,4 @@
 <configuration>
     <host value="sqlite3"/>
+    <database value="%(TEXTTEST_SANDBOX)s/public.db"/>
 </configuration>
