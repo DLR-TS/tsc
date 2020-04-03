@@ -1,7 +1,6 @@
 import os
 import subprocess
 import tscdefs
-import shutil
 
 tripFile = 'twoPersonsOnly.csv'
 net = os.path.join('scenario_workdir','mitte_net', 'net.net.xml')
