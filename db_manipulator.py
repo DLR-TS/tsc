@@ -51,7 +51,11 @@ def get_conn(options_or_config_file):
     if options.host is None:
         return None
     if options.host == "sqlite3":
-        return sqlite3.connect(":memory:")
+        database = options.database % os.environ
+        conn = sqlite3.connect(database)
+        core = os.path.join(os.path.dirname(database), 'core.db')
+        conn.execute("ATTACH ? AS core", (core,))
+        return conn
     try:
         return psycopg2.connect(host=options.host, port=options.port, user=options.user, password=options.password, database=options.database)
     except psycopg2.OperationalError as e:
@@ -61,7 +65,10 @@ def get_conn(options_or_config_file):
 
 def table_exists(conn, table):
     cursor = conn.cursor()
-    cursor.execute("SELECT TRUE FROM pg_class WHERE relname = '%s' AND relkind='r'" % table)
+    if isinstance(conn, sqlite3.Connection):
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name=?", (table,))
+    else:
+        cursor.execute("SELECT TRUE FROM pg_class WHERE relname=? AND relkind='r'", (table,))
     return len(cursor.fetchall()) > 0
 
 
