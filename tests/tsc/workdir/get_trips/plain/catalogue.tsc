@@ -1,0 +1,9 @@
+The following new files/directories were created:
+<Test Directory>
+----data
+--------scenario_workdir
+------------mitte_net
+----------------iteration
+--------------------trips
+------------------------2015y_05m_29d_09h_01m_11s_943ms.csv
+----tscdefs.pyc
