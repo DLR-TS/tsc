@@ -1,0 +1,153 @@
+running pre test instructions
+starting main
+db_status_started: 2015y_05m_29d_09h_01m_11s_943ms 0 > Begin
+[('DB_CAR_FLEET_KEY', 'MID2008_Y2010_BERLIN'), ('DB_HH_SAMPLE_SIZE', '0.5'), ('DB_NAME_MATRIX_TT_MIT_BASE', 'CAR_TT_B_2005'), ('DB_TABLE_CARS', 'berlin_cars'), ('DB_TABLE_MATRIXMAPS', 'berlin_matrixmap'), ('DB_TABLE_REPRESENTATIVES', 'berlin_location_representatives'), ('DB_TABLE_SUMO_OD_ENTRY', 'sumo_od_entry'), ('DB_TABLE_SUMO_OD_OUTPUT', 'sumo_od'), ('DB_TABLE_SUMO_STATUS', 'global_sumo_status'), ('DB_TABLE_SUMO_TRIP_OUTPUT', 'sumo_trip'), ('DB_TABLE_TAZ', 'berlin_taz'), ('DB_TABLE_TRIPS', 'test_trips'), ('DELETE_INTERMEDIATE_RESULTS', 'false'), ('DELETE_TEMP', 'false'), ('ITERATION', '0'), ('MAX_SUMO_ITERATION', '10'), ('SLICE', [24.0]), ('SUMO_DESTINATION_FOLDER', 'mitte_2010'), ('SUMO_MODES', '2;4'), ('SUMO_NET_PARAMETER', '{}'), ('SUMO_TEMPLATE_FOLDER', 'mitte_2010')]
+create scenario 2015y_05m_29d_09h_01m_11s_943ms from scratch in scenario_workdir/mitte_2010 
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >> created dir: scenario_workdir/mitte_2010/iteration000 
+fetched 16112 rows
+wrote 16112 rows to scenario_workdir/mitte_2010/iteration000/trips/2015y_05m_29d_09h_01m_11s_943ms.csv
+
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >> starting t2s using tripfile scenario_workdir/mitte_2010/iteration000/trips/2015y_05m_29d_09h_01m_11s_943ms.csv
+function main called at Mon, 10 Oct 2016 14:19:22 +0000
+function rectify_input called at Mon, 10 Oct 2016 14:19:56 +0000
+Read 13042 persons with a total of 16112 trips from input file "/home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/iteration000/trips/2015y_05m_29d_09h_01m_11s_943ms.csv".
+0 trips have inconsistent depart times.
+Dropped 254 trips because of gaps, avg: 3852.88962887, maximum: 22560.2713809 (for trip 103287850_101904410_885_0).
+function rectify_input finished after 2.404286 seconds
+function map_to_edges called at Mon, 10 Oct 2016 14:19:58 +0000
+read 15858 TAPAS trips for 13042 persons (0 unmappable)
+Mapping errors: count 14771, min 0.01 (xycoord=(41593.09222397843, 37347.17148571275), edge=572707641, uid=('103159953', '101860368')), max 725.36 (xycoord=(25900.109972480393, 25169.979096383788), edge=-60914585, uid=('101534270', '100949602')), mean 26.53 Q1 13.66, median 18.36, Q3 31.23
+849 mappings did not find an edge in the correct taz
+function map_to_edges finished after 20.695717 seconds
+function create_sumo_tripdefs called at Mon, 10 Oct 2016 14:20:19 +0000
+read trip definitions for 15858 vehicles
+created trip definitions for 31716 vehicles starting between 107714 and 169397
+function create_sumo_tripdefs finished after 0.345338 seconds
+function run_oneshot called at Mon, 10 Oct 2016 14:20:19 +0000
+Loading configuration... done.
+Loading configuration... done.
+Loading net-file from '/home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/net.net.xml'... done (17083ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/vtypes.xml'... done (4ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/iteration000/oneshot/dump_oneshot_meso.xml'... done (281ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/bidi.taz.xml'... done (8428ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/tlsOffsets.add.xml'... done (22ms).
+Loading done.
+Simulation started with time: 106200.00
+Simulation ended at time: 180197.00
+Reason: The final simulation step has been reached.
+Performance: 
+ Duration: 790042ms
+ Real time factor: 93.6621
+ UPS: 7142.800003
+Vehicles: 
+ Inserted: 31716
+ Running: 0
+ Waiting: 0
+
+AStarRouter answered 135 queries and explored 8494.16 edges on average.
+AStarRouter spent 2713ms answering queries (20.10ms on average).
+AStarRouter answered 29914 queries and explored 4163.40 edges on average.
+AStarRouter spent 230437ms answering queries (7.70ms on average).
+AStarRouter answered 7518 queries and explored 4260.77 edges on average.
+AStarRouter spent 60537ms answering queries (8.05ms on average).
+AStarRouter answered 1721 queries and explored 4215.48 edges on average.
+AStarRouter spent 14395ms answering queries (8.36ms on average).
+AStarRouter answered 323 queries and explored 4701.29 edges on average.
+AStarRouter spent 2981ms answering queries (9.23ms on average).
+AStarRouter answered 43 queries and explored 5095.51 edges on average.
+AStarRouter spent 375ms answering queries (8.72ms on average).
+function run_oneshot finished after 814.102860 seconds
+Parsing routes from /home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/iteration000/oneshot/vehroutes_oneshot_meso.rou.xml
+Parsed 31716 vehicles and kept 1518 routes
+Number of disconnected routes: 34. Most frequent missing edges:
+16 -592186756
+8 781909615
+8 754278083
+8 572714239
+8 53507171
+8 53500710
+6 53500408
+4 53499924
+4 53499887
+4 53499876
+4 53499861
+Building line offset index for /home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/iteration000/oneshot/vehroutes_oneshot_meso.rou_cut_unsorted.xml
+Parsing /home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/iteration000/oneshot/vehroutes_oneshot_meso.rou_cut_unsorted.xml for line indices and departs
+  found 1518 items
+Copying elements from /home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/iteration000/oneshot/vehroutes_oneshot_meso.rou_cut_unsorted.xml to /home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/iteration000/oneshot/vehroutes_oneshot_meso.rou_cut.xml sorted by departure
+function run_oneshot called at Mon, 10 Oct 2016 14:33:54 +0000
+Loading configuration... done.
+Loading configuration... done.
+Loading net-file from '/home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/net.net.xml'... done (16560ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/vtypes.xml'... done (4ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/iteration000/oneshot/dump_oneshot_micro.xml'... done (162ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/bidi.taz.xml'... done (7877ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/tlsOffsets.add.xml'... done (19ms).
+Loading done.
+Simulation started with time: 106200.00
+Simulation ended at time: 180197.00
+Reason: The final simulation step has been reached.
+Performance: 
+ Duration: 34040ms
+ Real time factor: 2173.82
+ UPS: 1729.083431
+Vehicles: 
+ Inserted: 1518
+ Running: 0
+ Waiting: 0
+
+function run_oneshot finished after 54.432164 seconds
+function main finished after 926.740861 seconds
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 << finished t2s, routes in /home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/iteration000/oneshot/vehroutes_oneshot_micro.rou.xml
+
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >> starting trip result database upload
+function upload_trip_results called at Mon, 10 Oct 2016 14:34:49 +0000
+function _parse_vehicle_info called at Mon, 10 Oct 2016 14:34:49 +0000
+Parsed results for 1518 vehicles
+SUMO durations: count 1518, min 1.00 (100758476_100502915_656_0), max 491.54 (103041026_101772286_1149_1), mean 38.72 Q1 4.00, median 6.00, Q3 48.00
+SUMO distances: count 1518, min 1.10 (100758476_100502915_656_0), max 4066.84 (103041026_101772286_1149_1), mean 319.74 Q1 14.06, median 42.57, Q3 399.78
+function _parse_vehicle_info finished after 0.059908 seconds
+function upload_trip_results finished after 0.585767 seconds
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 << finished trip result database upload
+
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >> starting all pairs calculation
+function aggregate_weights called at Mon, 10 Oct 2016 14:34:51 +0000
+function aggregate_weights finished after 0.102549 seconds
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs for passenger, slice ending at hour 24.0
+wrote 50000 rows to scenario_workdir/mitte_2010/iteration000/allpairs/all_pairs_passenger24.csv
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs t2s using tripfile scenario_workdir/mitte_2010/iteration000/allpairs/all_pairs_passenger24.csv
+function main called at Mon, 10 Oct 2016 14:34:53 +0000
+using /home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/iteration000/allpairs/all_pairs_passenger24.csv as rectified input
+function map_to_edges called at Mon, 10 Oct 2016 14:34:53 +0000
+read 50000 TAPAS trips for 50000 persons (0 unmappable)
+Mapping errors: count 5788, min 0.03 (xycoord=(34500.96724902175, 44810.384573326446), edge=-53464431, uid=('1100020095', '2110838847')), max 782.59 (xycoord=(57302.98589644069, 24530.731175357476), edge=743298131, uid=('1100020095', '1100298596')), mean 26.05 Q1 13.28, median 17.55, Q3 28.48
+513 mappings did not find an edge in the correct taz
+function map_to_edges finished after 8.053490 seconds
+function create_sumo_tripdefs called at Mon, 10 Oct 2016 14:35:01 +0000
+read trip definitions for 50000 vehicles
+created trip definitions for 50000 vehicles starting between 86400 and 86400
+function create_sumo_tripdefs finished after 0.722114 seconds
+function run_bulk called at Mon, 10 Oct 2016 14:35:02 +0000
+computing routes for all TAZ-pairs using weights from /home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/iteration000/oneshot/aggregated_oneshot_micro_aggregated.xml
+function run_bulk finished after 21.420507 seconds
+function main finished after 30.205426 seconds
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished all pairs t2s, routes in /home/behr_mi/.texttest/tmp/tapasVEU.10Oct141152.4162/tapasVEU/template/mitte/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/mitte_2010/iteration000/allpairs/miv_all_pairs_passenger24.trips.rou.alt.xml
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting od result database upload
+function upload_all_pairs called at Mon, 10 Oct 2016 14:35:24 +0000
+function _parse_vehicle_info_taz called at Mon, 10 Oct 2016 14:35:24 +0000
+Parsed taz results for 1518 vehicles
+function _parse_vehicle_info_taz finished after 0.134240 seconds
+function _get_all_pair_stats called at Mon, 10 Oct 2016 14:35:24 +0000
+function _get_all_pair_stats finished after 0.000043 seconds
+parsed 10000 taz representatives
+parsed 20000 taz representatives
+parsed 30000 taz representatives
+parsed 40000 taz representatives
+parsed 50000 taz representatives
+SUMO durations: count 50000, min 4.39 (1100167521_1100167521_0_0), max 2938.78 (1100153214_1100209542_0_0), mean 943.54 Q1 603.54, median 878.09, Q3 1209.64
+SUMO distances: count 50000, min 60.94 (1100167521_1100167521_0_0), max 62368.64 (1100153214_1100316073_0_0), mean 13386.34 Q1 7997.19, median 12111.55, Q3 17479.44
+inserting dummy data for 47652 unconnected O-D relations
+function upload_all_pairs finished after 34.504477 seconds
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished od result database upload
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 << finished all pairs calculation
+db_status_finished: 2015y_05m_29d_09h_01m_11s_943ms 0 < End

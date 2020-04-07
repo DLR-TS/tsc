@@ -1,0 +1,109 @@
+running pre test instructions
+starting main
+db_status_started: berlin_2010 0 > Begin
+[('DB_CAR_FLEET_KEY', 'MID2008_Y2010_BERLIN'), ('DB_HH_SAMPLE_SIZE', '1.0'), ('DB_TABLE_ADDITIONAL_TRAFFIC', ''), ('DB_TABLE_CARS', 'berlin_cars'), ('DB_TABLE_REPRESENTATIVES', 'berlin_location_representatives'), ('DB_TABLE_SUMO_OD_ENTRY', 'sumo_od_entry'), ('DB_TABLE_SUMO_OD_OUTPUT', 'sumo_od'), ('DB_TABLE_SUMO_STATUS', 'global_sumo_status'), ('DB_TABLE_SUMO_TRIP_OUTPUT', 'sumo_trip'), ('DB_TABLE_TAZ', 'berlin_taz'), ('DB_TABLE_TRIPS', 'berlin_trips'), ('DELETE_INTERMEDIATE_RESULTS', 'false'), ('DELETE_TEMP', 'false'), ('ITERATION', '0'), ('MAX_SUMO_ITERATION', '1'), ('SLICE', [24]), ('SUMO_DESTINATION_FOLDER', 'berlin_2010'), ('SUMO_MODES', '2;4'), ('SUMO_NET_PARAMETER', '{}'), ('SUMO_TEMPLATE_FOLDER', 'berlin_2010')]
+create scenario berlin_2010 from scratch in scenario_workdir/berlin_2010 
+db_status_message: berlin_2010 0 >> created dir: scenario_workdir/berlin_2010/iteration000 
+
+db_status_message: berlin_2010 0 >> starting t2s using tripfile twoPersonsOnly.csv
+function main called at Wed, 15 Feb 2017 11:08:56 +0000
+function rectify_input called at Wed, 15 Feb 2017 11:09:35 +0000
+Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tapasVEU.15Feb095816.48490/tapasVEU/template/tscDaemonDatabaseTripsFromFile/data/twoPersonsOnly.csv".
+0 trips have inconsistent depart times.
+function rectify_input finished after 0.005314 seconds
+function map_to_edges called at Wed, 15 Feb 2017 11:09:35 +0000
+read 4 TAPAS trips for 2 persons (0 unmappable)
+Mapping errors: count 4, min 13.14 (xycoord=(37525.974858391506, 38891.02168424241), edge=-754734898, uid=('1000005', '1000001')), max 86.38 (xycoord=(36684.50771866762, 37113.17303418182), edge=53653319, uid=('1000005', '1000001')), mean 45.31 Q1 13.41, median 68.30, Q3 86.38
+4 mappings did not find an edge in the correct taz
+function map_to_edges finished after 21.842220 seconds
+function create_sumo_tripdefs called at Wed, 15 Feb 2017 11:09:57 +0000
+read trip definitions for 4 vehicles
+created trip definitions for 4 vehicles starting between 135131 and 137351
+function create_sumo_tripdefs finished after 0.000287 seconds
+function run_oneshot called at Wed, 15 Feb 2017 11:09:57 +0000
+Loading configuration... done.
+Loading configuration... done.
+Loading net-file from '/home/behr_mi/.texttest/tmp/tapasVEU.15Feb095816.48490/tapasVEU/template/tscDaemonDatabaseTripsFromFile/data/scenario_workdir/berlin_2010/net.net.xml'... done (20483ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tapasVEU.15Feb095816.48490/tapasVEU/template/tscDaemonDatabaseTripsFromFile/data/scenario_workdir/berlin_2010/vtypes.xml'... done (5ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tapasVEU.15Feb095816.48490/tapasVEU/template/tscDaemonDatabaseTripsFromFile/data/scenario_workdir/berlin_2010/iteration000/oneshot/dump_oneshot_meso.xml'... done (241ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tapasVEU.15Feb095816.48490/tapasVEU/template/tscDaemonDatabaseTripsFromFile/data/scenario_workdir/berlin_2010/bidi.taz.xml'... done (9964ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tapasVEU.15Feb095816.48490/tapasVEU/template/tscDaemonDatabaseTripsFromFile/data/scenario_workdir/berlin_2010/tlsOffsets.add.xml'... done (28ms).
+Loading done.
+Simulation started with time: 135000.00
+Simulation ended at time: 148151.00
+Reason: The final simulation step has been reached.
+Performance: 
+ Duration: 101150ms
+ Real time factor: 130.015
+ UPS: 9.550173
+Vehicles: 
+ Inserted: 4
+ Running: 0
+ Waiting: 0
+
+AStarRouter answered 4 queries and explored 5935.50 edges on average.
+AStarRouter spent 49ms answering queries (12.25ms on average).
+function run_oneshot finished after 129.063805 seconds
+function main finished after 189.907329 seconds
+db_status_message: berlin_2010 0 << finished t2s, routes in /home/behr_mi/.texttest/tmp/tapasVEU.15Feb095816.48490/tapasVEU/template/tscDaemonDatabaseTripsFromFile/data/scenario_workdir/berlin_2010/iteration000/oneshot/vehroutes_oneshot_meso.rou.xml
+
+db_status_message: berlin_2010 0 >> starting postprocessing
+function post called at Wed, 15 Feb 2017 11:12:06 +0000
+function create_personfile called at Wed, 15 Feb 2017 11:12:06 +0000
+parsed 4 routes from /home/behr_mi/.texttest/tmp/tapasVEU.15Feb095816.48490/tapasVEU/template/tscDaemonDatabaseTripsFromFile/data/scenario_workdir/berlin_2010/iteration000/oneshot/vehroutes_oneshot_meso.rou.xml
+imported 2 TAPAS persons
+imported 4 TAPAS trips temporarily stored in /home/behr_mi/.texttest/tmp/tapasVEU.15Feb095816.48490/tapasVEU/template/tscDaemonDatabaseTripsFromFile/data/scenario_workdir/berlin_2010/iteration000/oneshot/vehroutes_oneshot_meso.rou.xml
+Simulation start: 48731.0
+Simulation end guessed from TAPAS durations: 50217.1287041 (blame person ('1000005',))
+function create_personfile finished after 0.002447 seconds
+Loading configuration... done.
+Loading configuration... done.
+function post finished after 71.474426 seconds
+db_status_message: berlin_2010 0 << finished postprocessing
+
+db_status_message: berlin_2010 0 >> starting trip result database upload
+function upload_trip_results called at Wed, 15 Feb 2017 11:13:18 +0000
+function _parse_vehicle_info called at Wed, 15 Feb 2017 11:13:18 +0000
+Parsed results for 4 vehicles
+SUMO durations: count 4, min 213.00 (1000005_1000001_817_0), max 270.00 (1000019_1000003_813_0), mean 241.50 Q1 213.00, median 270.00, Q3 270.00
+SUMO distances: count 4, min 2215.29 (1000005_1000001_839_0), max 2782.80 (1000019_1000003_813_0), mean 2494.26 Q1 2254.96, median 2724.00, Q3 2782.80
+function _parse_vehicle_info finished after 0.003654 seconds
+function upload_trip_results finished after 0.174203 seconds
+db_status_message: berlin_2010 0 << finished trip result database upload
+
+db_status_message: berlin_2010 0 >> starting all pairs calculation
+function aggregate_weights called at Wed, 15 Feb 2017 11:13:19 +0000
+function aggregate_weights finished after 0.003751 seconds
+db_status_message: berlin_2010 0 >>> starting all pairs for passenger, slice ending at hour 24
+wrote 5000 rows to scenario_workdir/berlin_2010/iteration000/allpairs/all_pairs_passenger24.csv
+db_status_message: berlin_2010 0 >>> starting all pairs t2s using tripfile scenario_workdir/berlin_2010/iteration000/allpairs/all_pairs_passenger24.csv
+function main called at Wed, 15 Feb 2017 11:13:19 +0000
+using /home/behr_mi/.texttest/tmp/tapasVEU.15Feb095816.48490/tapasVEU/template/tscDaemonDatabaseTripsFromFile/data/scenario_workdir/berlin_2010/iteration000/allpairs/all_pairs_passenger24.csv as rectified input
+function map_to_edges called at Wed, 15 Feb 2017 11:13:19 +0000
+read 5000 TAPAS trips for 5000 persons (0 unmappable)
+Mapping errors: count 3492, min 0.02 (xycoord=(34131.19671615574, 30464.647624239326), edge=53482735, uid=('1100020096', '2110857806')), max 781.40 (xycoord=(57302.98589641898, 24530.731177150272), edge=743298131, uid=('1100020095', '1100298596')), mean 25.82 Q1 12.69, median 17.16, Q3 28.62
+341 mappings did not find an edge in the correct taz
+function map_to_edges finished after 2.082680 seconds
+function create_sumo_tripdefs called at Wed, 15 Feb 2017 11:13:21 +0000
+read trip definitions for 5000 vehicles
+created trip definitions for 5000 vehicles starting between 86400 and 86400
+function create_sumo_tripdefs finished after 0.082788 seconds
+function run_bulk called at Wed, 15 Feb 2017 11:13:21 +0000
+computing routes for all TAZ-pairs using weights from /home/behr_mi/.texttest/tmp/tapasVEU.15Feb095816.48490/tapasVEU/template/tscDaemonDatabaseTripsFromFile/data/scenario_workdir/berlin_2010/iteration000/oneshot/aggregated_oneshot_meso_aggregated.xml
+function run_bulk finished after 19.381140 seconds
+function main finished after 21.548087 seconds
+db_status_message: berlin_2010 0 <<< finished all pairs t2s, routes in /home/behr_mi/.texttest/tmp/tapasVEU.15Feb095816.48490/tapasVEU/template/tscDaemonDatabaseTripsFromFile/data/scenario_workdir/berlin_2010/iteration000/allpairs/miv_all_pairs_passenger24.trips.rou.alt.xml
+db_status_message: berlin_2010 0 >>> starting od result database upload
+function upload_all_pairs called at Wed, 15 Feb 2017 11:13:40 +0000
+function _parse_vehicle_info_taz called at Wed, 15 Feb 2017 11:13:40 +0000
+Parsed taz results for 4 vehicles
+function _parse_vehicle_info_taz finished after 0.000877 seconds
+function _get_all_pair_stats called at Wed, 15 Feb 2017 11:13:40 +0000
+function _get_all_pair_stats finished after 0.000020 seconds
+SUMO durations: count 5000, min 7.60 (1100020099_1100020099_0_0), max 2886.12 (1100020098_1100209513_0_0), mean 946.56 Q1 605.68, median 860.74, Q3 1218.59
+SUMO distances: count 5000, min 105.61 (1100020099_1100020099_0_0), max 61105.42 (1100020096_1100311393_0_0), mean 14731.93 Q1 8386.71, median 12613.02, Q3 19677.05
+inserting dummy data for 4830 unconnected O-D relations
+function upload_all_pairs finished after 3.565928 seconds
+db_status_message: berlin_2010 0 <<< finished od result database upload
+db_status_message: berlin_2010 0 << finished all pairs calculation
+db_status_finished: berlin_2010 0 < End

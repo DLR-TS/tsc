@@ -1,0 +1,6 @@
+running pre test instructions
+parsing C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\test_server.tsccfg
+starting main
+db_status_started: 2015y_05m_29d_09h_01m_11s_943ms 0 > Begin
+[('DB_CAR_FLEET_KEY', 'MID2008_Y2010_BERLIN'), ('DB_HH_SAMPLE_SIZE', '0.5'), ('DB_NAME_MATRIX_TT_MIT_BASE', 'CAR_TT_B_2005'), ('DB_TABLE_ADDITIONAL_TRAFFIC', ''), ('DB_TABLE_CARS', 'berlin_cars'), ('DB_TABLE_MATRIXMAPS', 'berlin_matrixmap'), ('DB_TABLE_REPRESENTATIVES', 'berlin_location_representatives'), ('DB_TABLE_SUMO_OD_ENTRY', 'sumo_od_entry'), ('DB_TABLE_SUMO_OD_OUTPUT', 'sumo_od'), ('DB_TABLE_SUMO_STATUS', 'global_sumo_status'), ('DB_TABLE_SUMO_TRIP_OUTPUT', 'sumo_trip'), ('DB_TABLE_TAZ', 'berlin_taz'), ('DB_TABLE_TRIPS', 'test_trips'), ('DELETE_INTERMEDIATE_RESULTS', 'false'), ('DELETE_TEMP', 'false'), ('ITERATION', '0'), ('MAX_SUMO_ITERATION', '10'), ('SLICE', [24.0]), ('SUMO_DESTINATION_FOLDER', 'VEUII-BASE2010'), ('SUMO_MODES', '2;4'), ('SUMO_NET_PARAMETER', '{}'), ('SUMO_TEMPLATE_FOLDER', 'mitte_net')]
+db_status_error: 2015y_05m_29d_09h_01m_11s_943ms 0 no data for 2015y_05m_29d_09h_01m_11s_943ms in scenario_templates\mitte_net
