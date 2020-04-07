@@ -19,8 +19,8 @@ Parsing traffic lights from 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\G
    33 types loaded.
    9871 edges loaded.
 Proj projection parameters used: '+proj=utm +zone=33 +ellps=WGS84 +datum=WGS84 +units=m +no_defs'.
-Removing self-loops ... done (1ms).
-Finding largest components ... done (21ms).
+Removing self-loops ... done (0ms).
+Finding largest components ... done (19ms).
 Removing sharp turn with radius 5.03 at the end of edge '106863633#5'.
 Removing sharp turn with radius 1.40 at the start of edge '144014242#1'.
 Removing sharp turn with radius 0.36 at the start of edge '148811539#0'.
@@ -37,36 +37,36 @@ Found 1 reversible edge sequences between broken rail nodes
 Reversed 1 sequences (count by length: 4:1)
 Added 2 edges to connect 1 buffer stops in both directions.
 Joining junction clusters ... 
-done (30ms).
+done (29ms).
  Joined 186 junction cluster(s).
-Removing empty nodes and geometry nodes ... done (152ms).
+Removing empty nodes and geometry nodes ... done (124ms).
    13973 nodes removed.
-Moving network to origin ... done (64ms).
+Moving network to origin ... done (60ms).
 Computing turning directions ... 
-done (4ms).
-Assigning nodes to traffic lights ... done (20ms).
+done (3ms).
+Assigning nodes to traffic lights ... done (19ms).
 Guessing and setting on-/off-ramps ... done (3ms).
-Sorting nodes' edges ... done (3ms).
-Computing node shapes ... done (92ms).
-Computing edge shapes ... done (42ms).
+Sorting nodes' edges ... done (2ms).
+Computing node shapes ... done (86ms).
+Computing edge shapes ... done (41ms).
 Computing node types ... done (2ms).
 Computing priorities ... done (2ms).
 Computing approached edges ... done (6ms).
 Guessing and setting roundabouts ... 
  Guessed 3 roundabout(s).
 done (1ms).
-Computing approaching lanes ... done (22ms).
-Dividing of lanes on approached lanes ... done (13ms).
+Computing approaching lanes ... done (20ms).
+Dividing of lanes on approached lanes ... done (12ms).
 Processing turnarounds ... done (3ms).
 Rechecking of lane endings ... 
-done (2ms).
-Joining traffic light nodes ... done (1ms).
-Computing traffic light control information ... done (2ms).
-Computing node logics ... done (32ms).
+done (1ms).
+Joining traffic light nodes ... done (2ms).
+Computing traffic light control information ... done (1ms).
+Computing node logics ... done (29ms).
 Computing traffic light logics ... done (8ms).
  102 traffic light(s) computed.
 Building inner edges ... 
-done (58ms).
+done (54ms).
 -----------------------------------------------------
 Summary:
  Node type statistics:
@@ -82,71 +82,70 @@ Summary:
   Applied offset     : -389385.39,-5818229.46
   Converted boundary : 0.00,0.00,7456.71,4483.93
 -----------------------------------------------------
-Writing network ... done (583ms).
+Writing network ... done (581ms).
 Success.
 ----- generating template mitte_net
 creating template dir for mitte_net
 copying __init__.py
 copying vtypes.xml
 starting to import osm ...
-['C:\\Users\\arme_ma\\Documents\\Giuliana\\Eclipse\\sumo\\bin\\polyconvert.exe', '-c', 'C:\\Users\\arme_ma\\Documents\\Giuliana\\Projekte\\UrMo\\GitHub\\tsc\\tests\\..\\data\\mitte_net\\template_gen.polycfg', '-o', 'C:\\Users\\arme_ma\\.texttest\\tmp\\tsc.02Apr134605.19084\\tsc\\pre\\installTemplateDir\\data\\scenario_templates\\mitte_net\\tmp_output\\shapes.xml', '-v']
+['C:\\Users\\arme_ma\\Documents\\Giuliana\\Eclipse\\sumo\\bin\\polyconvert.exe', '-c', 'C:\\Users\\arme_ma\\Documents\\Giuliana\\Projekte\\UrMo\\GitHub\\tsc\\tests\\..\\data\\mitte_net\\template_gen.polycfg', '-o', 'C:\\Users\\arme_ma\\.texttest\\tmp\\tsc.07Apr115734.20432\\tsc\\pre\\installTemplateDir\\data\\scenario_templates\\mitte_net\\tmp_output\\shapes.xml', '-v']
 Loading configuration ... done.
-Parsing nodes from osm-file 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\osm/mitte_net.osm.xml' ... done (2730ms).
-Parsing relations from osm-file 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\osm/mitte_net.osm.xml' ... done (1764ms).
-Parsing edges from osm-file 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\osm/mitte_net.osm.xml' ... done (2165ms).
+Parsing nodes from osm-file 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\osm/mitte_net.osm.xml' ... done (2735ms).
+Parsing relations from osm-file 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\osm/mitte_net.osm.xml' ... done (1784ms).
+Parsing edges from osm-file 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\osm/mitte_net.osm.xml' ... done (2156ms).
 Success.
 Success.
 Success.
 Success.
 Loading net ... done.
-Loading additional file 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr134605.19084\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\bidi.taz.xml'  ... done.
-Loading additional file 'C:\Users\arme_ma\.texttest\tmp\tsc.02Apr134605.19084\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\suburb.taz.xml'  ... done.
+Loading additional file 'C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\bidi.taz.xml'  ... done.
+Loading additional file 'C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\suburb.taz.xml'  ... done.
 Skipped until: 92233720368547758.07
-DijkstraRouter answered 10742 queries and explored 1.23 edges on average.
-DijkstraRouter spent 38ms answering queries (0.00ms on average).
-DijkstraRouter answered 10742 queries and explored 1.23 edges on average.
-DijkstraRouter spent 27ms answering queries (0.00ms on average).
-DijkstraRouter answered 10742 queries and explored 1.23 edges on average.
-DijkstraRouter spent 22ms answering queries (0.00ms on average).
-DijkstraRouter answered 10742 queries and explored 1.23 edges on average.
-DijkstraRouter spent 22ms answering queries (0.00ms on average).
-DijkstraRouter answered 10742 queries and explored 1.23 edges on average.
-DijkstraRouter spent 23ms answering queries (0.00ms on average).
-DijkstraRouter answered 10742 queries and explored 1.23 edges on average.
-DijkstraRouter spent 27ms answering queries (0.00ms on average).
-DijkstraRouter answered 10742 queries and explored 1.23 edges on average.
-DijkstraRouter spent 21ms answering queries (0.00ms on average).
-DijkstraRouter answered 10742 queries and explored 1.23 edges on average.
-DijkstraRouter spent 24ms answering queries (0.00ms on average).
-DijkstraRouter answered 10742 queries and explored 1.23 edges on average.
+DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
+DijkstraRouter spent 26ms answering queries (0.00ms on average).
+DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
+DijkstraRouter spent 54ms answering queries (0.01ms on average).
+DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
 DijkstraRouter spent 46ms answering queries (0.00ms on average).
-DijkstraRouter answered 10742 queries and explored 1.23 edges on average.
-DijkstraRouter spent 13ms answering queries (0.00ms on average).
-DijkstraRouter answered 10742 queries and explored 1.23 edges on average.
-DijkstraRouter spent 15ms answering queries (0.00ms on average).
-DijkstraRouter answered 10742 queries and explored 1.23 edges on average.
-DijkstraRouter spent 17ms answering queries (0.00ms on average).
-DijkstraRouter answered 10742 queries and explored 1.23 edges on average.
-DijkstraRouter spent 16ms answering queries (0.00ms on average).
-DijkstraRouter answered 10742 queries and explored 1.23 edges on average.
+DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
 DijkstraRouter spent 20ms answering queries (0.00ms on average).
-DijkstraRouter answered 10742 queries and explored 1.23 edges on average.
-DijkstraRouter spent 14ms answering queries (0.00ms on average).
-DijkstraRouter answered 10742 queries and explored 1.23 edges on average.
+DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
+DijkstraRouter spent 22ms answering queries (0.00ms on average).
+DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
+DijkstraRouter spent 36ms answering queries (0.00ms on average).
+DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
+DijkstraRouter spent 17ms answering queries (0.00ms on average).
+DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
+DijkstraRouter spent 19ms answering queries (0.00ms on average).
+DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
+DijkstraRouter spent 36ms answering queries (0.00ms on average).
+DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
+DijkstraRouter spent 21ms answering queries (0.00ms on average).
+DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
+DijkstraRouter spent 13ms answering queries (0.00ms on average).
+DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
+DijkstraRouter spent 10ms answering queries (0.00ms on average).
+DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
 DijkstraRouter spent 15ms answering queries (0.00ms on average).
+DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
+DijkstraRouter spent 23ms answering queries (0.00ms on average).
+DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
+DijkstraRouter spent 14ms answering queries (0.00ms on average).
+DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
+DijkstraRouter spent 16ms answering queries (0.00ms on average).
 Reading up to time step: 9223372036854773.76Routes found between time steps 92233720368547758.07 and 92233720368547758.07.
 Success.
-calling generateBidiDistricts.main C:\Users\arme_ma\.texttest\tmp\tsc.02Apr134605.19084\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\net.net.xml, C:\Users\arme_ma\.texttest\tmp\tsc.02Apr134605.19084\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\bidi.taz.xml
-generating taz file C:\Users\arme_ma\.texttest\tmp\tsc.02Apr134605.19084\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\districts.taz.xml
+calling generateBidiDistricts.main C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\net.net.xml, C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\bidi.taz.xml
+generating taz file C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\districts.taz.xml
 importing shapes from C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\shapes\Berlin Verkehrsbezirke (1193 VBz) GK4_zone.dbf ...
-calculating contained edges for C:\Users\arme_ma\.texttest\tmp\tsc.02Apr134605.19084\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\Berlin Verkehrsbezirke (1193 VBz) GK4_zone.poly.xml ...
-generating taz file C:\Users\arme_ma\.texttest\tmp\tsc.02Apr134605.19084\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\Berlin_1223.taz.xml
+calculating contained edges for C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\Berlin Verkehrsbezirke (1193 VBz) GK4_zone.poly.xml ...
+generating taz file C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\Berlin_1223.taz.xml
 importing shapes from C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\shapes\Berlin_1223.dbf ...
-calculating contained edges for C:\Users\arme_ma\.texttest\tmp\tsc.02Apr134605.19084\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\Berlin_1223.poly.xml ...
-generating taz file C:\Users\arme_ma\.texttest\tmp\tsc.02Apr134605.19084\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\RBS_OD_ORT_1412.taz.xml
+calculating contained edges for C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\Berlin_1223.poly.xml ...
+generating taz file C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\RBS_OD_ORT_1412.taz.xml
 importing shapes from C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\shapes\RBS_OD_ORT_1412.dbf ...
-calculating contained edges for C:\Users\arme_ma\.texttest\tmp\tsc.02Apr134605.19084\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\RBS_OD_ORT_1412.poly.xml ...
-generating taz file C:\Users\arme_ma\.texttest\tmp\tsc.02Apr134605.19084\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\suburb.taz.xml
-Warning! No database, cannot retrieve suburbian TAZ.
+calculating contained edges for C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\RBS_OD_ORT_1412.poly.xml ...
+generating taz file C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\suburb.taz.xml
 generating landmark file C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks
-generating landmark file C:\Users\arme_ma\.texttest\tmp\tsc.02Apr134605.19084\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv
+generating landmark file C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv

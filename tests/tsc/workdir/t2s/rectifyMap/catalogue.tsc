@@ -9,4 +9,4 @@ The following new files/directories were created:
 ------------------------rectified_2013y_03m_07d_16h_43m_41s_859ms_limit1000.csv
 ------------------------t2s_map_2013y_03m_07d_16h_43m_41s_859ms_limit1000.log
 ------------------------t2s_rectify_2013y_03m_07d_16h_43m_41s_859ms_limit1000.log
-----scenariodefs.pyc
+----tscdefs.pyc
