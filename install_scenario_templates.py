@@ -99,31 +99,53 @@ def create_template_folder(scenario_name, options):
     net_name = 'net.net.xml'
     net_path = os.path.join(scenario_template_dir, net_name)
     if not options.no_network:
-        # check for navteq-dlr folder and import from zip
+        # check for navteq-dlr or osm data
         navteq_dlr_dir = os.path.join(scenario_pre_dir, 'navteq-dlr')
+        osm_dir = os.path.join(scenario_pre_dir, 'osm')
+        
         if os.path.isfile(navteq_dlr_dir):
             # emulate symlink
             navteq_dlr_dir = os.path.join(options.pre, open(navteq_dlr_dir).read().strip())
-        if os.path.isdir(navteq_dlr_dir):
-            # get the zip file containing the network
-            zip_list = [ff for ff in listdir_skip_hidden(
-                navteq_dlr_dir) if ff[-4:] == '.zip']
-            if len(zip_list) != 1:
-                print('could not determine which .zip file to use')
-                print(navteq_dlr_dir, ":  ", listdir_skip_hidden(navteq_dlr_dir))
-                return scriptable
-            navteq_dlr_zip = os.path.join(navteq_dlr_dir, zip_list[0])
-
-            print("starting to import navteq ...")
+        if os.path.isdir(navteq_dlr_dir) or os.path.isdir(osm_dir):
             # make temporary output folder
             tmp_output_dir = os.path.join(scenario_template_dir, 'tmp_output')
             if os.path.exists(tmp_output_dir):
                 shutil.rmtree(tmp_output_dir)
             os.mkdir(tmp_output_dir)
-            configs = sorted(glob.glob(os.path.join(options.pre, scenario_name, 'template_gen*.netccfg')))
-            importOptions = import_navteq.get_options(
-                ['-c', ",".join(configs), '-o', tmp_output_dir, '-v', navteq_dlr_zip])
-            import_navteq.importNavteq(importOptions)
+
+            if os.path.isdir(navteq_dlr_dir):
+                # get the zip file containing the network
+                zip_list = [ff for ff in listdir_skip_hidden(
+                    navteq_dlr_dir) if ff[-4:] == '.zip']
+                if len(zip_list) != 1:
+                    print('could not determine which .zip file to use')
+                    print(navteq_dlr_dir, ":  ", listdir_skip_hidden(navteq_dlr_dir))
+                    return scriptable
+                navteq_dlr_zip = os.path.join(navteq_dlr_dir, zip_list[0])
+
+                print("starting to import navteq ...")
+                configs = sorted(glob.glob(os.path.join(options.pre, scenario_name, 'template_gen*.netccfg')))
+                importOptions = import_navteq.get_options(
+                    ['-c', ",".join(configs), '-o', tmp_output_dir, '-v', navteq_dlr_zip])
+                import_navteq.importNavteq(importOptions)
+            
+            if os.path.isdir(osm_dir):
+                print("starting to import osm ...")                
+                
+                # build net
+                netconvert = sumolib.checkBinary('netconvert')
+                config = os.path.join(options.pre, scenario_name, 'template_gen.netccfg')
+                netconvert_call = [netconvert, '-c', config, '-o', os.path.join(tmp_output_dir, net_name), '-v']
+                subprocess.call(netconvert_call)
+                
+                # build polygons
+                polyconvert = sumolib.checkBinary('polyconvert')
+                poly_config = os.path.join(options.pre, scenario_name, 'template_gen.polycfg')
+                polyconvertCmd = [polyconvert, '-c', poly_config, '-o', os.path.join(tmp_output_dir, "shapes.xml"), '-v']
+                if options.verbose:
+                    print(polyconvertCmd)
+                    sys.stdout.flush()
+                subprocess.call(polyconvertCmd) 
 
             # find netfile
             for root, _, files in os.walk(tmp_output_dir):
