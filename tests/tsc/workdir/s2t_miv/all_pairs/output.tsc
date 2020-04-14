@@ -1,18 +1,18 @@
-function main called at Thu, 27 Jun 2019 15:26:22 +0000
-function upload_trip_results called at Thu, 27 Jun 2019 15:26:23 +0000
-function _parse_vehicle_info called at Thu, 27 Jun 2019 15:26:23 +0000
+function main called at Tue, 14 Apr 2020 18:18:51 +0000
+function upload_trip_results called at Tue, 14 Apr 2020 18:18:51 +0000
+function _parse_vehicle_info called at Tue, 14 Apr 2020 18:18:51 +0000
 Parsed results for 6744 vehicles and persons
 SUMO durations: count 6744, min 1.00 (3368857_2348073_455_1), max 2493.00 (2308766_1757768_1103_0), mean 456.66 Q1 150.00, median 328.00, Q3 660.00
 SUMO distances: count 6744, min 6.88 (1724961_1391731_508_0), max 48933.04 (4304506_2826808_799_1), mean 5996.28 Q1 1701.38, median 4048.99, Q3 8312.29
-function _parse_vehicle_info finished after 0.389000 seconds
-function upload_trip_results finished after 1.531000 seconds
-function upload_all_pairs called at Thu, 27 Jun 2019 15:27:21 +0000
-function _parse_vehicle_info_taz called at Thu, 27 Jun 2019 15:27:21 +0000
+function _parse_vehicle_info finished after 0.204000 seconds
+function upload_trip_results finished after 0.615000 seconds
+function upload_all_pairs called at Tue, 14 Apr 2020 18:18:53 +0000
+function _parse_vehicle_info_taz called at Tue, 14 Apr 2020 18:18:53 +0000
 Parsed taz results for 6744 vehicles
-function _parse_vehicle_info_taz finished after 0.362000 seconds
-function _get_all_pair_stats called at Thu, 27 Jun 2019 15:27:21 +0000
+function _parse_vehicle_info_taz finished after 0.204000 seconds
+function _get_all_pair_stats called at Tue, 14 Apr 2020 18:18:53 +0000
 function _get_all_pair_stats finished after 0.000000 seconds
-SUMO durations: count 5000, min 11.61 (1100020099_1100020099_0_0), max 2996.45 (1100020098_1100209513_0_0), mean 1020.94 Q1 664.72, median 939.58, Q3 1288.45
-SUMO distances: count 5000, min 105.61 (1100020099_1100020099_0_0), max 61796.17 (1100020099_1100314613_0_0), mean 15226.82 Q1 8489.74, median 12900.13, Q3 20334.35
-function upload_all_pairs finished after 1.724000 seconds
-function main finished after 60.005000 seconds
+SUMO durations: count 1072, min 23.28 (1100050225_1100050225_0_0), max 843.57 (1100050225_1100240038_0_0), mean 450.74 Q1 334.52, median 450.98, Q3 596.93
+SUMO distances: count 1072, min 193.93 (1100050225_1100050225_0_0), max 8821.36 (1100050225_1100240038_0_0), mean 4347.93 Q1 2971.47, median 4065.01, Q3 5674.27
+function upload_all_pairs finished after 0.676000 seconds
+function main finished after 2.636000 seconds
