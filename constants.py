@@ -163,7 +163,7 @@ class SP:
                 trip_output: "sumo_trip",
                 od_output: "sumo_od", od_entry: "sumo_od_entry",
                 status: "global_sumo_status",
-                taz_table: "berlin_taz_1223",
+                taz_table: "berlin_taz",
                 representatives: "berlin_location_representatives",
                 sample: "1.0",
                 del_temp: "false", del_intermediate: "false",
