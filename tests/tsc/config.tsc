@@ -51,6 +51,8 @@ output:generating landmark file .*/{REPLACE generating landmark file /}
 output:Removing sharp turn .*
 output:DijkstraRouter spent .*
 output:parsing .*/{REPLACE parsing /}
+output:Warning:.*
+output:Mapping.*
 errors:Ran
 errors:Exception AttributeError: AttributeError("'NoneType' object has no attribute 'Error_GetErrorCount'",) in <bound method
 errors:Warning:.*
