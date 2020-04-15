@@ -1,20 +1,20 @@
 Warning! No database connection given, operating on files only.
 db_status_started: berlin_2010 1 > Begin
-[('DB_CAR_FLEET_KEY', 'MID2008_Y2010_BERLIN'), ('DB_HH_SAMPLE_SIZE', '1.0'), ('DB_TABLE_ADDITIONAL_TRAFFIC', 'berlin_grundlast_ref2010_d'), ('DB_TABLE_CARS', 'berlin_cars'), ('DB_TABLE_REPRESENTATIVES', 'berlin_location_representatives'), ('DB_TABLE_SUMO_OD_ENTRY', 'sumo_od_entry'), ('DB_TABLE_SUMO_OD_OUTPUT', 'sumo_od'), ('DB_TABLE_SUMO_STATUS', 'global_sumo_status'), ('DB_TABLE_SUMO_TRIP_OUTPUT', 'sumo_trip'), ('DB_TABLE_TAZ', 'berlin_taz_1223'), ('DB_TABLE_TRIPS', 'berlin_trips'), ('DELETE_INTERMEDIATE_RESULTS', 'false'), ('DELETE_TEMP', 'false'), ('ITERATION', '1'), ('MAX_SUMO_ITERATION', '2'), ('SLICE', [24]), ('SUMO_DESTINATION_FOLDER', 'mitte_net'), ('SUMO_MODES', '2;4'), ('SUMO_NET_PARAMETER', '{}'), ('SUMO_TEMPLATE_FOLDER', 'mitte_net')]
+[('DB_CAR_FLEET_KEY', 'MID2008_Y2010_BERLIN'), ('DB_HH_SAMPLE_SIZE', '1.0'), ('DB_TABLE_ADDITIONAL_TRAFFIC', 'berlin_grundlast_ref2010_d'), ('DB_TABLE_CARS', 'berlin_cars'), ('DB_TABLE_REPRESENTATIVES', 'berlin_location_representatives'), ('DB_TABLE_SUMO_OD_ENTRY', 'sumo_od_entry'), ('DB_TABLE_SUMO_OD_OUTPUT', 'sumo_od'), ('DB_TABLE_SUMO_STATUS', 'global_sumo_status'), ('DB_TABLE_SUMO_TRIP_OUTPUT', 'sumo_trip'), ('DB_TABLE_TAZ', 'berlin_taz'), ('DB_TABLE_TRIPS', 'berlin_trips'), ('DELETE_INTERMEDIATE_RESULTS', 'false'), ('DELETE_TEMP', 'false'), ('ITERATION', '1'), ('MAX_SUMO_ITERATION', '2'), ('SLICE', [24]), ('SUMO_DESTINATION_FOLDER', 'mitte_net'), ('SUMO_MODES', '2;4'), ('SUMO_NET_PARAMETER', '{}'), ('SUMO_TEMPLATE_FOLDER', 'mitte_net')]
 db_status_message: berlin_2010 1 >> created dir: scenario_workdir\mitte_net\iteration001 
 
 db_status_message: berlin_2010 1 >> starting t2s using tripfile 2013y_03m_07d_16h_43m_41s_859ms_limit1000.csv
 No scenario specific assignment or post processing functions: No module named scripts
-function main called at Thu, 02 Apr 2020 20:03:03 +0000
-function rectify_input called at Thu, 02 Apr 2020 20:03:04 +0000
+function main called at Wed, 15 Apr 2020 10:38:10 +0000
+function rectify_input called at Wed, 15 Apr 2020 10:38:10 +0000
 Warning: dropping trip 1000571_1000114_1700_0 because it starts on the wrong day (minute 1700)
 Warning: dropping trip 1000571_1000114_1732_0 because it starts on the wrong day (minute 1732)
-Read 326 persons with a total of 1000 trips from input file "C:\Users\arme_ma\.texttest\tmp\tsc.2_from_02Apr182719.23012\tsc\workdir\tscDaemonWorkdirWithOneIteration\data\2013y_03m_07d_16h_43m_41s_859ms_limit1000.csv".
+Read 326 persons with a total of 1000 trips from input file "C:\Users\arme_ma\.texttest\tmp\tsc.15Apr102408.10980\tsc\workdir\tscDaemonWorkdirWithOneIteration\data\2013y_03m_07d_16h_43m_41s_859ms_limit1000.csv".
 0 trips have inconsistent depart times.
 Dropped 4 trips because of gaps, avg: 2620.49714228, maximum: 4323.59972994 (for trip 1001047_1000209_1231_0).
 Dropped 2 trips because they start on the wrong day (maximum: 1732 for trip 1000571_1000114_1732_0).
-function rectify_input finished after 0.079000 seconds
-function map_to_edges called at Thu, 02 Apr 2020 20:03:04 +0000
+function rectify_input finished after 0.064000 seconds
+function map_to_edges called at Wed, 15 Apr 2020 10:38:11 +0000
 Warning: could not find an edge for departure of ('1000003', '1000000') from (52.5332686677, 13.328014876), depart_minute=967 (skipping trip)
 Warning: could not find an edge for departure of ('1000003', '1000000') from (52.5511230931, 13.3459360324), depart_minute=1168 (skipping trip)
 Warning: could not find an edge for departure of ('1000004', '1000000') from (52.5332686677, 13.328014876), depart_minute=833 (skipping trip)
@@ -27,37 +27,37 @@ Warning: could not find an edge for departure of ('1000013', '1000002') from (52
 read 994 TAPAS trips for 326 persons (894 unmappable)
 Mapping deviations: count 123, min 9.89 (xycoord=(1975.2557716600131, 2738.839107026346), edge=4610352#0, uid=('1000388', '1000077')), max 1596.23 (xycoord=(-1188.6104955730261, 3457.708458337933), edge=286774655#0, uid=('1000348', '1000069')), mean 665.73 Q1 89.02, median 629.56, Q3 1176.21
 0 mappings did not find an edge in the correct taz
-function map_to_edges finished after 0.479000 seconds
-function create_sumo_tripdefs called at Thu, 02 Apr 2020 20:03:04 +0000
+function map_to_edges finished after 0.461000 seconds
+function create_sumo_tripdefs called at Wed, 15 Apr 2020 10:38:11 +0000
 read trip definitions for 100 vehicles
 created trip definitions for 100 vehicles starting between 106050 and 182489
-function create_sumo_tripdefs finished after 0.006000 seconds
-function run_oneshot called at Thu, 02 Apr 2020 20:03:04 +0000
+function create_sumo_tripdefs finished after 0.002000 seconds
+function run_oneshot called at Wed, 15 Apr 2020 10:38:11 +0000
 Loading configuration ... done.
 Loading configuration ... done.
-Loading net-file from 'C:\Users\arme_ma\.texttest\tmp\tsc.2_from_02Apr182719.23012\tsc\workdir\tscDaemonWorkdirWithOneIteration\data\scenario_workdir\mitte_net\net.net.xml' ... 
-done (494ms).
-Loading additional-files from 'C:\Users\arme_ma\.texttest\tmp\tsc.2_from_02Apr182719.23012\tsc\workdir\tscDaemonWorkdirWithOneIteration\data\scenario_workdir\mitte_net\vtypes.xml' ... done (6ms).
-Loading additional-files from 'C:\Users\arme_ma\.texttest\tmp\tsc.2_from_02Apr182719.23012\tsc\workdir\tscDaemonWorkdirWithOneIteration\data\scenario_workdir\mitte_net\iteration001\oneshot\dump_oneshot_meso.xml' ... done (8ms).
-Loading additional-files from 'C:\Users\arme_ma\.texttest\tmp\tsc.2_from_02Apr182719.23012\tsc\workdir\tscDaemonWorkdirWithOneIteration\data\scenario_workdir\mitte_net\bidi.taz.xml' ... done (195ms).
+Loading net-file from 'C:\Users\arme_ma\.texttest\tmp\tsc.15Apr102408.10980\tsc\workdir\tscDaemonWorkdirWithOneIteration\data\scenario_workdir\mitte_net\net.net.xml' ... 
+done (510ms).
+Loading additional-files from 'C:\Users\arme_ma\.texttest\tmp\tsc.15Apr102408.10980\tsc\workdir\tscDaemonWorkdirWithOneIteration\data\scenario_workdir\mitte_net\vtypes.xml' ... done (5ms).
+Loading additional-files from 'C:\Users\arme_ma\.texttest\tmp\tsc.15Apr102408.10980\tsc\workdir\tscDaemonWorkdirWithOneIteration\data\scenario_workdir\mitte_net\iteration001\oneshot\dump_oneshot_meso.xml' ... done (8ms).
+Loading additional-files from 'C:\Users\arme_ma\.texttest\tmp\tsc.15Apr102408.10980\tsc\workdir\tscDaemonWorkdirWithOneIteration\data\scenario_workdir\mitte_net\bidi.taz.xml' ... done (190ms).
 Loading done.
-Simulation version v1_5_0+1066-d6f17e7308 started with time: 106050.00
+Simulation version v1_5_0+1116-a526d4b47a started with time: 106050.00
 Simulation ended at time: 193289.00
 Reason: The final simulation step has been reached.
 Performance: 
- Duration: 5895ms
- Real time factor: 14798.8
- UPS: 2076.335878
+ Duration: 5394ms
+ Real time factor: 16173.3
+ UPS: 2269.187987
 Vehicles: 
  Inserted: 99 (Loaded: 100)
  Running: 0
  Waiting: 0
 
 AStarRouter answered 133 queries and explored 979.83 edges on average.
-AStarRouter spent 77ms answering queries (0.58ms on average).
+AStarRouter spent 75ms answering queries (0.56ms on average).
 AStarRouter answered 2 queries and explored 477.50 edges on average.
-AStarRouter spent 1ms answering queries (0.50ms on average).
-function run_oneshot finished after 6.822000 seconds
-function main finished after 8.177000 seconds
-db_status_message: berlin_2010 1 << finished t2s, routes in C:\Users\arme_ma\.texttest\tmp\tsc.2_from_02Apr182719.23012\tsc\workdir\tscDaemonWorkdirWithOneIteration\data\scenario_workdir\mitte_net\iteration001\oneshot\vehroutes_oneshot_meso.rou.xml
+AStarRouter spent 0ms answering queries (0.00ms on average).
+function run_oneshot finished after 6.271000 seconds
+function main finished after 7.557000 seconds
+db_status_message: berlin_2010 1 << finished t2s, routes in C:\Users\arme_ma\.texttest\tmp\tsc.15Apr102408.10980\tsc\workdir\tscDaemonWorkdirWithOneIteration\data\scenario_workdir\mitte_net\iteration001\oneshot\vehroutes_oneshot_meso.rou.xml
 db_status_finished: berlin_2010 1 < End
