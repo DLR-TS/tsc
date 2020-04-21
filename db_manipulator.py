@@ -53,6 +53,11 @@ def get_conn(options_or_config_file):
     if options.host == "sqlite3":
         conn = sqlite3.connect(":memory:", detect_types=sqlite3.PARSE_DECLTYPES)
         sqlite3.register_converter("boolean", lambda v: bool(int(v)))  # sqlite has no native boolean type and would return ints
+        try:
+            conn.enable_load_extension(True)
+            conn.execute("SELECT load_extension('mod_spatialite%s')" % ('.so' if os.name == "posix" else ''))
+        except Exception as e:
+            print("Warning! Could not load mod_spatialite, geometry related database operations won't work.", e, file=sys.stderr)
         database = options.database % os.environ
         core = os.path.join(os.path.dirname(database), 'core.db')
         conn.execute("ATTACH ? AS core", (core,))
