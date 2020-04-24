@@ -83,19 +83,22 @@ def run_sql(conn, sql):
     cursor = conn.cursor()
     command = ""
     for line in sql:
-        parts = line.upper().split()
-        if len(parts) >= 3 and parts[0] == "--" and parts[1] == "SLEEP":
-            conn.commit()
-            time.sleep(float(parts[2]))
+        if line.startswith("--"):
+            parts = line.upper().split()
+            if len(parts) >= 3 and parts[1] == "SLEEP":
+                conn.commit()
+                time.sleep(float(parts[2]))
         else:
             command += " " + line.strip()
-        if command.endswith(";"):
-            command = command.strip()
-            cursor.execute(command)
-            if command.upper().startswith("SELECT"):
-                for result in cursor:
-                    print(result)
-            command = ""
+            if command.endswith(";"):
+                command = command.strip()
+                # print(command)
+                sys.stdout.flush()
+                cursor.execute(command)
+                if command.upper().startswith("SELECT"):
+                    for result in cursor:
+                        print(result)
+                command = ""
     if command:
         print("Warning: Unfinished command '%s'" % command)
     conn.commit()
