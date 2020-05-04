@@ -5,6 +5,7 @@ kill_timeout:3600
 binary:runner.py
 config_module:default
 create_catalogues:true
+discard_file:core.db
 
 copy_test_path_merge:data
 copy_test_path:tscdefs.py
