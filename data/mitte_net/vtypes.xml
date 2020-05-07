@@ -1,4 +1,5 @@
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vType id="passenger" vClass="passenger" length="3.5" speedDev="0.2" minGap="1.5" emissionClass="HBEFA3/PC_G_EU4"/>
     <vType id="small_passenger_gasoline" vClass="passenger" length="3.5" speedDev="0.2" minGap="1.5" emissionClass="HBEFA3/PC_G_EU4"/>
     <vType id="small_passenger_diesel" vClass="passenger" length="3.5" speedDev="0.2" minGap="1.5" emissionClass="HBEFA3/PC_D_EU4"/>
     <vType id="small_passenger_gas" vClass="passenger" length="3.5" speedDev="0.2" minGap="1.5" emissionClass="Energy/unknown"/>
@@ -51,7 +52,7 @@
 
     <vType id="restricted_delivery_3.5t_gasoline" vClass="custom1" emissionClass="HBEFA3/LDV_G_EU4"/>
     <vType id="restricted_delivery_3.5t_diesel" vClass="custom1" emissionClass="HBEFA3/LDV_D_EU4"/>
-    <vType id="restricted_delivery_3.5t_gas" vClass="custom1" emissionClass="PEnergy/unknown"/>
+    <vType id="restricted_delivery_3.5t_gas" vClass="custom1" emissionClass="Energy/unknown"/>
     <vType id="restricted_delivery_3.5t_evehicle" vClass="custom1" emissionClass="Energy/unknown"/>
     <vType id="restricted_delivery_3.5t_plugin_hybrid" vClass="custom1" emissionClass="Energy/unknown"/>
     <vType id="restricted_delivery_3.5t_fuel_cell" vClass="custom1" emissionClass="Energy/unknown"/>
