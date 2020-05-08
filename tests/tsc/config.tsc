@@ -5,7 +5,6 @@ kill_timeout:3600
 binary:runner.py
 config_module:default
 create_catalogues:true
-discard_file:core.db
 
 copy_test_path_merge:data
 copy_test_path:tscdefs.py
@@ -18,6 +17,7 @@ rectifiedTrips:data/scenario_workdir/*/iteration000/trips/rectified*.csv
 resultingTripFile:data/scenario_workdir/*/*/trips/2*ms.csv
 resultingAllPairsFile:data/scenario_workdir/*/*/trips/all_pairs*.csv
 sumoTrips:data/scenario_workdir/*/iteration000/trips/miv*.trips.xml
+stacktrace:{CLEAR LIST}
 
 [run_dependent_text]
 output:\r{REPLACE \n}
