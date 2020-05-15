@@ -138,14 +138,16 @@ def create_template_folder(scenario_name, options):
                 netconvert_call = [netconvert, '-c', config, '-o', os.path.join(tmp_output_dir, net_name), '-v']
                 subprocess.call(netconvert_call)
                 
-                # build polygons
-                polyconvert = sumolib.checkBinary('polyconvert')
+                
                 poly_config = os.path.join(options.pre, scenario_name, 'template_gen.polycfg')
-                polyconvertCmd = [polyconvert, '-c', poly_config, '-o', os.path.join(tmp_output_dir, "shapes.xml"), '-v']
-                if options.verbose:
-                    print(polyconvertCmd)
-                    sys.stdout.flush()
-                subprocess.call(polyconvertCmd) 
+                if os.path.isfile(poly_config):
+                # build polygons
+                    polyconvert = sumolib.checkBinary('polyconvert')
+                    polyconvertCmd = [polyconvert, '-c', poly_config, '-o', os.path.join(tmp_output_dir, "shapes.xml"), '-v']
+                    if options.verbose:
+                        print(polyconvertCmd)
+                        sys.stdout.flush()
+                    subprocess.call(polyconvertCmd) 
 
             # find netfile
             for root, _, files in os.walk(tmp_output_dir):
