@@ -1,2 +1,3 @@
+parsing C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\test_server.tsccfg
 fetched 16112 rows
-wrote 16112 rows to iteration/trips/2015y_05m_29d_09h_01m_11s_943ms.csv
+wrote 16112 rows to iteration/trips\2015y_05m_29d_09h_01m_11s_943ms.csv
