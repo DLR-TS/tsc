@@ -1,151 +1,226 @@
 Loading configuration ... done.
-Parsing types from 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\osm/mitte_net.typ.xml' ... done.
-Parsing nodes from osm-file 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\osm/mitte_net.osm.xml' ... 
-Found and substituted 24 osm nodes.
+Parsing types from 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\berlin_net\osm/berlin_net.typ.xml' ... done.
+Parsing nodes from osm-file 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\berlin_net\osm/berlin_net.osm.xml.gz' ... 
+Found and substituted 663 osm nodes.
 done.
-Parsing edges from osm-file 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\osm/mitte_net.osm.xml' ... 
+Parsing edges from osm-file 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\berlin_net\osm/berlin_net.osm.xml.gz' ... 
 done.
-Removing duplicate edges ... done.
-Adding new type 'highway.service|railway.tram' (first occurence for edge '388702047').
-Parsing relations from osm-file 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\osm/mitte_net.osm.xml' ... 
+Removing duplicate edges ... 
+Removed 48 duplicate osm edges.
 done.
- Removed 1054 traffic lights before loading plain-XML
-Parsing nodes from 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\netpatch/patch.nod.xml' ... done.
-Parsing edges from 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\netpatch/patch.edg.xml' ... done.
-Parsing connections from 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\netpatch/patch.con.xml' ... done.
-Parsing traffic lights from 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\netpatch/patch.tll.xml' ... done.
+Adding new type 'cycleway.track|highway.primary' (first occurence for edge '4045243').
+Adding new type 'cycleway.track|highway.secondary' (first occurence for edge '4045656').
+Adding new type 'cycleway.track|highway.residential' (first occurence for edge '4054007').
+Adding new type 'cycleway.lane|highway.secondary' (first occurence for edge '4067949').
+Adding new type 'cycleway.lane|highway.residential' (first occurence for edge '4068019').
+Adding new type 'cycleway.lane|highway.primary' (first occurence for edge '4068078').
+Adding new type 'cycleway.lane|highway.tertiary' (first occurence for edge '4068114').
+Adding new type 'cycleway.opposite_track|highway.residential' (first occurence for edge '4368690').
+Adding new type 'cycleway.track|highway.tertiary' (first occurence for edge '4370507').
+Adding new type 'cycleway.track|highway.unclassified' (first occurence for edge '4380909').
+Adding new type 'cycleway.lane|highway.service' (first occurence for edge '4392637').
+Adding new type 'cycleway.track|highway.secondary_link' (first occurence for edge '4442080').
+Adding new type 'cycleway.lane|cycleway.track|highway.tertiary' (first occurence for edge '4463780').
+Adding new type 'cycleway.track|highway.service' (first occurence for edge '4492364').
+Adding new type 'cycleway.lane|highway.unclassified' (first occurence for edge '4495251').
+Adding new type 'cycleway.opposite_track|cycleway.track|highway.tertiary' (first occurence for edge '4500160').
+Adding new type 'cycleway.opposite_lane|highway.tertiary' (first occurence for edge '4588220').
+Adding new type 'cycleway.lane|highway.secondary_link' (first occurence for edge '4593238').
+Adding new type 'cycleway.lane|highway.pedestrian' (first occurence for edge '4600247').
+Adding new type 'cycleway.lane|highway.primary_link' (first occurence for edge '4603604').
+Adding new type 'cycleway.lane|cycleway.track|highway.residential' (first occurence for edge '4687155').
+Adding new type 'cycleway.track|highway.primary_link' (first occurence for edge '4696057').
+Adding new type 'highway.service|railway.tram' (first occurence for edge '4776237').
+Adding new type 'cycleway.lane|highway.trunk_link' (first occurence for edge '4777588').
+Adding new type 'cycleway.opposite_lane|highway.primary' (first occurence for edge '4777754').
+Adding new type 'cycleway.opposite_track|cycleway.track|highway.residential' (first occurence for edge '4782403').
+Adding new type 'cycleway.lane|cycleway.opposite_lane|highway.secondary' (first occurence for edge '8771048').
+Adding new type 'cycleway.lane|cycleway.opposite_lane|highway.residential' (first occurence for edge '8771399').
+Adding new type 'cycleway.opposite_lane|highway.unclassified' (first occurence for edge '9063243').
+Adding new type 'cycleway.lane|highway.tertiary_link' (first occurence for edge '16419340').
+Adding new type 'cycleway.lane|cycleway.track|highway.primary' (first occurence for edge '17509968').
+Adding new type 'cycleway.opposite_track|highway.secondary' (first occurence for edge '22993019').
+Adding new type 'cycleway.opposite_lane|highway.residential' (first occurence for edge '23452995').
+Adding new type 'cycleway.opposite_track|highway.primary' (first occurence for edge '23785411').
+Adding new type 'cycleway.lane|cycleway.track|highway.secondary' (first occurence for edge '24291257').
+Adding new type 'cycleway.lane|highway.footway' (first occurence for edge '24540240').
+Adding new type 'cycleway.track|highway.footway' (first occurence for edge '24903135').
+Adding new type 'cycleway.lane|highway.path' (first occurence for edge '28221697').
+Adding new type 'cycleway.opposite_track|cycleway.track|highway.primary' (first occurence for edge '31969210').
+Adding new type 'cycleway.lane|cycleway.opposite_lane|highway.tertiary' (first occurence for edge '35670765').
+Adding new type 'cycleway.lane|cycleway.opposite_track|highway.tertiary' (first occurence for edge '44427219').
+Adding new type 'cycleway.opposite_track|highway.tertiary' (first occurence for edge '50833761').
+Adding new type 'cycleway.lane|cycleway.opposite_track|highway.secondary' (first occurence for edge '93203448').
+Adding new type 'cycleway.lane|cycleway.track|highway.unclassified' (first occurence for edge '93704176').
+Adding new type 'cycleway.track|highway.path' (first occurence for edge '111700446').
+Adding new type 'cycleway.opposite_track|highway.service' (first occurence for edge '193063165').
+Adding new type 'cycleway.track|highway.tertiary_link' (first occurence for edge '211737569').
+Adding new type 'cycleway.opposite_lane|highway.service' (first occurence for edge '220116539').
+Adding new type 'cycleway.track|highway.living_street' (first occurence for edge '270442657').
+Adding new type 'cycleway.opposite_lane|highway.secondary' (first occurence for edge '333626111').
+Adding new type 'cycleway.track|highway.pedestrian' (first occurence for edge '339375059').
+Adding new type 'cycleway.opposite_lane|highway.cycleway' (first occurence for edge '464917994').
+Adding new type 'cycleway.lane|cycleway.opposite_lane|cycleway.track|highway.primary' (first occurence for edge '476737123').
+Adding new type 'cycleway.lane|highway.cycleway' (first occurence for edge '529086030').
+Parsing relations from osm-file 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\berlin_net\osm/berlin_net.osm.xml.gz' ... 
+done.
+ Removed 14831 traffic lights before loading plain-XML
+Parsing nodes from 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\berlin_net\netpatch/patch.nod.xml' ... done.
+Parsing edges from 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\berlin_net\netpatch/patch.edg.xml' ... done.
+Parsing connections from 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\berlin_net\netpatch/patch.con.xml' ... done.
+Parsing traffic lights from 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\berlin_net\netpatch/patch.tll.xml' ... done.
  Import done:
-   15852 nodes loaded.
-   33 types loaded.
-   9871 edges loaded.
+   506401 nodes loaded.
+   90 types loaded.
+   394930 edges loaded.
 Proj projection parameters used: '+proj=utm +zone=33 +ellps=WGS84 +datum=WGS84 +units=m +no_defs'.
-Removing self-loops ... done (0ms).
-Finding largest components ... done (19ms).
+Removing self-loops ... done (54ms).
+Removing sharp turn with radius 8.88 at the end of edge '-201304834#2'.
 Removing sharp turn with radius 5.03 at the end of edge '106863633#5'.
+Removing sharp turn with radius 4.38 at the start of edge '128679930#1'.
+Removing sharp turn with radius 1.82 at the end of edge '132376260#2'.
 Removing sharp turn with radius 1.40 at the start of edge '144014242#1'.
 Removing sharp turn with radius 0.36 at the start of edge '148811539#0'.
 Removing sharp turn with radius 4.40 at the start of edge '148811539#2'.
+Removing sharp turn with radius 5.66 at the end of edge '150217572#0'.
 Removing sharp turn with radius 8.75 at the start of edge '154321049#1'.
+Removing sharp turn with radius 8.86 at the start of edge '155513079#1'.
 Removing sharp turn with radius 4.73 at the start of edge '167140670#3'.
 Removing sharp turn with radius 6.47 at the start of edge '167272512#2'.
+Removing sharp turn with radius 8.22 at the start of edge '167651708#2'.
 Removing sharp turn with radius 7.75 at the end of edge '167893762#1'.
+Removing sharp turn with radius 4.75 at the end of edge '168448763#0'.
+Removing sharp turn with radius 0.86 at the end of edge '175760035#3'.
+Removing sharp turn with radius 7.74 at the end of edge '175925600#0'.
+Removing sharp turn with radius 6.72 at the start of edge '179376042#4'.
 Removing sharp turn with radius 4.82 at the start of edge '195411594#3'.
+Removing sharp turn with radius 8.88 at the start of edge '201304834#2'.
+Removing sharp turn with radius 6.33 at the start of edge '20132512#2'.
+Removing sharp turn with radius 2.83 at the end of edge '210240482#1'.
+Removing sharp turn with radius 5.15 at the start of edge '236529399#2'.
+Removing sharp turn with radius 4.14 at the start of edge '24744364'.
+Removing sharp turn with radius 0.01 at the start of edge '24995285#0'.
+Removing sharp turn with radius 3.22 at the start of edge '254694283#3'.
 Removing sharp turn with radius 8.03 at the end of edge '30123145#0'.
 Removing sharp turn with radius 4.29 at the start of edge '30123145#2'.
+Removing sharp turn with radius 5.71 at the start of edge '319928514#1'.
+Removing sharp turn with radius 7.56 at the end of edge '406073853#4'.
+Removing sharp turn with radius 3.45 at the end of edge '420642467#0'.
+Removing sharp turn with radius 4.19 at the end of edge '4751217#2'.
+Removing sharp turn with radius 8.65 at the start of edge '4776236#3'.
+Removing sharp turn with radius 6.57 at the start of edge '4788440#2'.
+Removing sharp turn with radius 4.95 at the start of edge '4788987#3'.
+Removing sharp turn with radius 7.12 at the start of edge '4791629#2'.
+Removing sharp turn with radius 5.45 at the start of edge '48388762#2'.
+Removing sharp turn with radius 1.05 at the start of edge '796370742'.
+Removing sharp turn with radius 6.56 at the end of edge '84547061'.
+Removing sharp turn with radius 0.46 at the start of edge '86553116#0'.
+Removing sharp turn with radius 2.45 at the end of edge '86614777#4'.
 Removing sharp turn with radius 5.82 at the end of edge '86934323#1'.
-Found 1 reversible edge sequences between broken rail nodes
-Reversed 1 sequences (count by length: 4:1)
-Added 2 edges to connect 1 buffer stops in both directions.
+Removing sharp turn with radius 3.96 at the start of edge '94131341#5'.
+Removing sharp turn with radius 3.36 at the end of edge '98960743#0'.
+Added 391 bidi-edges as extension of existing bidi edges.
+Found 256 reversible edge sequences between broken rail nodes
+Reversed 247 sequences (count by length: 1:185 2:26 3:14 4:6 5:5 6:4 7:1 9:3 10:1 15:1 16:1)
+Added 577 edges to connect 439 buffer stops in both directions.
+Added 357 bidi-edges between 122 pairs of railway switches (count by length: 1:84 2:8 3:8 4:1 5:2 6:3 7:2 8:4 10:2 11:1 12:2 13:1 14:1 23:1 25:2)
+Joining tram edges ... 
+done (351ms).
+ Joined 2256 tram edges into roads.
 Joining junction clusters ... 
-done (29ms).
- Joined 186 junction cluster(s).
-Removing empty nodes and geometry nodes ... done (124ms).
-   13973 nodes removed.
-Moving network to origin ... done (60ms).
+done (1238ms).
+ Joined 4597 junction cluster(s).
+Removing empty nodes and geometry nodes ... done (66086ms).
+   425321 nodes removed.
+Moving network to origin ... done (3483ms).
 Computing turning directions ... 
-done (3ms).
-Assigning nodes to traffic lights ... done (19ms).
-Guessing and setting on-/off-ramps ... done (3ms).
-Sorting nodes' edges ... done (2ms).
-Computing node shapes ... done (86ms).
-Computing edge shapes ... done (41ms).
-Computing node types ... done (2ms).
-Computing priorities ... done (2ms).
-Computing approached edges ... done (6ms).
+done (180ms).
+Assigning nodes to traffic lights ... done (427ms).
+Guessing and setting on-/off-ramps ... done (288ms).
+Removing sharp turn with radius 3.20 at the end of edge '155531543#6'.
+Removing sharp turn with radius 3.11 at the start of edge '171100960#0'.
+Removing sharp turn with radius 4.70 at the end of edge '171851825#2'.
+Removing sharp turn with radius 6.08 at the start of edge '175857481#0'.
+Removing sharp turn with radius 5.38 at the end of edge '175862172#0'.
+Removing sharp turn with radius 1.55 at the end of edge '24864947#0'.
+Removing sharp turn with radius 8.87 at the end of edge '283862623#1'.
+Removing sharp turn with radius 5.88 at the end of edge '28953618'.
+Removing sharp turn with radius 6.62 at the start of edge '28953618'.
+Removing sharp turn with radius 5.88 at the start of edge '28953620'.
+Removing sharp turn with radius 5.97 at the start of edge '28953620'.
+Removing sharp turn with radius 3.63 at the end of edge '45869062#0'.
+Removing sharp turn with radius 4.17 at the start of edge '4685666#0#0'.
+Removing sharp turn with radius 3.37 at the start of edge '4685666#4'.
+Removing sharp turn with radius 4.37 at the start of edge '795919786#1'.
+Sorting nodes' edges ... done (202ms).
+Computing node shapes ... 
+done (4830ms).
+Computing edge shapes ... done (2230ms).
+Computing node types ... 
+done (135ms).
+Guessed 139040 pedestrian crossings.
+Computing priorities ... done (166ms).
+Computing approached edges ... done (360ms).
 Guessing and setting roundabouts ... 
- Guessed 3 roundabout(s).
-done (1ms).
-Computing approaching lanes ... done (20ms).
-Dividing of lanes on approached lanes ... done (12ms).
-Processing turnarounds ... done (3ms).
+ Guessed 271 roundabout(s).
+done (49ms).
+Computing approaching lanes ... done (1316ms).
+Dividing of lanes on approached lanes ... 
+done (728ms).
+Processing turnarounds ... done (315ms).
 Rechecking of lane endings ... 
-done (1ms).
-Joining traffic light nodes ... done (2ms).
-Computing traffic light control information ... done (1ms).
-Computing node logics ... done (29ms).
-Computing traffic light logics ... done (8ms).
- 102 traffic light(s) computed.
+done (154ms).
+Joining traffic light nodes ... done (160ms).
+Computing traffic light control information ... 
+done (68ms).
+Computing node logics ... done (1824ms).
+Computing traffic light logics ... 
+done (359ms).
+ 1896 traffic light(s) computed.
 Building inner edges ... 
-done (54ms).
+done (3527ms).
 -----------------------------------------------------
 Summary:
  Node type statistics:
   Unregulated junctions       : 0
-  Dead-end junctions          : 57
-  Priority junctions          : 977
-  Right-before-left junctions : 337
-  Traffic light junctions      : 105
-  Rail crossing junctions      : 54
-  Rail signal junctions      : 1
+  Dead-end junctions          : 1848
+  Priority junctions          : 51499
+  Right-before-left junctions : 17786
+  Traffic light junctions      : 2015
+  Rail crossing junctions      : 334
+  Rail signal junctions      : 551
  Network boundaries:
-  Original boundary  : 13.37,52.50,13.50,52.54
-  Applied offset     : -389385.39,-5818229.46
-  Converted boundary : 0.00,0.00,7456.71,4483.93
+  Original boundary  : 12.63,51.88,14.48,53.39
+  Applied offset     : -339139.35,-5778999.45
+  Converted boundary : 0.00,0.00,94258.17,85580.61
 -----------------------------------------------------
-Writing network ... done (581ms).
-Success.
------ generating template mitte_net
-creating template dir for mitte_net
-copying __init__.py
-copying vtypes.xml
-starting to import osm ...
-['C:\\Users\\arme_ma\\Documents\\Giuliana\\Eclipse\\sumo\\bin\\polyconvert.exe', '-c', 'C:\\Users\\arme_ma\\Documents\\Giuliana\\Projekte\\UrMo\\GitHub\\tsc\\tests\\..\\data\\mitte_net\\template_gen.polycfg', '-o', 'C:\\Users\\arme_ma\\.texttest\\tmp\\tsc.07Apr115734.20432\\tsc\\pre\\installTemplateDir\\data\\scenario_templates\\mitte_net\\tmp_output\\shapes.xml', '-v']
-Loading configuration ... done.
-Parsing nodes from osm-file 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\osm/mitte_net.osm.xml' ... done (2735ms).
-Parsing relations from osm-file 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\osm/mitte_net.osm.xml' ... done (1784ms).
-Parsing edges from osm-file 'C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\osm/mitte_net.osm.xml' ... done (2156ms).
-Success.
-Success.
+Writing network ... done (37993ms).
 Success.
 Success.
 Loading net ... done.
-Loading additional file 'C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\bidi.taz.xml'  ... done.
-Loading additional file 'C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\suburb.taz.xml'  ... done.
+Loading additional file 'C:\Users\arme_ma\.texttest\tmp\tsc.15May202426.13432\tsc\pre\installTemplateDir\data\scenario_templates\berlin_net\bidi.taz.xml'  ... done.
+Loading additional file 'C:\Users\arme_ma\.texttest\tmp\tsc.15May202426.13432\tsc\pre\installTemplateDir\data\scenario_templates\berlin_net\suburb.taz.xml'  ... done.
 Skipped until: 92233720368547758.07
-DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
-DijkstraRouter spent 26ms answering queries (0.00ms on average).
-DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
-DijkstraRouter spent 54ms answering queries (0.01ms on average).
-DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
-DijkstraRouter spent 46ms answering queries (0.00ms on average).
-DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
-DijkstraRouter spent 20ms answering queries (0.00ms on average).
-DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
-DijkstraRouter spent 22ms answering queries (0.00ms on average).
-DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
-DijkstraRouter spent 36ms answering queries (0.00ms on average).
-DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
-DijkstraRouter spent 17ms answering queries (0.00ms on average).
-DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
-DijkstraRouter spent 19ms answering queries (0.00ms on average).
-DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
-DijkstraRouter spent 36ms answering queries (0.00ms on average).
-DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
-DijkstraRouter spent 21ms answering queries (0.00ms on average).
-DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
-DijkstraRouter spent 13ms answering queries (0.00ms on average).
-DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
-DijkstraRouter spent 10ms answering queries (0.00ms on average).
-DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
-DijkstraRouter spent 15ms answering queries (0.00ms on average).
-DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
-DijkstraRouter spent 23ms answering queries (0.00ms on average).
-DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
-DijkstraRouter spent 14ms answering queries (0.00ms on average).
-DijkstraRouter answered 10774 queries and explored 1.23 edges on average.
-DijkstraRouter spent 16ms answering queries (0.00ms on average).
-Reading up to time step: 9223372036854773.76Routes found between time steps 92233720368547758.07 and 92233720368547758.07.
 Success.
-calling generateBidiDistricts.main C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\net.net.xml, C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\bidi.taz.xml
-generating taz file C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\districts.taz.xml
-importing shapes from C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\shapes\Berlin Verkehrsbezirke (1193 VBz) GK4_zone.dbf ...
-calculating contained edges for C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\Berlin Verkehrsbezirke (1193 VBz) GK4_zone.poly.xml ...
-generating taz file C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\Berlin_1223.taz.xml
-importing shapes from C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\shapes\Berlin_1223.dbf ...
-calculating contained edges for C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\Berlin_1223.poly.xml ...
-generating taz file C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\RBS_OD_ORT_1412.taz.xml
-importing shapes from C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\shapes\RBS_OD_ORT_1412.dbf ...
-calculating contained edges for C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\RBS_OD_ORT_1412.poly.xml ...
-generating taz file C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\suburb.taz.xml
-generating landmark file C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\mitte_net\landmarks
-generating landmark file C:\Users\arme_ma\.texttest\tmp\tsc.07Apr115734.20432\tsc\pre\installTemplateDir\data\scenario_templates\mitte_net\landmarks.csv
+copying berlin_net/vtypes.xml
+copying berlin_net/net.net.xml
+copying berlin_net/landmarks.csv
+copying berlin_net/bidi.taz.xml
+copying berlin_net/suburb.taz.xml
+skipping non existent berlin_net/districts.taz.xml
+----- generating template berlin_net
+creating template dir for berlin_net
+copying __init__.py
+copying vtypes.xml
+starting to import osm ...
+calling generateBidiDistricts.main C:\Users\arme_ma\.texttest\tmp\tsc.15May202426.13432\tsc\pre\installTemplateDir\data\scenario_templates\berlin_net\net.net.xml, C:\Users\arme_ma\.texttest\tmp\tsc.15May202426.13432\tsc\pre\installTemplateDir\data\scenario_templates\berlin_net\bidi.taz.xml
+generating taz file C:\Users\arme_ma\.texttest\tmp\tsc.15May202426.13432\tsc\pre\installTemplateDir\data\scenario_templates\berlin_net\Berlin_1223.taz.xml
+importing shapes from C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\berlin_net\shapes\Berlin_1223.dbf ...
+calculating contained edges for C:\Users\arme_ma\.texttest\tmp\tsc.15May202426.13432\tsc\pre\installTemplateDir\data\scenario_templates\berlin_net\Berlin_1223.poly.xml ...
+generating taz file C:\Users\arme_ma\.texttest\tmp\tsc.15May202426.13432\tsc\pre\installTemplateDir\data\scenario_templates\berlin_net\suburb.taz.xml
+generating landmark file C:\Users\arme_ma\Documents\Giuliana\Projekte\UrMo\GitHub\tsc\tests\..\data\berlin_net\landmarks
+generating landmark file C:\Users\arme_ma\.texttest\tmp\tsc.15May202426.13432\tsc\pre\installTemplateDir\data\scenario_templates\berlin_net\landmarks.csv
+----- generating template mitte_net
+creating template dir for mitte_net
+copying __init__.py
+could not find landmark data for mitte_net

@@ -57,6 +57,7 @@ output:Mapping.*
 errors:Ran
 errors:Exception AttributeError: AttributeError("'NoneType' object has no attribute 'Error_GetErrorCount'",) in <bound method
 errors:Warning:.*
+errors:\n
 catalogue:.pyc
 catalogue:__pycache__
 log:[0-9\.]+ms{REPLACE (TIME)}
