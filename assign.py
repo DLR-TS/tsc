@@ -162,7 +162,7 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
         <mesosim value="true"/>
         <meso-recheck value="10"/>
         <meso-multi-queue value="true"/>
-        <meso-jam-threshold value="0"/>
+        <meso-jam-threshold value="1"/>
         <meso-junction-control.limited value="true"/>
         <meso-minor-penalty value="0.5"/>
         <meso-tls-penalty value="0.5"/>"""
