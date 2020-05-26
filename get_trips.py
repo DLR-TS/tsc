@@ -100,9 +100,8 @@ def get_active_sim_keys(server_options, overrides):
             continue
         # check whether the iteration is or was already running
         if sim_params.get(SP.status):
-            assert table_exists(
-                conn, sim_params[SP.status]), "Status table does not exist"
-            command_status = "SELECT msg_type FROM core.%s WHERE sim_key = '%s' AND iteration = %s ORDER BY status_time DESC LIMIT 1" % (
+            assert table_exists(conn, sim_params[SP.status]), "Status table does not exist"
+            command_status = "SELECT msg_type FROM public.%s WHERE sim_key = '%s' AND iteration = %s ORDER BY status_time DESC LIMIT 1" % (
                 sim_params[SP.status], sim_key, iteration)
             cursor_open.execute(command_status)
             status = cursor_open.fetchall()

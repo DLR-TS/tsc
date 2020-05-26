@@ -303,7 +303,7 @@ def write_status(message, sim_key, params, conn=None, msg_type=constants.MSG_TYP
     if conn is not None and sim_key is not None:
         cursor = conn.cursor()
         command = """
-        INSERT INTO core.%s
+        INSERT INTO public.%s
         (sim_key, iteration, status_time, status, msg_type)
         VALUES
         ('%s', %s, NOW(), %%s, %%s);
@@ -440,7 +440,7 @@ def main(args):
             print("Warning! No database connection given, deleting files only.")
         else:
             cursor = conn.cursor()
-            cursor.execute("DELETE FROM core.%s;" % (SP.OPTIONAL[SP.status]))
+            cursor.execute("DELETE FROM public.%s;" % (SP.OPTIONAL[SP.status]))
             conn.commit()
             conn.close()
         return
