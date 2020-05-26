@@ -301,15 +301,9 @@ def write_status(message, sim_key, params, conn=None, msg_type=constants.MSG_TYP
     print('db_status_%s: %s %s %s' %
           (msg_type, sim_key, params[SP.iteration], message))
     if conn is not None and sim_key is not None:
-        cursor = conn.cursor()
-        command = """
-        INSERT INTO public.%s
-        (sim_key, iteration, status_time, status, msg_type)
-        VALUES
-        ('%s', %s, NOW(), %%s, %%s);
-        """ % (params[SP.status], sim_key, params[SP.iteration])
-        cursor.execute(command, (str(message), msg_type))
-        conn.commit()
+        command = "INSERT INTO public.%s (sim_key, iteration, status_time, status, msg_type) VALUES (?, ?, ?, ?, ?);"
+        db_manipulator.execute(conn, command % params[SP.status],
+                               (sim_key, params[SP.iteration], datetime.datetime.now(), str(message), msg_type))
         # make sure the time stamp is unique, otherwise the primary key is violated
         time.sleep(0.01)
 

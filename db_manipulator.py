@@ -52,6 +52,7 @@ def get_conn(options_or_config_file):
         return None
     if options.host == "sqlite3":
         conn = sqlite3.connect(":memory:", detect_types=sqlite3.PARSE_DECLTYPES)
+        sqlite3.register_adapter(bool, int)
         sqlite3.register_converter("boolean", lambda v: bool(int(v)))  # sqlite has no native boolean type and would return ints
         try:
             conn.enable_load_extension(True)
@@ -79,6 +80,14 @@ def table_exists(conn, table):
     return len(cursor.fetchall()) > 0
 
 
+def execute(conn, command, parameters):
+    cursor = conn.cursor()
+    if not isinstance(conn, sqlite3.Connection):
+        command = command.replace('?', '%s')
+    cursor.execute(command, parameters)
+    conn.commit()
+
+
 def run_sql(conn, sql):
     cursor = conn.cursor()
     command = ""
@@ -90,7 +99,8 @@ def run_sql(conn, sql):
                     conn.commit()
                     time.sleep(float(parts[2]))
                 if parts[1] == "POSTGRESQL" and parts[2] == "EXIT":
-                    break
+                    if not isinstance(conn, sqlite3.Connection):
+                        break
         else:
             if command:
                 command += " "
