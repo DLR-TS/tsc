@@ -51,6 +51,7 @@ output:generating landmark file .*/{REPLACE generating landmark file /}
 output:Removing sharp turn .*
 output:DijkstraRouter spent .*
 output:parsing .*tsccfg{REPLACE parsing <tsccfg>}
+errors:Exception AttributeError: AttributeError("'NoneType' object has no attribute 'Error_GetErrorCount'",) in <bound method
 catalogue:.pyc
 catalogue:__pycache__
 log:[0-9\.]+ms{REPLACE (TIME)}

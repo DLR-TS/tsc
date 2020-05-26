@@ -85,11 +85,16 @@ def run_sql(conn, sql):
     for line in sql:
         if line.startswith("--"):
             parts = line.upper().split()
-            if len(parts) >= 3 and parts[1] == "SLEEP":
-                conn.commit()
-                time.sleep(float(parts[2]))
+            if len(parts) >= 3:
+                if parts[1] == "SLEEP":
+                    conn.commit()
+                    time.sleep(float(parts[2]))
+                if parts[1] == "POSTGRESQL" and parts[2] == "EXIT":
+                    break
         else:
-            command += " " + line.strip()
+            if command:
+                command += " "
+            command += line.strip()
             if command.endswith(";"):
                 command = command.strip()
                 # print(command)
@@ -110,7 +115,7 @@ def run_instructions(options, sqlList):
         for sql in sqlList:
             run_sql(conn_test, sql)
     except psycopg2.ProgrammingError as e:
-        print(e)
+        print(e, file=sys.stderr)
     conn_test.close()
 
 
