@@ -132,7 +132,7 @@ def start(options, call, pre_test, par_test, post_test):
         process_db_manipulator.start()
     print("starting main")
     sys.stdout.flush()
-    subprocess.call(call, shell=True, stdout=sys.stdout, stderr=sys.stderr)
+    subprocess.call(call)
     sys.stdout.flush()
     sys.stderr.flush()
     if process_db_manipulator:
