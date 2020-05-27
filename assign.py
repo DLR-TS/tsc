@@ -162,7 +162,7 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
         <mesosim value="true"/>
         <meso-recheck value="10"/>
         <meso-multi-queue value="true"/>
-        <meso-jam-threshold value="1"/>
+        <meso-jam-threshold value="-0.5"/>
         <meso-junction-control.limited value="true"/>
         <meso-minor-penalty value="0.5"/>
         <meso-tls-penalty value="0.5"/>"""
@@ -191,7 +191,6 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
         <device.rerouting.adaptation-weight value="0.5"/>
         <device.rerouting.period value="300"/>
         <device.rerouting.pre-period value="10"/>
-        <device.rerouting.synchronize value="true"/>
 
         <save-state.period value="3600"/>
         <save-state.suffix value=".xml.gz"/>
