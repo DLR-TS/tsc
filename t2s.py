@@ -464,8 +464,8 @@ def create_sumo_tripdefs(options, scale, suffix, vtype_map):
             entry = '    <trip id="%s" depart="%s"%s%s type="%s">%s</trip>\n' % (
                 build_uid(row, suffix), depart, fro, to, vtype, param)
         else:
-            entry = '    <person id="%s" depart="%s"%s><personTrip from="%s" to="%s"%s/>%s</person>\n' % (
-                build_uid(row, suffix), depart, person_type, row[THX.source_edge], row[THX.dest_edge], mode_string, param)
+            entry = '    <person id="%s" depart="%s"%s><personTrip %s%s%s/>%s</person>\n' % (
+                build_uid(row, suffix), depart, person_type, fro, to, mode_string, param)
         trip_lines.append((int(depart), entry))
         for idx in range(num_clones):
             # smooth bursts due to low resolution
