@@ -1,25 +1,17 @@
 Warning: Ambiguity in turnarounds computation at junction '1762976307'.
 Warning: Found sharp turn with radius 6.02 at the end of edge '-122820534#1'.
 Warning: Found angle of 105.60 degrees at edge '-154046793', segment 1.
-Warning: Found angle of 105.60 degrees at edge '-180331460#0', segment 0.
-Warning: Found sharp turn with radius 4.80 at the end of edge '-24243245#2'.
 Warning: Found sharp turn with radius 6.02 at the start of edge '122820534#0'.
-Warning: Found sharp turn with radius 4.80 at the start of edge '24243245#2'.
-Warning: Found angle of 111.04 degrees at edge '295627704#4', segment 2.
-Warning: Found angle of 111.04 degrees at edge '317183774#0', segment 16.
-Warning: Found sharp turn with radius 4.66 at the end of edge '4612981#0'.
-Warning: Found sharp turn with radius 4.47 at the end of edge '4615058#1'.
-Warning: Found sharp turn with radius 4.66 at the start of edge '72678523#2'.
+Warning: Shape for junction '4590472047' has distance 20.23 to its given position.
+Warning: Lane '-105352753_0' is not connected from any incoming edge at junction '29039237'.
 Warning: Edge '-28016312#3' is not connected to outgoing edges at junction '30731464'.
-Warning: Lane '-713731455_1' is not connected from any incoming edge at junction '295586470'.
-Warning: Lane '167893762#0_0' is not connected from any incoming edge at junction '1792333626'.
 Warning: Speed of straight connection '88421001_1->110862711#0_1' reduced by 5.23 due to turning radius of 13.63 (length=12.82, angle=72.27).
 Warning: Intersecting left turns at junction '20246137' from lane '103066047#4_1' and lane '-4688786#0_1' (increase junction radius to avoid this).
-Warning: Intersecting left turns at junction '20246137' from lane '33685647#1_1' and lane '11273911#3_1' (increase junction radius to avoid this).
-Warning: Speed of straight connection '-11845130#1_1->-176043805_1' reduced by 5.13 due to turning radius of 6.51 (length=2.66, angle=41.73).
-Warning: Intersecting left turns at junction 'cluster_1512593362_3231374964' from lane '26136571#0_1' and lane '137941889#0_1' (increase junction radius to avoid this).
-Warning: Intersecting left turns at junction 'cluster_1711812122_1711812125' from lane '159081777#0_1' and lane '159081775_1' (increase junction radius to avoid this).
-Warning: Intersecting left turns at junction 'cluster_1827996421_2121324874_29221504_29221506_341340973_3792418629_3792418641' from lane '24913523#2_2' and lane '202156994#0_5' (increase junction radius to avoid this).
-Warning: Speed of straight connection '-661400763_1->-8084132#17_1' reduced by 6.93 due to turning radius of 8.80 (length=2.90, angle=35.78).
-Warning: 7 total messages of type: Intersecting left turns at junction '%' from lane '%' and lane '%' (increase junction radius to avoid this).
+Warning: 5 total messages of type: Ambiguity in turnarounds computation at junction '%'.
+Warning: 5 total messages of type: Found angle of % degrees at edge '%', segment %.
+Warning: 4 total messages of type: Found sharp turn with radius % at the end of edge '%'.
+Warning: 5 total messages of type: Found sharp turn with radius % at the start of edge '%'.
+Warning: 6 total messages of type: Intersecting left turns at junction '%' from lane '%' and lane '%' (increase junction radius to avoid this).
+Warning: 1361 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
+Warning: 5 total messages of type: Speed of % connection '%' reduced by % due to turning radius of % (length=%, angle=%).
 Warning: Traffic light type 'actuated' cannot be used in mesoscopic simulation. Using 'static' as fallback

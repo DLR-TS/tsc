@@ -128,7 +128,7 @@ def modify_vtypes(options, car_types, suffix=""):
     vtypes_file = abspath_in_dir(os.path.dirname(options.mapped_trips), 'emission_types.xml')
     with open(vtypes_file, 'w') as f:
         f.write('<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">\n')
-        for t, s in emission_vtypes.iteritems():
+        for t, s in emission_vtypes.items():
             vt = orig_types[t]
             for e_class in sorted(s):
                 if e_class is None:

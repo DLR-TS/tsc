@@ -165,7 +165,7 @@ def build_restricted_network(restrictions, destination_path, netfile):
                                 (line, list_file))
         edges.write('</edges>\n')
 
-    subprocess.call([sumolib.checkBinary("netconvert"), "-s", netfile, "-t", types.name,
+    subprocess.call([sumolib.checkBinary("netconvert"), "-s", netfile, "-t", types.name, "--aggregate-warnings", "1",
                      "-e", edges.name, "-o", os.path.join(destination_path, os.path.basename(netfile))])
 
 
