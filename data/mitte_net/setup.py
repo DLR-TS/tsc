@@ -7,7 +7,7 @@ import sumolib
 here = sys.argv[2]
 templates = os.path.dirname(here)
 prefix = os.path.join(here, "mitte")
-boundary = "13.366223,52.498265,13.496897,52.544043"
+boundary = "13.374361,52.506304,13.474692,52.530199"
 output_net = os.path.join(here, "mitte.net.xml")
 
 copies = ["berlin_net/vtypes.xml", "berlin_net/net.net.xml",

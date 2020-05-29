@@ -1,2 +1,30 @@
 <connections>
+    <!-- Rosenthaler Platz -->
+    <connection from="312651884#7" fromLane="1" to="312645512#1" toLane="1"/>
+    <connection from="312651884#7" fromLane="2" to="169717722#0" toLane="1"/>
+    <connection from="312651884#7" fromLane="3" to="169717722#0" toLane="2"/>
+    <connection from="312651884#7" fromLane="3" to="46138138#0" toLane="1"/>
+    <connection from="312651884#7" fromLane="3" to="312654701#0" toLane="3"/>
+    <connection from="-16571799#2" fromLane="1" to="46138138#0" toLane="1"/>
+    <connection from="24242440#0" fromLane="1" to="46138138#0" toLane="1"/>
+    <connection from="24242440#0" fromLane="1" to="312654701#0" toLane="1"/>
+    <connection from="24242440#0" fromLane="2" to="312654701#0" toLane="2"/>
+    <connection from="24242440#0" fromLane="3" to="312645512#1" toLane="1"/>
+    <connection from="4610364#0" fromLane="1" to="312654701#0" toLane="1"/>
+    <connection from="4610364#0" fromLane="1" to="312645512#1" toLane="1"/>
+    <connection from="4610364#0" fromLane="2" to="312645512#1" toLane="2"/>
+    <connection from="4610364#0" fromLane="3" to="169717722#0" toLane="2"/>
+    <connection from="4610364#0" fromLane="4" to="16571799#0" toLane="1"/>
+    <connection from="-312645512#2" fromLane="1" to="169717722#0" toLane="1"/>
+    <connection from="-312645512#2" fromLane="1" to="46138138#0" toLane="1"/>
+    <connection from="-312645512#2" fromLane="2" to="312654701#0" toLane="2"/>
+    <connection from="-312645512#2" fromLane="3" to="312654701#0" toLane="3"/>
+    <connection from="-312645512#2" fromLane="3" to="312645512#1" toLane="2"/>
+    
+    <!-- Eldenaer Str -->
+    <connection from="439025650#0" to="-691271973#1" fromLane="1" toLane="1"/>
+    <connection from="439025650#0" to="-26136571#7" fromLane="1" toLane="1"/>
+    <connection from="439025650#0" to="-691271973#1" fromLane="2" toLane="2"/>
+    <connection from="439025650#0" to="-26136571#7" fromLane="3" toLane="2"/>
+    <connection from="439025650#0" to="-439025657#2" fromLane="3" toLane="1"/>
 </connections>
