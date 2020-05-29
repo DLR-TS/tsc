@@ -49,8 +49,9 @@ output:Parsing traffic lights from '.*/{REPLACE Parsing edges from patch-file }
 output:importing shapes from .*/{REPLACE importing shapes from shapes/} 
 output:generating landmark file .*/{REPLACE generating landmark file /}
 output:Removing sharp turn .*
-output:DijkstraRouter spent .*
+output:AStarRouter spent .*
 output:parsing .*tsccfg{REPLACE parsing <tsccfg>}
+output:No module named scripts{REPLACE No module named 'scripts'}
 errors:Exception AttributeError: AttributeError("'NoneType' object has no attribute 'Error_GetErrorCount'",) in <bound method
 catalogue:.pyc
 catalogue:__pycache__

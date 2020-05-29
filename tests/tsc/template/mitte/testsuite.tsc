@@ -4,9 +4,6 @@
 # Daemon has to create a new workdir with a restricted network
 #tscDaemonRestrictions
 
-# Try to fetch information from file
-tscDaemonDatabaseTripsFromFile_redux
-
 # Try to fetch information from db
 tscDaemonDatabaseTripsFromDB
 
