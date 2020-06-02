@@ -1,1 +1,2 @@
 data/berlin_net/osm/berlin_net.osm.xml.gz filter=lfs diff=lfs merge=lfs -text
+data/berlin_net/gtfs/BVG_VBB_bereichsscharf_20200520.zip filter=lfs diff=lfs merge=lfs -text
