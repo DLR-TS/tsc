@@ -191,6 +191,7 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
         <device.rerouting.adaptation-weight value="0.5"/>
         <device.rerouting.period value="300"/>
         <device.rerouting.pre-period value="10"/>
+        <device.taxi.dispatch-algorithm value="greedyShared"/>
 
         <save-state.period value="3600"/>
         <save-state.suffix value=".xml.gz"/>
@@ -317,6 +318,8 @@ def run_sumo(options, first_depart, last_depart, trip_file, weight_file, meso=Tr
         <net-file value="%s"/>
         <route-files value="%s"/>
         <additional-files value="%s"/>
+
+        <device.taxi.dispatch-algorithm value="greedyShared"/>
 
         <vehroute-output value="%s"/>
         <vehroute-output.sorted value="true"/>
