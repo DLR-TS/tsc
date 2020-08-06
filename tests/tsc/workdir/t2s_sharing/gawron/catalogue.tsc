@@ -1,0 +1,36 @@
+The following new files/directories were created:
+<Test Directory>
+----data
+--------scenario_workdir
+------------mitte_net
+----------------iteration000
+--------------------dua
+------------------------7zip.log
+------------------------dua.log
+------------------------duaIterate.params
+------------------------dua_dump_000.add.xml
+------------------------dua_dump_001.add.xml
+------------------------dump_000_1800.xml
+------------------------dump_001_1800.xml
+------------------------iteration_000.sumo.log
+------------------------iteration_000.sumocfg
+------------------------iteration_000_miv_twoPersonsOnly.duarcfg
+------------------------iteration_001.sumo.log
+------------------------iteration_001.sumocfg
+------------------------iteration_001_miv_twoPersonsOnly_000.duarcfg
+------------------------memory_dump_000_1800.xml
+------------------------memory_dump_001_1800.xml
+------------------------miv_twoPersonsOnly_000.rou.alt.xml
+------------------------miv_twoPersonsOnly_000.rou.xml
+------------------------miv_twoPersonsOnly_001.rou.alt.xml
+------------------------miv_twoPersonsOnly_001.rou.xml
+------------------------stdout.log
+------------------------vehroute_000.xml
+------------------------vehroute_001.xml
+--------------------trips
+------------------------mapped_twoPersonsOnly.csv
+------------------------miv_twoPersonsOnly.trips.xml
+------------------------rectified_twoPersonsOnly.csv
+------------------------t2s_map_twoPersonsOnly.log
+------------------------t2s_rectify_twoPersonsOnly.log
+----tscdefs.pyc

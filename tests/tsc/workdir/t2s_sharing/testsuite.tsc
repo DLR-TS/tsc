@@ -1,0 +1,14 @@
+# Test the complete t2s chain for development
+complete
+
+# Test the complete t2s chain with scale 2
+scale2
+
+# Test the complete t2s chain with gawron dua assignment for 2 steps
+gawron
+
+# Test the complete t2s chain starting with oneshot and appending dua
+oneshotGawron
+
+# Test the complete t2s chain starting with marouter and appending dua
+marouterGawron

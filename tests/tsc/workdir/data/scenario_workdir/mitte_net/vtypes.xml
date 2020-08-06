@@ -64,4 +64,7 @@
     <vType id="coach" vClass="bus" emissionClass="HBEFA3/HDV_D_EU4"/>
     <vType id="restricted_coach" vClass="bus" emissionClass="HBEFA3/HDV_D_EU4"/>
 
+    <vType id="taxi" vClass="taxi">
+        <param key="has.taxi.device" value="true"/>
+    </vType>
 </routes>

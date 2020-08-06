@@ -1,0 +1,24 @@
+The following new files/directories were created:
+<Test Directory>
+----data
+--------scenario_workdir
+------------mitte_net
+----------------iteration000
+--------------------oneshot
+------------------------aggregated_oneshot_meso.xml
+------------------------dump_oneshot_meso.xml
+------------------------oneshot_meso.sumo.log
+------------------------oneshot_meso.sumocfg
+------------------------state_136800.00.xml.gz
+------------------------state_140400.00.xml.gz
+------------------------state_144000.00.xml.gz
+------------------------state_147600.00.xml.gz
+------------------------summary.xml.gz
+------------------------vehroutes_oneshot_meso.rou.xml
+--------------------trips
+------------------------mapped_twoPersonsOnly.csv
+------------------------miv_twoPersonsOnly.trips.xml
+------------------------rectified_twoPersonsOnly.csv
+------------------------t2s_map_twoPersonsOnly.log
+------------------------t2s_rectify_twoPersonsOnly.log
+----tscdefs.pyc

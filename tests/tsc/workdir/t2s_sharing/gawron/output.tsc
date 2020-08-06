@@ -1,0 +1,61 @@
+function main called at Thu, 02 Apr 2020 18:29:50 +0000
+function rectify_input called at Thu, 02 Apr 2020 18:29:51 +0000
+Read 2 persons with a total of 4 trips from input file "C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\workdir\t2s\gawron\data\twoPersonsOnly.csv".
+0 trips have inconsistent depart times.
+function rectify_input finished after 0.023000 seconds
+function map_to_edges called at Thu, 02 Apr 2020 18:29:51 +0000
+Mapping (568.7532229983481, 913.0316369170323) to -4588215#5 (dist: 42.56) which is not in taz 110110312, best match in taz is 4597322#0 (dist: 108.25)
+read 4 TAPAS trips for 2 persons (0 unmappable)
+Mapping deviations: count 4, min 9.41 (xycoord=(720.7678498803871, 1303.540090534836), edge=320462164#2, uid=('1000005', '1000001')), max 42.56 (xycoord=(568.7532229983481, 913.0316369170323), edge=-4588215#5, uid=('1000019', '1000003')), mean 28.28 Q1 27.13, median 34.00, Q3 42.56
+1 mappings did not find an edge in the correct taz
+function map_to_edges finished after 0.204000 seconds
+function create_sumo_tripdefs called at Thu, 02 Apr 2020 18:29:51 +0000
+read trip definitions for 4 vehicles
+created trip definitions for 4 vehicles starting between 135131 and 137351
+function create_sumo_tripdefs finished after 0.000000 seconds
+function run_duaiterate called at Thu, 02 Apr 2020 18:29:51 +0000
+Loading configuration ... done.
+Written configuration to 'iteration_000_miv_twoPersonsOnly.duarcfg'
+> Executing step 0
+>> Running router on C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\workdir\t2s\gawron\data\scenario_workdir\mitte_net\iteration000\trips\miv_twoPersonsOnly.trips.xml
+>>> Begin time: 2020-04-02 18:29:53.358000
+>>> End time: 2020-04-02 18:29:54.341000
+>>> Duration: 0:00:00.983000
+<<
+>> Running simulation
+>>> Begin time: 2020-04-02 18:29:54.341000
+>>> End time: 2020-04-02 18:29:55.441000
+>>> Duration: 0:00:01.100000
+<<
+>> Smoothing edge weights
+>>> Updated 101 edges
+>>> Decayed 0 unseen edges
+>>> Error avg:0 mean:0
+>>> Absolute Error avg:0 mean:0
+< Step 0 ended (duration: 0:00:02.083000)
+------------------
+
+Loading configuration ... done.
+Written configuration to 'iteration_001_miv_twoPersonsOnly_000.duarcfg'
+> Executing step 1
+>> Running router on miv_twoPersonsOnly_000.rou.alt.xml
+>>> Begin time: 2020-04-02 18:29:55.449000
+>>> End time: 2020-04-02 18:29:56.534000
+>>> Duration: 0:00:01.085000
+<<
+>> Running simulation
+>>> Begin time: 2020-04-02 18:29:56.534000
+>>> End time: 2020-04-02 18:29:57.581000
+>>> Duration: 0:00:01.047000
+<<
+>> Smoothing edge weights
+>>> Updated 101 edges
+>>> Decayed 0 unseen edges
+>>> Error avg:0 mean:0
+>>> Absolute Error avg:0 mean:0
+< Step 1 ended (duration: 0:00:02.132000)
+------------------
+
+dua-iterate ended (duration: 0:00:05.320000)
+function run_duaiterate finished after 5.811000 seconds
+function main finished after 6.829000 seconds

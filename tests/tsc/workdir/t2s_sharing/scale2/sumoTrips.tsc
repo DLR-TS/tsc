@@ -1,0 +1,10 @@
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <person id="1000019_1000003_813_1" depart="134938"><personTrip  from="-4588215#5" to="192298337#0" modes="taxi"/><param key="taz_id_start" value="110110312"/><param key="taz_id_end" value="110311212"/></person>
+    <person id="1000019_1000003_813_0" depart="135131"><personTrip  from="-4588215#5" to="192298337#0" modes="taxi"/><param key="taz_id_start" value="110110312"/><param key="taz_id_end" value="110311212"/></person>
+    <person id="1000005_1000001_817_0" depart="135225"><personTrip  from="320462164#2" to="340716730#1" modes="taxi"/><param key="taz_id_start" value="110110312"/><param key="taz_id_end" value="110311212"/></person>
+    <person id="1000005_1000001_817_1" depart="135489"><personTrip  from="320462164#2" to="340716730#1" modes="taxi"/><param key="taz_id_start" value="110110312"/><param key="taz_id_end" value="110311212"/></person>
+    <person id="1000005_1000001_850_1" depart="137105"><personTrip  from="340716730#1" to="320462164#2" modes="taxi"/><param key="taz_id_start" value="110110312"/><param key="taz_id_end" value="110311212"/></person>
+    <person id="1000005_1000001_850_0" depart="137205"><personTrip  from="340716730#1" to="320462164#2" modes="taxi"/><param key="taz_id_start" value="110110312"/><param key="taz_id_end" value="110311212"/></person>
+    <person id="1000019_1000003_850_0" depart="137351"><personTrip  from="192298337#0" to="-4588215#5" modes="taxi"/><param key="taz_id_start" value="110110312"/><param key="taz_id_end" value="110311212"/></person>
+    <person id="1000019_1000003_850_1" depart="137466"><personTrip  from="192298337#0" to="-4588215#5" modes="taxi"/><param key="taz_id_start" value="110110312"/><param key="taz_id_end" value="110311212"/></person>
+</routes>
