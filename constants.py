@@ -123,9 +123,9 @@ class MODE:
     fellow = '3'
     taxi = '4'
     public = '5'
-    other = '6'
-    bicycle_public = '261'
-    car_public = '517'
+    sharing = '6'
+    bicycle_public = '261' #  = 256 * 1 (bicycle) + 5 (public)
+    car_public = '517' #  = 256 * 2 (car) + 5 (public)
     dummy_walk = 'D'
 
 CAR_MODES = (MODE.car, MODE.taxi)
@@ -154,6 +154,8 @@ class SP:
     od_slice_table = 'DB_TABLE_MATRIXMAPS'
     od_slice_key = 'DB_NAME_MATRIX_TT_MIT_BASE'
     od_slices = 'SLICE'
+    sharing_fleet_size = 'SHARING_FLEET_SIZE'
+    sharing_vehicle_capacity = 'SHARING_VEHICLE_CAPACITY'
     KEYS = [template, destination, modes, trip_table_prefix, od_output,
             iteration, max_iteration, status, taz_table, representatives,
             od_slice_table, od_slice_key]
@@ -170,7 +172,10 @@ class SP:
                 net_param: "{}",
                 car_table: "berlin_cars", car_fleet_key: "MID2008_Y2010_BERLIN",
                 add_traffic_table: "berlin_grundlast_ref2010_d",
-                od_slices: [24]}
+                od_slices: [24],
+                sharing_fleet_size: "100",
+                sharing_vehicle_capacity: "5"
+                }
 
 # logging message types for the database
 class MSG_TYPE:
