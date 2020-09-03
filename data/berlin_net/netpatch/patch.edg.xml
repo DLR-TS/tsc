@@ -249,4 +249,31 @@
     <edge id="-11273911#3">
         <lane index="1" allow="tram private emergency authority army vip passenger hov taxi bus coach delivery truck trailer motorcycle moped bicycle evehicle custom1 custom2"/>
     </edge>
+    
+    <!-- Kopernikusstr Bus lane -->
+    <edge id="4790839#0">
+        <lane index="1" allow="emergency authority army vip taxi bus bicycle"/>
+    </edge>
+    <edge id="295042254">
+        <lane index="1" allow="emergency authority army vip taxi bus bicycle"/>
+    </edge>
+    <edge id="311357732#0">
+        <lane index="1" allow="emergency authority army vip taxi bus bicycle"/>
+    </edge>
+    <edge id="311357732#1">
+        <lane index="1" allow="emergency authority army vip taxi bus bicycle"/>
+    </edge>
+    <edge id="4790838#0">
+        <lane index="1" allow="emergency authority army vip taxi bus bicycle"/>
+    </edge>
+    <edge id="187091991">
+        <lane index="1" allow="emergency authority army vip taxi bus bicycle"/>
+    </edge>
+    <edge id="4613112#0">
+        <lane index="1" allow="emergency authority army vip taxi bus bicycle"/>
+    </edge>
+    <edge id="232070355#0">
+        <lane index="1" allow="emergency authority army vip taxi bus bicycle"/>
+    </edge>
+    
 </edges>
