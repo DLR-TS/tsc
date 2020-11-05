@@ -1,0 +1,9 @@
+<connections>
+    <!-- Rosenthaler Platz -->
+    <connection from="4610364#0" fromLane="4" to="16571799#0" toLane="1"/>
+    
+    <!-- Kopernikusstr -->
+    <connection from="-25376552#4" to="25376554#0" fromLane="1" toLane="0"/>
+    <connection from="-25376552#4" to="102773708#0" fromLane="1" toLane="2"/>
+    <connection from="-25376552#4" to="102773668#0" fromLane="1" toLane="3"/>
+</connections>
