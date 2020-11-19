@@ -196,10 +196,10 @@ def create_new_destination_folder(options, sim_key, iteration, params):
                   (sim_key, destination_path))
             os.mkdir(destination_path)
             # get things from template folder
-            for ext in ("xml", "csv", "params"):
+            for ext in ("xml", "xml.gz", "csv", "csv.gz", "params"):
                 for ff in glob.glob(os.path.join(template_path, '*.' + ext)):
                     shutil.copyfile(ff, os.path.join(destination_path, os.path.basename(ff)))
-            net = glob.glob(os.path.join(template_path, '*.net.xml'))[0]
+            net = glob.glob(os.path.join(template_path, '*.net.xml*'))[0]
             netOut = os.path.join(destination_path, os.path.basename(net))
             netTemp = None
             for cfg in sorted(glob.glob(os.path.join(template_path, '*.netccfg'))):
@@ -336,6 +336,8 @@ def simulation_request(options, request):
         scenario_basedir = create_new_destination_folder(options, sim_key, iteration, params)
 
         options.net_file = os.path.abspath(os.path.join(scenario_basedir, 'net.net.xml'))
+        if not os.path.exists(options.net_file):
+            options.net_file += ".gz"
         if options.taz_file is None and ('DB_TABLE_TAZ', 'berlin_taz_1223') in params:
             # just a hack to have a good taz file for the new scenarios
             options.taz_file = os.path.abspath(os.path.join(scenario_basedir, 'Berlin_1223.taz.xml'))
