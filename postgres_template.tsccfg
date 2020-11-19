@@ -1,0 +1,5 @@
+<configuration>
+    <host value="servername.intra.dlr.de" help="postgres server name or IP"/>
+    <user value="username" help="postgres server credentials (username)"/>
+    <password value="password" help="postgres server credentials"/>
+</configuration>

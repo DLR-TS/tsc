@@ -10,7 +10,7 @@ prefix = os.path.join(here, "mitte")
 boundary = "13.374361,52.506304,13.474692,52.530199"
 output_net = os.path.join(here, "mitte.net.xml")
 
-copies = ["berlin_net/vtypes.xml", "berlin_net/net.net.xml",
+copies = ["berlin_net/vtypes.xml", "berlin_net/net.net.xml.gz",
           "berlin_net/landmarks.csv", "berlin_net/bidi.taz.xml",
           "berlin_net/suburb.taz.xml", "berlin_net/districts.taz.xml"]
 
@@ -24,10 +24,10 @@ for source in copies:
         print("skipping non existent %s" % source)
 
 # generate the new net based on the boundaries
-subprocess.call([sumolib.checkBinary("netconvert"), "-s", os.path.join(here, "net.net.xml"),
-                     "--keep-edges.in-geo-boundary", boundary,
-                     "-o", output_net])
-           
+subprocess.call([sumolib.checkBinary("netconvert"), "-s", os.path.join(here, "net.net.xml.gz"),
+                 "--keep-edges.in-geo-boundary", boundary, "--no-internal-links", "false",
+                 "--crossings.guess", "-o", output_net])
+
 # filtered the relevant information from the copied files
 edges = set()
 with open(os.path.join(here, "mitte.txt"), "w") as mitte_out:

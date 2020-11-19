@@ -22,6 +22,7 @@
     </output>
 
     <processing>
+        <no-internal-links value="true"/>  
         <geometry.remove value="true"/>
         <geometry.remove.min-length value="50"/>
         <roundabouts.guess value="true"/>
@@ -30,7 +31,6 @@
         <keep-edges.input-file value="netpatch/extra_edges.txt"/>
         <geometry.remove.keep-edges.input-file value="netpatch/keep_landmark.txt"/>
         <no-turnarounds.except-turnlane value="true"/>
-        <crossings.guess value="true"/>
         <edges.join-tram-dist value="1.6"/>
     </processing>
 
