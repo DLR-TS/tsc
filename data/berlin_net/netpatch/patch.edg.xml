@@ -6,6 +6,11 @@
     <edge id="312645512#1" numLanes="3"/>
     <edge id="312645512#2" numLanes="3"/>
     
+    
+    <edge id="4610364#0">
+        <lane index="1" disallow="pedestrian bicycle tram rail_urban rail rail_electric rail_fast ship"/>
+    </edge>
+    
     <!-- Kopernikusstr Bus lane -->
     <edge id="4790839#0">
         <lane index="1" allow="emergency authority army vip taxi bus bicycle"/>
