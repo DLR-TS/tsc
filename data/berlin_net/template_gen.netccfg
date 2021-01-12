@@ -3,11 +3,11 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
 
     <input>
-        <osm-files value="osm/berlin_net.osm.xml.gz"/>
+        <osm-files value="osm/berlin_net.osm.xml"/>
         <type-files value="osm/berlin_net.typ.xml"/>
         <node-files value="netpatch/patch.nod.xml"/>
-        <edge-files value="netpatch/patch.edg.xml"/>
-        <connection-files value="netpatch/patch.con.xml"/>
+        <edge-files value="netpatch/patch.edg.xml, netpatch/patch_tram.edg.xml"/>
+        <connection-files value="netpatch/patch.con.xml, netpatch/patch_tram.con.xml"/>
         <tllogic-files value="netpatch/patch.tll.xml"/>
     </input>
 
@@ -15,10 +15,8 @@
         <output.street-names value="true"/>
         <output.original-names value="true"/>
         <proj.plain-geo value="true"/>
-        <!--
-        <ptstop-output value="_stops.add.xml"/>
-        <ptline-output value="_ptlines.xml"/>
-        -->
+        <ptstop-output value="stops.add.xml.gz"/>
+        <ptline-output value="ptlines.xml.gz"/>
     </output>
 
     <processing>
@@ -52,7 +50,7 @@
     </junctions>
 
     <railway>
-        <railway.topology.repair value="true"/>
+        <railway.topology.repair.minimal value="true"/>
     </railway>
 
     <report>
