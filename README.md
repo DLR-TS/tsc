@@ -15,4 +15,9 @@ You need to have a working SUMO installation and your environment variable SUMO_
 ## Installing
 1. Clone this repo `git clone https://github.com/DLR-TS/tsc` (do another pull if you cloned without having lfs active).
 2. Copy postgres_template.tsccfg (e.g. to postgres.tsccfg) and enter the database connection details (server, user, passwd)
-3. Run `./install-scenario-templates.py -c postgres.tsccfg -p data/`
+3. Run `./install_scenario_templates.py -c postgres.tsccfg -p data/`
+
+## Running
+1. Prepare the credentials file  postgres.tsccfg as described as in section Installing
+2. Run `./tsc_main.py -c postgres.tsccfg` 
+
