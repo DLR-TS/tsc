@@ -53,6 +53,7 @@ output:AStarRouter spent .*
 output:parsing .*tsccfg{REPLACE parsing <tsccfg>}
 output:No module named scripts{REPLACE No module named 'scripts'}
 errors:Exception AttributeError: AttributeError("'NoneType' object has no attribute 'Error_GetErrorCount'",) in <bound method
+errors:Network contains internal links which are ignored.
 catalogue:.pyc
 catalogue:__pycache__
 catalogue:----core.db
