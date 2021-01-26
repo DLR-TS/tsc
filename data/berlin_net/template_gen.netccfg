@@ -3,7 +3,7 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
 
     <input>
-        <osm-files value="osm/berlin_net.osm.xml"/>
+        <osm-files value="osm/berlin_net.osm.xml.gz"/>
         <type-files value="osm/berlin_net.typ.xml"/>
         <node-files value="netpatch/patch.nod.xml"/>
         <edge-files value="netpatch/patch.edg.xml, netpatch/patch_tram.edg.xml"/>

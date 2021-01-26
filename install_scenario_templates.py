@@ -157,7 +157,8 @@ def create_template_folder(scenario_name, options):
     if os.path.exists(setup_file):
         subprocess.call(["python", setup_file, scenario_pre_dir, scenario_template_dir])
     if not os.path.exists(net_path):
-        print("could not find network data for %s" % scenario_name)
+        print("could not find network '%s' for %s" % (net_path, scenario_name))
+        return
 
     net = None
     bidi_path = os.path.join(scenario_template_dir, "bidi.taz.xml")
