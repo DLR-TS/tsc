@@ -27,7 +27,7 @@
         <keep-edges.by-vclass value="passenger,bus,tram,rail_urban,rail,bicycle"/>
         <remove-edges.by-type value="highway.track,highway.unsurfaced,highway.service,highway.path,highway.footway"/>
         <keep-edges.input-file value="netpatch/extra_edges.txt"/>
-        <keep-edges.components value="20"/>
+        <keep-edges.components value="1"/>
         <geometry.remove.keep-edges.input-file value="netpatch/keep_landmark.txt"/>
         <no-turnarounds.except-turnlane value="true"/>
         <edges.join-tram-dist value="1.6"/>
@@ -55,7 +55,7 @@
 
     <report>
         <verbose value="true"/>
-        <log value=".log"/>
+        <log value="netconvert.log"/>
     </report>
 
 </configuration>
