@@ -28,12 +28,13 @@ import glob
 from xml.sax import parse
 
 if 'SUMO_HOME' in os.environ:
-    sys.path.append(os.path.join(os.environ['SUMO_HOME'], 'tools'))
+    sys.path += [os.path.join(os.environ['SUMO_HOME'], 'tools'), os.path.join(os.environ['SUMO_HOME'], 'tools', 'import', 'gtfs')]
 else:
     sys.exit("please declare environment variable 'SUMO_HOME'")
 import sumolib  # noqa
 import edgesInDistricts  # noqa
 import generateBidiDistricts  # noqa
+import gtfs2pt  # noqa
 
 import db_manipulator
 import import_navteq
@@ -168,6 +169,14 @@ def create_template_folder(scenario_name, options):
         net = generateBidiDistricts.main(net_path, bidi_path, 20., 500., True)
     add = bidi_path
 
+    # check for gtfs folder and import
+    gtfs_dir = os.path.join(scenario_pre_dir, 'gtfs')
+    if os.path.isdir(gtfs_dir):
+        for cfg in glob.glob(os.path.join(gtfs_dir, "*.cfg")):
+             gtfs2pt.main(gtfs2pt.get_options(["-c", cfg, '-n', os.path.abspath(net_path),
+                                               '--route-output', os.path.join(scenario_template_dir, 'pt_routes.add.xml'),
+                                               '--vehicle-output', os.path.join(scenario_template_dir, 'pt_vehicles.add.xml')]))
+
     # check for shapes folder and import from shapes
     shapes_dir = os.path.join(scenario_pre_dir, 'shapes')
     if os.path.isfile(shapes_dir):
@@ -223,7 +232,7 @@ def create_template_folder(scenario_name, options):
         if options.verbose:
             print("generating landmark file %s" % lm)
         duarouter = sumolib.checkBinary('duarouter')
-        landmarkFile = os.path.join(scenario_template_dir, "landmarks.csv")
+        landmarkFile = os.path.join(scenario_template_dir, "landmarks.csv.gz")
         if options.verbose:
             print("generating landmark file %s" % landmarkFile)
         subprocess.call([duarouter, "-n", net_path, "-a", add, "--astar.landmark-distances", lm,
