@@ -6,8 +6,8 @@ import sumolib
 
 here = sys.argv[2]
 templates = os.path.dirname(here)
-prefix = os.path.join(here, "mitte")
-boundary = "13.374361,52.506304,13.474692,52.530199"
+prefix = os.path.join(here, "spandau")
+boundary = "13.1907,52.529,13.3053,52.566"
 output_net = prefix + ".net.xml"
 
 copies = ["berlin_net/vtypes.xml", "berlin_net/net.net.xml.gz",
