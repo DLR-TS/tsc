@@ -70,13 +70,17 @@ def get_sim_params(conn, sim_key, overrides):
     sim_params = dict(SP.OPTIONAL)
     sim_params.update(dict(cursor_open.fetchall()))
     sim_params.update(overrides)
-    assert table_exists(conn, sim_params[SP.od_slice_table]), "Matrix timeline table does not exist"
+    if not table_exists(conn, sim_params[SP.od_slice_table]):
+        # print ("Matrix timeline table does not exist. Sim key: %s" % (sim_key))
+        return None
     command_timeline = """SELECT "matrixMap_distribution" FROM core.%s WHERE "matrixMap_name" = '%s'""" % (
         sim_params[SP.od_slice_table], sim_params[SP.od_slice_key])
     cursor_open.execute(command_timeline)
     sim_params[SP.od_slices] = cursor_open.fetchone()[0]
     missing_params = param_keys.difference(set(sim_params.keys()))
-    assert len(missing_params) == 0, "parameters missing: %s" % missing_params
+    if len(missing_params) > 0:
+        # print ("parameters missing: %s sim key: %s" % (missing_params,sim_key))
+        return None
     return sim_params
 
 
@@ -96,16 +100,20 @@ def get_active_sim_keys(server_options, overrides):
 
     for sim_key, iteration in cursor_open.fetchall():
         sim_params = get_sim_params(conn, sim_key, overrides)
+        if sim_params is None:
+            continue
         if iteration >= max_iterations[sim_key] and sim_params.get(SP.status) is not None:
             continue
         # check whether the iteration is or was already running
         if sim_params.get(SP.status):
-            assert table_exists(conn, sim_params[SP.status]), "Status table does not exist"
+            
+            assert table_exists(conn, sim_params[SP.status]), ("Status table does not exist. Sim key: %s" % (sim_key))
             command_status = "SELECT msg_type FROM public.%s WHERE sim_key = '%s' AND iteration = %s ORDER BY status_time DESC LIMIT 1" % (
                 sim_params[SP.status], sim_key, iteration)
             cursor_open.execute(command_status)
             status = cursor_open.fetchall()
             if status and status[0][0] == "pending":
+                print ("Processing %s" % sim_key)
                 yield sim_key, iteration, sim_params
         else:
             yield sim_key, iteration, sim_params

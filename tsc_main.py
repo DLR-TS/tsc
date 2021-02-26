@@ -99,7 +99,11 @@ def get_simulation_requests(options):
             conn = db_manipulator.get_conn(options)
             initial_sim_params = get_trips.get_sim_params(conn, options.sim_key, overrides)
             conn.close()
+            if initial_sim_params is None:
+                print("No simulation found to process")
+                return []
         if options.iteration is None:
+            print("Simulation to process: %s" % options.sim_key)
             destination_path = os.path.join(options.workdir_folder, overrides.get(SP.destination, SP.OPTIONAL[SP.destination]))
             if os.path.isdir(destination_path):
                 files_folders = common.listdir_skip_hidden(destination_path)
@@ -108,6 +112,7 @@ def get_simulation_requests(options):
             else:
                 iterations = [0]
         else:
+            print("Simulation to process case b : %s" % options.sim_key)
             if ":" in options.iteration:
                 its = options.iteration.split(":")
                 iterations = range(int(its[0]), int(its[1]))
