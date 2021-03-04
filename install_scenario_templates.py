@@ -139,7 +139,7 @@ def create_template_folder(scenario_name, options):
                 subprocess.call(netconvert_call)
                 # build net (second step)
                 config = os.path.join(options.pre, scenario_name, 'template_gen.netccfg')
-                netconvert_call = [netconvert, '-c', config, '-v']
+                netconvert_call = [netconvert, '-c', config, '-o', os.path.join(tmp_output_dir, net_name), '-v']
                 subprocess.call(netconvert_call)
                 # build polygons
                 poly_config = os.path.join(options.pre, scenario_name, 'template_gen.polycfg')
