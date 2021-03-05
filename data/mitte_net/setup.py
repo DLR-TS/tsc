@@ -11,7 +11,7 @@ boundary = "13.374361,52.506304,13.474692,52.530199"
 output_net = prefix + ".net.xml"
 
 copies = ["berlin_net/vtypes.xml", "berlin_net/net.net.xml.gz",
-          "berlin_net/landmarks.csv", "berlin_net/bidi.taz.xml",
+          "berlin_net/landmarks.csv.gz", "berlin_net/bidi.taz.xml",
           "berlin_net/suburb.taz.xml", "berlin_net/districts.taz.xml"]
 
 # copy selected files from berlin scenario

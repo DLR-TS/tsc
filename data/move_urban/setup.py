@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from __future__ import print_function
-import os, sys, shutil, subprocess
+import os, sys, shutil, subprocess, glob
 sys.path += [os.path.join(os.environ["SUMO_HOME"], 'tools')]
 import sumolib
 
@@ -11,17 +11,19 @@ boundary = "13.1907,52.529,13.3053,52.566"
 output_net = prefix + ".net.xml"
 
 copies = ["berlin_net/vtypes.xml", "berlin_net/net.net.xml.gz",
-          "berlin_net/landmarks.csv", "berlin_net/bidi.taz.xml",
-          "berlin_net/suburb.taz.xml", "berlin_net/districts.taz.xml"]
+          "berlin_net/landmarks.csv.gz", "berlin_net/bidi.taz.xml",
+          "berlin_net/suburb.taz.xml", "berlin_net/districts.taz.xml",
+          "berlin_net/pt*.xml"]
 
 # copy selected files from berlin scenario
 for source in copies:
-    sourcePath = os.path.join(templates, source)
-    if os.path.exists(sourcePath):
-        print("copying %s" % source)
-        shutil.copyfile(sourcePath, os.path.join(here, os.path.basename(source)))
-    else:
-        print("skipping non existent %s" % source)
+    for sourcePath in glob.glob(os.path.join(templates, source)):
+        if os.path.exists(sourcePath):
+            sourceFile = os.path.basename(sourcePath)
+            print("copying %s" % sourceFile)
+            shutil.copyfile(sourcePath, os.path.join(here, sourceFile))
+        else:
+            print("skipping non existent %s" % sourceFile)
 
 # generate the new net based on the boundaries
 subprocess.call([sumolib.checkBinary("netconvert"), "-s", os.path.join(here, "net.net.xml.gz"),
