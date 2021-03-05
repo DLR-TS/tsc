@@ -386,7 +386,7 @@ def simulation_request(options, request):
                      options.tapas_trips, sim_key, params, conn)
 
         # run t2s
-        options.scale = 1.0 / float(params[SP.sample])
+        options.scale /= float(params[SP.sample])
         options.script_module = get_script_module(options, params[SP.template])
         final_routes, final_weights = t2s.main(options)
         write_status('<< finished t2s, routes in %s' %

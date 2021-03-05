@@ -38,6 +38,8 @@ def add_db_arguments(argParser):
     argParser.add_argument("--user", help="postgres server credentials (username)")
     argParser.add_argument("--password", help="postgres server credentials")
     argParser.add_argument("--database", default="tapas", help="postgres server database name")
+    argParser.add_argument("--read-only", action="store_true", default=False,
+                           help="only read from the database but never write")
 
 
 def get_conn(options_or_config_file):
@@ -65,7 +67,9 @@ def get_conn(options_or_config_file):
         conn.execute("ATTACH ? AS public", (database,))  # attaching 'public' last makes it the default if name clashes should occur
         return conn
     try:
-        return psycopg2.connect(host=options.host, port=options.port, user=options.user, password=options.password, database=options.database)
+        conn = psycopg2.connect(host=options.host, port=options.port, user=options.user, password=options.password, database=options.database)
+        conn.set_session(readonly=options.read_only)
+        return conn
     except psycopg2.OperationalError as e:
         print(e, file=sys.stderr)
         return None
@@ -84,7 +88,10 @@ def execute(conn, command, parameters):
     cursor = conn.cursor()
     if not isinstance(conn, sqlite3.Connection):
         command = command.replace('?', '%s')
-    cursor.execute(command, parameters)
+    try:
+        cursor.execute(command, parameters)
+    except psycopg2.errors.ReadOnlySqlTransaction as e:
+        print(e)
     conn.commit()
 
 
