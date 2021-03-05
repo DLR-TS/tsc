@@ -18,7 +18,7 @@
     </output>
 
     <processing>
-        <no-internal-links value="false"/>  
+        <no-internal-links value="true"/>  
         <geometry.remove value="true"/>
         <geometry.remove.min-length value="50"/>
         <roundabouts.guess value="true"/>
@@ -53,7 +53,7 @@
 
     <report>
         <verbose value="true"/>
-        <log value=".log"/>
+        <log value="pre_netconvert.log"/>
     </report>
 
 </configuration>
