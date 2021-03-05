@@ -13,7 +13,7 @@ import os
 
 import assign
 import postprocess
-from common import benchmark
+from sumolib.miscutils import benchmark
 
 def assign_trips(options, first_depart, last_depart, routes, weights):
     return assign.run_subnet(options, first_depart, last_depart, routes, weights, os.path.join(os.path.dirname(__file__), 'mitte.txt'))
