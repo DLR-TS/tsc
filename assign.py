@@ -21,6 +21,7 @@ import os
 import sys
 import subprocess
 import glob
+import copy
 
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
@@ -153,7 +154,8 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
     if os.path.exists(options.background_trips):
         trips.append(options.background_trips)
         additional.append(os.path.join(base_dir, 'suburb.taz.xml'))
-    additional += sorted(glob.glob(os.path.join(base_dir, 'pt*.xml')))
+    specificPT = glob.glob(abspath_in_dir(oneshot_dir, 'pt*.xml'))
+    additional += sorted(specificPT if specificPT else glob.glob(os.path.join(base_dir, 'pt*.xml')))
 
     tempcfg = abspath_in_dir(oneshot_dir, '%s_temp.sumocfg' % suffix)
     addOpt = ""
@@ -369,34 +371,31 @@ def run_default(options, first_depart, last_depart, routes, weights):
     return routes, weights
 
 
-def run_subnet(options, first_depart, last_depart, routes, weights, subnet_edges):
-    routes, weights = run_oneshot(options, first_depart, last_depart, routes, weights)
-    edges = open(subnet_edges).read().split()
-    subnet = os.path.basename(subnet_edges)[:-4]
-    class cutOpt:
-        routeFiles = [routes]
-        min_length = 0
-        disconnected_action = 'discard'
-        speed_factor = 1.
-    with open(routes[:-4] + "_cut_unsorted.xml", 'w') as route_out:
-        route_out.write(
-            '<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">\n')
-        for _, vehicle in cutRoutes.cut_routes(edges, options.net, cutOpt()):
-            vehicle.setAttribute('departLane', 'best')
-            vehicle.setAttribute('departSpeed', 'max')
-            route_out.write(vehicle.toXML('    '))
-        route_out.write('</routes>\n')
-    routes = routes[:-4] + "_cut.xml"
-    sort_routes.main([route_out.name, '--big', '--outfile', routes])
-    save_opt = (options.net_file, options.bidi_taz_file, options.vtype_file, options.background_trips)
-    options.net_file = os.path.join(os.path.dirname(options.net_file), '%s.net.xml' % subnet)
-    options.bidi_taz_file = os.path.join(os.path.dirname(options.bidi_taz_file), '%s_bidi.taz.xml' % subnet)
-    options.vtype_file = os.path.join(os.path.dirname(options.vtype_file), '%s_vtypes.xml' % subnet)
+def run_subnet(options, first_depart, last_depart, routes, weights, subnet_file):
+    tmpRoutes = routes[:-4] + "_cut_tmp.xml"
+    cutOpts = [options.net_file, routes, "--orig-net", subnet_file, "-b", "-o", tmpRoutes]
+    ptFiles = sorted(glob.glob(os.path.join(os.path.dirname(subnet_file), "pt*")))
+    if ptFiles:
+        routePrefix = os.path.join(os.path.dirname(routes), "pt")
+        cutOpts += ["-a", ptFiles[1], "--pt-input", ptFiles[2], "--pt-output", routePrefix + "_vehicles.add.xml", "--stops-output", routePrefix + "_stops.add.xml"]
+    cutRoutes.main(cutRoutes.get_options(cutOpts))
+    with open(tmpRoutes) as routeIn, open(routes[:-4] + "_cut.xml", 'w') as routeOut:
+        for line in routeIn:
+            routeOut.write(line.replace('<vehicle', '<vehicle departLane="best" departSpeed="max"'))
+    routes = os.path.abspath(routeOut.name)
+    save_opt = copy.deepcopy(options)
+    options.net_file = os.path.abspath(subnet_file)
+    subnet = os.path.basename(subnet_file)[:-8]
+    options.bidi_taz_file = options.net_file[:-8] + '_bidi.taz.xml'
+    options.vtype_file = options.net_file[:-8] + '_vtypes.xml'
+    if ptFiles:
+        options.vtype_file += "," + os.path.abspath(ptFiles[0])
     options.background_trips = ""
-    addOpt = "--max-depart-delay 1 --max-num-vehicles 9000 --device.rerouting.adaptation-steps 360 --device.rerouting.probability 0.6 "
+#    addOpt = "--max-depart-delay 1 --max-num-vehicles 9000 --device.rerouting.adaptation-steps 360 --device.rerouting.probability 0.6 "
+    addOpt = "--max-depart-delay 1 --device.rerouting.probability 0.6 "
     if "oneshot" in options.assignment:
         routes, weights = run_oneshot(options, first_depart, last_depart, routes, weights, False, addOpt)
     if "gawron" in options.assignment:
         routes, weights = run_duaiterate(options, first_depart, last_depart, routes, weights, False)
-    options.net_file, options.bidi_taz_file, options.vtype_file, options.background_trips = save_opt
+    options = save_opt
     return routes, weights

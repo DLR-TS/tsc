@@ -16,7 +16,8 @@ import postprocess
 from sumolib.miscutils import benchmark
 
 def assign_trips(options, first_depart, last_depart, routes, weights):
-    return assign.run_subnet(options, first_depart, last_depart, routes, weights, os.path.join(os.path.dirname(__file__), 'mitte.txt'))
+    routes, weights = assign.run_oneshot(options, first_depart, last_depart, routes, weights)
+    return assign.run_subnet(options, first_depart, last_depart, routes, weights, os.path.join(os.path.dirname(__file__), 'mitte.net.xml'))
 
 @benchmark
 def post(options, params, conn, routefile):

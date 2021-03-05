@@ -27,6 +27,7 @@ import random
 import shutil
 import subprocess
 import collections
+import glob
 
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
@@ -101,6 +102,7 @@ def fillOptions(argParser):
                            help="the traffic modes to retrieve as a list of integers (default '%default')")
     argParser.add_argument('--phemlight-path', metavar="PATH", default=os.path.join(os.environ.get("TSC_DATA", os.path.dirname(os.path.dirname(__file__))), "PHEMlight"),
                            help="Determines where to load PHEMlight \ndefinitions from.")
+    argParser.add_argument("--subnet-file", help="specifying the subnet to use to rerun a subnet assignment")
 
 
 def getSumoTripfileName(trips_dir, tapas_trips):
@@ -112,11 +114,10 @@ def checkOptions(options):
     if not hasattr(options, "net"):
         assert options.net_file is not None, "scenario net file is not given"
         options.net_file = os.path.abspath(options.net_file)
-        assert os.path.isfile(
-            options.net_file), "the given net file %s does not exist" % (options.net_file)
-        if options.domap or options.rectify:
-            options.net = sumolib.net.readNet(
-                    options.net_file, withFoes=False, withConnections=False)
+        assert os.path.isfile(options.net_file), "the given net file %s does not exist" % (options.net_file)
+        if options.subnet_file is None:
+            if options.domap or options.rectify:
+                options.net = sumolib.net.readNet(options.net_file, withFoes=False, withConnections=False)
 
     if options.vtype_file is None:
         options.vtype_file = abspath_in_dir(
@@ -131,21 +132,24 @@ def checkOptions(options):
     if options.bidi_taz_file:
         options.bidi_taz_file = os.path.abspath(options.bidi_taz_file)
 
-    assert options.tapas_trips is not None, "tripfile is not given"
-    options.tapas_trips = os.path.abspath(options.tapas_trips)
-    assert os.path.isfile(
-        options.tapas_trips), "the given tripfile %s does not exist" % (options.tapas_trips)
-    base = os.path.basename(options.tapas_trips)[:-4]
-    if options.trips_dir is None:
-        assert options.iteration_dir is not None, "iteration or trips directory need to be given"
-        assert os.path.isdir(options.iteration_dir), "the given iteration directory %s is not accessible" % options.iteration_dir
-        options.trips_dir = os.path.join(options.iteration_dir, 'trips')
-    options.rectified = abspath_in_dir(options.trips_dir, 'rectified_%s.csv' % base)
-    options.rectified_log = abspath_in_dir(options.trips_dir, 't2s_rectify_%s.log' % base)
+    if options.subnet_file is None:
+        assert options.tapas_trips is not None, "tripfile is not given"
+        options.tapas_trips = os.path.abspath(options.tapas_trips)
+        assert os.path.isfile(options.tapas_trips), "the given tripfile %s does not exist" % (options.tapas_trips)
+        base = os.path.basename(options.tapas_trips)[:-4]
+        if options.trips_dir is None:
+            assert options.iteration_dir is not None, "iteration or trips directory need to be given"
+            assert os.path.isdir(options.iteration_dir), "the given iteration directory %s is not accessible" % options.iteration_dir
+            options.trips_dir = os.path.join(options.iteration_dir, 'trips')
+        options.rectified = abspath_in_dir(options.trips_dir, 'rectified_%s.csv' % base)
+        options.rectified_log = abspath_in_dir(options.trips_dir, 't2s_rectify_%s.log' % base)
 
-    options.mapped_trips = abspath_in_dir(options.trips_dir, 'mapped_%s.csv' % base)
-    options.mapped_log = abspath_in_dir(options.trips_dir, 't2s_map_%s.log' % base)
-    options.trips_for_dua = getSumoTripfileName(options.trips_dir, options.tapas_trips)
+        options.mapped_trips = abspath_in_dir(options.trips_dir, 'mapped_%s.csv' % base)
+        options.mapped_log = abspath_in_dir(options.trips_dir, 't2s_map_%s.log' % base)
+        options.trips_for_dua = getSumoTripfileName(options.trips_dir, options.tapas_trips)
+    else:
+        assert options.iteration_dir is not None, "iteration directory needs to be given"
+        assert os.path.isdir(options.iteration_dir), "the given iteration directory %s is not accessible" % options.iteration_dir
 
     if not hasattr(options, "script_module"):
         options.script_module = None
@@ -509,6 +513,11 @@ def create_sumo_tripdefs(options, scale, suffix, vtype_map):
 def main(options):
     checkOptions(options)
     random.seed(options.seed)  # make runs reproducible
+
+    if options.subnet_file:
+        assign.run_subnet(options, 24*3600, 48*3600, glob.glob(os.path.join(options.iteration_dir, "oneshot", "*.rou.xml"))[0],
+                          glob.glob(os.path.join(options.iteration_dir, "oneshot", "aggregated*.xml"))[0], options.subnet_file)
+        return
 
     if options.rectify:
         rectify_input(options)
