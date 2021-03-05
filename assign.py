@@ -373,7 +373,7 @@ def run_default(options, first_depart, last_depart, routes, weights):
 
 def run_subnet(options, first_depart, last_depart, routes, weights, subnet_file):
     tmpRoutes = routes[:-4] + "_cut_tmp.xml"
-    cutOpts = [options.net_file, routes, "--orig-net", subnet_file, "-b", "-o", tmpRoutes]
+    cutOpts = [subnet_file, routes, "--orig-net", options.net_file, "-b", "-o", tmpRoutes]
     ptFiles = sorted(glob.glob(os.path.join(os.path.dirname(subnet_file), "pt*")))
     if ptFiles:
         routePrefix = os.path.join(os.path.dirname(routes), "pt")

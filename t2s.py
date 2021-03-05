@@ -515,7 +515,7 @@ def main(options):
     random.seed(options.seed)  # make runs reproducible
 
     if options.subnet_file:
-        assign.run_subnet(options, 24*3600, 48*3600, glob.glob(os.path.join(options.iteration_dir, "oneshot", "*.rou.xml"))[0],
+        assign.run_subnet(options, 24*3600, 48*3600, glob.glob(os.path.join(options.iteration_dir, "oneshot", "*meso.rou.xml"))[0],
                           glob.glob(os.path.join(options.iteration_dir, "oneshot", "aggregated*.xml"))[0], options.subnet_file)
         return
 
