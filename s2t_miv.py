@@ -241,8 +241,9 @@ VALUES %s""" % (tables[1], ','.join(entryValues))
 def create_all_pairs(conn, key, params):
     cursor = conn.cursor()
     tables = ('%s_%s' % (params[SP.od_output], key), '%s_%s' % (params[SP.od_entry], key))
+    for t in tables:
+        cursor.execute("DROP TABLE IF EXISTS temp." + t)
     createQuery = """
-DROP TABLE IF EXISTS temp.%s;
 CREATE TABLE temp.%s
 (
   taz_id_start integer NOT NULL,
@@ -254,10 +255,9 @@ CREATE TABLE temp.%s
   trip_source traffic_source,
   CONSTRAINT %s_pkey PRIMARY KEY (taz_id_start, taz_id_end, sumo_type, is_restricted, interval_end)
 )
-""" % (3 * (tables[0],))
+""" % (tables[0], tables[0])
     cursor.execute(createQuery)
     createQuery = """
-DROP TABLE IF EXISTS temp.%s;
 CREATE TABLE temp.%s
 (
   entry_id integer NOT NULL,
@@ -270,7 +270,7 @@ CREATE TABLE temp.%s
   used_modes mode_type[],
   CONSTRAINT %s_pkey PRIMARY KEY (entry_id, used_modes)
 )
-""" % (3 * (tables[1],))
+""" % (tables[1], tables[1])
     cursor.execute(createQuery)
     conn.commit()
     return tables

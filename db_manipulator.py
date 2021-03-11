@@ -56,6 +56,7 @@ def get_conn(options_or_config_file):
         conn = sqlite3.connect(":memory:", detect_types=sqlite3.PARSE_DECLTYPES)
         sqlite3.register_adapter(bool, int)
         sqlite3.register_converter("boolean", lambda v: bool(int(v)))  # sqlite has no native boolean type and would return ints
+        sqlite3.register_converter("double", lambda v: [float(t) for t in v[1:-1].split(b",")] if v[:1] == b"{" else float(v))  # sqlite has no native double[]
         try:
             conn.enable_load_extension(True)
             conn.execute("SELECT load_extension('mod_spatialite%s')" % ('.so' if os.name == "posix" else ''))
