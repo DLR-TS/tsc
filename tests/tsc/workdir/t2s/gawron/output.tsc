@@ -1,61 +1,59 @@
-function main called at Thu, 02 Apr 2020 18:29:50 +0000
-function rectify_input called at Thu, 02 Apr 2020 18:29:51 +0000
-Read 2 persons with a total of 4 trips from input file "C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\workdir\t2s\gawron\data\twoPersonsOnly.csv".
+function main called at Thu, 11 Mar 2021 13:04:05 +0000
+function rectify_input called at Thu, 11 Mar 2021 13:04:06 +0000
+Read 2 persons with a total of 4 trips from input file "C:\Users\behr_mi\.texttest\tmp\tsc.11Mar130036.21616\tsc\workdir\t2s\gawron\data\twoPersonsOnly.csv".
 0 trips have inconsistent depart times.
-function rectify_input finished after 0.023000 seconds
-function map_to_edges called at Thu, 02 Apr 2020 18:29:51 +0000
+function rectify_input finished after 0.033000 seconds
+function map_to_edges called at Thu, 11 Mar 2021 13:04:06 +0000
 Mapping (568.7532229983481, 913.0316369170323) to -4588215#5 (dist: 42.56) which is not in taz 110110312, best match in taz is 4597322#0 (dist: 108.25)
 read 4 TAPAS trips for 2 persons (0 unmappable)
 Mapping deviations: count 4, min 9.41 (xycoord=(720.7678498803871, 1303.540090534836), edge=320462164#2, uid=('1000005', '1000001')), max 42.56 (xycoord=(568.7532229983481, 913.0316369170323), edge=-4588215#5, uid=('1000019', '1000003')), mean 28.28 Q1 27.13, median 34.00, Q3 42.56
 1 mappings did not find an edge in the correct taz
-function map_to_edges finished after 0.204000 seconds
-function create_sumo_tripdefs called at Thu, 02 Apr 2020 18:29:51 +0000
+function map_to_edges finished after 0.248000 seconds
+function create_sumo_tripdefs called at Thu, 11 Mar 2021 13:04:06 +0000
 read trip definitions for 4 vehicles
 created trip definitions for 4 vehicles starting between 135131 and 137351
-function create_sumo_tripdefs finished after 0.000000 seconds
-function run_duaiterate called at Thu, 02 Apr 2020 18:29:51 +0000
-Loading configuration ... done.
-Written configuration to 'iteration_000_miv_twoPersonsOnly.duarcfg'
+function create_sumo_tripdefs finished after 0.002002 seconds
+function run_duaiterate called at Thu, 11 Mar 2021 13:04:06 +0000
+Written configuration to '0/iteration_000_miv_twoPersonsOnly.duarcfg'
 > Executing step 0
->> Running router on C:\Users\arme_ma\.texttest\tmp\tsc.02Apr182719.5932\tsc\workdir\t2s\gawron\data\scenario_workdir\mitte_net\iteration000\trips\miv_twoPersonsOnly.trips.xml
->>> Begin time: 2020-04-02 18:29:53.358000
->>> End time: 2020-04-02 18:29:54.341000
->>> Duration: 0:00:00.983000
+>> Running router on C:\Users\behr_mi\.texttest\tmp\tsc.11Mar130036.21616\tsc\workdir\t2s\gawron\data\scenario_workdir\mitte_net\iteration000\trips\miv_twoPersonsOnly.trips.xml
+>>> Begin time: 2021-03-11 13:04:07.724619
+>>> End time: 2021-03-11 13:04:08.813619
+>>> Duration: 0:00:01.089000
 <<
 >> Running simulation
->>> Begin time: 2020-04-02 18:29:54.341000
->>> End time: 2020-04-02 18:29:55.441000
->>> Duration: 0:00:01.100000
+>>> Begin time: 2021-03-11 13:04:08.813619
+>>> End time: 2021-03-11 13:04:10.071673
+>>> Duration: 0:00:01.258054
 <<
 >> Smoothing edge weights
 >>> Updated 101 edges
 >>> Decayed 0 unseen edges
 >>> Error avg:0 mean:0
 >>> Absolute Error avg:0 mean:0
-< Step 0 ended (duration: 0:00:02.083000)
+< Step 0 ended (duration: 0:00:02.350054)
 ------------------
 
-Loading configuration ... done.
-Written configuration to 'iteration_001_miv_twoPersonsOnly_000.duarcfg'
+Written configuration to '1/iteration_001_miv_twoPersonsOnly_000.duarcfg'
 > Executing step 1
->> Running router on miv_twoPersonsOnly_000.rou.alt.xml
->>> Begin time: 2020-04-02 18:29:55.449000
->>> End time: 2020-04-02 18:29:56.534000
->>> Duration: 0:00:01.085000
+>> Running router on 0\miv_twoPersonsOnly_000.rou.alt.xml
+>>> Begin time: 2021-03-11 13:04:10.077673
+>>> End time: 2021-03-11 13:04:11.550674
+>>> Duration: 0:00:01.473001
 <<
 >> Running simulation
->>> Begin time: 2020-04-02 18:29:56.534000
->>> End time: 2020-04-02 18:29:57.581000
->>> Duration: 0:00:01.047000
+>>> Begin time: 2021-03-11 13:04:11.550674
+>>> End time: 2021-03-11 13:04:12.970689
+>>> Duration: 0:00:01.420015
 <<
 >> Smoothing edge weights
 >>> Updated 101 edges
 >>> Decayed 0 unseen edges
 >>> Error avg:0 mean:0
 >>> Absolute Error avg:0 mean:0
-< Step 1 ended (duration: 0:00:02.132000)
+< Step 1 ended (duration: 0:00:02.896022)
 ------------------
 
-dua-iterate ended (duration: 0:00:05.320000)
-function run_duaiterate finished after 5.811000 seconds
-function main finished after 6.829000 seconds
+dua-iterate ended (duration: 0:00:05.947075)
+function run_duaiterate finished after 6.572072 seconds
+function main finished after 7.435053 seconds
