@@ -76,7 +76,7 @@ def get_sim_params(conn, sim_key, overrides):
     command_timeline = """SELECT "matrixMap_distribution" FROM core.%s WHERE "matrixMap_name" = '%s'""" % (
         sim_params[SP.od_slice_table], sim_params[SP.od_slice_key])
     cursor_open.execute(command_timeline)
-    sim_params[SP.od_slices] = cursor_open.fetchone()[0]
+    sim_params[SP.od_slices] = [float(t) for t in cursor_open.fetchone()[0][1:-1].split(",")]
     missing_params = param_keys.difference(set(sim_params.keys()))
     if len(missing_params) > 0:
         # print ("parameters missing: %s sim key: %s" % (missing_params,sim_key))
@@ -113,7 +113,6 @@ def get_active_sim_keys(server_options, overrides):
             cursor_open.execute(command_status)
             status = cursor_open.fetchall()
             if status and status[0][0] == "pending":
-                print ("Processing %s" % sim_key)
                 yield sim_key, iteration, sim_params
         else:
             yield sim_key, iteration, sim_params

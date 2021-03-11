@@ -135,7 +135,6 @@ def upload_trip_results(conn, key, params, routes, limit=None):
     cursor = conn.cursor()
     table = '%s_%s' % (params[SP.trip_output], key)
     createQuery = """
-DROP TABLE IF EXISTS temp.%s;
 CREATE TABLE temp.%s
 (
   p_id integer NOT NULL,
@@ -146,8 +145,8 @@ CREATE TABLE temp.%s
   distance_real double precision[],
   CONSTRAINT %s_pkey PRIMARY KEY (p_id, hh_id, start_time_min, clone_id)
 )
-""" % (3 * (table,))
-
+""" % (table, table)
+    cursor.execute("DROP TABLE IF EXISTS temp." + table)
     cursor.execute(createQuery)
     if tripstats:
         # insert values
