@@ -408,7 +408,7 @@ def simulation_request(options, request):
             write_status('<< finished trip result database upload', sim_key, params, conn)
 
             print()
-            print(params)
+            print(sorted(params.items()))
             run_all_pairs(options, conn, sim_key, params, final_routes, final_weights)
 
         cleanup([final_routes, final_weights], options.iteration_dir,

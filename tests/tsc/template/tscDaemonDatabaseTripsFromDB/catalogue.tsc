@@ -1,10 +1,15 @@
 The following new files/directories were created:
 <Test Directory>
+----__pycache__
+--------tscdefs.cpython-37.pyc
+----core.db
 ----data
 --------scenario_templates
-------------scripts.pyc
+------------__pycache__
+----------------scripts.cpython-37.pyc
 ------------mitte_net
-----------------__init__.pyc
+----------------__pycache__
+--------------------__init__.cpython-37.pyc
 --------scenario_workdir
 ------------VEUII-BASE2010
 ----------------Berlin_1223.taz.xml
@@ -69,9 +74,6 @@ The following new files/directories were created:
 ------------------------dump_oneshot_meso.xml
 ------------------------oneshot_meso.sumo.log
 ------------------------oneshot_meso.sumocfg
-------------------------state_104400.00.xml.gz
-------------------------state_108000.00.xml.gz
-------------------------state_111600.00.xml.gz
 ------------------------state_115200.00.xml.gz
 ------------------------state_118800.00.xml.gz
 ------------------------state_122400.00.xml.gz
@@ -90,11 +92,6 @@ The following new files/directories were created:
 ------------------------state_169200.00.xml.gz
 ------------------------state_172800.00.xml.gz
 ------------------------state_176400.00.xml.gz
-------------------------state_180000.00.xml.gz
-------------------------state_183600.00.xml.gz
-------------------------state_187200.00.xml.gz
-------------------------state_190800.00.xml.gz
-------------------------state_194400.00.xml.gz
 ------------------------summary.xml.gz
 ------------------------vehroutes_oneshot_meso.rou.xml
 --------------------trips
@@ -104,4 +101,4 @@ The following new files/directories were created:
 ------------------------rectified_2015y_05m_29d_09h_01m_11s_943ms.csv
 ------------------------t2s_map_2015y_05m_29d_09h_01m_11s_943ms.log
 ------------------------t2s_rectify_2015y_05m_29d_09h_01m_11s_943ms.log
-----tscdefs.pyc
+----public.db
