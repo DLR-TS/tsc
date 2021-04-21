@@ -24,4 +24,19 @@
     <connection from="4446475" fromLane="2" to="4495225" toLane="0" />
     <connection from="461905068#0" fromLane="1" to="531952547" toLane="1" />
     <connection from="461905068#0" fromLane="2" to="531952547" toLane="1" />
+
+    <!-- Created Elements -->
+    <connection from="304196461" fromLane="0" to="42816697#0" toLane="2" />
+    <connection from="39839437#0" fromLane="1" to="32937788#0" toLane="2" />
+    <connection from="4484276" fromLane="0" to="405884014#0" toLane="1" />
+
+    <!-- Created Elements -->
+    <connection from="-24916008" fromLane="1" to="4410310#0" toLane="2" />
+    <connection from="151465251#4" fromLane="1" to="31521841#0" toLane="2" />
+    <connection from="203910771#3" fromLane="1" to="4410310#0" toLane="2" />
+    <connection from="24160797#1" fromLane="1" to="-5364047#2" toLane="2" />
+    <connection from="27944009#7" fromLane="1" to="24540254#0" toLane="2" />
+    <connection from="281617571" fromLane="1" to="24753572#0" toLane="2" />
+    <connection from="4616178#18" fromLane="1" to="148093695" toLane="2" />
+    <connection from="761308715" fromLane="1" to="675103981#0" toLane="2" />
 </connections>

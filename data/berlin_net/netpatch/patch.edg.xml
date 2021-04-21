@@ -4,4 +4,5 @@
         <lane index="0" allow="pedestrian" width="2.00"/>
         <lane index="1" disallow="pedestrian tram rail_urban rail rail_electric rail_fast ship"/>
     </edge>
+
 </edges>
