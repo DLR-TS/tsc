@@ -1,3 +1,15 @@
 <tll>
-    
+    <!-- Deleted Elements -->
+    <delete from="4446475" fromLane="1" to="4495225" toLane="0" linkIndex="0" tl="501547016"/>
+    <delete from="4446475" fromLane="2" to="226972806" toLane="1" linkIndex="1" tl="501547016"/>
+    <!-- Created Elements -->
+    <!-- Changed Elements -->
+    <tlLogic id="501547016" programID="0" >
+        <phase duration="82" maxDur="50" minDur="5" state="GgGG"/>
+        <phase duration="3" state="yyyy"/>
+        <phase duration="5" state="rrrr"/>
+    </tlLogic>
+    <!-- Created Elements -->
+    <connection from="4446475" fromLane="1" to="226972806" toLane="1" linkIndex="0" tl="501547016"/>
+    <connection from="4446475" fromLane="2" to="4495225" toLane="0" linkIndex="1" tl="501547016"/>
 </tll>

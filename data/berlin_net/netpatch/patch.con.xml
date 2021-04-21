@@ -1,2 +1,27 @@
 <connections>
+    <!-- Created Elements -->
+    <connection from="-37764670#9" fromLane="1" to="gneE2" toLane="1" />
+    <connection from="-37764670#9" fromLane="2" to="gneE2" toLane="1" />
+    <connection from="4381554#0" fromLane="2" to="gneE2" toLane="1" />
+    <connection from="gneE2" fromLane="1" to="-25418282" toLane="1" />
+
+    <!-- Deleted Elements -->
+    <delete from="25360667#0" fromLane="2" to="337285330#0" toLane="1"/>
+    <delete from="28818696#0" fromLane="2" to="224880788" toLane="1"/>
+    <delete from="4446475" fromLane="1" to="4495225" toLane="0"/>
+    <delete from="4446475" fromLane="2" to="226972806" toLane="1"/>
+    <!-- Created Elements -->
+    <connection from="-13863062#1" fromLane="1" to="-475519856#1" toLane="1" />
+    <connection from="-13863062#1" fromLane="2" to="-475519856#1" toLane="1" />
+    <connection from="-25041360#2" fromLane="1" to="531952547" toLane="1" />
+    <connection from="-25041360#2" fromLane="2" to="531952547" toLane="1" />
+    <connection from="25360667#0" fromLane="1" to="337285330#0" toLane="1" />
+    <connection from="25360667#0" fromLane="2" to="4615615#0" toLane="1" />
+    <connection from="28362838#0" fromLane="1" to="-475519856#1" toLane="1" />
+    <connection from="28818696#0" fromLane="1" to="224880788" toLane="1" />
+    <connection from="28818696#0" fromLane="2" to="147557794#0" toLane="0" />
+    <connection from="4446475" fromLane="1" to="226972806" toLane="1" />
+    <connection from="4446475" fromLane="2" to="4495225" toLane="0" />
+    <connection from="461905068#0" fromLane="1" to="531952547" toLane="1" />
+    <connection from="461905068#0" fromLane="2" to="531952547" toLane="1" />
 </connections>
