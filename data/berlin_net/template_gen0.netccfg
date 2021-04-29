@@ -8,13 +8,9 @@
     </input>
 
     <output>
-        <output-prefix value="pre"/>
-        <output-file value="_net.net.xml.gz"/>
         <output.street-names value="true"/>
         <output.original-names value="true"/>
         <proj.plain-geo value="true"/>
-        <ptstop-output value="_stops.add.xml.gz"/>
-        <ptline-output value="_ptlines.xml.gz"/>
     </output>
 
     <processing>

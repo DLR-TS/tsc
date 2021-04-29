@@ -3,9 +3,6 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
 
     <input>
-        <sumo-net-file value="pre_net.net.xml.gz"/>
-        <ptstop-files value="pre_stops.add.xml.gz"/>
-        <ptline-files value="pre_ptlines.xml.gz"/>
         <node-files value="netpatch/patch.nod.xml"/>
         <edge-files value="netpatch/patch.edg.xml, netpatch/patch_tram.edg.xml"/>
         <connection-files value="netpatch/patch.con.xml, netpatch/patch_tram.con.xml"/>
@@ -16,8 +13,6 @@
         <output.street-names value="true"/>
         <output.original-names value="true"/>
         <proj.plain-geo value="true"/>
-        <ptstop-output value="stops.add.xml.gz"/>
-        <ptline-output value="ptlines.xml.gz"/>
     </output>
 
     <tls_building>

@@ -132,30 +132,38 @@ def create_template_folder(scenario_name, options):
 
             if os.path.isdir(osm_dir):
                 print("starting to import osm ...")
-                # build pre net (first step)
+                configs = sorted(glob.glob(os.path.join(options.pre, scenario_name, 'template_gen*.netccfg')))
                 netconvert = sumolib.checkBinary('netconvert')
-                config = os.path.join(options.pre, scenario_name, 'template_pre.netccfg')
-                netconvert_call = [netconvert, '-c', config, '-v']
-                subprocess.call(netconvert_call)
-                # build net (second step)
-                config = os.path.join(options.pre, scenario_name, 'template_gen.netccfg')
-                netconvert_call = [netconvert, '-c', config, '-o', os.path.join(tmp_output_dir, net_name), '-v']
-                subprocess.call(netconvert_call)
-                # build polygons
+
+                for idx, config in enumerate(configs):
+                    netconvert_call = [netconvert, '-c', config,
+                                       '--output-file', os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % idx),
+                                       '--ptstop-output', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % idx),
+                                       '--ptline-output', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % idx)]
+                    if idx > 0:
+                        netconvert_call += ['--sumo-net-file', os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % (idx-1)),
+                                            '--ptstop-files', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % (idx-1)),
+                                            '--ptline-files', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % (idx-1))]
+                    if options.verbose:
+                        print(' '.join(netconvert_call))
+                        sys.stdout.flush()
+                    subprocess.call(netconvert_call)
+
                 poly_config = os.path.join(options.pre, scenario_name, 'template_gen.polycfg')
                 if os.path.isfile(poly_config):
                     polyconvert = sumolib.checkBinary('polyconvert')
-                    polyconvertCmd = [polyconvert, '-c', poly_config, '-o', os.path.join(tmp_output_dir, "shapes.xml"), '-v']
+                    polyconvertCmd = [polyconvert, '-c', poly_config,
+                                      '-o', os.path.join(scenario_template_dir, "shapes.xml"), '-v']
                     if options.verbose:
                         print(polyconvertCmd)
                         sys.stdout.flush()
-                    subprocess.call(polyconvertCmd) 
+                    subprocess.call(polyconvertCmd)
 
-            # find netfile
+            # find last files
             for root, _, files in os.walk(tmp_output_dir):
-                if net_name in files:
-                    os.rename(os.path.join(root, net_name), net_path)
-                    break
+                final_files = [file_name for file_name in files if file_name.split('_')[0] == str(idx)]
+                for file_name in final_files:
+                    os.rename(os.path.join(root, file_name), os.path.join(scenario_template_dir, file_name.split('_')[1]))
 
             shutil.rmtree(tmp_output_dir)
     setup_file = os.path.join(scenario_pre_dir, 'setup.py')
