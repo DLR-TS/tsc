@@ -186,8 +186,8 @@ def create_template_folder(scenario_name, options):
     if os.path.isdir(gtfs_dir):
         for cfg in glob.glob(os.path.join(gtfs_dir, "*.cfg")):
              gtfs2pt.main(gtfs2pt.get_options(["-c", cfg, '-n', os.path.abspath(net_path),
-                                               '--route-output', os.path.join(scenario_template_dir, 'pt_routes.add.xml'),
-                                               '--vehicle-output', os.path.join(scenario_template_dir, 'pt_vehicles.add.xml')]))
+                                               '--additional-output', os.path.join(scenario_template_dir, 'pt_routes.add.xml'),
+                                               '--route-output', os.path.join(scenario_template_dir, 'pt_vehicles.add.xml')]))
 
     # check for shapes folder and import from shapes
     shapes_dir = os.path.join(scenario_pre_dir, 'shapes')
