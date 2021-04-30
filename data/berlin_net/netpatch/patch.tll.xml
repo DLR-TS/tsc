@@ -130,4 +130,37 @@
     <connection from="692480567#0" fromLane="2" to="-203910771#8" toLane="1" linkIndex="7"/>
     <connection from="692480567#0" fromLane="4" to="28497108#0" toLane="1" linkIndex="8"/>
     <connection from="692480567#0" fromLane="4" to="4410310#0" toLane="3" linkIndex="9"/>
+
+    <!-- Deleted Elements -->
+    <delete from="144960908#0" fromLane="2" to="123955029#0" toLane="2" linkIndex="3" tl="GS_cluster_29421417_7125218596_7125218597_822502381"/>
+    <delete from="4631949" fromLane="2" to="-144960908#3" toLane="2" linkIndex="12" tl="GS_cluster_29421417_7125218596_7125218597_822502381"/>
+    <delete from="68314925#8" fromLane="2" to="68314926" toLane="2" linkIndex="7" tl="GS_cluster_29421417_7125218596_7125218597_822502381"/>
+    <!-- Changed Elements -->
+    <tlLogic id="GS_cluster_29421417_7125218596_7125218597_822502381" programID="0" >
+        <phase duration="24" maxDur="50" minDur="5" state="GrGrrGrGrrGrrrrGG"/>
+        <phase duration="3" state="yryrryryrryrrrryy"/>
+        <phase duration="24" maxDur="50" minDur="5" state="rrrrrGGgGGrGgGgrr"/>
+        <phase duration="3" state="rrrrryyyyyryyygrr"/>
+        <phase duration="6" maxDur="50" minDur="5" state="rrrrrrrrrrrGgGGrr"/>
+        <phase duration="3" state="rrrrrrrrrrryyyyrr"/>
+        <phase duration="24" maxDur="50" minDur="5" state="GGggGGrGrrrrrrrrr"/>
+        <phase duration="3" state="yyyyyyryrrrrrrrrr"/>
+    </tlLogic>
+    <!-- Created Elements -->
+    <connection from="144960908#0" fromLane="2" to="156239889#8" toLane="0" linkIndex="3" tl="GS_cluster_29421417_7125218596_7125218597_822502381"/>
+    <connection from="144960908#0" fromLane="3" to="123955029#0" toLane="2" linkIndex="4" tl="GS_cluster_29421417_7125218596_7125218597_822502381"/>
+    <connection from="156239891#1" fromLane="0" to="123955029#0" toLane="2" linkIndex="15" tl="GS_cluster_29421417_7125218596_7125218597_822502381"/>
+    <connection from="4631949" fromLane="3" to="-144960908#3" toLane="2" linkIndex="14" tl="GS_cluster_29421417_7125218596_7125218597_822502381"/>
+    <connection from="68314925#8" fromLane="2" to="68314926" toLane="3" linkIndex="8" tl="GS_cluster_29421417_7125218596_7125218597_822502381"/>
+    <connection from="68314925#8" fromLane="2" to="156239889#8" toLane="0" linkIndex="9" tl="GS_cluster_29421417_7125218596_7125218597_822502381"/>
+    <!-- Changed Elements -->
+    <connection from="156239891#1" fromLane="0" to="156239885#7" toLane="0" linkIndex="16"/>
+    <connection from="4631949" fromLane="1" to="123955029#0" toLane="1" linkIndex="11"/>
+    <connection from="4631949" fromLane="1" to="-144960908#3" toLane="1" linkIndex="12"/>
+    <connection from="4631949" fromLane="2" to="123955029#0" toLane="2" linkIndex="13"/>
+    <connection from="68314925#8" fromLane="1" to="-144960908#3" toLane="1" linkIndex="5"/>
+    <connection from="68314925#8" fromLane="1" to="68314926" toLane="1" linkIndex="6"/>
+    <connection from="68314925#8" fromLane="2" to="-144960908#3" toLane="2" linkIndex="7"/>
+    <connection from="86403427#2" fromLane="0" to="156239889#8" toLane="0" linkIndex="10"/>
+
 </tll>

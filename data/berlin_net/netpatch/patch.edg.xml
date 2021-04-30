@@ -5,4 +5,25 @@
         <lane index="1" disallow="pedestrian tram rail_urban rail rail_electric rail_fast ship"/>
     </edge>
 
+    <!-- Changed Elements -->
+    <edge id="144960908#0" numLanes="4">
+        <lane index="3" disallow="pedestrian bicycle tram rail_urban rail rail_electric rail_fast ship">
+            <param key="origId" value="144960908"/>
+        </lane>
+    </edge>
+    <edge id="156239891#1" allow="bus tram"/>
+    <edge id="389530590#0#0" allow="bus tram"/>
+    <edge id="4631949" numLanes="4">
+        <lane index="3" disallow="pedestrian bicycle tram rail_urban rail rail_electric rail_fast ship">
+            <param key="origId" value="4631949 203845135 203845135 203845135"/>
+        </lane>
+    </edge>
+    <edge id="4693210#0" shape="48214.36,41054.72 48206.01,41061.00 48203.32,41062.73 48187.15,41073.38 48160.84,41090.09"/>
+    <edge id="603950114#0" shape="68267.96,40319.79 68280.28,40312.89 68298.21,40306.41"/>
+    <edge id="68314926" numLanes="4">
+        <lane index="3" disallow="pedestrian bicycle tram rail_urban rail rail_electric rail_fast ship">
+            <param key="origId" value="68314926 172439811 172439811"/>
+        </lane>
+    </edge>
+
 </edges>
