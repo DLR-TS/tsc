@@ -184,10 +184,18 @@ def create_template_folder(scenario_name, options):
     # check for gtfs folder and import
     gtfs_dir = os.path.join(scenario_pre_dir, 'gtfs')
     if os.path.isdir(gtfs_dir):
+        tsc_directory = os.getcwd()
+        os.chdir(scenario_template_dir)  # change dir for gtfs outputs
         for cfg in glob.glob(os.path.join(gtfs_dir, "*.cfg")):
-             gtfs2pt.main(gtfs2pt.get_options(["-c", cfg, '-n', os.path.abspath(net_path),
-                                               '--additional-output', os.path.join(scenario_template_dir, 'pt_routes.add.xml'),
-                                               '--route-output', os.path.join(scenario_template_dir, 'pt_vehicles.add.xml')]))
+            gtfs_call = ["-c", cfg, '-n', os.path.abspath(net_path),
+                         '--additional-output', os.path.join(scenario_template_dir, 'pt_routes.add.xml'),
+                         '--route-output', os.path.join(scenario_template_dir, 'pt_vehicles.add.xml')]
+            if os.path.isdir(osm_dir) and glob.glob(os.path.join(scenario_template_dir, 'ptlines*')):
+                # if routes from osm
+                osm_routes = glob.glob(os.path.join(scenario_template_dir, 'ptlines*'))[0]
+                gtfs_call += ['--osm-routes', osm_routes, '--repair']
+            gtfs2pt.main(gtfs2pt.get_options(gtfs_call))
+        os.chdir(tsc_directory)  # change dir back to tsc
 
     # check for shapes folder and import from shapes
     shapes_dir = os.path.join(scenario_pre_dir, 'shapes')
