@@ -1,3 +1,6 @@
+# Tests on setting up the basic infrastructure for tapas sumo using a reduced net
+pre_mitte
+
 # Do nothing, just idle around and then after xx sec quit
 # "tscDaemon_withDB_noSimRequests"
 # * clean up db

@@ -1,0 +1,25 @@
+The following new files/directories were created:
+<Test Directory>
+----data
+--------scenario_templates
+------------scripts.py
+------------mitte_net
+----------------Berlin Verkehrsbezirke (1193 VBz) GK4_zone.poly.xml
+----------------Berlin_1223.poly.xml
+----------------Berlin_1223.taz.xml
+----------------RBS_OD_ORT_1412.poly.xml
+----------------RBS_OD_ORT_1412.taz.xml
+----------------__init__.py
+----------------bidi.taz.xml
+----------------districts.taz.xml
+----------------missing.xml
+----------------net.net.xml.gz
+----------------ptVtypes.xml
+----------------pt_routes.add.xml
+----------------pt_vehicles.add.xml
+----------------ptlines.xml.gz
+----------------repair_errors.txt
+----------------stops.add.xml.gz
+----------------suburb.taz.xml
+----------------vtypes.xml
+----tscdefs.pyc
