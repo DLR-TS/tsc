@@ -147,7 +147,7 @@ def create_template_folder(scenario_name, options):
                     if options.verbose:
                         print(' '.join(netconvert_call))
                         sys.stdout.flush()
-                    subprocess.call(netconvert_call)
+                    subprocess.check_call(netconvert_call)
 
                 poly_config = os.path.join(options.pre, scenario_name, 'template_gen.polycfg')
                 if os.path.isfile(poly_config):
