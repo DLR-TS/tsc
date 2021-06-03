@@ -383,19 +383,18 @@ def run_subnet(options, first_depart, last_depart, routes, weights, subnet_file)
         for line in routeIn:
             routeOut.write(line.replace('<vehicle', '<vehicle departLane="best" departSpeed="max"'))
     routes = os.path.abspath(routeOut.name)
-    save_opt = copy.deepcopy(options)
-    options.net_file = os.path.abspath(subnet_file)
+    subOpt = copy.copy(options)
+    subOpt.net_file = os.path.abspath(subnet_file)
     subnet = os.path.basename(subnet_file)[:-8]
-    options.bidi_taz_file = options.net_file[:-8] + '_bidi.taz.xml'
-    options.vtype_file = options.net_file[:-8] + '_vtypes.xml'
+    subOpt.bidi_taz_file = subOpt.net_file[:-8] + '_bidi.taz.xml'
+    subOpt.vtype_file = subOpt.net_file[:-8] + '_vtypes.xml'
     if ptFiles:
-        options.vtype_file += "," + os.path.abspath(ptFiles[0])
-    options.background_trips = ""
+        subOpt.vtype_file += "," + os.path.abspath(ptFiles[0])
+    subOpt.background_trips = ""
 #    addOpt = "--max-depart-delay 1 --max-num-vehicles 9000 --device.rerouting.adaptation-steps 360 --device.rerouting.probability 0.6 "
     addOpt = "--max-depart-delay 1 --device.rerouting.probability 0.6 "
     if "oneshot" in options.assignment:
-        routes, weights = run_oneshot(options, first_depart, last_depart, routes, weights, False, addOpt)
+        routes, weights = run_oneshot(subOpt, first_depart, last_depart, routes, weights, False, addOpt)
     if "gawron" in options.assignment:
-        routes, weights = run_duaiterate(options, first_depart, last_depart, routes, weights, False)
-    options = save_opt
+        routes, weights = run_duaiterate(subOpt, first_depart, last_depart, routes, weights, False)
     return routes, weights
