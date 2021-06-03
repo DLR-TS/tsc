@@ -1,4 +1,4 @@
-<edges>
+<edges version="1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/edgediff_file.xsd">
     <!-- Created Elements -->
     <edge id="gneE2" from="26704452" numLanes="2" priority="-1" speed="13.89" to="2784054037">
         <lane index="0" allow="pedestrian" width="2.00"/>
@@ -26,4 +26,67 @@
         </lane>
     </edge>
 
+<!-- manual modifications for Spandau by Stefanie Schoene 2021-05-19 -->
+    <!-- Changed Elements -->
+    <edge id="15242269" >
+        <lane index="2" disallow="pedestrian tram rail_urban rail rail_electric rail_fast ship"/>
+    </edge>
+    <edge id="241770484" shape="45064.70,42833.14 45074.39,42832.40"/>
+    <edge id="24599308" numLanes="4" shape="45907.12,44877.28 45836.17,44752.74 45761.65,44618.57 45716.02,44538.66" to="gneJ2">
+        <lane index="3" >
+            <param key="origId" value="24599308 4484056"/>
+        </lane>
+    </edge>
+    <edge id="25219772#0" numLanes="3">
+        <lane index="2" disallow="pedestrian tram rail_urban rail rail_electric rail_fast ship">
+            <param key="origId" value="25219772"/>
+        </lane>
+    </edge>
+    <edge id="25394871" numLanes="6">
+        <lane index="3" disallow="pedestrian bicycle tram rail_urban rail rail_electric rail_fast ship">
+            <param key="origId" value="25394871"/>
+        </lane>
+        <lane index="4" disallow="pedestrian bicycle tram rail_urban rail rail_electric rail_fast ship">
+            <param key="origId" value="25394871"/>
+        </lane>
+        <lane index="5" disallow="pedestrian bicycle tram rail_urban rail rail_electric rail_fast ship">
+            <param key="origId" value="25394871"/>
+        </lane>
+    </edge>
+    <edge id="301845042#0" shape="44940.16,42819.80 45041.90,42832.54 45065.00,42833.87"/>
+    <edge id="33066934#0" numLanes="5">
+        <lane index="2" disallow="pedestrian tram rail_urban rail rail_electric rail_fast ship">
+            <param key="origId" value="33066934"/>
+        </lane>
+        <lane index="3" disallow="pedestrian tram rail_urban rail rail_electric rail_fast ship">
+            <param key="origId" value="33066934"/>
+        </lane>
+        <lane index="4" disallow="pedestrian tram rail_urban rail rail_electric rail_fast ship">
+            <param key="origId" value="33066934"/>
+        </lane>
+    </edge>
+    <edge id="4446636#6" >
+        <lane index="2" disallow="pedestrian tram rail_urban rail rail_electric rail_fast ship"/>
+    </edge>
+    <edge id="4446677" >
+        <lane index="2" disallow="pedestrian tram rail_urban rail rail_electric rail_fast ship"/>
+    </edge>
+    <edge id="4453034#0" >
+        <lane index="2" disallow="pedestrian tram rail_urban rail rail_electric rail_fast ship"/>
+        <lane index="3" disallow="pedestrian tram rail_urban rail rail_electric rail_fast ship"/>
+        <lane index="4" disallow="pedestrian tram rail_urban rail rail_electric rail_fast ship"/>
+        <lane index="5" disallow="pedestrian tram rail_urban rail rail_electric rail_fast ship"/>
+    </edge>
+    <edge id="57387247" numLanes="7">
+        <lane index="6" disallow="pedestrian bicycle tram rail_urban rail rail_electric rail_fast ship">
+            <param key="origId" value="57387247"/>
+        </lane>
+    </edge>
+    <edge id="593851931" numLanes="4">
+        <lane index="3" disallow="pedestrian tram rail_urban rail rail_electric rail_fast ship">
+            <param key="origId" value="593851931 593851930 593851930 25219767 25219767 25219767 25219767"/>
+        </lane>
+        <lane index="2" disallow="pedestrian tram rail_urban rail rail_electric rail_fast ship"/>
+    </edge>
+    <edge id="698801383" from="gneJ2"/>
 </edges>
