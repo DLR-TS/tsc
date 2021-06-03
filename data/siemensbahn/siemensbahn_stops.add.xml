@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 05/27/21 15:44:14 by Eclipse SUMO netedit Version v1_8_0+1812-4891bef5e3
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <sumo-net-file value="D:\SUMO\MoveUrban\Zulieferung%20Behrisch_SBahn%2020210526_2%20-%20bearbeitet\spandau\spandau.net.xml"/>
+    </input>
+
+    <output>
+        <output-file value="D:\SUMO\MoveUrban\Zulieferung%20Behrisch_SBahn%2020210526_2%20-%20bearbeitet\spandau\spandau.net.xml"/>
+        <output.street-names value="true"/>
+    </output>
+
+    <processing>
+        <geometry.min-radius.fix.railways value="false"/>
+        <geometry.max-grade.fix value="false"/>
+        <offset.disable-normalization value="true"/>
+        <lefthand value="false"/>
+    </processing>
+
+    <junctions>
+        <no-internal-links value="false"/>
+        <no-turnarounds value="true"/>
+        <junctions.corner-detail value="5"/>
+        <junctions.limit-turn-speed value="5.5"/>
+        <rectangular-lane-cut value="false"/>
+    </junctions>
+
+    <pedestrian>
+        <walkingareas value="true"/>
+    </pedestrian>
+
+    <netedit>
+        <additional-files value="D:\SUMO\MoveUrban\Zulieferung%20Behrisch_SBahn%2020210526_2%20-%20bearbeitet\spandau\pt_stops.add.xml"/>
+    </netedit>
+
+    <report>
+        <aggregate-warnings value="5"/>
+    </report>
+
+</configuration>
+-->
+
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+    <busStop id="SBDS1" lane="SBDS1_0" startPos="16.48" endPos="126.48" name="Siemensbahn Daumstraße" friendlyPos="1">
+        <access lane="-435498412#1_0" pos="42.90" length="12.0" friendlyPos="1"/>
+        <access lane="4553267#5_0" pos="301.00" length="12.0" friendlyPos="1"/>
+        <access lane="58533302#0_0" pos="29.20" length="12.0" friendlyPos="1"/>
+    </busStop>
+    <busStop id="SBDS2" lane="SBDS2_0" startPos="109.95" endPos="219.95" name="Siemensbahn Daumstraße" friendlyPos="1">
+        <access lane="-435498412#1_0" pos="43.10" length="12.0" friendlyPos="1"/>
+        <access lane="4553267#5_0" pos="301.22" length="12.0" friendlyPos="1"/>
+    </busStop>
+    <busStop id="SBGF1" lane="SBGF1_0" startPos="6.76" endPos="116.76" name="Siemensbahn Gartenfeld" friendlyPos="1">
+        <access lane="672144165#0_0" pos="398.48" length="12.0" friendlyPos="1"/>
+        <access lane="166645723#4_0" pos="15.87" length="12.0" friendlyPos="1"/>
+    </busStop>
+    <busStop id="SBGF2" lane="SBGF2_0" startPos="6.31" endPos="116.31" name="Siemensbahn Gartenfeld" friendlyPos="1">
+        <access lane="672144165#0_0" pos="399.72" length="12.0" friendlyPos="1"/>
+        <access lane="166645723#4_0" pos="15.87" length="12.0" friendlyPos="1"/>
+    </busStop>
+    <busStop id="SBHF1" lane="SBHF1_0" startPos="8.65" endPos="118.65" name="Siemensbahn Hakenfelde" friendlyPos="1">
+        <access lane="4978664#0_0" pos="174.83" length="12.0" friendlyPos="1"/>
+        <access lane="57685645#0_0" pos="81.23" length="12.0" friendlyPos="1"/>
+        <access lane="18830951#14_0" pos="67.04" length="12.0" friendlyPos="1"/>
+        <access lane="171733375#0_0" pos="22.35" length="12.0" friendlyPos="1"/>
+    </busStop>
+    <busStop id="SBHF2" lane="SBHF2_0" startPos="68.78" endPos="168.88" name="Siemensbahn Hakenfelde" friendlyPos="1">
+        <access lane="4978664#0_0" pos="174.83" length="12.0" friendlyPos="1"/>
+        <access lane="57685645#0_0" pos="81.23" length="12.0" friendlyPos="1"/>
+        <access lane="18830951#14_0" pos="67.04" length="12.0" friendlyPos="1"/>
+        <access lane="171733375#0_0" pos="22.35" length="12.0" friendlyPos="1"/>
+    </busStop>
+    <busStop id="SBJH1" lane="SBJH1_0" startPos="26.18" endPos="136.18" name="Siemensbahn Jungfernheide" friendlyPos="1">
+        <access lane="593851931_0" pos="96.19" length="12.0" friendlyPos="1"/>
+        <access lane="4471990#0_0" pos="95.87" length="12.0" friendlyPos="1"/>
+    </busStop>
+    <busStop id="SBJH2" lane="SBJH2_0" startPos="126.36" endPos="236.36" name="Siemensbahn Jungfernheide" friendlyPos="1">
+        <access lane="593851931_0" pos="96.19" length="12.0" friendlyPos="1"/>
+        <access lane="4471990#0_0" pos="95.87" length="12.0" friendlyPos="1"/>
+    </busStop>
+    <busStop id="SBSS1" lane="SBSS1_0" startPos="5.39" endPos="115.39" name="Siemensbahn Siemensstadt" friendlyPos="1">
+        <access lane="4581851#31_0" pos="187.45" length="12.0" friendlyPos="1"/>
+        <access lane="-788501040#2_0" pos="123.02" length="12.0" friendlyPos="1"/>
+    </busStop>
+    <busStop id="SBSS2" lane="SBSS2_0" startPos="44.03" endPos="154.03" name="Siemensbahn Siemensstadt" friendlyPos="1">
+        <access lane="4581851#31_0" pos="187.11" length="12.0" friendlyPos="1"/>
+        <access lane="-788501040#2_0" pos="123.15" length="12.0" friendlyPos="1"/>
+    </busStop>
+    <busStop id="SBWW1" lane="SBWW1_0" startPos="7.11" endPos="117.11" name="Siemensbahn Wernerwerk" friendlyPos="1">
+        <access lane="330951959_0" pos="36.73" length="12.0" friendlyPos="1"/>
+        <access lane="330951957#0_0" pos="30.22" length="12.0" friendlyPos="1"/>
+        <access lane="-37739363#7_0" pos="218.40" length="12.0" friendlyPos="1"/>
+        <access lane="4581858#0_0" pos="285.50" length="12.0" friendlyPos="1"/>
+    </busStop>
+    <busStop id="SBWW2" lane="SBWW2_0" startPos="2.30" endPos="112.30" name="Siemensbahn Wernerwerk" friendlyPos="1">
+        <access lane="330951959_0" pos="36.73" length="12.0" friendlyPos="1"/>
+        <access lane="330951957#0_0" pos="30.22" length="12.0" friendlyPos="1"/>
+        <access lane="-37739363#7_0" pos="218.40" length="12.0" friendlyPos="1"/>
+        <access lane="4581858#0_0" pos="285.50" length="12.0" friendlyPos="1"/>
+    </busStop>
+</additional>

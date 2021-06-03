@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- generated on 2021-06-03 10:51:45.026080 by netdiff.py v1_9_2+0306-3d46915289
+  options: spandau.net.xml sb.net.xml sbdiff
+-->
+<edges version="1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/edgediff_file.xsd">
+    <!-- Deleted Elements -->
+    <!-- Created Elements -->
+    <edge id="SB01" allow="rail_urban rail" from="gneJ7" numLanes="1" priority="1" shape="40796.63,45029.56 40909.80,44950.06 41272.94,44648.36 41280.91,44633.01 41284.43,44605.15 41284.10,44570.37 41283.57,44541.58 41287.38,44510.48 41296.84,44476.53 41314.27,44441.28 41338.57,44408.36 41360.90,44381.12 41389.52,44365.63 41422.97,44348.81 41462.53,44340.08 41494.31,44336.62 41856.10,44374.64" speed="25.00" to="gneJ16" type="railway.light_rail"/>
+    <edge id="SB02" allow="rail_urban rail" from="gneJ15" numLanes="1" priority="1" shape="41854.81,44392.47 41491.76,44354.25 41464.36,44357.07 41430.92,44364.34 41401.50,44378.93 41379.33,44392.87 41364.59,44406.36 41347.98,44425.97 41332.22,44446.94 41317.80,44472.25 41308.13,44502.26 41300.75,44537.71 41300.30,44555.12 41300.70,44569.51 41303.75,44598.62 41300.36,44625.90 41293.30,44650.08 41282.06,44671.12 40916.78,44966.32 40808.02,45043.49" speed="25.00" to="gneJ10" type="railway.light_rail"/>
+    <edge id="SB03" allow="rail_urban rail" from="gneJ17" numLanes="1" priority="1" shape="41978.16,44387.46 41997.82,44389.53 42027.32,44385.73 42059.95,44377.20 42088.93,44360.82 42985.64,43413.49 43039.18,43397.74 43055.56,43396.52" speed="25.00" to="gneJ20" type="railway.light_rail"/>
+    <edge id="SB04" allow="rail_urban rail" from="gneJ18" numLanes="1" priority="1" shape="43055.96,43413.69 43040.95,43414.85 42992.54,43430.11 42096.01,44377.55 42061.77,44395.20 42015.95,44405.43 41999.14,44407.67 41975.35,44405.17" speed="25.00" to="gneJ14" type="railway.light_rail"/>
+    <edge id="SB05" allow="rail_urban rail" from="gneJ21" numLanes="1" priority="1" shape="43215.24,43384.60 43734.55,43345.86 43812.23,43324.48 43898.01,43249.02 43926.47,43211.41 43944.16,43136.41" speed="25.00" to="gneJ22" type="railway.light_rail"/>
+    <edge id="SB06" allow="rail_urban rail" from="gneJ23" numLanes="1" priority="1" shape="43960.29,43136.53 43939.21,43218.73 43907.00,43260.21 43816.13,43339.14 43736.35,43361.19 43215.05,43401.42" speed="25.00" to="gneJ19" type="railway.light_rail"/>
+    <edge id="SB07" allow="rail_urban rail" from="gneJ24" numLanes="1" priority="1" shape="43971.11,43022.19 44018.43,42821.56 44051.49,42683.07 44064.96,42641.42 44093.06,42592.96 44155.16,42505.43 44163.38,42495.53 44205.16,42453.43 44256.14,42415.76 44337.07,42384.44 44402.78,42367.85 44505.77,42348.69 44660.20,42334.55 44774.24,42334.09 44847.11,42331.96 44948.82,42330.84 45045.84,42336.34 45145.20,42345.46 45234.23,42358.14 45297.09,42368.61" speed="25.00" to="gneJ4" type="railway.light_rail"/>
+    <edge id="SB08" allow="rail_urban rail" from="gneJ12" numLanes="1" priority="1" shape="45294.52,42382.26 45231.73,42372.39 45145.59,42360.92 45045.31,42353.81 44947.31,42347.33 44849.45,42351.30 44775.98,42353.83 44662.45,42356.97 44528.28,42367.52 44432.24,42382.88 44344.31,42406.09 44265.87,42436.13 44205.95,42486.75 44174.13,42522.99 44148.42,42559.17 44115.91,42602.83 44086.61,42648.71 44074.45,42691.41 43989.50,43022.64" speed="25.00" to="gneJ25" type="railway.light_rail"/>
+    <edge id="SB09" allow="rail_urban rail" from="gneJ27" numLanes="1" priority="1" shape="39612.15,45915.44 39628.28,45910.28 39638.90,45904.76 39651.45,45897.56 40559.36,45166.49 40591.90,45144.47" speed="25.00" to="gneJ8" type="railway.light_rail"/>
+    <edge id="SB10" allow="rail_urban rail" from="gneJ9" numLanes="1" priority="1" shape="40600.91,45163.49 40563.69,45188.39 39636.71,45933.82 39617.28,45942.45" speed="25.00" to="gneJ26" type="railway.light_rail"/>
+    <edge id="SBDS1" allow="rail_urban rail" from="gneJ8" numLanes="1" priority="1" speed="25.00" to="gneJ7" type="railway.light_rail"/>
+    <edge id="SBDS2" allow="rail_urban rail" from="gneJ10" numLanes="1" priority="1" speed="25.00" to="gneJ9" type="railway.light_rail"/>
+    <edge id="SBGF1" allow="rail_urban rail" from="gneJ16" numLanes="1" priority="1" speed="25.00" to="gneJ17" type="railway.light_rail"/>
+    <edge id="SBGF2" allow="rail_urban rail" from="gneJ14" numLanes="1" priority="1" speed="25.00" to="gneJ15" type="railway.light_rail"/>
+    <edge id="SBHF1" allow="rail_urban rail" from="gneJ29" numLanes="1" priority="1" speed="25.00" to="gneJ27" type="railway.light_rail"/>
+    <edge id="SBHF2" allow="rail_urban rail" from="gneJ26" length="177.00" numLanes="1" priority="1" shape="39617.28,45942.45 39515.10,45967.28 39445.42,45984.25" speed="25.00" to="gneJ28" type="railway.light_rail"/>
+    <edge id="SBJH1" allow="rail_urban rail" from="gneJ4" numLanes="1" priority="1" speed="25.00" to="gneJ3" type="railway.light_rail"/>
+    <edge id="SBJH2" allow="rail_urban rail" from="gneJ13" numLanes="1" priority="1" speed="25.00" to="gneJ12" type="railway.light_rail"/>
+    <edge id="SBSS1" allow="rail_urban rail" from="gneJ20" numLanes="1" priority="1" speed="25.00" to="gneJ21" type="railway.light_rail"/>
+    <edge id="SBSS2" allow="rail_urban rail" from="gneJ19" numLanes="1" priority="1" speed="25.00" to="gneJ18" type="railway.light_rail"/>
+    <edge id="SBWW1" allow="rail_urban rail" from="gneJ22" numLanes="1" priority="1" speed="25.00" to="gneJ24" type="railway.light_rail"/>
+    <edge id="SBWW2" allow="rail_urban rail" from="gneJ25" numLanes="1" priority="1" speed="25.00" to="gneJ23" type="railway.light_rail"/>
+    <!-- Changed Elements -->
+</edges>

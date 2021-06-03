@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- generated on 2021-06-03 10:51:43.147179 by netdiff.py v1_9_2+0306-3d46915289
+  options: spandau.net.xml sb.net.xml sbdiff
+-->
+<nodes version="1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/nodes_file.xsd">
+    <!-- Deleted Elements -->
+    <!-- Created Elements -->
+    <node id="gneJ10" type="priority" x="40808.02" y="45043.49"/>
+    <node id="gneJ12" type="priority" x="45294.52" y="42382.26"/>
+    <node id="gneJ13" type="dead_end" x="45553.27" y="42440.63"/>
+    <node id="gneJ14" type="priority" x="41975.35" y="44405.17"/>
+    <node id="gneJ15" type="priority" x="41854.81" y="44392.47"/>
+    <node id="gneJ16" type="priority" x="41856.10" y="44374.64"/>
+    <node id="gneJ17" type="priority" x="41978.16" y="44387.46"/>
+    <node id="gneJ18" type="priority" x="43055.96" y="43413.69"/>
+    <node id="gneJ19" type="priority" x="43215.05" y="43401.42"/>
+    <node id="gneJ20" type="priority" x="43055.56" y="43396.52"/>
+    <node id="gneJ21" type="priority" x="43215.24" y="43384.60"/>
+    <node id="gneJ22" type="priority" x="43944.16" y="43136.41"/>
+    <node id="gneJ23" type="priority" x="43960.29" y="43136.53"/>
+    <node id="gneJ24" type="priority" x="43971.11" y="43022.19"/>
+    <node id="gneJ25" type="priority" x="43989.50" y="43022.64"/>
+    <node id="gneJ26" type="priority" x="39617.28" y="45942.45"/>
+    <node id="gneJ27" type="priority" x="39612.15" y="45915.44"/>
+    <node id="gneJ28" type="dead_end" x="39445.42" y="45984.25"/>
+    <node id="gneJ29" type="dead_end" x="39440.35" y="45958.06"/>
+    <node id="gneJ3" type="dead_end" x="45556.44" y="42428.01"/>
+    <node id="gneJ4" type="priority" x="45297.09" y="42368.61"/>
+    <node id="gneJ7" type="priority" x="40796.63" y="45029.56"/>
+    <node id="gneJ8" type="priority" x="40591.90" y="45144.47"/>
+    <node id="gneJ9" type="priority" x="40600.91" y="45163.49"/>
+    <!-- Changed Elements -->
+</nodes>
