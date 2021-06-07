@@ -184,6 +184,7 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
         <vehroute-output.intended-depart value="true"/>
         <vehroute-output.route-length value="true"/>
         <vehroute-output.skip-ptlines value="true"/>
+        <vehroute-output.exit-times value="true"/>
 
         <pedestrian.model value="nonInteracting"/>
         <routing-algorithm value="astar"/>
@@ -328,6 +329,7 @@ def run_sumo(options, first_depart, last_depart, trip_file, weight_file, meso=Tr
         <vehroute-output.last-route value="true"/>
         <vehroute-output.intended-depart value="true"/>
         <vehroute-output.route-length value="true"/>
+        <vehroute-output.exit-times value="true"/>
 
         <no-step-log value="true"/>
         <log-file value="%s.sumo.log"/>

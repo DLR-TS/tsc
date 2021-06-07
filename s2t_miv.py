@@ -91,7 +91,37 @@ def _parse_vehicle_info(routes):
             length = float(v.routeLength) if v.routeLength else 0
             sumoTime.add(duration, v.id)
             sumoDist.add(length, v.id)
-            stats.append(tuple(v.id.split('_')) + ("{0,0,%s}" % duration, "{0,0,%s}" % length))
+            if v.name == "vehicle":
+                stats.append(tuple(v.id.split('_')) + ("{0,0,%s}" % duration, "{0,0,%s}" % length))
+            else:
+                walkLength = [0, 0]
+                walkDuration = [0, 0]
+                rideLength = 0
+                rideEnd = float(v.depart)
+                idx = 0
+                initWait = 0
+                transfers = 0
+                transferTime = 0
+                for stage in v.getChildList():
+                    if stage.name == "walk":
+                        walkLength[idx] += float(stage.routeLength)
+                        walkDuration[idx] = float(stage.exitTimes.split()[-1]) - rideEnd
+                    elif stage.name == "ride":
+                        if idx == 0:
+                            idx = 1
+                            initWait = float(stage.depart) - float(v.depart) - walkDuration[0]
+                        else:
+                            transfers += 1
+                            transferTime += float(stage.depart) - rideEnd
+                        rideEnd = float(stage.ended)
+                        rideLength += float(stage.routeLength) + walkLength[1]
+                        walkLength[1] = 0  # reset from intermediate walks
+                if idx == 0:
+                    stats.append(tuple(v.id.split('_')) + ("{%s}" % duration, "{%s}" % walkLength[0]))
+                else:
+                    dur = (duration - sum(walkDuration) - initWait, walkDuration[0], initWait, walkDuration[1], transferTime)
+                    length = (rideLength, walkLength[0], walkLength[1], transfers)
+                    stats.append(tuple(v.id.split('_')) + ("{0,0,0,0,%s,%s,%s,%s,%s}" % dur, "{0,0,0,0,%s,%s,0,%s,%s}" % length))
     print("Parsed results for %s vehicles and persons" % len(stats))
     print(sumoTime)
     print(sumoDist)
