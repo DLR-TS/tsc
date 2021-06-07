@@ -26,7 +26,7 @@ import collections
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
     sys.path.append(tools)
-else:   
+else:
     sys.exit("please declare environment variable 'SUMO_HOME'")
 
 from sumolib import output
@@ -132,8 +132,12 @@ def _parse_vehicle_info_taz(routes, start, end, vType):
 @benchmark
 def upload_trip_results(conn, key, params, routes, limit=None):
     tripstats = _parse_vehicle_info(routes)
-    cursor = conn.cursor()
     table = '%s_%s' % (params[SP.trip_output], key)
+    if conn is None:
+        print("Warning! No database connection, writing trip info to file %s.csv." % table)
+        print('\n'.join(map(str, tripstats[:limit])), file=open(table + ".csv", "w"))
+        return
+    cursor = conn.cursor()
     createQuery = """
 CREATE TABLE temp.%s
 (
@@ -304,7 +308,8 @@ def main():
         tables = create_all_pairs(conn, options.simkey, SP.OPTIONAL)
         upload_all_pairs(conn, tables, 0, 86400, "passenger", options.real_trips,
                          options.representatives, readNet(options.net_file), [])
-    conn.close()
+    if conn:
+        conn.close()
 
 if __name__ == "__main__":
     main()
