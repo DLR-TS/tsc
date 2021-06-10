@@ -227,8 +227,8 @@ def create_template_folder(scenario_name, options):
                 polyReader = sumolib.shapes.polygon.PolygonReader(True)
                 polyFile = os.path.join(scenario_template_dir, prefix + ".poly.xml")
                 subprocess.call([polyconvert, "-n", net_path, "-o", polyFile,
-                                 "--shapefile-prefixes", os.path.join(
-                                     shapes_dir, prefix), "--shapefile.add-param",
+                                 "--shapefile-prefixes", os.path.join(shapes_dir, prefix),
+                                 "--shapefile.add-param", "--shapefile.traditional-axis-mapping",
                                  "--shapefile.id-column", idCol.get(prefix, idCol["*"])])
                 if options.verbose:
                     print("calculating contained edges for %s ..." % polyFile)
