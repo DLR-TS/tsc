@@ -359,6 +359,7 @@ def map_to_edges(options):
 
     with open(options.mapped_log, 'w') as logfile:
         log = get_logger(logfile)
+        log('Mapping using %s.' % options.taz_file)
         for (pid, hid), trip_sequence in csv_sequence_generator(options.rectified, (TH.person_id, TH.household_id)):
             persons += 1
             for row in trip_sequence:

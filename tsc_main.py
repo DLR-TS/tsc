@@ -340,7 +340,7 @@ def simulation_request(options, request):
         options.net_file = os.path.abspath(os.path.join(scenario_basedir, 'net.net.xml'))
         if not os.path.exists(options.net_file):
             options.net_file += ".gz"
-        if options.taz_file is None and ('DB_TABLE_TAZ', 'berlin_taz_1223') in params:
+        if options.taz_file is None and params.get('DB_TABLE_TAZ') == 'berlin_taz_1223':
             # just a hack to have a good taz file for the new scenarios
             options.taz_file = os.path.abspath(os.path.join(scenario_basedir, 'Berlin_1223.taz.xml'))
         options.bidi_taz_file = os.path.abspath(os.path.join(scenario_basedir, 'bidi.taz.xml'))

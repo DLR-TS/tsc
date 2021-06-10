@@ -10,9 +10,8 @@ prefix = os.path.join(here, "spandau")
 boundary = "13.1907,52.529,13.3053,52.566"
 output_net = prefix + ".net.xml"
 
-copies = ["berlin_net/vtypes.xml", "berlin_net/bidi.taz.xml",
-          "berlin_net/suburb.taz.xml", "berlin_net/districts.taz.xml",
-          "berlin_net/pt*.xml"]
+copies = ["move_urban/vtypes.xml", "move_urban/*.taz.xml",
+          "move_urban/pt*.xml"]
 
 # copy selected files from berlin scenario
 for source in copies:
