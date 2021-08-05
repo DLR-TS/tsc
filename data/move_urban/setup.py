@@ -37,6 +37,16 @@ subprocess.call([sumolib.checkBinary("netconvert"), "-s", os.path.join(here, "ne
                  "--keep-edges.in-geo-boundary", boundary, "--no-internal-links", "false",
                  "--crossings.guess", "-o", output_net])
 
+# generate the buslane nets
+subprocess.call([sumolib.checkBinary("netconvert"), "-s", os.path.join(here, "net.net.xml.gz"),
+                 "--edge-files", os.path.join(here, "busspur.edg.xml"),
+                 "--connection-files", os.path.join(here, "busspur.con.xml"),
+                 "--tllogic-files",  os.path.join(here, "busspur.tll.xml"),
+                 "-o", os.path.join(here, "busspur.net.xml.gz")])
+subprocess.call([sumolib.checkBinary("netconvert"), "-s", os.path.join(here, "busspur.net.xml.gz"),
+                 "--keep-edges.in-geo-boundary", boundary, "--no-internal-links", "false",
+                 "--crossings.guess", "-o", prefix + "_busspur.net.xml"])
+
 # filter the relevant information from the copied files
 edges = set()
 with open(prefix + ".txt", "w") as edge_out:

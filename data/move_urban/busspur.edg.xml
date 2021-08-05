@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- generated on 2021-08-05 10:07:31.482257 by netdiff.py v1_9_2+0938-5f20f6e761e
+  options: spandau_20210526_2/spandau.net.xml Zulieferung Behrisch_SBahn 20210526_2 - mit Taktverdichtung und Busspur/spandau/spandau.net.xml busspur
+-->
+<edges version="1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/edgediff_file.xsd">
+    <!-- Deleted Elements -->
+    <!-- Created Elements -->
+    <!-- Changed Elements -->
+    <edge id="-19605964#1" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="19605964"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="-19898260#6" numLanes="2">
+        <lane index="1" allow="bus coach">
+            <param key="origId" value="19898260"/>
+        </lane>
+        <lane index="0" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped bicycle evehicle custom1 custom2"/>
+    </edge>
+    <edge id="-4581895" numLanes="5">
+        <lane index="4" allow="bus coach">
+            <param key="origId" value="4581895"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+        <lane index="3" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="123485306#0" numLanes="5" shape="40950.80,44148.81 40949.58,44155.25 40942.76,44179.89 40928.95,44214.12">
+        <lane index="4" allow="bus coach">
+            <param key="origId" value="123485306"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+        <lane index="3" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="19605961#0" numLanes="6" shape="40791.85,44427.39 40832.76,44359.04 40843.54,44339.28 40847.31,44332.33 40849.41,44328.47 40856.32,44315.74">
+        <lane index="5" allow="bus coach">
+            <param key="origId" value="19605961"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+        <lane index="3" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+        <lane index="4" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="19605963#0" numLanes="5" shape="40920.05,44234.15 40905.82,44268.19 40897.95,44281.56 40888.27,44295.25 40886.41,44298.48 40879.66,44308.83 40877.37,44313.10 40874.98,44317.56 40869.51,44326.25">
+        <lane index="4" allow="bus coach">
+            <param key="origId" value="19605963"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+        <lane index="3" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="19605963#5" numLanes="5" shape="40869.53,44326.22 40862.95,44337.01 40856.22,44346.73 40844.66,44362.40 40804.69,44434.53">
+        <lane index="4" allow="bus coach">
+            <param key="origId" value="19605963"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+        <lane index="3" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="19605964#0" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="19605964"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="19898258#0" numLanes="4" shape="40969.41,44054.66 40964.94,44076.99 40964.21,44085.53 40960.83,44101.78 40954.99,44129.91 40950.05,44148.74">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="19898258"/>
+        </lane>
+        <lane index="1" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped bicycle evehicle custom1 custom2"/>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped bicycle evehicle custom1 custom2"/>
+    </edge>
+    <edge id="19898259#0" numLanes="4" shape="40918.41,44209.68 40930.78,44175.67 40943.00,44127.30 40947.64,44104.93 40951.11,44091.94 40953.65,44082.40 40958.83,44053.23">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="19898259"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="19898260#0" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="19898260"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="338687113#0" numLanes="5" shape="40856.39,44315.62 40861.81,44307.31 40883.79,44273.66 40885.34,44271.49 40899.06,44249.05 40908.74,44227.61">
+        <lane index="4" allow="bus coach">
+            <param key="origId" value="338687113"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+        <lane index="3" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="338687114#0" numLanes="5">
+        <lane index="3" disallow="pedestrian bicycle tram rail_urban rail rail_electric rail_fast ship">
+            <param key="origId" value="338687114"/>
+        </lane>
+        <lane index="4" disallow="pedestrian bicycle tram rail_urban rail rail_electric rail_fast ship">
+            <param key="origId" value="338687114"/>
+        </lane>
+    </edge>
+    <edge id="4553267#0" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="4553267"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="4553267#2" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="4553267"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="4553267#5" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="4553267"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="4553268#0" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="4553268"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="4553268#14" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="4553268"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="4553268#3" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="4553268"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="4553268#6" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="4553268"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="4553268#8" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="4553268"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="4581892#0" shape="40970.39,43744.28 40971.13,43697.63 40970.11,43674.96 40969.68,43665.45 40969.49,43661.33 40968.93,43648.62"/>
+    <edge id="4581895" numLanes="5">
+        <lane index="4" allow="bus coach">
+            <param key="origId" value="4581895"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+        <lane index="3" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="4581896#0" numLanes="5" shape="40748.03,44520.12 40713.19,44570.18 40704.17,44587.37 40695.66,44604.36 40684.64,44620.60 40681.94,44624.59 40674.19,44636.02">
+        <lane index="4" allow="bus coach">
+            <param key="origId" value="4581896"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+        <lane index="3" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="4581897#0" numLanes="5" shape="40652.58,44626.39 40661.54,44614.38 40680.12,44589.48 40700.23,44562.52 40737.43,44512.50">
+        <lane index="4" allow="bus coach">
+            <param key="origId" value="4581897"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+        <lane index="3" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="57686461#0" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="57686461"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="57686461#13" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="57686461"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="57686461#2" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="57686461"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="57686462#0" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="57686462"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="58533301#0" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="58533301"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="58533302#0" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="58533302"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="58533302#3" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="58533302"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+    <edge id="58533302#7" numLanes="4">
+        <lane index="3" allow="bus coach">
+            <param key="origId" value="58533302"/>
+        </lane>
+        <lane index="2" allow="private emergency authority army vip passenger hov taxi delivery truck trailer motorcycle moped evehicle custom1 custom2"/>
+    </edge>
+</edges>

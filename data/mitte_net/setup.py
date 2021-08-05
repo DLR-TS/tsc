@@ -17,8 +17,8 @@ copies = ["berlin_net/vtypes.xml", "berlin_net/net.net.xml.gz",
 for source in copies:
     for sourcePath in glob.glob(os.path.join(templates, source)):
         if os.path.exists(sourcePath):
-            print("copying %s" % source)
-            shutil.copyfile(sourcePath, os.path.join(here, os.path.basename(source)))
+            print("copying %s" % os.path.basename(sourcePath))
+            shutil.copyfile(sourcePath, os.path.join(here, os.path.basename(sourcePath)))
         else:
             print("skipping non existent %s" % source)
 
