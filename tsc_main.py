@@ -201,7 +201,8 @@ def create_new_destination_folder(options, sim_key, iteration, params):
             for ext in ("xml", "xml.gz", "csv", "csv.gz", "params"):
                 for ff in glob.glob(os.path.join(template_path, '*.' + ext)):
                     shutil.copyfile(ff, os.path.join(destination_path, os.path.basename(ff)))
-            net = glob.glob(os.path.join(template_path, '*.net.xml*'))[0]
+            netList = glob.glob(os.path.join(template_path, 'net.net.xml*'))
+            net = netList[0] if netList else glob.glob(os.path.join(template_path, '*.net.xml*'))[0]
             netOut = os.path.join(destination_path, os.path.basename(net))
             netTemp = None
             for cfg in sorted(glob.glob(os.path.join(template_path, '*.netccfg'))):
@@ -211,7 +212,10 @@ def create_new_destination_folder(options, sim_key, iteration, params):
                 net = netTemp
             restrictions = json.loads(params[SP.net_param])
             if restrictions:
-                build_restricted_network(restrictions, destination_path, net)
+                if isinstance(restrictions, map):
+                    build_restricted_network(restrictions, destination_path, net)
+                else:
+                    os.rename(os.path.join(destination_path, restrictions), netOut)
             elif netTemp:
                 os.rename(netTemp, netOut)
     return destination_path
