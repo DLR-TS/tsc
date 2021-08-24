@@ -52,7 +52,7 @@ import db_manipulator
 import get_trips
 import t2s
 import s2t_miv
-from constants import SP
+from constants import SP, CAR_MODES
 import get_motorway_access
 
 DEFAULT_SIMKEY = "berlin_2010"
@@ -215,7 +215,8 @@ def create_new_destination_folder(options, sim_key, iteration, params):
                 if isinstance(restrictions, map):
                     build_restricted_network(restrictions, destination_path, net)
                 else:
-                    os.rename(os.path.join(destination_path, restrictions), netOut)
+                    for origin, destination in restrictions:
+                        os.rename(os.path.join(destination_path, origin), os.path.join(destination_path, destination))
             elif netTemp:
                 os.rename(netTemp, netOut)
     return destination_path
@@ -349,8 +350,8 @@ def simulation_request(options, request):
             options.taz_file = os.path.abspath(os.path.join(scenario_basedir, 'Berlin_1223.taz.xml'))
         options.bidi_taz_file = os.path.abspath(os.path.join(scenario_basedir, 'bidi.taz.xml'))
         options.tapas_trips = os.path.join(scenario_basedir, "background_traffic.csv")
-        options.modes = params[SP.modes].replace(";", ",")
         if iteration == 0 and params[SP.add_traffic_table] and conn is not None:
+#            options.modes = ','.join(CAR_MODES)
             get_trips.write_background_trips(
                 conn, params[SP.add_traffic_table], options.limit, options.tapas_trips, params)
             options.location_priority_file = os.path.abspath(os.path.join(scenario_basedir, 'location_priorities.xml'))
@@ -362,6 +363,7 @@ def simulation_request(options, request):
             options.location_priority_file = ""
         else:
             options.background_trips = t2s.getSumoTripfileName(scenario_basedir, options.tapas_trips)
+        options.modes = params[SP.modes].replace(";", ",")
 
 
         # create a new iteration folder

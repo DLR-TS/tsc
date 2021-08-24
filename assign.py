@@ -376,10 +376,12 @@ def run_default(options, first_depart, last_depart, routes, weights):
 def run_subnet(options, first_depart, last_depart, routes, weights, subnet_file):
     tmpRoutes = routes[:-4] + "_cut_tmp.xml"
     cutOpts = [subnet_file, routes, "--orig-net", options.net_file, "-b", "-o", tmpRoutes]
-    ptFiles = sorted(glob.glob(os.path.join(os.path.dirname(subnet_file), "pt*")))
+    ptFiles = sorted(glob.glob(os.path.join(os.path.dirname(subnet_file), "pt*.add.xml")))
     if ptFiles:
+        vehicleFiles = ",".join([f for f in ptFiles if f.endswith("vehicles.add.xml")])
+        stopFiles = ",".join([f for f in ptFiles if f not in vehicleFiles])
         routePrefix = os.path.join(os.path.dirname(routes), "pt")
-        cutOpts += ["-a", ptFiles[1], "--pt-input", ptFiles[2], "--pt-output", routePrefix + "_vehicles.add.xml", "--stops-output", routePrefix + "_stops.add.xml"]
+        cutOpts += ["-a", stopFiles, "--pt-input", vehicleFiles, "--pt-output", routePrefix + "_vehicles.add.xml", "--stops-output", routePrefix + "_stops.add.xml"]
     cutRoutes.main(cutRoutes.get_options(cutOpts))
     with open(tmpRoutes) as routeIn, open(routes[:-4] + "_cut.xml", 'w') as routeOut:
         for line in routeIn:
