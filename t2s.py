@@ -537,9 +537,7 @@ def main(options):
                           glob.glob(os.path.join(options.iteration_dir, "oneshot", "aggregated*.xml"))[0], options.subnet_file)
         return
 
-    if os.path.isfile(options.rectified) and not options.overwrite:
-        options.rectify = False
-    if options.rectify:
+    if options.rectify and (options.overwrite or not os.path.isfile(options.rectified)):
         rectify_input(options)
         if options.rectify_only:
             return
@@ -550,9 +548,7 @@ def main(options):
             print("using %s as rectified input" % options.tapas_trips)
             shutil.copyfile(options.tapas_trips, options.rectified)
 
-    if os.path.isfile(options.mapped_trips) and not options.overwrite:
-        options.domap = False
-    if options.domap:
+    if options.domap and (options.overwrite or not os.path.isfile(options.mapped_trips)):
         map_to_edges(options)
         if options.map_and_exit:
             return
@@ -568,9 +564,7 @@ def main(options):
     # IV-Routing
     first_depart = uMax
     last_depart = uMin
-    if os.path.isfile(options.trips_for_dua) and not options.overwrite:
-        options.dotripdefs = False
-    if options.dotripdefs:
+    if options.dotripdefs and (options.overwrite or not os.path.isfile(options.trips_for_dua)):
         if os.path.isfile(options.rectified) and not options.overwrite:
             print("using previous version of %s" % options.rectified)
         suffix = BACKGROUND_TRAFFIC_SUFFIX if options.iteration_dir is None else "0"

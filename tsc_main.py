@@ -237,7 +237,7 @@ def create_new_iteration_folder(options, iteration, destination_path):
             assert iteration == 0, "no earlier iterations present but iteration %s was requested" % iteration
         os.mkdir(iteration_path)
     elif not options.overwrite:
-        print("Warning reusing iteration directory:", iteration_path)
+        print("Warning! Reusing iteration directory:", iteration_path)
     return iteration_path
 
 
@@ -250,12 +250,17 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
     write_status('>> starting all pairs calculation', sim_key, params, conn)
     options.assignment = "bulk"
     options.bidi_taz_file = None
-    options.weights = s2t_miv.aggregate_weights(final_weights, params[SP.od_slices])
+    options.weights = final_weights[:-4] + '_aggregated.xml'
+    if os.path.exists(options.weights) and not options.overwrite:
+        s2t_miv.aggregate_weights(final_weights, params[SP.od_slices], options.weights)
+    else:
+        print("Reusing aggregated weights:", options.weights)
     options.trips_dir = os.path.join(options.iteration_dir, 'allpairs')
     options.rectify = False
     options.scale = 1.0
     options.time_diffusion = 0
     startIdx = 0
+    print("found the following vehicle types:", vTypes)
     for vType in sorted(vTypes):
         begin_second = 0
         for end_hour in params[SP.od_slices]:

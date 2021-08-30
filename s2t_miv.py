@@ -40,8 +40,10 @@ import db_manipulator
 
 
 @benchmark
-def aggregate_weights(weights_in, timeline):
-    with open(weights_in[:-4] + '_aggregated.xml', 'w') as weights_out:
+def aggregate_weights(weights_in, timeline, out_file=None):
+    if out_file is None:
+        out_file = weights_in[:-4] + '_aggregated.xml'
+    with open(out_file, 'w') as weights_out:
         weights_out.write('<meandata_aggregated>\n')
         idx = 0
         samples = collections.defaultdict(float)
@@ -77,7 +79,7 @@ def aggregate_weights(weights_in, timeline):
         if idx < len(timeline):
             write_interval(begin, (timeline[idx] + 24) * 3600)
         weights_out.write('    </interval>\n</meandata_aggregated>\n')
-    return weights_out.name
+    return out_file
 
 
 @benchmark
