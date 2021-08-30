@@ -100,9 +100,11 @@ def get_simulation_requests(options):
             initial_sim_params = get_trips.get_sim_params(conn, options.sim_key, overrides)
             conn.close()
             if initial_sim_params is None:
+                print("Warning! No simulation parameters for sim key", options.sim_key)
                 return []
         if options.iteration is None:
-            destination_path = os.path.join(options.workdir_folder, overrides.get(SP.destination, SP.OPTIONAL[SP.destination]))
+            destination_path = os.path.join(options.workdir_folder,
+                                            overrides.get(SP.destination, SP.OPTIONAL[SP.destination]))
             if os.path.isdir(destination_path):
                 files_folders = common.listdir_skip_hidden(destination_path)
                 existing_iterations = [int(ff[9:]) for ff in files_folders if ff[:9] == 'iteration']
@@ -181,16 +183,14 @@ def create_new_destination_folder(options, sim_key, iteration, params):
     # make sure you are where you think you should be
     if not os.path.exists(options.workdir_folder):
         os.makedirs(options.workdir_folder)
-    assert os.path.isdir(
-        options.workdir_folder), 'workdir "%s" does not exist' % options.workdir_folder
+    assert os.path.isdir(options.workdir_folder), 'workdir "%s" does not exist' % options.workdir_folder
 
     destination_path = os.path.join(options.workdir_folder, destination)
     if iteration == 0:
         # check if a template for the requested sim could be found
         template_path = os.path.join(options.template_folder, template)
 
-        assert os.path.isdir(template_path), "no data for %s in %s" % (
-            sim_key, template_path)
+        assert os.path.isdir(template_path), "no data for %s in %s" % (sim_key, template_path)
 
         # where to put the copy of the template
         if not os.path.isdir(destination_path):
@@ -207,8 +207,7 @@ def create_new_destination_folder(options, sim_key, iteration, params):
             netTemp = None
             for cfg in sorted(glob.glob(os.path.join(template_path, '*.netccfg'))):
                 netTemp = netOut + os.path.basename(cfg)
-                subprocess.call([sumolib.checkBinary("netconvert"), "-c", cfg, "-s", net,
-                                 "-o", netTemp])
+                subprocess.call([sumolib.checkBinary("netconvert"), "-c", cfg, "-s", net, "-o", netTemp])
                 net = netTemp
             restrictions = json.loads(params[SP.net_param])
             if restrictions:
@@ -224,23 +223,21 @@ def create_new_destination_folder(options, sim_key, iteration, params):
 
 def create_new_iteration_folder(options, iteration, destination_path):
     # make sure you are where you think you should be
-    assert os.path.isdir(
-        destination_path), 'destination_folder "%s" does not exist' % destination_path
+    assert os.path.isdir(destination_path), 'destination_folder "%s" does not exist' % destination_path
     files_folders = common.listdir_skip_hidden(destination_path)
 
-    try:
-        max_existing_iteration = max(
-            [int(ff[9:]) for ff in files_folders if ff[:9] == 'iteration'])
-        assert iteration - \
-            1 == max_existing_iteration, "iteration number from db (%s) is not the successor of the last existing iteration (%s)" % (
-                iteration, max_existing_iteration)
-    except ValueError:
-        assert iteration == 0, "no earlier iterations present but iteration %s was requested" % iteration
-    iteration_path = os.path.join(
-        destination_path, "iteration%03i" % iteration)
-    assert not os.path.exists(
-        iteration_path), 'folder exists: %s' % iteration_path
-    os.mkdir(iteration_path)
+    iteration_path = os.path.join(destination_path, "iteration%03i" % iteration)
+    if not os.path.exists(iteration_path):
+        try:
+            max_existing_iteration = max([int(ff[9:]) for ff in files_folders if ff[:9] == 'iteration'])
+            assert iteration - 1 == max_existing_iteration,\
+                   "iteration number from db (%s) is not the successor of the last existing iteration (%s)" % (
+                   iteration, max_existing_iteration)
+        except ValueError:
+            assert iteration == 0, "no earlier iterations present but iteration %s was requested" % iteration
+        os.mkdir(iteration_path)
+    elif not options.overwrite:
+        print("Warning reusing iteration directory:", iteration_path)
     return iteration_path
 
 
@@ -274,14 +271,11 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
             alt_file, _ = t2s.main(options)
             write_status('<<< finished all pairs t2s, routes in %s' %
                          alt_file, sim_key, params, conn)
-            assert os.path.exists(
-                alt_file), "all pairs route file %s could not be found" % alt_file
-            write_status(
-                '>>> starting od result database upload', sim_key, params, conn)
+            assert os.path.exists(alt_file), "all pairs route file %s could not be found" % alt_file
+            write_status('>>> starting od result database upload', sim_key, params, conn)
             startIdx = s2t_miv.upload_all_pairs(conn, all_pair_table, begin_second, end_second, vType,
                                                 final_routes, alt_file, options.net, taz_list, startIdx)
-            write_status(
-                '<<< finished od result database upload', sim_key, params, conn)
+            write_status('<<< finished od result database upload', sim_key, params, conn)
             begin_second = end_second
     write_status('<< finished all pairs calculation', sim_key, params, conn)
 
@@ -297,8 +291,7 @@ def cleanup(save, iteration_dir, sim_key, iteration, params, conn):
             shutil.rmtree(os.path.join(iteration_dir, d))
     if params[SP.del_intermediate].lower() in ["1", "true", "yes"]:
         if iteration + 1 == int(params[SP.max_iteration]):
-            write_status(
-                'deleting all intermediate iterations', sim_key, params, conn)
+            write_status('deleting all intermediate iterations', sim_key, params, conn)
             basedir = os.path.dirname(iteration_dir)
             for i in range(iteration):
                 shutil.rmtree(os.path.join(basedir, "iteration%03i" % i))
@@ -352,8 +345,9 @@ def simulation_request(options, request):
         options.tapas_trips = os.path.join(scenario_basedir, "background_traffic.csv")
         if iteration == 0 and params[SP.add_traffic_table] and conn is not None:
 #            options.modes = ','.join(CAR_MODES)
-            get_trips.write_background_trips(
-                conn, params[SP.add_traffic_table], options.limit, options.tapas_trips, params)
+            if not os.path.exists(options.tapas_trips) or options.overwrite:
+                get_trips.write_background_trips(conn, params[SP.add_traffic_table],
+                                                 options.limit, options.tapas_trips, params)
             options.location_priority_file = os.path.abspath(os.path.join(scenario_basedir, 'location_priorities.xml'))
             get_motorway_access.save_locations(options.location_priority_file, options, params[SP.add_traffic_table])
             options.trips_dir = scenario_basedir
@@ -365,12 +359,9 @@ def simulation_request(options, request):
             options.background_trips = t2s.getSumoTripfileName(scenario_basedir, options.tapas_trips)
         options.modes = params[SP.modes].replace(";", ",")
 
-
         # create a new iteration folder
-        options.iteration_dir = create_new_iteration_folder(
-            options, iteration, scenario_basedir)
-        write_status(">> created dir: %s " %
-                     options.iteration_dir, sim_key, params, conn)
+        options.iteration_dir = create_new_iteration_folder(options, iteration, scenario_basedir)
+        write_status(">> iteration dir: %s " % options.iteration_dir, sim_key, params, conn)
         options.trips_dir = os.path.join(options.iteration_dir, 'trips')
         if not os.path.exists(options.trips_dir):
             os.makedirs(options.trips_dir)
@@ -380,10 +371,9 @@ def simulation_request(options, request):
             options.tapas_trips = options.fake_tripfile
         else:
             assert sim_key is not None, 'no sim_key for db given'
-            options.tapas_trips = get_trips.tripfile_name(
-                sim_key, target_dir=options.trips_dir)
-            get_trips.write_trips(
-                conn, sim_key, options.limit, options.tapas_trips, params)
+            options.tapas_trips = get_trips.tripfile_name(sim_key, target_dir=options.trips_dir)
+            if not os.path.exists(options.tapas_trips) or options.overwrite:
+                get_trips.write_trips(conn, sim_key, options.limit, options.tapas_trips, params)
         print()
         write_status('>> starting t2s using tripfile %s' %
                      options.tapas_trips, sim_key, params, conn)
@@ -392,12 +382,9 @@ def simulation_request(options, request):
         options.scale /= float(params[SP.sample])
         options.script_module = get_script_module(options, params[SP.template])
         final_routes, final_weights = t2s.main(options)
-        write_status('<< finished t2s, routes in %s' %
-                     final_routes, sim_key, params, conn)
-        assert os.path.exists(
-            final_routes), "route file %s could not be found" % final_routes
-        assert os.path.exists(
-            final_weights), "weight dump file %s could not be found" % final_weights
+        write_status('<< finished t2s, routes in %s' % final_routes, sim_key, params, conn)
+        assert os.path.exists(final_routes), "route file %s could not be found" % final_routes
+        assert os.path.exists(final_weights), "weight dump file %s could not be found" % final_weights
 
         # run post processing
         if iteration == int(params[SP.max_iteration]) - 1 and options.script_module is not None:
@@ -409,12 +396,13 @@ def simulation_request(options, request):
         if conn is not None:
             print()
             # upload trip results to db
-            write_status('>> starting trip result database upload', sim_key, params, conn)
-            s2t_miv.upload_trip_results(conn, sim_key, params, final_routes)
-            write_status('<< finished trip result database upload', sim_key, params, conn)
-
-            print()
-            print(sorted(params.items()))
+            _, exists = s2t_miv.check_result_table(conn, sim_key, params)
+            if not exists or options.overwrite:
+                write_status('>> starting trip result database upload', sim_key, params, conn)
+                s2t_miv.upload_trip_results(conn, sim_key, params, final_routes)
+                write_status('<< finished trip result database upload', sim_key, params, conn)
+                print()
+            # run all pair calculations
             run_all_pairs(options, conn, sim_key, params, final_routes, final_weights)
 
         cleanup([final_routes, final_weights], options.iteration_dir,

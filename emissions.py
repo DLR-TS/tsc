@@ -97,7 +97,7 @@ def get_emission_class(model, size, fuel, euro_norm):
 def get_car_types(params, conn, model):
     car_types = {}
     cursor = conn.cursor()
-    assert table_exists(conn, params[SP.car_table]), "Car table does not exist"
+    assert table_exists(conn, params[SP.car_table], "core"), "Car table does not exist"
     command = "SELECT car_id, kba_no, engine_type, emmision_type FROM core.%s WHERE car_key = '%s'" % (
             params[SP.car_table], params[SP.car_fleet_key])
     cursor.execute(command)

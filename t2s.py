@@ -28,6 +28,7 @@ import shutil
 import subprocess
 import collections
 import glob
+import re
 
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
@@ -38,6 +39,7 @@ else:
 import sumolib
 from sumolib.miscutils import working_dir, benchmark, uMin, uMax, euclidean
 from sumolib.options import ArgumentParser
+from sumolib.miscutils import parseTime
 
 import assign
 from constants import TH, THX, SX, SVC, MODE, CAR_MODES, TAPAS_DAY_OVERLAP_MINUTES, BACKGROUND_TRAFFIC_SUFFIX
@@ -58,8 +60,8 @@ def fillOptions(argParser):
     argParser.add_argument("--tapas-trips", help="trip file with information received from tapas (csv)")
     argParser.add_argument("-R", "--no-rectify", action="store_false", dest="rectify", default=True,
                            help="skip rectifying trips")
-    argParser.add_argument("--rectify-only", action="store_true", dest="rectify_only", default=False,
-                           help="skip everything, just rectify the trips ")
+    argParser.add_argument("--rectify-only", action="store_true", default=False,
+                           help="skip everything, just rectify the trips")
     argParser.add_argument("-M", "--no-map", action="store_false", dest="domap", default=True,
                            help="skip mapping trips")
     argParser.add_argument("-T", "--no-tripdefs", action="store_false", dest="dotripdefs", default=True,
@@ -99,10 +101,12 @@ def fillOptions(argParser):
     argParser.add_argument("--shift-departure-hours", type=int, default=24, dest="shiftdeparthours",
                            help="shift departure times by the given number of hours (to handle trips that depart before midnight)")
     argParser.add_argument("-m", "--modes", default=','.join(CAR_MODES),
-                           help="the traffic modes to retrieve as a list of integers (default '%default')")
+                           help="the traffic modes to retrieve as a list of integers (default: '%(default)s')")
     argParser.add_argument('--phemlight-path', metavar="PATH", default=os.path.join(os.environ.get("TSC_DATA", os.path.dirname(os.path.dirname(__file__))), "PHEMlight"),
                            help="Determines where to load PHEMlight \ndefinitions from.")
     argParser.add_argument("--subnet-file", help="specifying the subnet to use to rerun a subnet assignment")
+    argParser.add_argument("-O", "--overwrite", action="store_true", default=False,
+                           help="overwrite existing files instead or reusing them")
 
 
 def getSumoTripfileName(trips_dir, tapas_trips):
@@ -516,10 +520,25 @@ def main(options):
     random.seed(options.seed)  # make runs reproducible
 
     if options.subnet_file:
-        assign.run_subnet(options, 24*3600, 48*3600, glob.glob(os.path.join(options.iteration_dir, "oneshot", "*meso.rou.xml"))[0],
+        routeFile = glob.glob(os.path.join(options.iteration_dir, "oneshot", "*meso.rou.xml"))[0]
+        maxDepart = 0
+        minDepart = 1e400
+        for line in open(routeFile):
+            m = re.match(' *(<person|<vehicle).*depart="([^"]*)"', line)
+            if m:
+                depart = m.group(2)
+                if depart != "triggered":
+                    time = parseTime(depart)
+                    if time < minDepart:
+                        minDepart = time
+                    if time > maxDepart:
+                        maxDepart = time
+        assign.run_subnet(options, minDepart, maxDepart + 3600, routeFile,
                           glob.glob(os.path.join(options.iteration_dir, "oneshot", "aggregated*.xml"))[0], options.subnet_file)
         return
 
+    if os.path.isfile(options.rectified) and not options.overwrite:
+        options.rectify = False
     if options.rectify:
         rectify_input(options)
         if options.rectify_only:
@@ -531,6 +550,8 @@ def main(options):
             print("using %s as rectified input" % options.tapas_trips)
             shutil.copyfile(options.tapas_trips, options.rectified)
 
+    if os.path.isfile(options.mapped_trips) and not options.overwrite:
+        options.domap = False
     if options.domap:
         map_to_edges(options)
         if options.map_and_exit:
@@ -541,26 +562,28 @@ def main(options):
         else:
             if options.iteration_dir is not None:
                 print("Cannot continue with assignment because %s is missing" %
-                        options.mapped_trips)
+                      options.mapped_trips)
                 return
 
     # IV-Routing
     first_depart = uMax
     last_depart = uMin
+    if os.path.isfile(options.trips_for_dua) and not options.overwrite:
+        options.dotripdefs = False
     if options.dotripdefs:
+        if os.path.isfile(options.rectified) and not options.overwrite:
+            print("using previous version of %s" % options.rectified)
         suffix = BACKGROUND_TRAFFIC_SUFFIX if options.iteration_dir is None else "0"
         first_depart, last_depart = create_sumo_tripdefs(options, options.scale, suffix, {})
     else:
         if os.path.isfile(options.trips_for_dua):
             for trip in sumolib.output.parse_fast(options.trips_for_dua, 'trip', ['depart']):
-                first_depart = min(first_depart, float(trip.depart))
-                last_depart = max(last_depart, float(trip.depart))
-            print("using previous version of %s, vehicles starting between %s and %s" % (
-                options.trips_for_dua, first_depart, last_depart))
-
+                first_depart = min(first_depart, parseTime(trip.depart))
+                last_depart = max(last_depart, parseTime(trip.depart))
+            print("using previous version of %s, vehicles starting between %s and %s" %
+                  (options.trips_for_dua, first_depart, last_depart))
         else:
-            print("Cannot continue with assignment because %s is missing" %
-                    options.trips_for_dua)
+            print("Cannot continue with assignment because %s is missing" % options.trips_for_dua)
             return
 
     if options.iteration_dir is None:

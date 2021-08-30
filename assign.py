@@ -133,7 +133,7 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
     oneshot_routes = abspath_in_dir(
         oneshot_dir, 'vehroutes_%s.rou.xml' % suffix)
     oneshot_weights = abspath_in_dir(oneshot_dir, 'aggregated_%s.xml' % suffix)
-    if os.path.exists(oneshot_routes):
+    if os.path.exists(oneshot_routes) and not options.overwrite:
         print("Route file", oneshot_routes, "exists! Skipping assignment.")
         return oneshot_routes, oneshot_weights
     aggregation = 1800
@@ -378,7 +378,7 @@ def run_subnet(options, first_depart, last_depart, routes, weights, subnet_file)
     cutOpts = [subnet_file, routes, "--orig-net", options.net_file, "-b", "-o", tmpRoutes]
     ptFiles = sorted(glob.glob(os.path.join(os.path.dirname(subnet_file), "pt*.add.xml")))
     if ptFiles:
-        vehicleFiles = ",".join([f for f in ptFiles if f.endswith("vehicles.add.xml")])
+        vehicleFiles = ",".join([f for f in ptFiles if f.startswith("pt_vehicles")])
         stopFiles = ",".join([f for f in ptFiles if f not in vehicleFiles])
         routePrefix = os.path.join(os.path.dirname(routes), "pt")
         cutOpts += ["-a", stopFiles, "--pt-input", vehicleFiles, "--pt-output", routePrefix + "_vehicles.add.xml", "--stops-output", routePrefix + "_stops.add.xml"]
@@ -392,8 +392,9 @@ def run_subnet(options, first_depart, last_depart, routes, weights, subnet_file)
     subnet = os.path.basename(subnet_file)[:-8]
     subOpt.bidi_taz_file = subOpt.net_file[:-8] + '_bidi.taz.xml'
     subOpt.vtype_file = subOpt.net_file[:-8] + '_vtypes.xml'
-    if ptFiles:
-        subOpt.vtype_file += "," + os.path.abspath(ptFiles[0])
+    ptTypeFiles = glob.glob(os.path.join(os.path.dirname(subnet_file), "pt*types.xml"))
+    if ptFiles and ptTypeFiles:
+        subOpt.vtype_file += "," + os.path.abspath(ptTypeFiles[0])
     subOpt.background_trips = ""
 #    addOpt = "--max-depart-delay 1 --max-num-vehicles 9000 --device.rerouting.adaptation-steps 360 --device.rerouting.probability 0.6 "
     addOpt = "--max-depart-delay 1 --device.rerouting.probability 0.6 "

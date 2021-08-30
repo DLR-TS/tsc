@@ -159,10 +159,15 @@ def _parse_vehicle_info_taz(routes, start, end, vType):
     return stats
 
 
+def check_result_table(conn, key, params):
+    table = '%s_%s' % (params[SP.trip_output], key)
+    return table, db_manipulator.table_exists(conn, table, 'temp')
+
+
 @benchmark
 def upload_trip_results(conn, key, params, routes, limit=None):
     tripstats = _parse_vehicle_info(routes)
-    table = '%s_%s' % (params[SP.trip_output], key)
+    table, exists = check_result_table(conn, key, params)
     if conn is None:
         print("Warning! No database connection, writing trip info to file %s.csv." % table)
         print('\n'.join(map(str, tripstats[:limit])), file=open(table + ".csv", "w"))

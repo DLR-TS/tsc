@@ -72,7 +72,6 @@ def get_polys(server_options, table='quesadillas.zonierung_d_modell', net=None):
 
 def main():
     options = parse_args()
-#    assert db_manipulator.table_exists(conn, options.taztable), "No taz table (%s) found" % options.taztable
     with open(options.output, "w") as out:
         for tazid, shapes in get_polys(options):
             for idx, shape in enumerate(shapes):

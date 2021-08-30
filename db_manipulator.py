@@ -76,12 +76,12 @@ def get_conn(options_or_config_file):
         return None
 
 
-def table_exists(conn, table):
+def table_exists(conn, table, schema="public"):
     cursor = conn.cursor()
     if isinstance(conn, sqlite3.Connection):
-        cursor.execute("SELECT name FROM public.sqlite_master WHERE type='table' AND name=? UNION SELECT name FROM core.sqlite_master WHERE type='table' AND name=?", (table, table))
+        cursor.execute("SELECT name FROM %s.sqlite_master WHERE type='table' AND name=?" % schema, (table,))
     else:
-        cursor.execute("SELECT TRUE FROM pg_class WHERE relname='%s' AND relkind='r'" % table)
+        cursor.execute("SELECT table_name FROM information_schema.tables WHERE table_schema=%s AND table_name=%s", (schema, table))
     return len(cursor.fetchall()) > 0
 
 
