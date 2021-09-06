@@ -169,7 +169,7 @@ def write_trips(conn, sim_key, limit, tripfile, params):
 
 
 def write_background_trips(conn, trip_table, limit, tripfile, params):
-    assert table_exists(conn, trip_table), "No trip table (%s) found" % trip_table
+    assert table_exists(conn, trip_table, "core"), "No trip table (%s) found" % trip_table
     fieldnames = TH.KEEP_COLUMNS
     columns = list(fieldnames)  # make a copy
     columns[fieldnames.index(TH.vtype)] = "cars.vtype_id AS %s" % TH.vtype
