@@ -50,7 +50,7 @@ def getOptions():
     argParser.add_argument("-v", "--verbose", action="store_true",
                            default=False, help="tell me what you are doing")
     argParser.add_argument("-p", "--pre", default=os.path.join(os.getcwd(), 'scenario_pre'),
-                           help="input dir with pre scenarios")
+                           help="input directories with pre scenarios")
     argParser.add_argument("-t", "--templates", default=os.path.join(os.getcwd(), 'scenario_templates'),
                            help="output dir with scenario templates")
     argParser.add_argument("-s", "--scenarios",
@@ -67,22 +67,23 @@ def getOptions():
 
 
 def evaluate_pre_scen(options):
-    for d in sorted(listdir_skip_hidden(options.pre)):
-        if os.path.isdir(os.path.join(options.pre, d)):
-            if options.scenarios is None or d in options.scenarios.split(","):
-                yield d
+    for p in options.pre.split(","):
+        for d in sorted(listdir_skip_hidden(p)):
+            if os.path.isdir(os.path.join(options.pre, d)):
+                if options.scenarios is None or d in options.scenarios.split(","):
+                    yield os.path.join(p, d)
 
 
-def create_template_folder(scenario_name, options):
+def create_template_folder(scenario_pre_dir, options):
+    scenario_name = os.path.basename(scenario_pre_dir)
     # create (template) subfolder in scenarios for the 'selected scenarios'
     if options.verbose:
         print("creating template dir for", scenario_name)
     # check if the directory is existing (which means there is old data)
-    scenario_pre_dir = os.path.join(options.pre, scenario_name)
     scenario_template_dir = os.path.join(options.templates, scenario_name)
-    if os.path.isdir(scenario_template_dir):
-        print("Warning! Folder '%s' does exist and may contain old data." %
-              scenario_name)
+    dir_exists = os.path.isdir(scenario_template_dir)
+    if dir_exists:
+        print("Warning! Folder '%s' does exist and may contain old data." % scenario_name)
     else:
         # make a new template folder
         os.makedirs(scenario_template_dir)
@@ -170,7 +171,9 @@ def create_template_folder(scenario_name, options):
     if os.path.exists(setup_file):
         subprocess.call(["python", setup_file, scenario_pre_dir, scenario_template_dir])
     if not os.path.exists(net_path):
-        print("could not find network '%s' for %s" % (net_path, scenario_name))
+        print("Could not find network '%s' for %s, cleaning up!" % (net_path, scenario_name))
+        if not dir_exists:
+            shutil.rmtree(scenario_template_dir)
         return
 
     net = None
@@ -285,9 +288,10 @@ if __name__ == "__main__":
         shutil.rmtree(options.templates)
 
     script_folders = []
-    for folder in evaluate_pre_scen(options):
+    for path in evaluate_pre_scen(options):
+        folder = os.path.basename(path)
         print("----- generating template %s" % folder)
-        if create_template_folder(folder, options):
+        if create_template_folder(path, options):
             script_folders.append(folder)
     if script_folders:
         with open(os.path.join(options.templates, "scripts.py"), 'w') as scriptpy:
