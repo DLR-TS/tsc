@@ -468,7 +468,7 @@ def create_sumo_tripdefs(options, scale, suffix, vtype_map):
             usable_modes.append("car")
         if mode in (MODE.public, MODE.car_public, MODE.bicycle_public):
             usable_modes.append("public")
-        if mode in (MODE.sharing):
+        if mode in (MODE.sharing,):
             usable_modes.append("taxi")
         mode_string = (' modes="%s"' % " ".join(usable_modes)) if usable_modes else ""
         if mode in CAR_MODES:
