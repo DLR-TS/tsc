@@ -28,13 +28,16 @@ import glob
 from xml.sax import parse
 
 if 'SUMO_HOME' in os.environ:
-    sys.path += [os.path.join(os.environ['SUMO_HOME'], 'tools'), os.path.join(os.environ['SUMO_HOME'], 'tools', 'import', 'gtfs')]
+    sys.path += [os.path.join(os.environ['SUMO_HOME'], 'tools'),
+                 os.path.join(os.environ['SUMO_HOME'], 'tools', 'import', 'gtfs'),
+                 os.path.join(os.environ['SUMO_HOME'], 'tools', 'import', 'osm')]
 else:
     sys.exit("please declare environment variable 'SUMO_HOME'")
 import sumolib  # noqa
 import edgesInDistricts  # noqa
 import generateBidiDistricts  # noqa
 import gtfs2pt  # noqa
+import osmTaxiStop  # noqa
 
 import db_manipulator
 import import_navteq
@@ -126,14 +129,14 @@ def create_template_folder(scenario_pre_dir, options):
                 navteq_dlr_zip = os.path.join(navteq_dlr_dir, zip_list[0])
 
                 print("starting to import navteq ...")
-                configs = sorted(glob.glob(os.path.join(options.pre, scenario_name, 'template_gen*.netccfg')))
+                configs = sorted(glob.glob(os.path.join(scenario_pre_dir, 'template_gen*.netccfg')))
                 importOptions = import_navteq.get_options(
                     ['-c', ",".join(configs), '-o', tmp_output_dir, '-v', navteq_dlr_zip])
                 import_navteq.importNavteq(importOptions)
 
             if os.path.isdir(osm_dir):
                 print("starting to import osm ...")
-                configs = sorted(glob.glob(os.path.join(options.pre, scenario_name, 'template_gen*.netccfg')))
+                configs = sorted(glob.glob(os.path.join(scenario_pre_dir, 'template_gen*.netccfg')))
                 netconvert = sumolib.checkBinary('netconvert')
 
                 for idx, config in enumerate(configs):
@@ -150,7 +153,15 @@ def create_template_folder(scenario_pre_dir, options):
                         sys.stdout.flush()
                     subprocess.check_call(netconvert_call)
 
-                poly_config = os.path.join(options.pre, scenario_name, 'template_gen.polycfg')
+                if configs:
+                    osmInput = glob.glob(os.path.join(osm_dir, "*.osm.xml*"))
+                    if osmInput:
+                        osmTaxiStop.main(osmTaxiStop.parseArgs(["-s", osmInput[0], "-t", "busStop",
+                                                                "-n", os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % idx),
+                                                                "-o", os.path.join(scenario_template_dir, "fleet_stops.add.xml"),
+                                                                "-f", os.path.join(scenario_template_dir, "fleet.add.xml")]))
+
+                poly_config = os.path.join(scenario_pre_dir, 'template_gen.polycfg')
                 if os.path.isfile(poly_config):
                     polyconvert = sumolib.checkBinary('polyconvert')
                     polyconvertCmd = [polyconvert, '-c', poly_config,
