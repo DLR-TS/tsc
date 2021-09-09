@@ -378,7 +378,7 @@ def run_subnet(options, first_depart, last_depart, routes, weights, subnet_file)
     cutOpts = [subnet_file, routes, "--orig-net", options.net_file, "-b", "-o", tmpRoutes]
     ptFiles = sorted(glob.glob(os.path.join(os.path.dirname(subnet_file), "pt*.add.xml")))
     if ptFiles:
-        vehicleFiles = ",".join([f for f in ptFiles if f.startswith("pt_vehicles")])
+        vehicleFiles = ",".join([f for f in ptFiles if os.path.basename(f).startswith("pt_vehicles")])
         stopFiles = ",".join([f for f in ptFiles if f not in vehicleFiles])
         routePrefix = os.path.join(os.path.dirname(routes), "pt")
         cutOpts += ["-a", stopFiles, "--pt-input", vehicleFiles, "--pt-output", routePrefix + "_vehicles.add.xml", "--stops-output", routePrefix + "_stops.add.xml"]
