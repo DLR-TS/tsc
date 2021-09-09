@@ -250,12 +250,12 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
     write_status('>> starting all pairs calculation', sim_key, params, conn)
     options.assignment = "bulk"
     options.bidi_taz_file = None
-    options.weights = final_weights[:-4] + '_aggregated.xml'
-    if os.path.exists(options.weights) and not options.overwrite:
+    options.trips_dir = os.path.join(options.iteration_dir, 'allpairs')
+    options.weights = os.path.join(options.trips_dir, os.path.basename(final_weights))
+    if not os.path.exists(options.weights) or options.overwrite:
         s2t_miv.aggregate_weights(final_weights, params[SP.od_slices], options.weights)
     else:
         print("Reusing aggregated weights:", options.weights)
-    options.trips_dir = os.path.join(options.iteration_dir, 'allpairs')
     options.rectify = False
     options.scale = 1.0
     options.time_diffusion = 0

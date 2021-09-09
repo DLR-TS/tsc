@@ -43,6 +43,8 @@ import db_manipulator
 def aggregate_weights(weights_in, timeline, out_file=None):
     if out_file is None:
         out_file = weights_in[:-4] + '_aggregated.xml'
+    elif not os.path.isdir(os.path.dirname(out_file)):
+        os.makedirs(os.path.dirname(out_file))
     with open(out_file, 'w') as weights_out:
         weights_out.write('<meandata_aggregated>\n')
         idx = 0
