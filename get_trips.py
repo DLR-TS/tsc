@@ -152,18 +152,18 @@ def write_trips(conn, sim_key, limit, tripfile, params):
         columns[fieldnames.index(TH.vtype)] = "cars.vtype_id AS %s" % TH.vtype
         command = """SELECT %s FROM public.%s trips, core.%s taz1, core.%s taz2, core.%s cars
                  WHERE trips.%s = taz1.taz_id AND trips.%s = taz2.taz_id AND mode in (%s) AND
-                       cars.car_key = '%s' AND cars.car_id = trips.car_type
+                       cars.car_key = '%s' AND cars.car_id = trips.car_type %s
                  ORDER BY p_id, hh_id, start_time_min
                  %s""" % (','.join(columns), trip_table, taz_table, taz_table, params[SP.car_table],
-                          TH.taz_id_start, TH.taz_id_end, modes, params[SP.car_fleet_key], limit)
+                          TH.taz_id_start, TH.taz_id_end, modes, params[SP.car_fleet_key], params[SP.trip_filter], limit)
     else:
         # TODO fix vehicle type
         columns[fieldnames.index(TH.vtype)] = "'passenger' AS %s" % TH.vtype
         command = """SELECT %s FROM public.%s trips, core.%s taz1, core.%s taz2
-                     WHERE trips.%s = taz1.taz_id AND trips.%s = taz2.taz_id AND mode in (%s)
+                     WHERE trips.%s = taz1.taz_id AND trips.%s = taz2.taz_id AND mode in (%s) %s
                      ORDER BY p_id, hh_id, start_time_min
                      %s""" % (','.join(columns), trip_table, taz_table, taz_table,
-                              TH.taz_id_start, TH.taz_id_end, modes, limit)
+                              TH.taz_id_start, TH.taz_id_end, modes, params[SP.trip_filter], limit)
     fetch_and_write(conn, command, tripfile, fieldnames)
     return command
 

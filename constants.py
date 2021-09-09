@@ -156,6 +156,7 @@ class SP:
     od_slices = 'SLICE'
     sharing_fleet_size = 'SHARING_FLEET_SIZE'
     sharing_vehicle_capacity = 'SHARING_VEHICLE_CAPACITY'
+    trip_filter = 'TRIP_FILTER'
     KEYS = [template, destination, modes, trip_table_prefix, od_output,
             iteration, max_iteration, status, taz_table, representatives,
             od_slice_table, od_slice_key]
@@ -174,7 +175,8 @@ class SP:
                 add_traffic_table: "berlin_grundlast_ref2010_d",
                 od_slices: [24],
                 sharing_fleet_size: "100",
-                sharing_vehicle_capacity: "5"
+                sharing_vehicle_capacity: "5",
+                trip_filter: ""
                 }
 
 # logging message types for the database
