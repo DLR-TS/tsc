@@ -1,5 +1,5 @@
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
-    <flow id="Siemensbahn1" begin="0" period="600" type="train" line="SB1">
+    <flow id="Siemensbahn1" begin="0" end="3:0:0:0" period="600" type="train" line="SB1">
         <route edges="SBHF1 SB09 SBDS1 SB01 SBGF1 SB03 SBSS1 SB05 SBWW1 SB07 SBJH1"/>
         <stop busStop="SBHF1" duration="10" until="120"/>
         <stop busStop="SBDS1" duration="10" until="240"/>
@@ -8,7 +8,7 @@
         <stop busStop="SBWW1" duration="10" until="600"/>
         <stop busStop="SBJH1" duration="10" until="720"/>
     </flow>
-    <flow id="Siemensbahn2" begin="0" period="600" type="train" line="SB2">
+    <flow id="Siemensbahn2" begin="0" end="3:0:0:0" period="600" type="train" line="SB2">
         <route edges="SBJH2 SB08 SBWW2 SB06 SBSS2 SB04 SBGF2 SB02 SBDS2 SB10 SBHF2"/>
         <stop busStop="SBJH2" duration="10" until="120"/>
         <stop busStop="SBWW2" duration="10" until="240"/>
