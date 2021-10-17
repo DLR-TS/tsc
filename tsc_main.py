@@ -52,7 +52,8 @@ import db_manipulator
 import get_trips
 import t2s
 import s2t_miv
-from constants import SP, CAR_MODES
+import s2t_pt
+from constants import SP, CAR_MODES, MODE
 import get_motorway_access
 
 DEFAULT_SIMKEY = "berlin_2010"
@@ -282,6 +283,16 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
                                                 final_routes, alt_file, options.net, taz_list, startIdx)
             write_status('<<< finished od result database upload', sim_key, params, conn)
             begin_second = end_second
+    options.tapas_trips = get_trips.tripfile_name("%s_public" % (get_trips.ALL_PAIRS), target_dir=options.trips_dir)
+    taz_list = get_trips.write_all_pairs(conn, "public", 31 * 3600, options.limit, options.tapas_trips, params, options.seed, MODE.public)
+    write_status('>>> starting all pairs t2s using tripfile %s' % options.tapas_trips, sim_key, params, conn)
+    rou_file, _ = t2s.main(options)
+    write_status('<<< finished all pairs t2s, routes in %s' % rou_file, sim_key, params, conn)
+    assert os.path.exists(rou_file), "all pairs route file %s could not be found" % rou_file
+    write_status('>>> starting od result database upload', sim_key, params, conn)
+    startIdx = s2t_pt.upload_all_pairs(conn, all_pair_table, 31 * 3600, 32 * 3600,
+                                       final_routes, rou_file, options.net, taz_list, startIdx)
+    write_status('<<< finished od result database upload', sim_key, params, conn)
     write_status('<< finished all pairs calculation', sim_key, params, conn)
 
 

@@ -111,3 +111,20 @@ def csv_sequence_generator(csvfile, fields, assertUniqe=False):
 def build_uid(row, clone_idx=0):
     # build unique id for each trip
     return '%s_%s_%s_%s' % (row[constants.TH.person_id], row[constants.TH.household_id], int(row[constants.TH.depart_minute]), clone_idx)
+
+def parseTaz(moving):
+    fromTaz = None
+    toTaz = None
+    if moving.param is not None:
+        for p in moving.param:
+            if p.key == "taz_id_start":
+                fromTaz = int(p.value)
+            if p.key == "taz_id_end":
+                toTaz = int(p.value)
+    if fromTaz is None:
+        if moving.fromTaz is None:
+            print(moving)
+        fromTaz = int(moving.fromTaz)
+    if toTaz is None:
+        toTaz = int(moving.toTaz)
+    return fromTaz, toTaz

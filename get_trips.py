@@ -181,12 +181,12 @@ def write_background_trips(conn, trip_table, limit, tripfile, params):
     return command
 
 
-def write_all_pairs(conn, vType, depart, limit, tripfile, params, seed):
+def write_all_pairs(conn, vType, depart, limit, tripfile, params, seed, mode=MODE.car):
     random.seed(seed)
     fieldnames = TH.KEEP_COLUMNS + [THX.depart_second]
     template = list(fieldnames)
     template[fieldnames.index(TH.depart_minute)] = str(depart // 60)
-    template[fieldnames.index(TH.mode)] = MODE.car
+    template[fieldnames.index(TH.mode)] = mode
     template[fieldnames.index(TH.duration)] = '0'
     template[fieldnames.index(TH.activity_duration_minutes)] = '0'
     template[fieldnames.index(TH.car_type)] = '-1'

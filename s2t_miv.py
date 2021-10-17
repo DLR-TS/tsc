@@ -34,9 +34,10 @@ from sumolib.miscutils import Statistics, benchmark, uMin, uMax
 from sumolib.net import readNet
 from sumolib.options import ArgumentParser
 
-from common import csv_sequence_generator
+from common import csv_sequence_generator, parseTaz
 from constants import TH, THX, SX, SP, BACKGROUND_TRAFFIC_SUFFIX
 import db_manipulator
+import s2t_pt
 
 
 @benchmark
@@ -95,57 +96,16 @@ def _parse_vehicle_info(routes):
             length = float(v.routeLength) if v.routeLength else 0
             sumoTime.add(duration, v.id)
             sumoDist.add(length, v.id)
+            dataTuple = tuple(v.id.split('_'))
             if v.name == "vehicle":
-                stats.append(tuple(v.id.split('_')) + ("{0,0,%s}" % duration, "{0,0,%s}" % length))
+                dataTuple += ((0, 0, duration), (0, 0, length))
             else:
-                walkLength = [0, 0]
-                walkDuration = [0, 0]
-                rideLength = 0
-                rideEnd = float(v.depart)
-                idx = 0
-                initWait = 0
-                transfers = 0
-                transferTime = 0
-                for stage in v.getChildList():
-                    if stage.name == "walk":
-                        walkLength[idx] += float(stage.routeLength)
-                        walkDuration[idx] = float(stage.exitTimes.split()[-1]) - rideEnd
-                    elif stage.name == "ride":
-                        if idx == 0:
-                            idx = 1
-                            initWait = float(stage.depart) - float(v.depart) - walkDuration[0]
-                        else:
-                            transfers += 1
-                            transferTime += float(stage.depart) - rideEnd
-                        rideEnd = float(stage.ended)
-                        rideLength += float(stage.routeLength) + walkLength[1]
-                        walkLength[1] = 0  # reset from intermediate walks
-                if idx == 0:
-                    stats.append(tuple(v.id.split('_')) + ("{%s}" % duration, "{%s}" % walkLength[0]))
-                else:
-                    dur = (duration - sum(walkDuration) - initWait, walkDuration[0], initWait, walkDuration[1], transferTime)
-                    length = (rideLength, walkLength[0], walkLength[1], transfers)
-                    stats.append(tuple(v.id.split('_')) + ("{0,0,0,0,%s,%s,%s,%s,%s}" % dur, "{0,0,0,0,%s,%s,0,%s,%s}" % length))
+                dataTuple += s2t_pt.parse_person(v)
+            stats.append(dataTuple)
     print("Parsed results for %s vehicles and persons" % len(stats))
     print(sumoTime)
     print(sumoDist)
     return stats
-
-
-def _parseTaz(vehicle):
-    fromTaz = None
-    toTaz = None
-    if vehicle.param is not None:
-        for p in vehicle.param:
-            if p.key == "taz_id_start":
-                fromTaz = int(p.value)
-            if p.key == "taz_id_end":
-                toTaz = int(p.value)
-    if fromTaz is None:
-        fromTaz = int(vehicle.fromTaz)
-    if toTaz is None:
-        toTaz = int(vehicle.toTaz)
-    return fromTaz, toTaz
 
 
 @benchmark
@@ -157,8 +117,7 @@ def _parse_vehicle_info_taz(routes, start, end, vType):
                 depart = float(v.depart) % (24 * 3600)
                 # vType is something like "passenger" and v.type "passenger_PHEMlight/PC_G_EU3"
                 if depart >= start and depart < end and v.type is not None and v.type.startswith(vType):
-                    fromTaz, toTaz = _parseTaz(v)
-                    stats.append((fromTaz, toTaz, 0, float(v.arrival) - float(v.depart), float(v.routeLength)))
+                    stats.append(parseTaz(v) + (0, float(v.arrival) - float(v.depart), float(v.routeLength)))
     print("Parsed taz results for %s vehicles" % len(stats))
     return stats
 
@@ -214,7 +173,7 @@ def _get_all_pair_stats(roualt_file, net):
         sumoDist.add(distance, vehicle.id)
         if sumoDist.count() % 10000 == 0:
             print("parsed %s taz representatives" % sumoDist.count())
-        fromTaz, toTaz = _parseTaz(vehicle)
+        fromTaz, toTaz = parseTaz(vehicle)
         yield fromTaz, toTaz, 1, duration, distance
     print(sumoTime)
     print(sumoDist)

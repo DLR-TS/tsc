@@ -238,28 +238,34 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
 @benchmark
 def run_bulk(options, first_depart, last_depart, trip_file, weight_file):
     base = trip_file[:-4]
-    route_file = base + ".rou.xml"
+    input_files = [trip_file] + list(sorted(glob.glob(os.path.join(os.path.dirname(options.net_file), 'pt*.xml'))))
+    route_file = base + ".rou.xml.gz"
+    if os.path.exists(route_file) and not options.overwrite:
+        print("Route file", route_file, "exists! Skipping computation.")
+        return route_file, weight_file
     duarouter_args = [
         sumolib.checkBinary('duarouter'),
         '--net-file', options.net_file,
-        '--trip-files', trip_file,
+        '--route-files', ",".join(input_files),
         '--additional-files', options.vtype_file,
         '--routing-algorithm', 'astar',
-        '--routing-threads', '8',
+        '--routing-threads', '16',
         '--bulk-routing',
         '--output', route_file,
+        '--exit-times',
+        '--route-length',
         '--ignore-errors',
         '--verbose'
     ]
     if weight_file is None:
         print("computing routes for all TAZ-pairs within the empty network")
     else:
-        print("computing routes for all TAZ-pairs using weights from %s" %
-              weight_file)
+        print("computing routes for all TAZ-pairs using weights from %s" % weight_file)
         duarouter_args += ['--weights', weight_file]
+    subprocess.check_call(duarouter_args + ["--save-configuration", base + ".duarcfg"])
     with open(base + '.log', 'w') as f:
-        subprocess.check_call(duarouter_args, stderr=f, stdout=f)
-    return base + ".rou.alt.xml", weight_file
+        subprocess.check_call([sumolib.checkBinary('duarouter'), base + ".duarcfg"], stderr=f, stdout=f)
+    return route_file, weight_file
 
 
 @benchmark
