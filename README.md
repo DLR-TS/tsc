@@ -25,7 +25,9 @@ You need to have a working SUMO installation and your environment variable SUMO_
 4. (optional Testfield Lower Saxony) `git clone https://github.com/DLR-TS/sumo-scenarios` and `./install_scenario_templates.py -p ../sumo-scenarios/`
 
 ## Running
-1. Prepare the credentials file  postgres.tsccfg as described as in section Installing
+1. Prepare the credentials file postgres.tsccfg as described in section Installing
 2. Run `./tsc_main.py -c postgres.tsccfg --daemon` 
 
-The `--daemon`-flag makes tsc loop to look for new sims...
+The `--daemon`-flag lets the tsc loop look for new simulation requests. Alternatively you can run a specific simulation key like this: `./tsc_main.py --sim-key 2021y_06m_04d_11h_04m_34s_855ms -c postgres.tsccfg`.
+
+If you want to override certain simulation parameters on the command line use the option `--sim-param` for instance `--sim-param SUMO_TEMPLATE_FOLDER:siemensbahn,SUMO_DESTINATION_FOLDER:siemensbahn,SUMO_MODES:'0;1;2;3;5;6;261;517'`. For a list of available parameters have a look at the relevant database table `public.simulation_parameters` or at constants.py (the SP class).
