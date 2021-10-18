@@ -25,8 +25,11 @@ import subprocess
 import multiprocessing
 import time
 
-import psycopg2
 import sqlite3
+try:
+    import psycopg2
+except ImportError:
+    print("Warning! Could not load psycopg2, postgres database operations won't work.", file=sys.stderr)
 
 sys.path.append(os.path.join(os.environ['SUMO_HOME'], 'tools'))
 from sumolib.options import ArgumentParser

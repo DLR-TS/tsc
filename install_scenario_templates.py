@@ -52,7 +52,7 @@ def getOptions():
                            help="remove any old data before processing")
     argParser.add_argument("-v", "--verbose", action="store_true",
                            default=False, help="tell me what you are doing")
-    argParser.add_argument("-p", "--pre", default=os.path.join(os.getcwd(), 'scenario_pre'),
+    argParser.add_argument("-p", "--pre", default=os.path.join(os.getcwd(), 'data'),
                            help="input directories with pre scenarios")
     argParser.add_argument("-t", "--templates", default=os.path.join(os.getcwd(), 'scenario_templates'),
                            help="output dir with scenario templates")
