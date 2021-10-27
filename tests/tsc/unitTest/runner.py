@@ -1,7 +1,7 @@
 import os
 import sys
 import unittest
-tscRoot = os.environ.get("TSC_HOME", os.path.join(os.environ["SIP_HOME"]))
+tscRoot = os.environ.get("TSC_HOME", os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))))
 sys.path.append(tscRoot)
 import get_trips
 

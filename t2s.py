@@ -102,8 +102,6 @@ def fillOptions(argParser):
                            help="shift departure times by the given number of hours (to handle trips that depart before midnight)")
     argParser.add_argument("-m", "--modes", default=','.join(CAR_MODES),
                            help="the traffic modes to retrieve as a list of integers (default: '%(default)s')")
-    argParser.add_argument('--phemlight-path', metavar="PATH", default=os.path.join(os.environ.get("TSC_DATA", os.path.dirname(os.path.dirname(__file__))), "PHEMlight"),
-                           help="Determines where to load PHEMlight \ndefinitions from.")
     argParser.add_argument("--subnet-file", help="specifying the subnet to use to rerun a subnet assignment")
     argParser.add_argument("-O", "--overwrite", action="store_true", default=False,
                            help="overwrite existing files instead or reusing them")

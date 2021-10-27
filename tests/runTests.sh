@@ -1,12 +1,9 @@
 #!/bin/bash
 #Bash script for the test run.
-#sets environment variables respecting SUMO_BINDIR and starts texttest
+#sets environment variables and starts texttest
 
 if test x"$SUMO_HOME" = x; then
   export SUMO_HOME="$HOME/sumo"
-fi
-if test x"$SIP_HOME" = x; then
-  export SIP_HOME="$HOME/SiP"
 fi
 export ACTIVITYGEN_BINARY="$SUMO_HOME/bin/activitygen$SUFFIX"
 export DFROUTER_BINARY="$SUMO_HOME/bin/dfrouter$SUFFIX"
@@ -21,8 +18,7 @@ export POLYCONVERT_BINARY="$SUMO_HOME/bin/polyconvert$SUFFIX"
 export SUMO_BINARY="$SUMO_HOME/bin/sumo$SUFFIX"
 export GUISIM_BINARY="$SUMO_HOME/bin/sumo-gui$SUFFIX"
 export TSC_HOME=$(dirname $(dirname $(realpath $0)))
-export TEXTTEST_HOME="$SIP_HOME/tests"
-export TSC_DATA="$SIP_HOME/projects/tapas"
+export TEXTTEST_HOME="$TSC_HOME/tests"
 
 if which texttest &> /dev/null; then
   texttest "$@"

@@ -14,6 +14,7 @@ set MAROUTER_BINARY=%SUMO_HOME%\bin\marouter%1.exe
 set EMISSIONSDRIVINGCYCLE_BINARY=%SUMO_HOME%\bin\emissionsDrivingCycle%1.exe
 set EMISSIONSMAP_BINARY=%SUMO_HOME%\bin\emissionsMap%1.exe
 set PYTHON=python
+set TSC_HOME=%CD%\..
 
 SET TEXTTESTPY=texttest.py
 python -c "import texttestlib"

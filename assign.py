@@ -103,10 +103,8 @@ def run_duaiterate(options, first_depart, last_depart, trip_file, weight_file, m
             'sumo--meso-junction-control.limited',
         ]
     params += [
-        'sumo--phemlight-path', options.phemlight_path,
         # city traffic has shorter headways than highway traffic...
         'sumo--max-depart-delay', '300',
-        'duarouter--phemlight-path', options.phemlight_path,
         'duarouter--additional-files', ','.join(additional),
         'duarouter--vtype-output', '/dev/null',
         'duarouter--routing-threads', '16',
@@ -208,14 +206,11 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
         <end value="%s"/>
         %s
 
-        <phemlight-path value="%s"/>
-
 </configuration>""" % (options.net_file, ",".join(trips),
                        ','.join(additional),
                        oneshot_routes, suffix,
                        begin, last_depart + TAPAS_EXTRA_TIME,
-                       addOpt, options.phemlight_path
-                       )
+                       addOpt)
         )
 
     oneshotcfg = abspath_in_dir(oneshot_dir, '%s.sumocfg' % suffix)

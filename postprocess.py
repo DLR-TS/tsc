@@ -190,11 +190,8 @@ def run_pedestrian_sumo(options, routefile):
 
         <begin value="%s"/>
         <end value="%s"/>
-
-        <phemlight-path value="%s"/>
 </configuration>""" % (options.net_file, personfile,
-                       options.vtype_file, sim_start, sim_end + TAPAS_EXTRA_TIME,
-                       options.phemlight_path)
+                       options.vtype_file, sim_start, sim_end + TAPAS_EXTRA_TIME)
         )
     return call([sumolib.checkBinary("sumo"), "-c", sumocfg])
 
@@ -213,8 +210,7 @@ def run_trajectory_sumo(options, net_file, route_file):
 
         <no-step-log value="true"/>
         <log-file value="trajectories.sumo.log"/>
-        <phemlight-path value="%s"/>
-</configuration>""" % (net_file, route_file, options.vtype_file, options.phemlight_path)
+</configuration>""" % (net_file, route_file, options.vtype_file)
         )
     return call([sumolib.checkBinary("sumo"), "-c", sumocfg])
 
