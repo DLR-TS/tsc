@@ -124,7 +124,7 @@ def _parse_vehicle_info_taz(routes, start, end, vType):
 
 def check_result_table(conn, key, params):
     table = '%s_%s' % (params[SP.trip_output], key)
-    return table, db_manipulator.table_exists(conn, table, 'temp')
+    return table, conn is not None and db_manipulator.table_exists(conn, table, 'temp')
 
 
 @benchmark
@@ -151,11 +151,9 @@ CREATE TABLE temp.%s
     cursor.execute("DROP TABLE IF EXISTS temp." + table)
     cursor.execute(createQuery)
     if tripstats:
-        # insert values
-        insertQuery = """INSERT INTO temp.%s 
-(p_id, hh_id, start_time_min, clone_id, travel_time_sec, distance_real) 
-VALUES """ % table + ','.join(map(str, tripstats[:limit]))
-        cursor.execute(insertQuery)
+        values = [str(tuple([str(e).replace("(", "{").replace(")", "}")  for e in t])) for t in tripstats[:limit]]
+        insertQuery = "INSERT INTO temp.%s (p_id, hh_id, start_time_min, clone_id, travel_time_sec, distance_real) VALUES "
+        cursor.execute(insertQuery % table + ','.join(values))
         conn.commit()
 
 
