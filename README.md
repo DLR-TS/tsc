@@ -22,7 +22,10 @@ You need to have a working SUMO installation and your environment variable SUMO_
 1. Clone this repo `git clone https://github.com/DLR-TS/tsc` (do another pull if you cloned without having lfs active).
 2. Copy postgres_template.tsccfg (e.g. to postgres.tsccfg) and enter the database connection details (server, user, passwd)
 3. Run `./install_scenario_templates.py -c postgres.tsccfg`
-4. (optional Testfield Lower Saxony) `git clone https://github.com/DLR-TS/sumo-scenarios` and `./install_scenario_templates.py -p ../sumo-scenarios/`
+4. (optional) Testfield Lower Saxony `git clone https://github.com/DLR-TS/sumo-scenarios` and `./install_scenario_templates.py -c postgres.tsccfg -p ../sumo-scenarios/`. This will try to install other scenarios as well but you can safely ignore the corresponding warnings.
+
+The installation needs the database connection only if you plan to use scenarios with (Germany wide) background traffic. 
+If you don't need it, you can omit the `-c postgres.tsccfg` part.
 
 ## Running
 1. Prepare the credentials file postgres.tsccfg as described in section Installing
