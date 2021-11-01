@@ -156,7 +156,7 @@ class SP:
     od_slices = 'SLICE'
     sharing_fleet_size = 'SHARING_FLEET_SIZE'
     sharing_vehicle_capacity = 'SHARING_VEHICLE_CAPACITY'
-    trip_filter = 'TRIP_FILTER'
+    trip_filter = 'SUMO_TRIP_FILTER'
     KEYS = [template, destination, modes, trip_table_prefix, od_output,
             iteration, max_iteration, status, taz_table, representatives,
             od_slice_table, od_slice_key]
