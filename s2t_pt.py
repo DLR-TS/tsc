@@ -81,7 +81,7 @@ def _parse_person_info_taz(routes, start, end):
                 if p.arrival is None:
                     print("Ignoring incomplete trip for person '%s'!" % p.id)
                 else:
-                    yield parseTaz(p) + parse_person(p)
+                    yield parseTaz(p) + (False,) + parse_person(p)
 
 
 @benchmark
@@ -95,7 +95,7 @@ def _get_all_pair_stats(rou_file, net):
         sumoDist.add(np.array(dist), p.id)
         if sumoDist.count() % 10000 == 0:
             print("parsed %s taz representatives" % sumoDist.count())
-        yield parseTaz(p) + (duration, dist)
+        yield parseTaz(p) + (True, duration, dist)
     print(sumoTime)
     print(sumoDist)
 
@@ -114,7 +114,7 @@ def _createValueTuple(od, end, real=0, sumoTime=None, sumoDist=None):
 @benchmark
 def upload_all_pairs(conn, tables, start, end, real_routes, rep_routes, net, taz_list, startIdx=0):
     stats = list(_parse_person_info_taz(real_routes, start, end))
-    print("Parsed taz results for %s persons from " % (len(stats), real_routes))
+    print("Parsed taz results for %s persons from %s." % (len(stats), real_routes))
     stats.extend(_get_all_pair_stats(rep_routes, net))
     stats.sort()
     min_samples = 5
@@ -139,12 +139,12 @@ def upload_all_pairs(conn, tables, start, end, real_routes, rep_routes, net, taz
             sumoTime.add(duration)
             sumoDist.add(dist)
     if last is not None:
-        values.append(_createValueTuple(last, vType, end, real, sumoTime, sumoDist))
+        values.append(_createValueTuple(last, end, real, sumoTime, sumoDist))
         remain.discard(last)
     if remain:
         print("inserting dummy data for %s unconnected O-D relations" % len(remain))
         for o, d in remain:
-            values.append(_createValueTuple((o, d), vType, end))
+            values.append(_createValueTuple((o, d), end))
     cursor = conn.cursor()
     # insert values
     odValues = []
