@@ -256,7 +256,7 @@ def run_bulk(options, first_depart, last_depart, trip_file, weight_file):
         print("computing routes for all TAZ-pairs within the empty network")
     else:
         print("computing routes for all TAZ-pairs using weights from %s" % weight_file)
-        duarouter_args += ['--weights', weight_file]
+        duarouter_args += ['--weights', os.path.abspath(weight_file)]
     subprocess.check_call(duarouter_args + ["--save-configuration", base + ".duarcfg"])
     with open(base + '.log', 'w') as f:
         subprocess.check_call([sumolib.checkBinary('duarouter'), base + ".duarcfg"], stderr=f, stdout=f)
