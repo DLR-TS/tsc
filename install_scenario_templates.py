@@ -91,15 +91,11 @@ def create_template_folder(scenario_pre_dir, options):
         # make a new template folder
         os.makedirs(scenario_template_dir)
 
-    # copy static input such as vehicle types, edge lists and processing
-    # scripts
-    scriptable = False
+    # copy static input such as vehicle types, edge lists and processing scripts
     for ff in sorted(listdir_skip_hidden(scenario_pre_dir)):
         if ff[-3:] in ['xml', '.py', 'cfg'] and ff[:12] != 'template_gen' and ff != 'setup.py':
             print("copying %s" % ff)
             shutil.copyfile(os.path.join(scenario_pre_dir, ff), os.path.join(scenario_template_dir, ff))
-        if ff == "__init__.py":
-            scriptable = True
 
     net_name = 'net.net.xml.gz'
     net_path = os.path.join(scenario_template_dir, net_name)
@@ -125,7 +121,7 @@ def create_template_folder(scenario_pre_dir, options):
                 if len(zip_list) != 1:
                     print('could not determine which .zip file to use')
                     print(navteq_dlr_dir, ":  ", listdir_skip_hidden(navteq_dlr_dir))
-                    return scriptable
+                    return
                 navteq_dlr_zip = os.path.join(navteq_dlr_dir, zip_list[0])
 
                 print("starting to import navteq ...")
@@ -284,11 +280,9 @@ def create_template_folder(scenario_pre_dir, options):
                          "-o", "NUL", "--ignore-errors", "--aggregate-warnings", "5"])
     else:
         print("could not find landmark data for %s" % scenario_name)
-    return scriptable
 
 if __name__ == "__main__":
-    # generate scenario template folders from
-    # input-folders.
+    # generate scenario template folders from input-folders.
     # Each scenario has it's general data sorted
     # in an separate folder underneath pre_scen
 
@@ -298,12 +292,9 @@ if __name__ == "__main__":
         print("removing templates %s" % options.templates)
         shutil.rmtree(options.templates)
 
-    script_folders = []
     for path in evaluate_pre_scen(options):
         folder = os.path.basename(path)
         print("----- generating template %s" % folder)
-        if create_template_folder(path, options):
-            script_folders.append(folder)
-    if script_folders:
-        with open(os.path.join(options.templates, "scripts.py"), 'w') as scriptpy:
-            scriptpy.write("import %s\n" % (",".join(script_folders)))
+        create_template_folder(path, options):
+    if not os.path.exists(os.path.join(options.templates, "__init__.py")):
+        open(os.path.join(options.templates, "__init__.py"), 'w').close()

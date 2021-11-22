@@ -35,6 +35,7 @@ import datetime
 import time
 import multiprocessing
 import subprocess
+import importlib
 from psycopg2 import ProgrammingError
 
 if 'SUMO_HOME' in os.environ:
@@ -326,11 +327,9 @@ def write_status(message, sim_key, params, conn=None, msg_type=constants.MSG_TYP
 
 def get_script_module(options, template):
     try:
-        if options.template_folder not in sys.path:
-            sys.path.append(options.template_folder)
-        import scripts
-        if hasattr(scripts, template):
-            return getattr(scripts, template)
+        if os.path.dirname(options.template_folder) not in sys.path:
+            sys.path.append(os.path.dirname(options.template_folder))
+        return importlib.import_module(os.path.basename(options.template_folder) + "." + template)
     except ImportError as m:
         print("No scenario specific assignment or post processing functions:", m)
     return None
@@ -403,7 +402,7 @@ def simulation_request(options, request):
         assert os.path.exists(final_weights), "weight dump file %s could not be found" % final_weights
 
         # run post processing
-        if iteration == int(params[SP.max_iteration]) - 1 and options.script_module is not None:
+        if iteration == int(params[SP.max_iteration]) - 1 and hasattr(options.script_module, "post"):
             print()
             write_status('>> starting postprocessing', sim_key, params, conn)
             options.script_module.post(options, params, conn, final_routes)

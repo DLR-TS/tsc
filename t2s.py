@@ -376,6 +376,8 @@ def map_to_edges(options):
                     round(float(row[TH.source_long]), 5), round(float(row[TH.source_lat]), 5))
                 dest = options.net.convertLonLat2XY(
                     round(float(row[TH.dest_long]), 5), round(float(row[TH.dest_lat]), 5))
+                if hasattr(options.script_module, "trip_filter") and not options.script_module.trip_filter(options, row, source, dest):
+                    continue
                 if taz_id_start.startswith("-") and source not in location_prios:
                     source_edge = taz_id_start[1:]
                 else:
