@@ -158,19 +158,21 @@ CREATE TABLE temp.%s
 
 
 @benchmark
-def _get_all_pair_stats(roualt_file, net):
+def _get_all_pair_stats(rou_file, net):
     """Parses a duarouter .rou.alt.xml output for travel times and calculates the route length.
     The file is supposed to contain only vehicles of a single vType"""
     sumoTime = Statistics("SUMO durations")
     sumoDist = Statistics("SUMO distances")
-    for vehicle in output.parse(roualt_file, 'vehicle'):
-        duration = float(vehicle.routeDistribution[0].route[0].cost)
-        edges = vehicle.routeDistribution[0].route[0].edges.split()
+    for vehicle in output.parse(rou_file, 'vehicle'):
+        duration = float(vehicle.route[0].cost)
+        edges = vehicle.route[0].edges.split()
         distance = sum(map(lambda e: net.getEdge(e).getLength(), edges))
         sumoTime.add(duration, vehicle.id)
         sumoDist.add(distance, vehicle.id)
-        if sumoDist.count() % 10000 == 0:
+        if sumoDist.count() % 50000 == 0:
             print("parsed %s taz representatives" % sumoDist.count())
+#        if sumoDist.count() % 150000 == 0: # !!! DEBUG only
+#            return # !!! DEBUG only
         fromTaz, toTaz = parseTaz(vehicle)
         yield fromTaz, toTaz, 1, duration, distance
     print(sumoTime)
@@ -228,12 +230,16 @@ def upload_all_pairs(conn, tables, start, end, vType, real_routes, rep_routes, n
         odValues.append(str(v[:4] + (startIdx + idx,)))
         entryValues.append(str(v[4:] + (startIdx + idx, "{car}")))
     odQuery = """INSERT INTO temp.%s (taz_id_start, taz_id_end, sumo_type, interval_end, entry_id)
-VALUES %s""" % (tables[0], ','.join(odValues))
+                 VALUES %s""" % (tables[0], ','.join(odValues))
     cursor.execute(odQuery)
+#    odQuery = "INSERT INTO temp.%s (taz_id_start, taz_id_end, sumo_type, interval_end, entry_id) VALUES ?" % tables[0]
+#    db_manipulator.execute(conn, odQuery, odValues)
     insertQuery = """INSERT INTO temp.%s (realtrip_count, representative_count,
- travel_time_sec, travel_time_stddev, distance_real, distance_stddev, entry_id, used_modes)
-VALUES %s""" % (tables[1], ','.join(entryValues))
+                     travel_time_sec, travel_time_stddev, distance_real, distance_stddev, entry_id, used_modes)
+                     VALUES %s""" % (tables[1], ','.join(entryValues))
     cursor.execute(insertQuery)
+#    insertQuery = "INSERT INTO temp.%s (realtrip_count, representative_count, travel_time_sec, travel_time_stddev, distance_real, distance_stddev, entry_id, used_modes) VALUES ?" % tables[1]
+#    db_manipulator.execute(conn, insertQuery, entryValues)
     conn.commit()
     return startIdx + len(values)
 

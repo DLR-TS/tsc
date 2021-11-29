@@ -247,7 +247,9 @@ def run_bulk(options, first_depart, last_depart, trip_file, weight_file):
         '--routing-threads', '16',
         '--bulk-routing',
         '--output', route_file,
-        '--exit-times',
+        '--alternatives-output', 'NUL',
+        '--write-costs',
+#        '--exit-times',
         '--route-length',
         '--ignore-errors',
         '--verbose'

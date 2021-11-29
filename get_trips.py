@@ -209,6 +209,8 @@ def write_all_pairs(conn, vType, depart, limit, tripfile, params, seed, mode=MOD
     else:
         max_rows = 1e400
         max_taz = None
+    if tripfile is None:
+        return keys[:max_taz]
     num_rows = 0
     with open(tripfile, 'w') as f:
         print(",".join(fieldnames), file=f)

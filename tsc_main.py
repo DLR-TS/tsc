@@ -271,8 +271,10 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
                 vType, end_hour), sim_key, params, conn)
             options.tapas_trips = get_trips.tripfile_name("%s_%s%02i" % (
                 get_trips.ALL_PAIRS, vType, end_hour), target_dir=options.trips_dir)
-            taz_list = get_trips.write_all_pairs(
-                conn, vType, begin_second, options.limit, options.tapas_trips, params, options.seed)
+            trips_file = None
+            if not os.path.exists(options.tapas_trips) or options.overwrite:
+                trips_file = options.tapas_trips
+            taz_list = get_trips.write_all_pairs(conn, vType, begin_second, options.limit, trips_file, params, options.seed)
             write_status('>>> starting all pairs t2s using tripfile %s' %
                          options.tapas_trips, sim_key, params, conn)
             alt_file, _ = t2s.main(options)
@@ -287,7 +289,9 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
     options.tapas_trips = get_trips.tripfile_name("%s_public" % (get_trips.ALL_PAIRS), target_dir=options.trips_dir)
     taz_list = get_trips.write_all_pairs(conn, "public", 31 * 3600, options.limit, options.tapas_trips, params, options.seed, MODE.public)
     write_status('>>> starting all pairs t2s using tripfile %s' % options.tapas_trips, sim_key, params, conn)
+    conn.close()
     rou_file, _ = t2s.main(options)
+    conn = db_manipulator.get_conn(options, conn)
     write_status('<<< finished all pairs t2s, routes in %s' % rou_file, sim_key, params, conn)
     assert os.path.exists(rou_file), "all pairs route file %s could not be found" % rou_file
     write_status('>>> starting od result database upload', sim_key, params, conn)
@@ -368,6 +372,7 @@ def simulation_request(options, request):
             options.trips_dir = scenario_basedir
             write_status('>> starting trip generation for background traffic using tripfile %s' %
                          options.tapas_trips, sim_key, params, conn)
+            conn.close()
             options.background_trips, _ = t2s.main(options)
             options.location_priority_file = ""
         else:
@@ -376,6 +381,7 @@ def simulation_request(options, request):
 
         # create a new iteration folder
         options.iteration_dir = create_new_iteration_folder(options, iteration, scenario_basedir)
+        conn = db_manipulator.get_conn(options, conn)
         write_status(">> iteration dir: %s " % options.iteration_dir, sim_key, params, conn)
         options.trips_dir = os.path.join(options.iteration_dir, 'trips')
         if not os.path.exists(options.trips_dir):
@@ -392,11 +398,13 @@ def simulation_request(options, request):
         print()
         write_status('>> starting t2s using tripfile %s' %
                      options.tapas_trips, sim_key, params, conn)
+        conn.close()
 
         # run t2s
         options.scale /= float(params[SP.sample])
         options.script_module = get_script_module(options, params[SP.template])
         final_routes, final_weights = t2s.main(options)
+        conn = db_manipulator.get_conn(options, conn)
         write_status('<< finished t2s, routes in %s' % final_routes, sim_key, params, conn)
         assert os.path.exists(final_routes), "route file %s could not be found" % final_routes
         assert os.path.exists(final_weights), "weight dump file %s could not be found" % final_weights
@@ -410,6 +418,7 @@ def simulation_request(options, request):
 
         if conn is not None:
             print()
+            conn = db_manipulator.get_conn(options, conn)
             # upload trip results to db
             _, exists = s2t_miv.check_result_table(conn, sim_key, params)
             if not exists or options.overwrite:
@@ -418,8 +427,10 @@ def simulation_request(options, request):
                 write_status('<< finished trip result database upload', sim_key, params, conn)
                 print()
             # run all pair calculations
+            conn = db_manipulator.get_conn(options, conn)
             run_all_pairs(options, conn, sim_key, params, final_routes, final_weights)
 
+        conn = db_manipulator.get_conn(options, conn)
         cleanup([final_routes, final_weights], options.iteration_dir,
                  sim_key, iteration, params, conn)
 

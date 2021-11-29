@@ -28,6 +28,7 @@ import time
 import sqlite3
 try:
     import psycopg2
+    import psycopg2.extras
 except ImportError:
     print("Warning! Could not load psycopg2, postgres database operations won't work.", file=sys.stderr)
 
@@ -45,7 +46,12 @@ def add_db_arguments(argParser):
                            help="only read from the database but never write")
 
 
-def get_conn(options_or_config_file):
+def get_conn(options_or_config_file, conn=None):
+    try:
+        conn.cursor()
+        return conn
+    except Exception:
+        pass
     if isinstance(options_or_config_file, str):
         argParser = ArgumentParser()
         add_db_arguments(argParser)
@@ -90,9 +96,13 @@ def table_exists(conn, table, schema="public"):
 
 def execute(conn, command, parameters):
     cursor = conn.cursor()
-    if not isinstance(conn, sqlite3.Connection):
-        command = command.replace('?', '%s')
     try:
+        if not isinstance(conn, sqlite3.Connection):
+            command = command.replace('?', '%s')
+            if command.startswith("INSERT") and len(parameters) > 1000:
+                psycopg2.extras.execute_values(cursor, command, parameters)
+                conn.commit()
+                return
         cursor.execute(command, parameters)
     except psycopg2.errors.ReadOnlySqlTransaction as e:
         print(e)
