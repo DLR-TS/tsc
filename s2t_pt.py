@@ -52,7 +52,9 @@ def parse_person(p):
     for stage in p.getChildList():
         if stage.name == "walk":
             if stage.cost:
-                walkDuration[idx] = float(stage.cost)
+                walkDuration[idx] += float(stage.cost)
+                if idx == 0:
+                    ended = walkDuration[idx]
             else:
                 ended = float(stage.ended)
                 walkDuration[idx] = ended - rideEnd

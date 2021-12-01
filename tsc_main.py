@@ -302,7 +302,7 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
                                                 final_routes, alt_file, options.net, taz_list, startIdx)
             write_status('<<< finished od result database upload', sim_key, params, conn)
             begin_second = end_second
-    if modes != set(CAR_MODES):
+    if not modes <= set(CAR_MODES):
         write_status('>>> starting all pairs for public transport', sim_key, params, conn)
         options.tapas_trips = get_trips.tripfile_name("%s_public" % (get_trips.ALL_PAIRS), target_dir=options.trips_dir)
         taz_list = get_trips.write_all_pairs(conn, "public", 31 * 3600, options.limit, options.tapas_trips, params, options.seed, MODE.public)
