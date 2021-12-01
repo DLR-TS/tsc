@@ -29,6 +29,7 @@ if 'SUMO_HOME' in os.environ:
 else:
     sys.exit("please declare environment variable 'SUMO_HOME'")
 
+import sumolib
 from sumolib import output
 from sumolib.miscutils import Statistics, benchmark, uMin, uMax
 from sumolib.net import readNet
@@ -163,16 +164,13 @@ def _get_all_pair_stats(rou_file, net):
     The file is supposed to contain only vehicles of a single vType"""
     sumoTime = Statistics("SUMO durations")
     sumoDist = Statistics("SUMO distances")
-    for vehicle in output.parse(rou_file, 'vehicle'):
+    for vehicle in sumolib.xml.parse_fast_structured(rou_file, 'vehicle', 'id', {'route': ('cost', 'edges', 'routeLength'), 'param': ('key', 'value')}):
         duration = float(vehicle.route[0].cost)
-        edges = vehicle.route[0].edges.split()
-        distance = sum(map(lambda e: net.getEdge(e).getLength(), edges))
+        distance = float(vehicle.route[0].routeLength)
         sumoTime.add(duration, vehicle.id)
         sumoDist.add(distance, vehicle.id)
-        if sumoDist.count() % 50000 == 0:
+        if sumoDist.count() % 100000 == 0:
             print("parsed %s taz representatives" % sumoDist.count())
-#        if sumoDist.count() % 150000 == 0: # !!! DEBUG only
-#            return # !!! DEBUG only
         fromTaz, toTaz = parseTaz(vehicle)
         yield fromTaz, toTaz, 1, duration, distance
     print(sumoTime)

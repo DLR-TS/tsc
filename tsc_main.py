@@ -82,6 +82,8 @@ def getOptions(args, argParser):
                            help="additional parameters for simulation requests (overwrite database values)")
     argParser.add_argument('--net-param', default="{}",
                            help="network restrictions of simulation requests (do not use in daemon mode).")
+    argParser.add_argument("--vtype-matrix", action="store_true", default=False,
+                           help="save OD matrix disaggregated by vehicle type instead of class")
 
     options = argParser.parse_args(args=args)
     if len(args) == 0:
@@ -245,8 +247,10 @@ def create_new_iteration_folder(options, iteration, destination_path):
 
 def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
     all_pair_table = s2t_miv.create_all_pairs(conn, sim_key, params)
+    modes = set()
     vTypes = set()
-    for (t, ), _ in common.csv_sequence_generator(options.tapas_trips, "sumo_type"):
+    for (m, t), _ in common.csv_sequence_generator(options.tapas_trips, ("mode", "sumo_type")):
+        modes.add(str(m))
         vTypes.add(str(t))
 
     write_status('>> starting all pairs calculation', sim_key, params, conn)
@@ -262,22 +266,34 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
     options.scale = 1.0
     options.time_diffusion = 0
     startIdx = 0
-    print("found the following vehicle types:", vTypes)
-    for vType in sorted(vTypes):
+    vtMap = {}
+    for vt in sumolib.xml.parse(options.vtype_file, "vType"):
+        if vt.id in vTypes:
+            if options.vtype_matrix:
+                vtMap[vt.id] = vt.id
+            elif vt.vClass not in vtMap:
+                vtMap[vt.vClass] = vt.id
+    if options.vtype_matrix:
+        print("found the following vehicle types:", vTypes)
+    else:
+        print("found the following vehicle classes:", list(vtMap.keys()))
+    for mapType, vType in sorted(vtMap.items()):
         begin_second = 0
         for end_hour in params[SP.od_slices]:
             end_second = end_hour * 3600
             write_status('>>> starting all pairs for %s, slice ending at hour %s' % (
-                vType, end_hour), sim_key, params, conn)
+                mapType, end_hour), sim_key, params, conn)
             options.tapas_trips = get_trips.tripfile_name("%s_%s%02i" % (
-                get_trips.ALL_PAIRS, vType, end_hour), target_dir=options.trips_dir)
+                get_trips.ALL_PAIRS, mapType, end_hour), target_dir=options.trips_dir)
             trips_file = None
             if not os.path.exists(options.tapas_trips) or options.overwrite:
                 trips_file = options.tapas_trips
             taz_list = get_trips.write_all_pairs(conn, vType, begin_second, options.limit, trips_file, params, options.seed)
             write_status('>>> starting all pairs t2s using tripfile %s' %
                          options.tapas_trips, sim_key, params, conn)
+            conn.close()
             alt_file, _ = t2s.main(options)
+            conn = db_manipulator.get_conn(options, conn)
             write_status('<<< finished all pairs t2s, routes in %s' %
                          alt_file, sim_key, params, conn)
             assert os.path.exists(alt_file), "all pairs route file %s could not be found" % alt_file
@@ -286,18 +302,20 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
                                                 final_routes, alt_file, options.net, taz_list, startIdx)
             write_status('<<< finished od result database upload', sim_key, params, conn)
             begin_second = end_second
-    options.tapas_trips = get_trips.tripfile_name("%s_public" % (get_trips.ALL_PAIRS), target_dir=options.trips_dir)
-    taz_list = get_trips.write_all_pairs(conn, "public", 31 * 3600, options.limit, options.tapas_trips, params, options.seed, MODE.public)
-    write_status('>>> starting all pairs t2s using tripfile %s' % options.tapas_trips, sim_key, params, conn)
-    conn.close()
-    rou_file, _ = t2s.main(options)
-    conn = db_manipulator.get_conn(options, conn)
-    write_status('<<< finished all pairs t2s, routes in %s' % rou_file, sim_key, params, conn)
-    assert os.path.exists(rou_file), "all pairs route file %s could not be found" % rou_file
-    write_status('>>> starting od result database upload', sim_key, params, conn)
-    startIdx = s2t_pt.upload_all_pairs(conn, all_pair_table, 31 * 3600, 32 * 3600,
-                                       final_routes, rou_file, options.net, taz_list, startIdx)
-    write_status('<<< finished od result database upload', sim_key, params, conn)
+    if modes != set(CAR_MODES):
+        write_status('>>> starting all pairs for public transport', sim_key, params, conn)
+        options.tapas_trips = get_trips.tripfile_name("%s_public" % (get_trips.ALL_PAIRS), target_dir=options.trips_dir)
+        taz_list = get_trips.write_all_pairs(conn, "public", 31 * 3600, options.limit, options.tapas_trips, params, options.seed, MODE.public)
+        write_status('>>> starting all pairs t2s using tripfile %s' % options.tapas_trips, sim_key, params, conn)
+        conn.close()
+        rou_file, _ = t2s.main(options)
+        conn = db_manipulator.get_conn(options, conn)
+        write_status('<<< finished all pairs t2s, routes in %s' % rou_file, sim_key, params, conn)
+        assert os.path.exists(rou_file), "all pairs route file %s could not be found" % rou_file
+        write_status('>>> starting od result database upload', sim_key, params, conn)
+        startIdx = s2t_pt.upload_all_pairs(conn, all_pair_table, 31 * 3600, 32 * 3600,
+                                           final_routes, rou_file, options.net, taz_list, startIdx)
+        write_status('<<< finished od result database upload', sim_key, params, conn)
     write_status('<< finished all pairs calculation', sim_key, params, conn)
 
 
