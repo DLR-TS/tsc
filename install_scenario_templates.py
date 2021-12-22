@@ -295,6 +295,6 @@ if __name__ == "__main__":
     for path in evaluate_pre_scen(options):
         folder = os.path.basename(path)
         print("----- generating template %s" % folder)
-        create_template_folder(path, options):
+        create_template_folder(path, options)
     if not os.path.exists(os.path.join(options.templates, "__init__.py")):
         open(os.path.join(options.templates, "__init__.py"), 'w').close()
