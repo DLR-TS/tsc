@@ -1,0 +1,20 @@
+Warning: Traffic light type 'actuated' cannot be used in mesoscopic simulation. Using 'static' as fallback.
+Warning: Network contains internal links which are ignored. Vehicles will 'jump' across junctions and thus underestimate route lengths and travel times.
+Warning: At actuated tlLogic 'GS_25663498', linkIndex 2 has no controlling detector.
+Warning: At actuated tlLogic 'GS_25663498', linkIndex 3 has no controlling detector.
+Warning: At actuated tlLogic 'GS_25663747', linkIndex 10 has no controlling detector.
+Warning: At actuated tlLogic 'GS_25663747', linkIndex 11 has no controlling detector.
+Warning: At actuated tlLogic 'GS_cluster_1679221141_1679221142_29271704_29271705', linkIndex 6 has no controlling detector.
+Warning: At actuated tlLogic 'GS_cluster_1679221141_1679221142_29271704_29271705', linkIndex 7 has no controlling detector.
+Warning: At actuated tlLogic 'GS_cluster_196725581_21487224_29219437_29219438', linkIndex 17 has no controlling detector.
+Warning: At actuated tlLogic 'GS_cluster_196725581_21487224_29219437_29219438', linkIndex 18 has no controlling detector.
+Warning: At actuated tlLogic 'GS_cluster_262476527_311718989_588159289', linkIndex 12 has no controlling detector.
+Warning: At actuated tlLogic 'GS_cluster_262476527_311718989_588159289', linkIndex 13 has no controlling detector.
+Warning: At actuated tlLogic 'GS_cluster_964750391_971891590', linkIndex 6 has no controlling detector.
+Warning: At actuated tlLogic 'GS_cluster_964750391_971891590', linkIndex 7 has no controlling detector.
+Warning: At actuated tlLogic 'cluster_1857304353_29784556_29784557_343372788', linkIndex 6 has no controlling detector.
+Warning: At actuated tlLogic 'cluster_1857304353_29784556_29784557_343372788', linkIndex 7 has no controlling detector.
+Warning: At actuated tlLogic 'cluster_262471375_343590422_3730313106', linkIndex 5 has no controlling detector.
+Warning: At actuated tlLogic 'cluster_262471375_343590422_3730313106', linkIndex 6 has no controlling detector.
+Warning: Traffic light type 'actuated' cannot be used in mesoscopic simulation. Using 'static' as fallback.
+Warning: Network contains internal links which are ignored. Vehicles will 'jump' across junctions and thus underestimate route lengths and travel times.

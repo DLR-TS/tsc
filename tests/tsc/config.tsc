@@ -59,6 +59,7 @@ catalogue:.pyc
 catalogue:__pycache__
 catalogue:----core.db
 catalogue:----public.db
+catalogue:----tmp.db
 log:[0-9\.]+ms{REPLACE (TIME)}
 
 [floating_point_tolerance]

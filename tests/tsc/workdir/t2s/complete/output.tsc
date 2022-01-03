@@ -1,41 +1,40 @@
-function main called at Wed, 27 Oct 2021 16:04:20 +0000
-function rectify_input called at Wed, 27 Oct 2021 16:04:22 +0000
-Read 2 persons with a total of 4 trips from input file "C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.27Oct155331.2080\tsc.sqlite3\workdir\t2s\complete\data\twoPersonsOnly.csv".
+function main called at Mon, 03 Jan 2022 13:51:43 +0000
+function rectify_input called at Mon, 03 Jan 2022 13:51:46 +0000
+Read 2 persons with a total of 4 trips from input file "C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.03Jan133838.14472\tsc.sqlite3\workdir\t2s\complete\data\twoPersonsOnly.csv".
 0 trips have inconsistent depart times.
-function rectify_input finished after 0.127866 seconds
-function map_to_edges called at Wed, 27 Oct 2021 16:04:22 +0000
-Mapping using C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.27Oct155331.2080\tsc.sqlite3\workdir\t2s\complete\data\scenario_workdir\mitte_net\districts.taz.xml.
+function rectify_input finished after 0.178180 seconds
+function map_to_edges called at Mon, 03 Jan 2022 13:51:47 +0000
+Mapping using C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.03Jan133838.14472\tsc.sqlite3\workdir\t2s\complete\data\scenario_workdir\mitte_net\districts.taz.xml.
 Mapping (568.7532229983481, 913.0316369170323) to -4588215#5 (dist: 42.56) which is not in taz 110110312, best match in taz is 4597322#0 (dist: 108.25)
 read 4 TAPAS trips for 2 persons (0 unmappable)
-Mapping deviations: count 4, min 9.41 (xycoord=(720.7678498803871, 1303.540090534836), edge=320462164#2, uid=('1000005', '1000001')), max 42.56 (xycoord=(568.7532229983481, 913.0316369170323), edge=-4588215#5, uid=('1000019', '1000003')), mean 28.28 Q1 27.13, median 34.00, Q3 42.56
+Mapping deviations: count 4, min 9.41 (xycoord=(720.7678498803871, 1303.540090534836), edge=320462164#2, uid=('1000005', '1000001')), max 42.56 (xycoord=(568.7532229983481, 913.0316369170323), edge=-4588215#5, uid=('1000019', '1000003')), mean 28.28, Q1 27.13, median 34.00, Q3 42.56
 1 mappings did not find an edge in the correct taz
-function map_to_edges finished after 1.119591 seconds
-using previous version of C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.27Oct155331.2080\tsc.sqlite3\workdir\t2s\complete\data\scenario_workdir\mitte_net\iteration000\trips\rectified_twoPersonsOnly.csv
-function create_sumo_tripdefs called at Wed, 27 Oct 2021 16:04:23 +0000
+function map_to_edges finished after 1.662063 seconds
+using previous version of C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.03Jan133838.14472\tsc.sqlite3\workdir\t2s\complete\data\scenario_workdir\mitte_net\iteration000\trips\rectified_twoPersonsOnly.csv
+function create_sumo_tripdefs called at Mon, 03 Jan 2022 13:51:48 +0000
 read trip definitions for 4 vehicles
 created trip definitions for 4 vehicles starting between 135131 and 137351
-function create_sumo_tripdefs finished after 0.007662 seconds
-function run_oneshot called at Wed, 27 Oct 2021 16:04:23 +0000
+function create_sumo_tripdefs finished after 0.028093 seconds
+function run_oneshot called at Mon, 03 Jan 2022 13:51:48 +0000
 Loading configuration ... done.
-Loading configuration ... done.
-Loading net-file from 'C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.27Oct155331.2080\tsc.sqlite3\workdir\t2s\complete\data\scenario_workdir\mitte_net\net.net.xml' ... 
-done (3328ms).
-Loading additional-files from 'C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.27Oct155331.2080\tsc.sqlite3\workdir\t2s\complete\data\scenario_workdir\mitte_net\vtypes.xml' ... done (45ms).
-Loading additional-files from 'C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.27Oct155331.2080\tsc.sqlite3\workdir\t2s\complete\data\scenario_workdir\mitte_net\iteration000\oneshot\dump_oneshot_meso.xml' ... done (46ms).
+Loading net-file from 'C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.03Jan133838.14472\tsc.sqlite3\workdir\t2s\complete\data\scenario_workdir\mitte_net\net.net.xml' ... 
+done (4155ms).
+Loading additional-files from 'C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.03Jan133838.14472\tsc.sqlite3\workdir\t2s\complete\data\scenario_workdir\mitte_net\vtypes.xml' ... done (45ms).
+Loading additional-files from 'C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.03Jan133838.14472\tsc.sqlite3\workdir\t2s\complete\data\scenario_workdir\mitte_net\iteration000\oneshot\dump_oneshot_meso.xml' ... done (42ms).
 Loading done.
-Simulation version v1_10_0+1740-a59df310fb4 started with time: 135131.00
+Simulation version v1_11_0+0593-dc8cfda6b53 started with time: 135131.00
 Simulation ended at time: 148151.00
 Reason: The final simulation step has been reached.
 Performance: 
- Duration: 4.15s
- Real time factor: 3138.86
- UPS: 520.491803
+ Duration: 5.85s
+ Real time factor: 2224.88
+ UPS: 368.933698
 Vehicles: 
  Inserted: 4
  Running: 0
  Waiting: 0
 
 AStarRouter answered 9 queries and explored 1404.56 edges on average.
-AStarRouter spent 0.03s answering queries (3.22ms on average).
-function run_oneshot finished after 9.706165 seconds
-function main finished after 13.532281 seconds
+AStarRouter spent 0.03s answering queries (3.56ms on average).
+function run_oneshot finished after 12.555499 seconds
+function main finished after 17.814504 seconds

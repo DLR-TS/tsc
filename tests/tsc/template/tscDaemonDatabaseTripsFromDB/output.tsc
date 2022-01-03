@@ -1,21 +1,22 @@
 running pre test instructions
-parsing C:\Users\behr_mi\Projekte\tsc\tests\..\test_server.tsccfg
+parsing C:\Users\behr_mi\Projekte\tsc\tests\..\sqlite3.tsccfg
 starting main
 db_status_started: 2015y_05m_29d_09h_01m_11s_943ms 0 > Begin
-[('DB_CAR_FLEET_KEY', 'MID2008_Y2010_BERLIN'), ('DB_HH_SAMPLE_SIZE', '0.5'), ('DB_NAME_MATRIX_TT_MIT_BASE', 'CAR_TT_B_2005'), ('DB_TABLE_ADDITIONAL_TRAFFIC', ''), ('DB_TABLE_CARS', 'berlin_cars'), ('DB_TABLE_MATRIXMAPS', 'berlin_matrixmap'), ('DB_TABLE_REPRESENTATIVES', 'berlin_location_representatives'), ('DB_TABLE_SUMO_OD_ENTRY', 'sumo_od_entry'), ('DB_TABLE_SUMO_OD_OUTPUT', 'sumo_od'), ('DB_TABLE_SUMO_STATUS', 'global_sumo_status'), ('DB_TABLE_SUMO_TRIP_OUTPUT', 'sumo_trip'), ('DB_TABLE_TAZ', 'berlin_taz'), ('DB_TABLE_TRIPS', 'test_trips'), ('DELETE_INTERMEDIATE_RESULTS', 'false'), ('DELETE_TEMP', 'false'), ('ITERATION', '0'), ('MAX_SUMO_ITERATION', '10'), ('SHARING_FLEET_SIZE', '100'), ('SHARING_VEHICLE_CAPACITY', '5'), ('SLICE', [24.0]), ('SUMO_DESTINATION_FOLDER', 'VEUII-BASE2010'), ('SUMO_MODES', '2;4'), ('SUMO_NET_PARAMETER', '{}'), ('SUMO_TEMPLATE_FOLDER', 'mitte_net')]
+[('DB_CAR_FLEET_KEY', 'MID2008_Y2010_BERLIN'), ('DB_HH_SAMPLE_SIZE', '0.5'), ('DB_NAME_MATRIX_TT_MIT_BASE', 'CAR_TT_B_2005'), ('DB_TABLE_ADDITIONAL_TRAFFIC', ''), ('DB_TABLE_CARS', 'berlin_cars'), ('DB_TABLE_MATRIXMAPS', 'berlin_matrixmap'), ('DB_TABLE_REPRESENTATIVES', 'berlin_location_representatives'), ('DB_TABLE_SUMO_OD_ENTRY', 'sumo_od_entry'), ('DB_TABLE_SUMO_OD_OUTPUT', 'sumo_od'), ('DB_TABLE_SUMO_STATUS', 'global_sumo_status'), ('DB_TABLE_SUMO_TRIP_OUTPUT', 'sumo_trip'), ('DB_TABLE_TAZ', 'berlin_taz'), ('DB_TABLE_TRIPS', 'test_trips'), ('DELETE_INTERMEDIATE_RESULTS', 'false'), ('DELETE_TEMP', 'false'), ('ITERATION', '0'), ('MAX_SUMO_ITERATION', '10'), ('SHARING_FLEET_SIZE', '100'), ('SHARING_VEHICLE_CAPACITY', '5'), ('SLICE', [24.0]), ('SUMO_DESTINATION_FOLDER', 'VEUII-BASE2010'), ('SUMO_MODES', '2;4'), ('SUMO_NET_PARAMETER', '{}'), ('SUMO_TEMPLATE_FOLDER', 'mitte_net'), ('SUMO_TRIP_FILTER', '')]
 create scenario 2015y_05m_29d_09h_01m_11s_943ms from scratch in scenario_workdir\VEUII-BASE2010 
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >> created dir: scenario_workdir\VEUII-BASE2010\iteration000 
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >> iteration dir: scenario_workdir\VEUII-BASE2010\iteration000 
 fetched 1356 rows
 wrote 1356 rows to scenario_workdir\VEUII-BASE2010\iteration000\trips\2015y_05m_29d_09h_01m_11s_943ms.csv
 
 db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >> starting t2s using tripfile scenario_workdir\VEUII-BASE2010\iteration000\trips\2015y_05m_29d_09h_01m_11s_943ms.csv
-function main called at Thu, 25 Mar 2021 18:52:59 +0000
-function rectify_input called at Thu, 25 Mar 2021 18:53:00 +0000
-Read 1251 persons with a total of 1356 trips from input file "C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\trips\2015y_05m_29d_09h_01m_11s_943ms.csv".
+function main called at Mon, 03 Jan 2022 15:21:02 +0000
+function rectify_input called at Mon, 03 Jan 2022 15:21:06 +0000
+Read 1251 persons with a total of 1356 trips from input file "C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.2_from_03Jan150604.28804\tsc.sqlite3\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\trips\2015y_05m_29d_09h_01m_11s_943ms.csv".
 0 trips have inconsistent depart times.
 Dropped 8 trips because of gaps, avg: 3225.593819782097, maximum: 10238.417756372774 (for trip 103236475_101892664_1054_0).
-function rectify_input finished after 0.122007 seconds
-function map_to_edges called at Thu, 25 Mar 2021 18:53:00 +0000
+function rectify_input finished after 1.045017 seconds
+function map_to_edges called at Mon, 03 Jan 2022 15:21:07 +0000
+Mapping using C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.2_from_03Jan150604.28804\tsc.sqlite3\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\districts.taz.xml.
 Warning: could not find an edge for departure of ('100000397', '100000397') from (52.53241977, 13.35002099), depart_minute=976 (skipping trip)
 Warning: could not find an edge for departure of ('100000657', '100000657') from (52.51231057, 13.32697818), depart_minute=719 (skipping trip)
 Warning: could not find an edge for departure of ('100000840', '100000840') from (52.55548391, 13.34659572), depart_minute=441 (skipping trip)
@@ -47,62 +48,63 @@ Mapping (762.2210894018644, 2304.1046423120424) to 31112516#1 (dist: 8.81) which
 Mapping (2083.7602545804693, 2153.345352745615) to 4610362#8 (dist: 12.37) which is not in taz 110110013, best match in taz is 30721660#2 (dist: 104.10)
 Mapping (2042.5371168620186, 2192.0930427499115) to 4610362#5 (dist: 13.92) which is not in taz 110110013, best match in taz is 30721660#4 (dist: 64.22)
 read 1348 TAPAS trips for 1251 persons (842 unmappable)
-Mapping deviations: count 363, min 0.20 (xycoord=(1348.7740691179642, 818.7915161671117), edge=199847252#0, uid=('100466335', '100314210')), max 1582.91 (xycoord=(1345.9397704525036, -1410.0093230409548), edge=32938436, uid=('100392236', '100265361')), mean 179.17 Q1 10.18, median 15.55, Q3 51.53
+Mapping deviations: count 363, min 0.20 (xycoord=(1348.7740691179642, 818.7915161671117), edge=199847252#0, uid=('100466335', '100314210')), max 1582.91 (xycoord=(1345.9397704525036, -1410.0093230409548), edge=32938436, uid=('100392236', '100265361')), mean 179.17, Q1 10.18, median 15.55, Q3 51.53
 86 mappings did not find an edge in the correct taz
-function map_to_edges finished after 0.817496 seconds
-function create_sumo_tripdefs called at Thu, 25 Mar 2021 18:53:01 +0000
+function map_to_edges finished after 4.576778 seconds
+using previous version of C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.2_from_03Jan150604.28804\tsc.sqlite3\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\trips\rectified_2015y_05m_29d_09h_01m_11s_943ms.csv
+function create_sumo_tripdefs called at Mon, 03 Jan 2022 15:21:12 +0000
 read trip definitions for 506 vehicles
 created trip definitions for 1012 vehicles starting between 111954 and 167065
-function create_sumo_tripdefs finished after 0.023501 seconds
-function run_oneshot called at Thu, 25 Mar 2021 18:53:01 +0000
+function create_sumo_tripdefs finished after 0.126001 seconds
+function run_oneshot called at Mon, 03 Jan 2022 15:21:12 +0000
 Loading configuration ... done.
-Loading configuration ... done.
-Loading net-file from 'C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\net.net.xml' ... 
-done (633ms).
-Loading additional-files from 'C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\vtypes.xml' ... done (14ms).
-Loading additional-files from 'C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\oneshot\dump_oneshot_meso.xml' ... done (11ms).
-Loading additional-files from 'C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\bidi.taz.xml' ... done (314ms).
+Loading net-file from 'C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.2_from_03Jan150604.28804\tsc.sqlite3\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\net.net.xml' ... 
+done (3599ms).
+Loading additional-files from 'C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.2_from_03Jan150604.28804\tsc.sqlite3\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\vtypes.xml' ... done (46ms).
+Loading additional-files from 'C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.2_from_03Jan150604.28804\tsc.sqlite3\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\oneshot\dump_oneshot_meso.xml' ... done (50ms).
+Loading additional-files from 'C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.2_from_03Jan150604.28804\tsc.sqlite3\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\bidi.taz.xml' ... done (1211ms).
 Loading done.
-Simulation version v1_8_0+1826-83a525527e started with time: 111954.00
+Simulation version v1_11_0+0593-dc8cfda6b53 started with time: 111954.00
 Simulation ended at time: 177865.00
 Reason: The final simulation step has been reached.
 Performance: 
- Duration: 7.06s
- Real time factor: 9330.55
- UPS: 2471.828992
+ Duration: 13.54s
+ Real time factor: 4869.31
+ UPS: 1289.967494
 Vehicles: 
  Inserted: 1012
  Running: 0
  Waiting: 0
 
 AStarRouter answered 993 queries and explored 188.32 edges on average.
-AStarRouter spent 0.22s answering queries (0.22ms on average).
+AStarRouter spent 0.40s answering queries (0.40ms on average).
 AStarRouter answered 19 queries and explored 128.74 edges on average.
-AStarRouter spent 0.00s answering queries (0.11ms on average).
-function run_oneshot finished after 8.311012 seconds
-function main finished after 9.904016 seconds
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 << finished t2s, routes in C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\oneshot\vehroutes_oneshot_meso.rou.xml
+AStarRouter spent 0.01s answering queries (0.47ms on average).
+function run_oneshot finished after 23.847674 seconds
+function main finished after 33.320514 seconds
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 << finished t2s, routes in C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.2_from_03Jan150604.28804\tsc.sqlite3\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\oneshot\vehroutes_oneshot_meso.rou.xml
 
 db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >> starting trip result database upload
-function upload_trip_results called at Thu, 25 Mar 2021 18:53:09 +0000
-function _parse_vehicle_info called at Thu, 25 Mar 2021 18:53:09 +0000
+function upload_trip_results called at Mon, 03 Jan 2022 15:21:36 +0000
+function _parse_vehicle_info called at Mon, 03 Jan 2022 15:21:36 +0000
 Parsed results for 1012 vehicles and persons
-SUMO durations: count 1012, min 1.00 (102530463_101485030_503_1), max 283.00 (100663234_100441577_896_0), mean 17.25 Q1 1.00, median 2.00, Q3 4.00
-SUMO distances: count 1012, min 0.20 (102530463_101485030_503_1), max 2900.00 (100384762_100257887_470_1), mean 169.25 Q1 1.41, median 17.37, Q3 38.52
-function _parse_vehicle_info finished after 0.025976 seconds
-function upload_trip_results finished after 0.361472 seconds
+SUMO durations: count 1012, min 1.00 (102530463_101485030_503_1), max 283.00 (100663234_100441577_896_0), mean 17.25, Q1 1.00, median 2.00, Q3 4.00
+SUMO distances: count 1012, min 0.20 (102530463_101485030_503_1), max 2900.00 (100384762_100257887_470_1), mean 169.25, Q1 1.41, median 17.37, Q3 38.52
+function _parse_vehicle_info finished after 0.185003 seconds
+function upload_trip_results finished after 0.210005 seconds
 db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 << finished trip result database upload
 
-[('DB_CAR_FLEET_KEY', 'MID2008_Y2010_BERLIN'), ('DB_HH_SAMPLE_SIZE', '0.5'), ('DB_NAME_MATRIX_TT_MIT_BASE', 'CAR_TT_B_2005'), ('DB_TABLE_ADDITIONAL_TRAFFIC', ''), ('DB_TABLE_CARS', 'berlin_cars'), ('DB_TABLE_MATRIXMAPS', 'berlin_matrixmap'), ('DB_TABLE_REPRESENTATIVES', 'berlin_location_representatives'), ('DB_TABLE_SUMO_OD_ENTRY', 'sumo_od_entry'), ('DB_TABLE_SUMO_OD_OUTPUT', 'sumo_od'), ('DB_TABLE_SUMO_STATUS', 'global_sumo_status'), ('DB_TABLE_SUMO_TRIP_OUTPUT', 'sumo_trip'), ('DB_TABLE_TAZ', 'berlin_taz'), ('DB_TABLE_TRIPS', 'test_trips'), ('DELETE_INTERMEDIATE_RESULTS', 'false'), ('DELETE_TEMP', 'false'), ('ITERATION', '0'), ('MAX_SUMO_ITERATION', '10'), ('SHARING_FLEET_SIZE', '100'), ('SHARING_VEHICLE_CAPACITY', '5'), ('SLICE', [24.0]), ('SUMO_DESTINATION_FOLDER', 'VEUII-BASE2010'), ('SUMO_MODES', '2;4'), ('SUMO_NET_PARAMETER', '{}'), ('SUMO_TEMPLATE_FOLDER', 'mitte_net')]
 db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >> starting all pairs calculation
-function aggregate_weights called at Thu, 25 Mar 2021 18:53:10 +0000
-function aggregate_weights finished after 0.024497 seconds
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs for medium_passenger_diesel, slice ending at hour 24.0
-wrote 50000 rows to scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_medium_passenger_diesel24.csv
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs t2s using tripfile scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_medium_passenger_diesel24.csv
-function main called at Thu, 25 Mar 2021 18:53:11 +0000
-using C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_medium_passenger_diesel24.csv as rectified input
-function map_to_edges called at Thu, 25 Mar 2021 18:53:11 +0000
+function aggregate_weights called at Mon, 03 Jan 2022 15:21:36 +0000
+function aggregate_weights finished after 0.086005 seconds
+found the following vehicle classes: ['passenger']
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs for passenger, slice ending at hour 24.0
+wrote 50000 rows to scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_passenger24.csv
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs t2s using tripfile scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_passenger24.csv
+function main called at Mon, 03 Jan 2022 15:21:37 +0000
+using C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.2_from_03Jan150604.28804\tsc.sqlite3\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_passenger24.csv as rectified input
+function map_to_edges called at Mon, 03 Jan 2022 15:21:37 +0000
+Mapping using C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.2_from_03Jan150604.28804\tsc.sqlite3\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\districts.taz.xml.
 Warning: could not find an edge for departure of ('1100020098', '1100020097') from (52.53589568, 13.32689285), depart_minute=0 (skipping trip)
 Warning: could not find an edge for departure of ('1100020099', '1100020098') from (52.53363167, 13.32717288), depart_minute=0 (skipping trip)
 Warning: could not find an edge for departure of ('1100020098', '1100020095') from (52.53589568, 13.32689285), depart_minute=0 (skipping trip)
@@ -170,514 +172,31 @@ Mapping (5359.152268840931, 1640.0943716196343) to 4616192#0 (dist: 14.06) which
 Mapping (1064.2218263525283, 481.30115962959826) to -25042806#8 (dist: 21.17) which is not in taz 110110314, best match in taz is 67627350 (dist: 245.04)
 Mapping (3441.1169193564565, 3232.864670921117) to 24968394#0 (dist: 36.73) which is not in taz 110311022, best match in taz is -4615003#3 (dist: 200.52)
 read 50000 TAPAS trips for 50000 persons (48751 unmappable)
-Mapping deviations: count 1029, min 0.11 (xycoord=(3447.471660041425, 2407.0635285582393), edge=4790839#0, uid=('1100020098', '2110765808')), max 1594.37 (xycoord=(5691.049514636397, 4709.686037030071), edge=177914136#0, uid=('1100020098', '2110820343')), mean 492.67 Q1 18.18, median 231.44, Q3 958.63
+Mapping deviations: count 1029, min 0.11 (xycoord=(3447.471660041425, 2407.0635285582393), edge=4790839#0, uid=('1100020098', '2110765808')), max 1594.37 (xycoord=(5691.049514636397, 4709.686037030071), edge=177914136#0, uid=('1100020098', '2110820343')), mean 492.67, Q1 18.18, median 231.44, Q3 958.63
 557 mappings did not find an edge in the correct taz
-function map_to_edges finished after 3.431010 seconds
-function create_sumo_tripdefs called at Thu, 25 Mar 2021 18:53:15 +0000
+function map_to_edges finished after 5.095069 seconds
+using previous version of C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.2_from_03Jan150604.28804\tsc.sqlite3\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\allpairs\rectified_all_pairs_passenger24.csv
+function create_sumo_tripdefs called at Mon, 03 Jan 2022 15:21:42 +0000
 read trip definitions for 1249 vehicles
 created trip definitions for 1249 vehicles starting between 86400 and 86400
-function create_sumo_tripdefs finished after 0.028994 seconds
-function run_bulk called at Thu, 25 Mar 2021 18:53:15 +0000
-computing routes for all TAZ-pairs using weights from C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\oneshot\aggregated_oneshot_meso_aggregated.xml
-function run_bulk finished after 1.002504 seconds
-function main finished after 4.475974 seconds
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished all pairs t2s, routes in C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\allpairs\miv_all_pairs_medium_passenger_diesel24.trips.rou.alt.xml
+function create_sumo_tripdefs finished after 0.040001 seconds
+function run_bulk called at Mon, 03 Jan 2022 15:21:42 +0000
+Written configuration to 'C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.2_from_03Jan150604.28804\tsc.sqlite3\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\allpairs\miv_all_pairs_passenger24.trips.duarcfg'
+computing routes for all TAZ-pairs using weights from scenario_workdir\VEUII-BASE2010\iteration000\allpairs\aggregated_oneshot_meso.xml
+function run_bulk finished after 2.526563 seconds
+function main finished after 7.680632 seconds
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished all pairs t2s, routes in C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.2_from_03Jan150604.28804\tsc.sqlite3\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\allpairs\miv_all_pairs_passenger24.trips.rou.xml.gz
 db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting od result database upload
-function upload_all_pairs called at Thu, 25 Mar 2021 18:53:16 +0000
-function _parse_vehicle_info_taz called at Thu, 25 Mar 2021 18:53:16 +0000
-Parsed taz results for 8 vehicles
-function _parse_vehicle_info_taz finished after 0.023000 seconds
-function _get_all_pair_stats called at Thu, 25 Mar 2021 18:53:16 +0000
-function _get_all_pair_stats finished after 0.000000 seconds
-SUMO durations: count 1072, min 23.28 (1100050225_1100050225_0_0), max 857.22 (1100050225_1100240038_0_0), mean 459.26 Q1 341.64, median 463.08, Q3 606.02
-SUMO distances: count 1072, min 193.93 (1100050225_1100050225_0_0), max 8821.36 (1100050225_1100240038_0_0), mean 4374.96 Q1 2971.47, median 4133.61, Q3 5778.44
-inserting dummy data for 49460 unconnected O-D relations
-function upload_all_pairs finished after 2.926340 seconds
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished od result database upload
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs for medium_passenger_gas, slice ending at hour 24.0
-wrote 50000 rows to scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_medium_passenger_gas24.csv
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs t2s using tripfile scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_medium_passenger_gas24.csv
-function main called at Thu, 25 Mar 2021 18:53:20 +0000
-using C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_medium_passenger_gas24.csv as rectified input
-function map_to_edges called at Thu, 25 Mar 2021 18:53:20 +0000
-Warning: could not find an edge for departure of ('1100020098', '1100020097') from (52.53589568, 13.32689285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020099', '1100020098') from (52.53363167, 13.32717288), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020098', '1100020095') from (52.53589568, 13.32689285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020099', '1100020099') from (52.53363167, 13.32717288), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020097', '1100020099') from (52.53598968, 13.32686285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020097', '1100152896') from (52.53598968, 13.32686285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020098', '1100152917') from (52.53589568, 13.32689285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020099', '1100152890') from (52.53363167, 13.32717288), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020095', '1100152878') from (52.53523868, 13.32864885), depart_minute=0 (skipping trip)
-Mapping (265.1427149325609, 334.5422348966822) to 4611886 (dist: 76.44) which is not in taz 110100521, best match in taz is 475533029 (dist: 181.42)
-Mapping (807.947808799101, 2315.31954047177) to 31112516#1 (dist: 8.93) which is not in taz 110109822, best match in taz is -315214529#12 (dist: 135.91)
-Mapping (1087.4520966036944, 2279.0150752263144) to 437325051#0 (dist: 8.82) which is not in taz 110109822, best match in taz is -7917219#3 (dist: 121.03)
-Mapping (1577.1669913597289, 2934.633303419687) to -172078325#4 (dist: 8.67) which is not in taz 110109912, best match in taz is 4597254#0 (dist: 64.21)
-Mapping (2593.237173535279, 2541.5606477269903) to 24241762#3 (dist: 11.14) which is not in taz 110110121, best match in taz is -4613293#0 (dist: 60.11)
-Mapping (809.7784634758718, 1458.4445962226018) to 24240246#0 (dist: 17.66) which is not in taz 110110312, best match in taz is 4402014#0 (dist: 112.10)
-Mapping (2384.106037215912, 1062.8716783924028) to 304627753#0 (dist: 32.59) which is not in taz 110110421, best match in taz is 4840859#0 (dist: 65.74)
-Mapping (3399.359839078621, 2007.5262750415131) to 287764737#0 (dist: 52.54) which is not in taz 110110513, best match in taz is -48303485#3 (dist: 138.72)
-Mapping (3363.79277968884, 2026.1090901251882) to 287764737#0 (dist: 52.94) which is not in taz 110110513, best match in taz is -48303485#3 (dist: 138.24)
-Mapping (1787.6123460037634, 4.49782804492861) to -32938436 (dist: 184.59) which is not in taz 110201215, best match in taz is -65040944#2 (dist: 459.43)
-Mapping (2969.7857893988257, 2.8678674958646297) to 455097481 (dist: 227.24) which is not in taz 110201311, best match in taz is -24214232 (dist: 556.38)
-Mapping (2770.4991706214496, 173.04960500542074) to -455097481 (dist: 55.36) which is not in taz 110201311, best match in taz is -24214232 (dist: 307.31)
-Mapping (4494.6628584343125, 2186.188588006422) to 351704742#0 (dist: 11.42) which is not in taz 110211311, best match in taz is 28110441#0 (dist: 457.70)
-Mapping (4845.278371742053, 2298.779039132409) to 345817373 (dist: 9.10) which is not in taz 110211311, best match in taz is 93628041#1 (dist: 100.28)
-Mapping (4419.219239973114, 1899.6236391132697) to 4615628#0 (dist: 12.69) which is not in taz 110211413, best match in taz is 310145076#0 (dist: 108.57)
-Mapping (4648.518239530735, 1831.2306741923094) to 44619068#2 (dist: 10.80) which is not in taz 110211414, best match in taz is 28935244 (dist: 201.92)
-Mapping (5171.294350185082, 2089.229819096625) to 4615745#0 (dist: 13.11) which is not in taz 110211511, best match in taz is -44851670#0 (dist: 79.26)
-Mapping (5440.252764963894, 2034.4857246447355) to -4615783#8 (dist: 12.14) which is not in taz 110211511, best match in taz is 4615784#0 (dist: 144.51)
-Mapping (5854.953922058281, 1558.2497952356935) to -4685718#1 (dist: 10.49) which is not in taz 110211517, best match in taz is 295627704#0 (dist: 75.16)
-Mapping (5565.746212394093, 1714.6630502995104) to 460217105#0 (dist: 23.49) which is not in taz 110211518, best match in taz is 126348151#0 (dist: 93.94)
-Mapping (5185.501301177312, 1866.376554784365) to 4615742#4 (dist: 10.92) which is not in taz 110211518, best match in taz is -4615783#2 (dist: 73.97)
-Mapping (5266.819168403628, 1860.175734131597) to 4616192#2 (dist: 13.75) which is not in taz 110211518, best match in taz is -4615783#2 (dist: 87.49)
-Mapping (5418.122741039202, 1509.750249654986) to 351509721#18 (dist: 20.74) which is not in taz 110211519, best match in taz is -128636794#1 (dist: 62.93)
-Mapping (6115.496764930198, 1171.018202102743) to -127361055#4 (dist: 14.36) which is not in taz 110211612, best match in taz is -24180030#1 (dist: 64.65)
-Mapping (5597.3479922466795, 1004.0619455436245) to 4616572#0 (dist: 9.19) which is not in taz 110211615, best match in taz is -4616579#4 (dist: 165.42)
-Mapping (6044.426167091122, 1212.5930769369006) to 310172798#0 (dist: 16.60) which is not in taz 110211616, best match in taz is -127361055#4 (dist: 67.89)
-Mapping (5673.2634366780985, 966.8277180818841) to 37287191#0 (dist: 42.34) which is not in taz 110211616, best match in taz is -35559332#11 (dist: 134.77)
-Mapping (5239.221206167713, 545.5166172971949) to -320261155#1 (dist: 11.60) which is not in taz 110211621, best match in taz is -276457310#2 (dist: 71.47)
-Mapping (4118.040395579243, 1315.2963024824858) to -4616239#7 (dist: 27.54) which is not in taz 110211712, best match in taz is -273390876#19 (dist: 101.01)
-Mapping (4619.13798746164, 1257.6923514921218) to 271049534 (dist: 39.47) which is not in taz 110211713, best match in taz is 283919155#0 (dist: 137.41)
-Mapping (5256.795217243489, 36.61959958728403) to 23343818#6 (dist: 346.53) which is not in taz 110211722, best match in taz is -4685763#4 (dist: 761.59)
-Mapping (5298.6073713502265, 118.06302401795983) to 23343818#6 (dist: 273.17) which is not in taz 110211722, best match in taz is -4685763#4 (dist: 761.64)
-Mapping (5616.556743084395, 3292.5438649524003) to 177914136#0 (dist: 178.31) which is not in taz 110310921, best match in taz is 28299348#0 (dist: 644.51)
-Mapping (5746.181564551953, 3135.095082603395) to 177914136#0 (dist: 157.14) which is not in taz 110310921, best match in taz is 28299348#0 (dist: 449.92)
-Mapping (3161.867102878634, 3093.2153840418905) to 4615003#3 (dist: 23.46) which is not in taz 110311021, best match in taz is -373389574#4 (dist: 152.63)
-Mapping (3043.2188972175354, 2727.4990078909323) to 319339413#0 (dist: 38.92) which is not in taz 110311021, best match in taz is 288749954#0 (dist: 130.76)
-Mapping (3386.402169181907, 3089.4049396896735) to 24968394#0 (dist: 35.46) which is not in taz 110311022, best match in taz is -4615003#3 (dist: 205.13)
-Mapping (3321.4973989767022, 2852.697783618234) to 24968394#0 (dist: 20.44) which is not in taz 110311111, best match in taz is -120948266 (dist: 327.69)
-Mapping (3306.789658281661, 2831.877812403254) to 24968394#0 (dist: 19.76) which is not in taz 110311111, best match in taz is -120948266 (dist: 351.04)
-Mapping (3530.987872504047, 3246.476473810151) to 24968394#0 (dist: 42.33) which is not in taz 110311111, best match in taz is -120948266 (dist: 239.03)
-Mapping (3372.0613842906896, 2496.621938000433) to 4613112#0 (dist: 37.22) which is not in taz 110311112, best match in taz is 4614989#0 (dist: 74.79)
-Mapping (4804.5966668904875, 3022.9396715108305) to 109804590#0 (dist: 20.96) which is not in taz 110311121, best match in taz is 318031558#1 (dist: 56.96)
-Mapping (4384.505125317897, 3521.6452545467764) to 4615034#6 (dist: 90.24) which is not in taz 110311122, best match in taz is -26299675#0 (dist: 305.17)
-Mapping (6493.19385934982, 3034.5824925722554) to 4687140#0 (dist: 92.25) which is not in taz 111115211, best match in taz is 88421001 (dist: 280.25)
-Mapping (7140.272863895982, 3213.3642306234688) to 4687140#0 (dist: 424.50) which is not in taz 111115211, best match in taz is 88421001 (dist: 935.33)
-Mapping (6497.027009678248, 3023.373681200668) to 4687140#0 (dist: 80.41) which is not in taz 111115211, best match in taz is 88421001 (dist: 276.45)
-Mapping (6071.300773116178, 1104.0847761360928) to -127361055#4 (dist: 13.64) which is not in taz 110211612, best match in taz is -24180030#1 (dist: 72.65)
-Mapping (5270.240435580257, 61.92339791916311) to 23343818#6 (dist: 322.80) which is not in taz 110211722, best match in taz is -4685763#4 (dist: 760.83)
-Mapping (5428.753248299123, 3552.505384529941) to 177914136#0 (dist: 456.08) which is not in taz 110310921, best match in taz is 28299348#0 (dist: 961.38)
-Mapping (3417.0161783300573, 3247.8581600291654) to 24968394#0 (dist: 64.60) which is not in taz 110311022, best match in taz is -4615003#3 (dist: 176.98)
-Mapping (4313.6580425662105, 3102.5652632266283) to -4615063#2 (dist: 14.26) which is not in taz 110311122, best match in taz is 4615066#1 (dist: 67.33)
-Mapping (6564.4262480098405, 3193.3009107224643) to 171867090#0 (dist: 211.18) which is not in taz 111115211, best match in taz is 88421001 (dist: 442.27)
-Mapping (5843.0504307199735, 1572.9699112325907) to -4685718#1 (dist: 20.71) which is not in taz 110211517, best match in taz is 295627704#0 (dist: 91.63)
-Mapping (4358.155580032559, 3464.354373834096) to 4615034#6 (dist: 85.14) which is not in taz 110311122, best match in taz is -26299675#0 (dist: 242.56)
-Mapping (5359.152268840931, 1640.0943716196343) to 4616192#0 (dist: 14.06) which is not in taz 110211518, best match in taz is -26138864#1 (dist: 97.18)
-Mapping (1064.2218263525283, 481.30115962959826) to -25042806#8 (dist: 21.17) which is not in taz 110110314, best match in taz is 67627350 (dist: 245.04)
-Mapping (3441.1169193564565, 3232.864670921117) to 24968394#0 (dist: 36.73) which is not in taz 110311022, best match in taz is -4615003#3 (dist: 200.52)
-read 50000 TAPAS trips for 50000 persons (48751 unmappable)
-Mapping deviations: count 1029, min 0.11 (xycoord=(3447.471660041425, 2407.0635285582393), edge=4790839#0, uid=('1100020098', '2110765808')), max 1594.37 (xycoord=(5691.049514636397, 4709.686037030071), edge=177914136#0, uid=('1100020098', '2110820343')), mean 492.67 Q1 18.18, median 231.44, Q3 958.63
-557 mappings did not find an edge in the correct taz
-function map_to_edges finished after 3.099506 seconds
-function create_sumo_tripdefs called at Thu, 25 Mar 2021 18:53:23 +0000
-read trip definitions for 1249 vehicles
-created trip definitions for 1249 vehicles starting between 86400 and 86400
-function create_sumo_tripdefs finished after 0.026553 seconds
-function run_bulk called at Thu, 25 Mar 2021 18:53:23 +0000
-computing routes for all TAZ-pairs using weights from C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\oneshot\aggregated_oneshot_meso_aggregated.xml
-function run_bulk finished after 0.970233 seconds
-function main finished after 4.109710 seconds
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished all pairs t2s, routes in C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\allpairs\miv_all_pairs_medium_passenger_gas24.trips.rou.alt.xml
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting od result database upload
-function upload_all_pairs called at Thu, 25 Mar 2021 18:53:25 +0000
-function _parse_vehicle_info_taz called at Thu, 25 Mar 2021 18:53:25 +0000
-Parsed taz results for 498 vehicles
-function _parse_vehicle_info_taz finished after 0.024000 seconds
-function _get_all_pair_stats called at Thu, 25 Mar 2021 18:53:25 +0000
-function _get_all_pair_stats finished after 0.000000 seconds
-SUMO durations: count 1072, min 23.28 (1100050225_1100050225_0_0), max 857.22 (1100050225_1100240038_0_0), mean 459.26 Q1 341.64, median 463.08, Q3 606.02
-SUMO distances: count 1072, min 193.93 (1100050225_1100050225_0_0), max 8821.36 (1100050225_1100240038_0_0), mean 4374.96 Q1 2971.47, median 4133.61, Q3 5778.44
-inserting dummy data for 49424 unconnected O-D relations
-function upload_all_pairs finished after 3.049246 seconds
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished od result database upload
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs for medium_passenger_gasoline, slice ending at hour 24.0
-wrote 50000 rows to scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_medium_passenger_gasoline24.csv
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs t2s using tripfile scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_medium_passenger_gasoline24.csv
-function main called at Thu, 25 Mar 2021 18:53:29 +0000
-using C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_medium_passenger_gasoline24.csv as rectified input
-function map_to_edges called at Thu, 25 Mar 2021 18:53:29 +0000
-Warning: could not find an edge for departure of ('1100020098', '1100020097') from (52.53589568, 13.32689285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020099', '1100020098') from (52.53363167, 13.32717288), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020098', '1100020095') from (52.53589568, 13.32689285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020099', '1100020099') from (52.53363167, 13.32717288), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020097', '1100020099') from (52.53598968, 13.32686285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020097', '1100152896') from (52.53598968, 13.32686285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020098', '1100152917') from (52.53589568, 13.32689285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020099', '1100152890') from (52.53363167, 13.32717288), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020095', '1100152878') from (52.53523868, 13.32864885), depart_minute=0 (skipping trip)
-Mapping (265.1427149325609, 334.5422348966822) to 4611886 (dist: 76.44) which is not in taz 110100521, best match in taz is 475533029 (dist: 181.42)
-Mapping (807.947808799101, 2315.31954047177) to 31112516#1 (dist: 8.93) which is not in taz 110109822, best match in taz is -315214529#12 (dist: 135.91)
-Mapping (1087.4520966036944, 2279.0150752263144) to 437325051#0 (dist: 8.82) which is not in taz 110109822, best match in taz is -7917219#3 (dist: 121.03)
-Mapping (1577.1669913597289, 2934.633303419687) to -172078325#4 (dist: 8.67) which is not in taz 110109912, best match in taz is 4597254#0 (dist: 64.21)
-Mapping (2593.237173535279, 2541.5606477269903) to 24241762#3 (dist: 11.14) which is not in taz 110110121, best match in taz is -4613293#0 (dist: 60.11)
-Mapping (809.7784634758718, 1458.4445962226018) to 24240246#0 (dist: 17.66) which is not in taz 110110312, best match in taz is 4402014#0 (dist: 112.10)
-Mapping (2384.106037215912, 1062.8716783924028) to 304627753#0 (dist: 32.59) which is not in taz 110110421, best match in taz is 4840859#0 (dist: 65.74)
-Mapping (3399.359839078621, 2007.5262750415131) to 287764737#0 (dist: 52.54) which is not in taz 110110513, best match in taz is -48303485#3 (dist: 138.72)
-Mapping (3363.79277968884, 2026.1090901251882) to 287764737#0 (dist: 52.94) which is not in taz 110110513, best match in taz is -48303485#3 (dist: 138.24)
-Mapping (1787.6123460037634, 4.49782804492861) to -32938436 (dist: 184.59) which is not in taz 110201215, best match in taz is -65040944#2 (dist: 459.43)
-Mapping (2969.7857893988257, 2.8678674958646297) to 455097481 (dist: 227.24) which is not in taz 110201311, best match in taz is -24214232 (dist: 556.38)
-Mapping (2770.4991706214496, 173.04960500542074) to -455097481 (dist: 55.36) which is not in taz 110201311, best match in taz is -24214232 (dist: 307.31)
-Mapping (4494.6628584343125, 2186.188588006422) to 351704742#0 (dist: 11.42) which is not in taz 110211311, best match in taz is 28110441#0 (dist: 457.70)
-Mapping (4845.278371742053, 2298.779039132409) to 345817373 (dist: 9.10) which is not in taz 110211311, best match in taz is 93628041#1 (dist: 100.28)
-Mapping (4419.219239973114, 1899.6236391132697) to 4615628#0 (dist: 12.69) which is not in taz 110211413, best match in taz is 310145076#0 (dist: 108.57)
-Mapping (4648.518239530735, 1831.2306741923094) to 44619068#2 (dist: 10.80) which is not in taz 110211414, best match in taz is 28935244 (dist: 201.92)
-Mapping (5171.294350185082, 2089.229819096625) to 4615745#0 (dist: 13.11) which is not in taz 110211511, best match in taz is -44851670#0 (dist: 79.26)
-Mapping (5440.252764963894, 2034.4857246447355) to -4615783#8 (dist: 12.14) which is not in taz 110211511, best match in taz is 4615784#0 (dist: 144.51)
-Mapping (5854.953922058281, 1558.2497952356935) to -4685718#1 (dist: 10.49) which is not in taz 110211517, best match in taz is 295627704#0 (dist: 75.16)
-Mapping (5565.746212394093, 1714.6630502995104) to 460217105#0 (dist: 23.49) which is not in taz 110211518, best match in taz is 126348151#0 (dist: 93.94)
-Mapping (5185.501301177312, 1866.376554784365) to 4615742#4 (dist: 10.92) which is not in taz 110211518, best match in taz is -4615783#2 (dist: 73.97)
-Mapping (5266.819168403628, 1860.175734131597) to 4616192#2 (dist: 13.75) which is not in taz 110211518, best match in taz is -4615783#2 (dist: 87.49)
-Mapping (5418.122741039202, 1509.750249654986) to 351509721#18 (dist: 20.74) which is not in taz 110211519, best match in taz is -128636794#1 (dist: 62.93)
-Mapping (6115.496764930198, 1171.018202102743) to -127361055#4 (dist: 14.36) which is not in taz 110211612, best match in taz is -24180030#1 (dist: 64.65)
-Mapping (5597.3479922466795, 1004.0619455436245) to 4616572#0 (dist: 9.19) which is not in taz 110211615, best match in taz is -4616579#4 (dist: 165.42)
-Mapping (6044.426167091122, 1212.5930769369006) to 310172798#0 (dist: 16.60) which is not in taz 110211616, best match in taz is -127361055#4 (dist: 67.89)
-Mapping (5673.2634366780985, 966.8277180818841) to 37287191#0 (dist: 42.34) which is not in taz 110211616, best match in taz is -35559332#11 (dist: 134.77)
-Mapping (5239.221206167713, 545.5166172971949) to -320261155#1 (dist: 11.60) which is not in taz 110211621, best match in taz is -276457310#2 (dist: 71.47)
-Mapping (4118.040395579243, 1315.2963024824858) to -4616239#7 (dist: 27.54) which is not in taz 110211712, best match in taz is -273390876#19 (dist: 101.01)
-Mapping (4619.13798746164, 1257.6923514921218) to 271049534 (dist: 39.47) which is not in taz 110211713, best match in taz is 283919155#0 (dist: 137.41)
-Mapping (5256.795217243489, 36.61959958728403) to 23343818#6 (dist: 346.53) which is not in taz 110211722, best match in taz is -4685763#4 (dist: 761.59)
-Mapping (5298.6073713502265, 118.06302401795983) to 23343818#6 (dist: 273.17) which is not in taz 110211722, best match in taz is -4685763#4 (dist: 761.64)
-Mapping (5616.556743084395, 3292.5438649524003) to 177914136#0 (dist: 178.31) which is not in taz 110310921, best match in taz is 28299348#0 (dist: 644.51)
-Mapping (5746.181564551953, 3135.095082603395) to 177914136#0 (dist: 157.14) which is not in taz 110310921, best match in taz is 28299348#0 (dist: 449.92)
-Mapping (3161.867102878634, 3093.2153840418905) to 4615003#3 (dist: 23.46) which is not in taz 110311021, best match in taz is -373389574#4 (dist: 152.63)
-Mapping (3043.2188972175354, 2727.4990078909323) to 319339413#0 (dist: 38.92) which is not in taz 110311021, best match in taz is 288749954#0 (dist: 130.76)
-Mapping (3386.402169181907, 3089.4049396896735) to 24968394#0 (dist: 35.46) which is not in taz 110311022, best match in taz is -4615003#3 (dist: 205.13)
-Mapping (3321.4973989767022, 2852.697783618234) to 24968394#0 (dist: 20.44) which is not in taz 110311111, best match in taz is -120948266 (dist: 327.69)
-Mapping (3306.789658281661, 2831.877812403254) to 24968394#0 (dist: 19.76) which is not in taz 110311111, best match in taz is -120948266 (dist: 351.04)
-Mapping (3530.987872504047, 3246.476473810151) to 24968394#0 (dist: 42.33) which is not in taz 110311111, best match in taz is -120948266 (dist: 239.03)
-Mapping (3372.0613842906896, 2496.621938000433) to 4613112#0 (dist: 37.22) which is not in taz 110311112, best match in taz is 4614989#0 (dist: 74.79)
-Mapping (4804.5966668904875, 3022.9396715108305) to 109804590#0 (dist: 20.96) which is not in taz 110311121, best match in taz is 318031558#1 (dist: 56.96)
-Mapping (4384.505125317897, 3521.6452545467764) to 4615034#6 (dist: 90.24) which is not in taz 110311122, best match in taz is -26299675#0 (dist: 305.17)
-Mapping (6493.19385934982, 3034.5824925722554) to 4687140#0 (dist: 92.25) which is not in taz 111115211, best match in taz is 88421001 (dist: 280.25)
-Mapping (7140.272863895982, 3213.3642306234688) to 4687140#0 (dist: 424.50) which is not in taz 111115211, best match in taz is 88421001 (dist: 935.33)
-Mapping (6497.027009678248, 3023.373681200668) to 4687140#0 (dist: 80.41) which is not in taz 111115211, best match in taz is 88421001 (dist: 276.45)
-Mapping (6071.300773116178, 1104.0847761360928) to -127361055#4 (dist: 13.64) which is not in taz 110211612, best match in taz is -24180030#1 (dist: 72.65)
-Mapping (5270.240435580257, 61.92339791916311) to 23343818#6 (dist: 322.80) which is not in taz 110211722, best match in taz is -4685763#4 (dist: 760.83)
-Mapping (5428.753248299123, 3552.505384529941) to 177914136#0 (dist: 456.08) which is not in taz 110310921, best match in taz is 28299348#0 (dist: 961.38)
-Mapping (3417.0161783300573, 3247.8581600291654) to 24968394#0 (dist: 64.60) which is not in taz 110311022, best match in taz is -4615003#3 (dist: 176.98)
-Mapping (4313.6580425662105, 3102.5652632266283) to -4615063#2 (dist: 14.26) which is not in taz 110311122, best match in taz is 4615066#1 (dist: 67.33)
-Mapping (6564.4262480098405, 3193.3009107224643) to 171867090#0 (dist: 211.18) which is not in taz 111115211, best match in taz is 88421001 (dist: 442.27)
-Mapping (5843.0504307199735, 1572.9699112325907) to -4685718#1 (dist: 20.71) which is not in taz 110211517, best match in taz is 295627704#0 (dist: 91.63)
-Mapping (4358.155580032559, 3464.354373834096) to 4615034#6 (dist: 85.14) which is not in taz 110311122, best match in taz is -26299675#0 (dist: 242.56)
-Mapping (5359.152268840931, 1640.0943716196343) to 4616192#0 (dist: 14.06) which is not in taz 110211518, best match in taz is -26138864#1 (dist: 97.18)
-Mapping (1064.2218263525283, 481.30115962959826) to -25042806#8 (dist: 21.17) which is not in taz 110110314, best match in taz is 67627350 (dist: 245.04)
-Mapping (3441.1169193564565, 3232.864670921117) to 24968394#0 (dist: 36.73) which is not in taz 110311022, best match in taz is -4615003#3 (dist: 200.52)
-read 50000 TAPAS trips for 50000 persons (48751 unmappable)
-Mapping deviations: count 1029, min 0.11 (xycoord=(3447.471660041425, 2407.0635285582393), edge=4790839#0, uid=('1100020098', '2110765808')), max 1594.37 (xycoord=(5691.049514636397, 4709.686037030071), edge=177914136#0, uid=('1100020098', '2110820343')), mean 492.67 Q1 18.18, median 231.44, Q3 958.63
-557 mappings did not find an edge in the correct taz
-function map_to_edges finished after 3.140548 seconds
-function create_sumo_tripdefs called at Thu, 25 Mar 2021 18:53:32 +0000
-read trip definitions for 1249 vehicles
-created trip definitions for 1249 vehicles starting between 86400 and 86400
-function create_sumo_tripdefs finished after 0.028967 seconds
-function run_bulk called at Thu, 25 Mar 2021 18:53:32 +0000
-computing routes for all TAZ-pairs using weights from C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\oneshot\aggregated_oneshot_meso_aggregated.xml
-function run_bulk finished after 0.958220 seconds
-function main finished after 4.142226 seconds
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished all pairs t2s, routes in C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\allpairs\miv_all_pairs_medium_passenger_gasoline24.trips.rou.alt.xml
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting od result database upload
-function upload_all_pairs called at Thu, 25 Mar 2021 18:53:33 +0000
-function _parse_vehicle_info_taz called at Thu, 25 Mar 2021 18:53:33 +0000
-Parsed taz results for 50 vehicles
-function _parse_vehicle_info_taz finished after 0.022913 seconds
-function _get_all_pair_stats called at Thu, 25 Mar 2021 18:53:33 +0000
-function _get_all_pair_stats finished after 0.000000 seconds
-SUMO durations: count 1072, min 23.28 (1100050225_1100050225_0_0), max 857.22 (1100050225_1100240038_0_0), mean 459.26 Q1 341.64, median 463.08, Q3 606.02
-SUMO distances: count 1072, min 193.93 (1100050225_1100050225_0_0), max 8821.36 (1100050225_1100240038_0_0), mean 4374.96 Q1 2971.47, median 4133.61, Q3 5778.44
-inserting dummy data for 49449 unconnected O-D relations
-function upload_all_pairs finished after 3.594948 seconds
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished od result database upload
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs for small_passenger_diesel, slice ending at hour 24.0
-wrote 50000 rows to scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_small_passenger_diesel24.csv
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs t2s using tripfile scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_small_passenger_diesel24.csv
-function main called at Thu, 25 Mar 2021 18:53:38 +0000
-using C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_small_passenger_diesel24.csv as rectified input
-function map_to_edges called at Thu, 25 Mar 2021 18:53:38 +0000
-Warning: could not find an edge for departure of ('1100020098', '1100020097') from (52.53589568, 13.32689285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020099', '1100020098') from (52.53363167, 13.32717288), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020098', '1100020095') from (52.53589568, 13.32689285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020099', '1100020099') from (52.53363167, 13.32717288), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020097', '1100020099') from (52.53598968, 13.32686285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020097', '1100152896') from (52.53598968, 13.32686285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020098', '1100152917') from (52.53589568, 13.32689285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020099', '1100152890') from (52.53363167, 13.32717288), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020095', '1100152878') from (52.53523868, 13.32864885), depart_minute=0 (skipping trip)
-Mapping (265.1427149325609, 334.5422348966822) to 4611886 (dist: 76.44) which is not in taz 110100521, best match in taz is 475533029 (dist: 181.42)
-Mapping (807.947808799101, 2315.31954047177) to 31112516#1 (dist: 8.93) which is not in taz 110109822, best match in taz is -315214529#12 (dist: 135.91)
-Mapping (1087.4520966036944, 2279.0150752263144) to 437325051#0 (dist: 8.82) which is not in taz 110109822, best match in taz is -7917219#3 (dist: 121.03)
-Mapping (1577.1669913597289, 2934.633303419687) to -172078325#4 (dist: 8.67) which is not in taz 110109912, best match in taz is 4597254#0 (dist: 64.21)
-Mapping (2593.237173535279, 2541.5606477269903) to 24241762#3 (dist: 11.14) which is not in taz 110110121, best match in taz is -4613293#0 (dist: 60.11)
-Mapping (809.7784634758718, 1458.4445962226018) to 24240246#0 (dist: 17.66) which is not in taz 110110312, best match in taz is 4402014#0 (dist: 112.10)
-Mapping (2384.106037215912, 1062.8716783924028) to 304627753#0 (dist: 32.59) which is not in taz 110110421, best match in taz is 4840859#0 (dist: 65.74)
-Mapping (3399.359839078621, 2007.5262750415131) to 287764737#0 (dist: 52.54) which is not in taz 110110513, best match in taz is -48303485#3 (dist: 138.72)
-Mapping (3363.79277968884, 2026.1090901251882) to 287764737#0 (dist: 52.94) which is not in taz 110110513, best match in taz is -48303485#3 (dist: 138.24)
-Mapping (1787.6123460037634, 4.49782804492861) to -32938436 (dist: 184.59) which is not in taz 110201215, best match in taz is -65040944#2 (dist: 459.43)
-Mapping (2969.7857893988257, 2.8678674958646297) to 455097481 (dist: 227.24) which is not in taz 110201311, best match in taz is -24214232 (dist: 556.38)
-Mapping (2770.4991706214496, 173.04960500542074) to -455097481 (dist: 55.36) which is not in taz 110201311, best match in taz is -24214232 (dist: 307.31)
-Mapping (4494.6628584343125, 2186.188588006422) to 351704742#0 (dist: 11.42) which is not in taz 110211311, best match in taz is 28110441#0 (dist: 457.70)
-Mapping (4845.278371742053, 2298.779039132409) to 345817373 (dist: 9.10) which is not in taz 110211311, best match in taz is 93628041#1 (dist: 100.28)
-Mapping (4419.219239973114, 1899.6236391132697) to 4615628#0 (dist: 12.69) which is not in taz 110211413, best match in taz is 310145076#0 (dist: 108.57)
-Mapping (4648.518239530735, 1831.2306741923094) to 44619068#2 (dist: 10.80) which is not in taz 110211414, best match in taz is 28935244 (dist: 201.92)
-Mapping (5171.294350185082, 2089.229819096625) to 4615745#0 (dist: 13.11) which is not in taz 110211511, best match in taz is -44851670#0 (dist: 79.26)
-Mapping (5440.252764963894, 2034.4857246447355) to -4615783#8 (dist: 12.14) which is not in taz 110211511, best match in taz is 4615784#0 (dist: 144.51)
-Mapping (5854.953922058281, 1558.2497952356935) to -4685718#1 (dist: 10.49) which is not in taz 110211517, best match in taz is 295627704#0 (dist: 75.16)
-Mapping (5565.746212394093, 1714.6630502995104) to 460217105#0 (dist: 23.49) which is not in taz 110211518, best match in taz is 126348151#0 (dist: 93.94)
-Mapping (5185.501301177312, 1866.376554784365) to 4615742#4 (dist: 10.92) which is not in taz 110211518, best match in taz is -4615783#2 (dist: 73.97)
-Mapping (5266.819168403628, 1860.175734131597) to 4616192#2 (dist: 13.75) which is not in taz 110211518, best match in taz is -4615783#2 (dist: 87.49)
-Mapping (5418.122741039202, 1509.750249654986) to 351509721#18 (dist: 20.74) which is not in taz 110211519, best match in taz is -128636794#1 (dist: 62.93)
-Mapping (6115.496764930198, 1171.018202102743) to -127361055#4 (dist: 14.36) which is not in taz 110211612, best match in taz is -24180030#1 (dist: 64.65)
-Mapping (5597.3479922466795, 1004.0619455436245) to 4616572#0 (dist: 9.19) which is not in taz 110211615, best match in taz is -4616579#4 (dist: 165.42)
-Mapping (6044.426167091122, 1212.5930769369006) to 310172798#0 (dist: 16.60) which is not in taz 110211616, best match in taz is -127361055#4 (dist: 67.89)
-Mapping (5673.2634366780985, 966.8277180818841) to 37287191#0 (dist: 42.34) which is not in taz 110211616, best match in taz is -35559332#11 (dist: 134.77)
-Mapping (5239.221206167713, 545.5166172971949) to -320261155#1 (dist: 11.60) which is not in taz 110211621, best match in taz is -276457310#2 (dist: 71.47)
-Mapping (4118.040395579243, 1315.2963024824858) to -4616239#7 (dist: 27.54) which is not in taz 110211712, best match in taz is -273390876#19 (dist: 101.01)
-Mapping (4619.13798746164, 1257.6923514921218) to 271049534 (dist: 39.47) which is not in taz 110211713, best match in taz is 283919155#0 (dist: 137.41)
-Mapping (5256.795217243489, 36.61959958728403) to 23343818#6 (dist: 346.53) which is not in taz 110211722, best match in taz is -4685763#4 (dist: 761.59)
-Mapping (5298.6073713502265, 118.06302401795983) to 23343818#6 (dist: 273.17) which is not in taz 110211722, best match in taz is -4685763#4 (dist: 761.64)
-Mapping (5616.556743084395, 3292.5438649524003) to 177914136#0 (dist: 178.31) which is not in taz 110310921, best match in taz is 28299348#0 (dist: 644.51)
-Mapping (5746.181564551953, 3135.095082603395) to 177914136#0 (dist: 157.14) which is not in taz 110310921, best match in taz is 28299348#0 (dist: 449.92)
-Mapping (3161.867102878634, 3093.2153840418905) to 4615003#3 (dist: 23.46) which is not in taz 110311021, best match in taz is -373389574#4 (dist: 152.63)
-Mapping (3043.2188972175354, 2727.4990078909323) to 319339413#0 (dist: 38.92) which is not in taz 110311021, best match in taz is 288749954#0 (dist: 130.76)
-Mapping (3386.402169181907, 3089.4049396896735) to 24968394#0 (dist: 35.46) which is not in taz 110311022, best match in taz is -4615003#3 (dist: 205.13)
-Mapping (3321.4973989767022, 2852.697783618234) to 24968394#0 (dist: 20.44) which is not in taz 110311111, best match in taz is -120948266 (dist: 327.69)
-Mapping (3306.789658281661, 2831.877812403254) to 24968394#0 (dist: 19.76) which is not in taz 110311111, best match in taz is -120948266 (dist: 351.04)
-Mapping (3530.987872504047, 3246.476473810151) to 24968394#0 (dist: 42.33) which is not in taz 110311111, best match in taz is -120948266 (dist: 239.03)
-Mapping (3372.0613842906896, 2496.621938000433) to 4613112#0 (dist: 37.22) which is not in taz 110311112, best match in taz is 4614989#0 (dist: 74.79)
-Mapping (4804.5966668904875, 3022.9396715108305) to 109804590#0 (dist: 20.96) which is not in taz 110311121, best match in taz is 318031558#1 (dist: 56.96)
-Mapping (4384.505125317897, 3521.6452545467764) to 4615034#6 (dist: 90.24) which is not in taz 110311122, best match in taz is -26299675#0 (dist: 305.17)
-Mapping (6493.19385934982, 3034.5824925722554) to 4687140#0 (dist: 92.25) which is not in taz 111115211, best match in taz is 88421001 (dist: 280.25)
-Mapping (7140.272863895982, 3213.3642306234688) to 4687140#0 (dist: 424.50) which is not in taz 111115211, best match in taz is 88421001 (dist: 935.33)
-Mapping (6497.027009678248, 3023.373681200668) to 4687140#0 (dist: 80.41) which is not in taz 111115211, best match in taz is 88421001 (dist: 276.45)
-Mapping (6071.300773116178, 1104.0847761360928) to -127361055#4 (dist: 13.64) which is not in taz 110211612, best match in taz is -24180030#1 (dist: 72.65)
-Mapping (5270.240435580257, 61.92339791916311) to 23343818#6 (dist: 322.80) which is not in taz 110211722, best match in taz is -4685763#4 (dist: 760.83)
-Mapping (5428.753248299123, 3552.505384529941) to 177914136#0 (dist: 456.08) which is not in taz 110310921, best match in taz is 28299348#0 (dist: 961.38)
-Mapping (3417.0161783300573, 3247.8581600291654) to 24968394#0 (dist: 64.60) which is not in taz 110311022, best match in taz is -4615003#3 (dist: 176.98)
-Mapping (4313.6580425662105, 3102.5652632266283) to -4615063#2 (dist: 14.26) which is not in taz 110311122, best match in taz is 4615066#1 (dist: 67.33)
-Mapping (6564.4262480098405, 3193.3009107224643) to 171867090#0 (dist: 211.18) which is not in taz 111115211, best match in taz is 88421001 (dist: 442.27)
-Mapping (5843.0504307199735, 1572.9699112325907) to -4685718#1 (dist: 20.71) which is not in taz 110211517, best match in taz is 295627704#0 (dist: 91.63)
-Mapping (4358.155580032559, 3464.354373834096) to 4615034#6 (dist: 85.14) which is not in taz 110311122, best match in taz is -26299675#0 (dist: 242.56)
-Mapping (5359.152268840931, 1640.0943716196343) to 4616192#0 (dist: 14.06) which is not in taz 110211518, best match in taz is -26138864#1 (dist: 97.18)
-Mapping (1064.2218263525283, 481.30115962959826) to -25042806#8 (dist: 21.17) which is not in taz 110110314, best match in taz is 67627350 (dist: 245.04)
-Mapping (3441.1169193564565, 3232.864670921117) to 24968394#0 (dist: 36.73) which is not in taz 110311022, best match in taz is -4615003#3 (dist: 200.52)
-read 50000 TAPAS trips for 50000 persons (48751 unmappable)
-Mapping deviations: count 1029, min 0.11 (xycoord=(3447.471660041425, 2407.0635285582393), edge=4790839#0, uid=('1100020098', '2110765808')), max 1594.37 (xycoord=(5691.049514636397, 4709.686037030071), edge=177914136#0, uid=('1100020098', '2110820343')), mean 492.67 Q1 18.18, median 231.44, Q3 958.63
-557 mappings did not find an edge in the correct taz
-function map_to_edges finished after 3.053537 seconds
-function create_sumo_tripdefs called at Thu, 25 Mar 2021 18:53:41 +0000
-read trip definitions for 1249 vehicles
-created trip definitions for 1249 vehicles starting between 86400 and 86400
-function create_sumo_tripdefs finished after 0.080011 seconds
-function run_bulk called at Thu, 25 Mar 2021 18:53:41 +0000
-computing routes for all TAZ-pairs using weights from C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\oneshot\aggregated_oneshot_meso_aggregated.xml
-function run_bulk finished after 0.945517 seconds
-function main finished after 4.092034 seconds
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished all pairs t2s, routes in C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\allpairs\miv_all_pairs_small_passenger_diesel24.trips.rou.alt.xml
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting od result database upload
-function upload_all_pairs called at Thu, 25 Mar 2021 18:53:42 +0000
-function _parse_vehicle_info_taz called at Thu, 25 Mar 2021 18:53:42 +0000
-Parsed taz results for 24 vehicles
-function _parse_vehicle_info_taz finished after 0.022999 seconds
-function _get_all_pair_stats called at Thu, 25 Mar 2021 18:53:42 +0000
-function _get_all_pair_stats finished after 0.000000 seconds
-SUMO durations: count 1072, min 23.28 (1100050225_1100050225_0_0), max 857.22 (1100050225_1100240038_0_0), mean 459.26 Q1 341.64, median 463.08, Q3 606.02
-SUMO distances: count 1072, min 193.93 (1100050225_1100050225_0_0), max 8821.36 (1100050225_1100240038_0_0), mean 4374.96 Q1 2971.47, median 4133.61, Q3 5778.44
-inserting dummy data for 49458 unconnected O-D relations
-function upload_all_pairs finished after 6.313694 seconds
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished od result database upload
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs for small_passenger_gas, slice ending at hour 24.0
-wrote 50000 rows to scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_small_passenger_gas24.csv
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs t2s using tripfile scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_small_passenger_gas24.csv
-function main called at Thu, 25 Mar 2021 18:53:50 +0000
-using C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_small_passenger_gas24.csv as rectified input
-function map_to_edges called at Thu, 25 Mar 2021 18:53:50 +0000
-Warning: could not find an edge for departure of ('1100020098', '1100020097') from (52.53589568, 13.32689285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020099', '1100020098') from (52.53363167, 13.32717288), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020098', '1100020095') from (52.53589568, 13.32689285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020099', '1100020099') from (52.53363167, 13.32717288), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020097', '1100020099') from (52.53598968, 13.32686285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020097', '1100152896') from (52.53598968, 13.32686285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020098', '1100152917') from (52.53589568, 13.32689285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020099', '1100152890') from (52.53363167, 13.32717288), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020095', '1100152878') from (52.53523868, 13.32864885), depart_minute=0 (skipping trip)
-Mapping (265.1427149325609, 334.5422348966822) to 4611886 (dist: 76.44) which is not in taz 110100521, best match in taz is 475533029 (dist: 181.42)
-Mapping (807.947808799101, 2315.31954047177) to 31112516#1 (dist: 8.93) which is not in taz 110109822, best match in taz is -315214529#12 (dist: 135.91)
-Mapping (1087.4520966036944, 2279.0150752263144) to 437325051#0 (dist: 8.82) which is not in taz 110109822, best match in taz is -7917219#3 (dist: 121.03)
-Mapping (1577.1669913597289, 2934.633303419687) to -172078325#4 (dist: 8.67) which is not in taz 110109912, best match in taz is 4597254#0 (dist: 64.21)
-Mapping (2593.237173535279, 2541.5606477269903) to 24241762#3 (dist: 11.14) which is not in taz 110110121, best match in taz is -4613293#0 (dist: 60.11)
-Mapping (809.7784634758718, 1458.4445962226018) to 24240246#0 (dist: 17.66) which is not in taz 110110312, best match in taz is 4402014#0 (dist: 112.10)
-Mapping (2384.106037215912, 1062.8716783924028) to 304627753#0 (dist: 32.59) which is not in taz 110110421, best match in taz is 4840859#0 (dist: 65.74)
-Mapping (3399.359839078621, 2007.5262750415131) to 287764737#0 (dist: 52.54) which is not in taz 110110513, best match in taz is -48303485#3 (dist: 138.72)
-Mapping (3363.79277968884, 2026.1090901251882) to 287764737#0 (dist: 52.94) which is not in taz 110110513, best match in taz is -48303485#3 (dist: 138.24)
-Mapping (1787.6123460037634, 4.49782804492861) to -32938436 (dist: 184.59) which is not in taz 110201215, best match in taz is -65040944#2 (dist: 459.43)
-Mapping (2969.7857893988257, 2.8678674958646297) to 455097481 (dist: 227.24) which is not in taz 110201311, best match in taz is -24214232 (dist: 556.38)
-Mapping (2770.4991706214496, 173.04960500542074) to -455097481 (dist: 55.36) which is not in taz 110201311, best match in taz is -24214232 (dist: 307.31)
-Mapping (4494.6628584343125, 2186.188588006422) to 351704742#0 (dist: 11.42) which is not in taz 110211311, best match in taz is 28110441#0 (dist: 457.70)
-Mapping (4845.278371742053, 2298.779039132409) to 345817373 (dist: 9.10) which is not in taz 110211311, best match in taz is 93628041#1 (dist: 100.28)
-Mapping (4419.219239973114, 1899.6236391132697) to 4615628#0 (dist: 12.69) which is not in taz 110211413, best match in taz is 310145076#0 (dist: 108.57)
-Mapping (4648.518239530735, 1831.2306741923094) to 44619068#2 (dist: 10.80) which is not in taz 110211414, best match in taz is 28935244 (dist: 201.92)
-Mapping (5171.294350185082, 2089.229819096625) to 4615745#0 (dist: 13.11) which is not in taz 110211511, best match in taz is -44851670#0 (dist: 79.26)
-Mapping (5440.252764963894, 2034.4857246447355) to -4615783#8 (dist: 12.14) which is not in taz 110211511, best match in taz is 4615784#0 (dist: 144.51)
-Mapping (5854.953922058281, 1558.2497952356935) to -4685718#1 (dist: 10.49) which is not in taz 110211517, best match in taz is 295627704#0 (dist: 75.16)
-Mapping (5565.746212394093, 1714.6630502995104) to 460217105#0 (dist: 23.49) which is not in taz 110211518, best match in taz is 126348151#0 (dist: 93.94)
-Mapping (5185.501301177312, 1866.376554784365) to 4615742#4 (dist: 10.92) which is not in taz 110211518, best match in taz is -4615783#2 (dist: 73.97)
-Mapping (5266.819168403628, 1860.175734131597) to 4616192#2 (dist: 13.75) which is not in taz 110211518, best match in taz is -4615783#2 (dist: 87.49)
-Mapping (5418.122741039202, 1509.750249654986) to 351509721#18 (dist: 20.74) which is not in taz 110211519, best match in taz is -128636794#1 (dist: 62.93)
-Mapping (6115.496764930198, 1171.018202102743) to -127361055#4 (dist: 14.36) which is not in taz 110211612, best match in taz is -24180030#1 (dist: 64.65)
-Mapping (5597.3479922466795, 1004.0619455436245) to 4616572#0 (dist: 9.19) which is not in taz 110211615, best match in taz is -4616579#4 (dist: 165.42)
-Mapping (6044.426167091122, 1212.5930769369006) to 310172798#0 (dist: 16.60) which is not in taz 110211616, best match in taz is -127361055#4 (dist: 67.89)
-Mapping (5673.2634366780985, 966.8277180818841) to 37287191#0 (dist: 42.34) which is not in taz 110211616, best match in taz is -35559332#11 (dist: 134.77)
-Mapping (5239.221206167713, 545.5166172971949) to -320261155#1 (dist: 11.60) which is not in taz 110211621, best match in taz is -276457310#2 (dist: 71.47)
-Mapping (4118.040395579243, 1315.2963024824858) to -4616239#7 (dist: 27.54) which is not in taz 110211712, best match in taz is -273390876#19 (dist: 101.01)
-Mapping (4619.13798746164, 1257.6923514921218) to 271049534 (dist: 39.47) which is not in taz 110211713, best match in taz is 283919155#0 (dist: 137.41)
-Mapping (5256.795217243489, 36.61959958728403) to 23343818#6 (dist: 346.53) which is not in taz 110211722, best match in taz is -4685763#4 (dist: 761.59)
-Mapping (5298.6073713502265, 118.06302401795983) to 23343818#6 (dist: 273.17) which is not in taz 110211722, best match in taz is -4685763#4 (dist: 761.64)
-Mapping (5616.556743084395, 3292.5438649524003) to 177914136#0 (dist: 178.31) which is not in taz 110310921, best match in taz is 28299348#0 (dist: 644.51)
-Mapping (5746.181564551953, 3135.095082603395) to 177914136#0 (dist: 157.14) which is not in taz 110310921, best match in taz is 28299348#0 (dist: 449.92)
-Mapping (3161.867102878634, 3093.2153840418905) to 4615003#3 (dist: 23.46) which is not in taz 110311021, best match in taz is -373389574#4 (dist: 152.63)
-Mapping (3043.2188972175354, 2727.4990078909323) to 319339413#0 (dist: 38.92) which is not in taz 110311021, best match in taz is 288749954#0 (dist: 130.76)
-Mapping (3386.402169181907, 3089.4049396896735) to 24968394#0 (dist: 35.46) which is not in taz 110311022, best match in taz is -4615003#3 (dist: 205.13)
-Mapping (3321.4973989767022, 2852.697783618234) to 24968394#0 (dist: 20.44) which is not in taz 110311111, best match in taz is -120948266 (dist: 327.69)
-Mapping (3306.789658281661, 2831.877812403254) to 24968394#0 (dist: 19.76) which is not in taz 110311111, best match in taz is -120948266 (dist: 351.04)
-Mapping (3530.987872504047, 3246.476473810151) to 24968394#0 (dist: 42.33) which is not in taz 110311111, best match in taz is -120948266 (dist: 239.03)
-Mapping (3372.0613842906896, 2496.621938000433) to 4613112#0 (dist: 37.22) which is not in taz 110311112, best match in taz is 4614989#0 (dist: 74.79)
-Mapping (4804.5966668904875, 3022.9396715108305) to 109804590#0 (dist: 20.96) which is not in taz 110311121, best match in taz is 318031558#1 (dist: 56.96)
-Mapping (4384.505125317897, 3521.6452545467764) to 4615034#6 (dist: 90.24) which is not in taz 110311122, best match in taz is -26299675#0 (dist: 305.17)
-Mapping (6493.19385934982, 3034.5824925722554) to 4687140#0 (dist: 92.25) which is not in taz 111115211, best match in taz is 88421001 (dist: 280.25)
-Mapping (7140.272863895982, 3213.3642306234688) to 4687140#0 (dist: 424.50) which is not in taz 111115211, best match in taz is 88421001 (dist: 935.33)
-Mapping (6497.027009678248, 3023.373681200668) to 4687140#0 (dist: 80.41) which is not in taz 111115211, best match in taz is 88421001 (dist: 276.45)
-Mapping (6071.300773116178, 1104.0847761360928) to -127361055#4 (dist: 13.64) which is not in taz 110211612, best match in taz is -24180030#1 (dist: 72.65)
-Mapping (5270.240435580257, 61.92339791916311) to 23343818#6 (dist: 322.80) which is not in taz 110211722, best match in taz is -4685763#4 (dist: 760.83)
-Mapping (5428.753248299123, 3552.505384529941) to 177914136#0 (dist: 456.08) which is not in taz 110310921, best match in taz is 28299348#0 (dist: 961.38)
-Mapping (3417.0161783300573, 3247.8581600291654) to 24968394#0 (dist: 64.60) which is not in taz 110311022, best match in taz is -4615003#3 (dist: 176.98)
-Mapping (4313.6580425662105, 3102.5652632266283) to -4615063#2 (dist: 14.26) which is not in taz 110311122, best match in taz is 4615066#1 (dist: 67.33)
-Mapping (6564.4262480098405, 3193.3009107224643) to 171867090#0 (dist: 211.18) which is not in taz 111115211, best match in taz is 88421001 (dist: 442.27)
-Mapping (5843.0504307199735, 1572.9699112325907) to -4685718#1 (dist: 20.71) which is not in taz 110211517, best match in taz is 295627704#0 (dist: 91.63)
-Mapping (4358.155580032559, 3464.354373834096) to 4615034#6 (dist: 85.14) which is not in taz 110311122, best match in taz is -26299675#0 (dist: 242.56)
-Mapping (5359.152268840931, 1640.0943716196343) to 4616192#0 (dist: 14.06) which is not in taz 110211518, best match in taz is -26138864#1 (dist: 97.18)
-Mapping (1064.2218263525283, 481.30115962959826) to -25042806#8 (dist: 21.17) which is not in taz 110110314, best match in taz is 67627350 (dist: 245.04)
-Mapping (3441.1169193564565, 3232.864670921117) to 24968394#0 (dist: 36.73) which is not in taz 110311022, best match in taz is -4615003#3 (dist: 200.52)
-read 50000 TAPAS trips for 50000 persons (48751 unmappable)
-Mapping deviations: count 1029, min 0.11 (xycoord=(3447.471660041425, 2407.0635285582393), edge=4790839#0, uid=('1100020098', '2110765808')), max 1594.37 (xycoord=(5691.049514636397, 4709.686037030071), edge=177914136#0, uid=('1100020098', '2110820343')), mean 492.67 Q1 18.18, median 231.44, Q3 958.63
-557 mappings did not find an edge in the correct taz
-function map_to_edges finished after 3.120040 seconds
-function create_sumo_tripdefs called at Thu, 25 Mar 2021 18:53:53 +0000
-read trip definitions for 1249 vehicles
-created trip definitions for 1249 vehicles starting between 86400 and 86400
-function create_sumo_tripdefs finished after 0.025463 seconds
-function run_bulk called at Thu, 25 Mar 2021 18:53:53 +0000
-computing routes for all TAZ-pairs using weights from C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\oneshot\aggregated_oneshot_meso_aggregated.xml
-function run_bulk finished after 0.956643 seconds
-function main finished after 4.113995 seconds
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished all pairs t2s, routes in C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\allpairs\miv_all_pairs_small_passenger_gas24.trips.rou.alt.xml
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting od result database upload
-function upload_all_pairs called at Thu, 25 Mar 2021 18:53:54 +0000
-function _parse_vehicle_info_taz called at Thu, 25 Mar 2021 18:53:54 +0000
-Parsed taz results for 482 vehicles
-function _parse_vehicle_info_taz finished after 0.023535 seconds
-function _get_all_pair_stats called at Thu, 25 Mar 2021 18:53:54 +0000
-function _get_all_pair_stats finished after 0.000000 seconds
-SUMO durations: count 1072, min 23.28 (1100050225_1100050225_0_0), max 857.22 (1100050225_1100240038_0_0), mean 459.26 Q1 341.64, median 463.08, Q3 606.02
-SUMO distances: count 1072, min 193.93 (1100050225_1100050225_0_0), max 8821.36 (1100050225_1100240038_0_0), mean 4374.96 Q1 2971.47, median 4133.61, Q3 5778.44
-inserting dummy data for 49425 unconnected O-D relations
-function upload_all_pairs finished after 3.257632 seconds
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished od result database upload
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs for small_passenger_gasoline, slice ending at hour 24.0
-wrote 50000 rows to scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_small_passenger_gasoline24.csv
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs t2s using tripfile scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_small_passenger_gasoline24.csv
-function main called at Thu, 25 Mar 2021 18:53:59 +0000
-using C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\allpairs\all_pairs_small_passenger_gasoline24.csv as rectified input
-function map_to_edges called at Thu, 25 Mar 2021 18:53:59 +0000
-Warning: could not find an edge for departure of ('1100020098', '1100020097') from (52.53589568, 13.32689285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020099', '1100020098') from (52.53363167, 13.32717288), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020098', '1100020095') from (52.53589568, 13.32689285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020099', '1100020099') from (52.53363167, 13.32717288), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020097', '1100020099') from (52.53598968, 13.32686285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020097', '1100152896') from (52.53598968, 13.32686285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020098', '1100152917') from (52.53589568, 13.32689285), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020099', '1100152890') from (52.53363167, 13.32717288), depart_minute=0 (skipping trip)
-Warning: could not find an edge for departure of ('1100020095', '1100152878') from (52.53523868, 13.32864885), depart_minute=0 (skipping trip)
-Mapping (265.1427149325609, 334.5422348966822) to 4611886 (dist: 76.44) which is not in taz 110100521, best match in taz is 475533029 (dist: 181.42)
-Mapping (807.947808799101, 2315.31954047177) to 31112516#1 (dist: 8.93) which is not in taz 110109822, best match in taz is -315214529#12 (dist: 135.91)
-Mapping (1087.4520966036944, 2279.0150752263144) to 437325051#0 (dist: 8.82) which is not in taz 110109822, best match in taz is -7917219#3 (dist: 121.03)
-Mapping (1577.1669913597289, 2934.633303419687) to -172078325#4 (dist: 8.67) which is not in taz 110109912, best match in taz is 4597254#0 (dist: 64.21)
-Mapping (2593.237173535279, 2541.5606477269903) to 24241762#3 (dist: 11.14) which is not in taz 110110121, best match in taz is -4613293#0 (dist: 60.11)
-Mapping (809.7784634758718, 1458.4445962226018) to 24240246#0 (dist: 17.66) which is not in taz 110110312, best match in taz is 4402014#0 (dist: 112.10)
-Mapping (2384.106037215912, 1062.8716783924028) to 304627753#0 (dist: 32.59) which is not in taz 110110421, best match in taz is 4840859#0 (dist: 65.74)
-Mapping (3399.359839078621, 2007.5262750415131) to 287764737#0 (dist: 52.54) which is not in taz 110110513, best match in taz is -48303485#3 (dist: 138.72)
-Mapping (3363.79277968884, 2026.1090901251882) to 287764737#0 (dist: 52.94) which is not in taz 110110513, best match in taz is -48303485#3 (dist: 138.24)
-Mapping (1787.6123460037634, 4.49782804492861) to -32938436 (dist: 184.59) which is not in taz 110201215, best match in taz is -65040944#2 (dist: 459.43)
-Mapping (2969.7857893988257, 2.8678674958646297) to 455097481 (dist: 227.24) which is not in taz 110201311, best match in taz is -24214232 (dist: 556.38)
-Mapping (2770.4991706214496, 173.04960500542074) to -455097481 (dist: 55.36) which is not in taz 110201311, best match in taz is -24214232 (dist: 307.31)
-Mapping (4494.6628584343125, 2186.188588006422) to 351704742#0 (dist: 11.42) which is not in taz 110211311, best match in taz is 28110441#0 (dist: 457.70)
-Mapping (4845.278371742053, 2298.779039132409) to 345817373 (dist: 9.10) which is not in taz 110211311, best match in taz is 93628041#1 (dist: 100.28)
-Mapping (4419.219239973114, 1899.6236391132697) to 4615628#0 (dist: 12.69) which is not in taz 110211413, best match in taz is 310145076#0 (dist: 108.57)
-Mapping (4648.518239530735, 1831.2306741923094) to 44619068#2 (dist: 10.80) which is not in taz 110211414, best match in taz is 28935244 (dist: 201.92)
-Mapping (5171.294350185082, 2089.229819096625) to 4615745#0 (dist: 13.11) which is not in taz 110211511, best match in taz is -44851670#0 (dist: 79.26)
-Mapping (5440.252764963894, 2034.4857246447355) to -4615783#8 (dist: 12.14) which is not in taz 110211511, best match in taz is 4615784#0 (dist: 144.51)
-Mapping (5854.953922058281, 1558.2497952356935) to -4685718#1 (dist: 10.49) which is not in taz 110211517, best match in taz is 295627704#0 (dist: 75.16)
-Mapping (5565.746212394093, 1714.6630502995104) to 460217105#0 (dist: 23.49) which is not in taz 110211518, best match in taz is 126348151#0 (dist: 93.94)
-Mapping (5185.501301177312, 1866.376554784365) to 4615742#4 (dist: 10.92) which is not in taz 110211518, best match in taz is -4615783#2 (dist: 73.97)
-Mapping (5266.819168403628, 1860.175734131597) to 4616192#2 (dist: 13.75) which is not in taz 110211518, best match in taz is -4615783#2 (dist: 87.49)
-Mapping (5418.122741039202, 1509.750249654986) to 351509721#18 (dist: 20.74) which is not in taz 110211519, best match in taz is -128636794#1 (dist: 62.93)
-Mapping (6115.496764930198, 1171.018202102743) to -127361055#4 (dist: 14.36) which is not in taz 110211612, best match in taz is -24180030#1 (dist: 64.65)
-Mapping (5597.3479922466795, 1004.0619455436245) to 4616572#0 (dist: 9.19) which is not in taz 110211615, best match in taz is -4616579#4 (dist: 165.42)
-Mapping (6044.426167091122, 1212.5930769369006) to 310172798#0 (dist: 16.60) which is not in taz 110211616, best match in taz is -127361055#4 (dist: 67.89)
-Mapping (5673.2634366780985, 966.8277180818841) to 37287191#0 (dist: 42.34) which is not in taz 110211616, best match in taz is -35559332#11 (dist: 134.77)
-Mapping (5239.221206167713, 545.5166172971949) to -320261155#1 (dist: 11.60) which is not in taz 110211621, best match in taz is -276457310#2 (dist: 71.47)
-Mapping (4118.040395579243, 1315.2963024824858) to -4616239#7 (dist: 27.54) which is not in taz 110211712, best match in taz is -273390876#19 (dist: 101.01)
-Mapping (4619.13798746164, 1257.6923514921218) to 271049534 (dist: 39.47) which is not in taz 110211713, best match in taz is 283919155#0 (dist: 137.41)
-Mapping (5256.795217243489, 36.61959958728403) to 23343818#6 (dist: 346.53) which is not in taz 110211722, best match in taz is -4685763#4 (dist: 761.59)
-Mapping (5298.6073713502265, 118.06302401795983) to 23343818#6 (dist: 273.17) which is not in taz 110211722, best match in taz is -4685763#4 (dist: 761.64)
-Mapping (5616.556743084395, 3292.5438649524003) to 177914136#0 (dist: 178.31) which is not in taz 110310921, best match in taz is 28299348#0 (dist: 644.51)
-Mapping (5746.181564551953, 3135.095082603395) to 177914136#0 (dist: 157.14) which is not in taz 110310921, best match in taz is 28299348#0 (dist: 449.92)
-Mapping (3161.867102878634, 3093.2153840418905) to 4615003#3 (dist: 23.46) which is not in taz 110311021, best match in taz is -373389574#4 (dist: 152.63)
-Mapping (3043.2188972175354, 2727.4990078909323) to 319339413#0 (dist: 38.92) which is not in taz 110311021, best match in taz is 288749954#0 (dist: 130.76)
-Mapping (3386.402169181907, 3089.4049396896735) to 24968394#0 (dist: 35.46) which is not in taz 110311022, best match in taz is -4615003#3 (dist: 205.13)
-Mapping (3321.4973989767022, 2852.697783618234) to 24968394#0 (dist: 20.44) which is not in taz 110311111, best match in taz is -120948266 (dist: 327.69)
-Mapping (3306.789658281661, 2831.877812403254) to 24968394#0 (dist: 19.76) which is not in taz 110311111, best match in taz is -120948266 (dist: 351.04)
-Mapping (3530.987872504047, 3246.476473810151) to 24968394#0 (dist: 42.33) which is not in taz 110311111, best match in taz is -120948266 (dist: 239.03)
-Mapping (3372.0613842906896, 2496.621938000433) to 4613112#0 (dist: 37.22) which is not in taz 110311112, best match in taz is 4614989#0 (dist: 74.79)
-Mapping (4804.5966668904875, 3022.9396715108305) to 109804590#0 (dist: 20.96) which is not in taz 110311121, best match in taz is 318031558#1 (dist: 56.96)
-Mapping (4384.505125317897, 3521.6452545467764) to 4615034#6 (dist: 90.24) which is not in taz 110311122, best match in taz is -26299675#0 (dist: 305.17)
-Mapping (6493.19385934982, 3034.5824925722554) to 4687140#0 (dist: 92.25) which is not in taz 111115211, best match in taz is 88421001 (dist: 280.25)
-Mapping (7140.272863895982, 3213.3642306234688) to 4687140#0 (dist: 424.50) which is not in taz 111115211, best match in taz is 88421001 (dist: 935.33)
-Mapping (6497.027009678248, 3023.373681200668) to 4687140#0 (dist: 80.41) which is not in taz 111115211, best match in taz is 88421001 (dist: 276.45)
-Mapping (6071.300773116178, 1104.0847761360928) to -127361055#4 (dist: 13.64) which is not in taz 110211612, best match in taz is -24180030#1 (dist: 72.65)
-Mapping (5270.240435580257, 61.92339791916311) to 23343818#6 (dist: 322.80) which is not in taz 110211722, best match in taz is -4685763#4 (dist: 760.83)
-Mapping (5428.753248299123, 3552.505384529941) to 177914136#0 (dist: 456.08) which is not in taz 110310921, best match in taz is 28299348#0 (dist: 961.38)
-Mapping (3417.0161783300573, 3247.8581600291654) to 24968394#0 (dist: 64.60) which is not in taz 110311022, best match in taz is -4615003#3 (dist: 176.98)
-Mapping (4313.6580425662105, 3102.5652632266283) to -4615063#2 (dist: 14.26) which is not in taz 110311122, best match in taz is 4615066#1 (dist: 67.33)
-Mapping (6564.4262480098405, 3193.3009107224643) to 171867090#0 (dist: 211.18) which is not in taz 111115211, best match in taz is 88421001 (dist: 442.27)
-Mapping (5843.0504307199735, 1572.9699112325907) to -4685718#1 (dist: 20.71) which is not in taz 110211517, best match in taz is 295627704#0 (dist: 91.63)
-Mapping (4358.155580032559, 3464.354373834096) to 4615034#6 (dist: 85.14) which is not in taz 110311122, best match in taz is -26299675#0 (dist: 242.56)
-Mapping (5359.152268840931, 1640.0943716196343) to 4616192#0 (dist: 14.06) which is not in taz 110211518, best match in taz is -26138864#1 (dist: 97.18)
-Mapping (1064.2218263525283, 481.30115962959826) to -25042806#8 (dist: 21.17) which is not in taz 110110314, best match in taz is 67627350 (dist: 245.04)
-Mapping (3441.1169193564565, 3232.864670921117) to 24968394#0 (dist: 36.73) which is not in taz 110311022, best match in taz is -4615003#3 (dist: 200.52)
-read 50000 TAPAS trips for 50000 persons (48751 unmappable)
-Mapping deviations: count 1029, min 0.11 (xycoord=(3447.471660041425, 2407.0635285582393), edge=4790839#0, uid=('1100020098', '2110765808')), max 1594.37 (xycoord=(5691.049514636397, 4709.686037030071), edge=177914136#0, uid=('1100020098', '2110820343')), mean 492.67 Q1 18.18, median 231.44, Q3 958.63
-557 mappings did not find an edge in the correct taz
-function map_to_edges finished after 3.128545 seconds
-function create_sumo_tripdefs called at Thu, 25 Mar 2021 18:54:02 +0000
-read trip definitions for 1249 vehicles
-created trip definitions for 1249 vehicles starting between 86400 and 86400
-function create_sumo_tripdefs finished after 0.027489 seconds
-function run_bulk called at Thu, 25 Mar 2021 18:54:02 +0000
-computing routes for all TAZ-pairs using weights from C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\oneshot\aggregated_oneshot_meso_aggregated.xml
-function run_bulk finished after 0.965024 seconds
-function main finished after 4.132547 seconds
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished all pairs t2s, routes in C:\Users\behr_mi\.texttest\tmp\tsc.25Mar185244.15892\tsc\template\tscDaemonDatabaseTripsFromDB\data\scenario_workdir\VEUII-BASE2010\iteration000\allpairs\miv_all_pairs_small_passenger_gasoline24.trips.rou.alt.xml
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting od result database upload
-function upload_all_pairs called at Thu, 25 Mar 2021 18:54:03 +0000
-function _parse_vehicle_info_taz called at Thu, 25 Mar 2021 18:54:03 +0000
+function upload_all_pairs called at Mon, 03 Jan 2022 15:21:45 +0000
+function _parse_vehicle_info_taz called at Mon, 03 Jan 2022 15:21:45 +0000
 Parsed taz results for 56 vehicles
-function _parse_vehicle_info_taz finished after 0.022499 seconds
-function _get_all_pair_stats called at Thu, 25 Mar 2021 18:54:03 +0000
+function _parse_vehicle_info_taz finished after 0.185003 seconds
+function _get_all_pair_stats called at Mon, 03 Jan 2022 15:21:45 +0000
 function _get_all_pair_stats finished after 0.000000 seconds
-SUMO durations: count 1072, min 23.28 (1100050225_1100050225_0_0), max 857.22 (1100050225_1100240038_0_0), mean 459.26 Q1 341.64, median 463.08, Q3 606.02
-SUMO distances: count 1072, min 193.93 (1100050225_1100050225_0_0), max 8821.36 (1100050225_1100240038_0_0), mean 4374.96 Q1 2971.47, median 4133.61, Q3 5778.44
+SUMO durations: count 1072, min 23.28 (1100050225_1100050225_0_0), max 857.22 (1100050225_1100240038_0_0), mean 459.26, Q1 341.64, median 463.08, Q3 606.02
+SUMO distances: count 1072, min 193.93 (1100050225_1100050225_0_0), max 8821.36 (1100050225_1100240038_0_0), mean 4374.96, Q1 2971.47, median 4133.61, Q3 5778.44
 inserting dummy data for 49451 unconnected O-D relations
-function upload_all_pairs finished after 3.580598 seconds
+function upload_all_pairs finished after 1.216018 seconds
 db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished od result database upload
 db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 << finished all pairs calculation
 db_status_finished: 2015y_05m_29d_09h_01m_11s_943ms 0 < End
