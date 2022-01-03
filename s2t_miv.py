@@ -123,22 +123,20 @@ def _parse_vehicle_info_taz(routes, start, end, vType):
     return stats
 
 
-def check_result_table(conn, key, params):
-    table = '%s_%s' % (params[SP.trip_output], key)
-    return table, conn is not None and db_manipulator.table_exists(conn, table, 'temp')
-
-
 @benchmark
 def upload_trip_results(conn, key, params, routes, limit=None):
     tripstats = _parse_vehicle_info(routes)
-    table, exists = check_result_table(conn, key, params)
+    table = '%s_%s' % (params[SP.trip_output], key)
     if conn is None:
         print("Warning! No database connection, writing trip info to file %s.csv." % table)
         print('\n'.join(map(str, tripstats[:limit])), file=open(table + ".csv", "w"))
         return
+    schema_table, table, exists = db_manipulator.check_schema_table(conn, 'temp', table)
     cursor = conn.cursor()
+    if exists:
+        cursor.execute("DROP TABLE " + schema_table)
     createQuery = """
-CREATE TABLE temp.%s
+CREATE TABLE %s
 (
   p_id integer NOT NULL,
   hh_id integer NOT NULL,
@@ -148,13 +146,12 @@ CREATE TABLE temp.%s
   distance_real double precision[],
   CONSTRAINT %s_pkey PRIMARY KEY (p_id, hh_id, start_time_min, clone_id)
 )
-""" % (table, table)
-    cursor.execute("DROP TABLE IF EXISTS temp." + table)
+""" % (schema_table, table)
     cursor.execute(createQuery)
     if tripstats:
         values = [str(tuple([str(e).replace("(", "{").replace(")", "}")  for e in t])) for t in tripstats[:limit]]
-        insertQuery = "INSERT INTO temp.%s (p_id, hh_id, start_time_min, clone_id, travel_time_sec, distance_real) VALUES "
-        cursor.execute(insertQuery % table + ','.join(values))
+        insertQuery = "INSERT INTO %s (p_id, hh_id, start_time_min, clone_id, travel_time_sec, distance_real) VALUES "
+        cursor.execute(insertQuery % schema_table + ','.join(values))
         conn.commit()
 
 
@@ -227,16 +224,16 @@ def upload_all_pairs(conn, tables, start, end, vType, real_routes, rep_routes, n
     for idx, v in enumerate(values):
         odValues.append(str(v[:4] + (startIdx + idx,)))
         entryValues.append(str(v[4:] + (startIdx + idx, "{car}")))
-    odQuery = """INSERT INTO temp.%s (taz_id_start, taz_id_end, sumo_type, interval_end, entry_id)
+    odQuery = """INSERT INTO %s (taz_id_start, taz_id_end, sumo_type, interval_end, entry_id)
                  VALUES %s""" % (tables[0], ','.join(odValues))
     cursor.execute(odQuery)
-#    odQuery = "INSERT INTO temp.%s (taz_id_start, taz_id_end, sumo_type, interval_end, entry_id) VALUES ?" % tables[0]
+#    odQuery = "INSERT INTO %s (taz_id_start, taz_id_end, sumo_type, interval_end, entry_id) VALUES ?" % tables[0]
 #    db_manipulator.execute(conn, odQuery, odValues)
-    insertQuery = """INSERT INTO temp.%s (realtrip_count, representative_count,
+    insertQuery = """INSERT INTO %s (realtrip_count, representative_count,
                      travel_time_sec, travel_time_stddev, distance_real, distance_stddev, entry_id, used_modes)
                      VALUES %s""" % (tables[1], ','.join(entryValues))
     cursor.execute(insertQuery)
-#    insertQuery = "INSERT INTO temp.%s (realtrip_count, representative_count, travel_time_sec, travel_time_stddev, distance_real, distance_stddev, entry_id, used_modes) VALUES ?" % tables[1]
+#    insertQuery = "INSERT INTO %s (realtrip_count, representative_count, travel_time_sec, travel_time_stddev, distance_real, distance_stddev, entry_id, used_modes) VALUES ?" % tables[1]
 #    db_manipulator.execute(conn, insertQuery, entryValues)
     conn.commit()
     return startIdx + len(values)
@@ -244,11 +241,11 @@ def upload_all_pairs(conn, tables, start, end, vType, real_routes, rep_routes, n
 
 def create_all_pairs(conn, key, params):
     cursor = conn.cursor()
-    tables = ('%s_%s' % (params[SP.od_output], key), '%s_%s' % (params[SP.od_entry], key))
-    for t in tables:
-        cursor.execute("DROP TABLE IF EXISTS temp." + t)
+    schema_table, table, exists = db_manipulator.check_schema_table(conn, 'temp', '%s_%s' % (params[SP.od_output], key))
+    if exists:
+        cursor.execute("DROP TABLE " + schema_table)
     createQuery = """
-CREATE TABLE temp.%s
+CREATE TABLE %s
 (
   taz_id_start integer NOT NULL,
   taz_id_end integer NOT NULL,
@@ -259,10 +256,14 @@ CREATE TABLE temp.%s
   trip_source traffic_source,
   CONSTRAINT %s_pkey PRIMARY KEY (taz_id_start, taz_id_end, sumo_type, is_restricted, interval_end)
 )
-""" % (tables[0], tables[0])
+""" % (schema_table, table)
     cursor.execute(createQuery)
+
+    entry_schema_table, table, exists = db_manipulator.check_schema_table(conn, 'temp', '%s_%s' % (params[SP.od_entry], key))
+    if exists:
+        cursor.execute("DROP TABLE " + schema_table)
     createQuery = """
-CREATE TABLE temp.%s
+CREATE TABLE %s
 (
   entry_id integer NOT NULL,
   travel_time_sec double precision[],
@@ -274,10 +275,10 @@ CREATE TABLE temp.%s
   used_modes mode_type[],
   CONSTRAINT %s_pkey PRIMARY KEY (entry_id, used_modes)
 )
-""" % (tables[1], tables[1])
+""" % (entry_schema_table, table)
     cursor.execute(createQuery)
     conn.commit()
-    return tables
+    return schema_table, entry_schema_table
 
 
 @benchmark

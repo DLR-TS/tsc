@@ -157,10 +157,10 @@ def upload_all_pairs(conn, tables, start, end, real_routes, rep_routes, net, taz
     for idx, v in enumerate(values):
         odValues.append(str(v[:4] + (startIdx + idx,)))
         entryValues.append(str(v[4:] + (startIdx + idx, "{car}")))
-    odQuery = """INSERT INTO temp.%s (taz_id_start, taz_id_end, sumo_type, interval_end, entry_id)
+    odQuery = """INSERT INTO %s (taz_id_start, taz_id_end, sumo_type, interval_end, entry_id)
 VALUES %s""" % (tables[0], ','.join(odValues))
     cursor.execute(odQuery)
-    insertQuery = """INSERT INTO temp.%s (realtrip_count, representative_count,
+    insertQuery = """INSERT INTO %s (realtrip_count, representative_count,
  travel_time_sec, travel_time_stddev, distance_real, distance_stddev, entry_id, used_modes)
 VALUES %s""" % (tables[1], ','.join(entryValues))
     cursor.execute(insertQuery)

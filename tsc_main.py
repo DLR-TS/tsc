@@ -215,7 +215,7 @@ def create_new_destination_folder(options, sim_key, iteration, params):
                 net = netTemp
             restrictions = json.loads(params[SP.net_param])
             if restrictions:
-                if isinstance(restrictions, map):
+                if isinstance(restrictions, dict):
                     build_restricted_network(restrictions, destination_path, net)
                 else:
                     for origin, destination in restrictions:
@@ -246,7 +246,7 @@ def create_new_iteration_folder(options, iteration, destination_path):
 
 
 def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
-    all_pair_table = s2t_miv.create_all_pairs(conn, sim_key, params)
+    all_pair_tables = s2t_miv.create_all_pairs(conn, sim_key, params)
     modes = set()
     vTypes = set()
     for (m, t), _ in common.csv_sequence_generator(options.tapas_trips, ("mode", "sumo_type")):
@@ -298,7 +298,7 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
                          alt_file, sim_key, params, conn)
             assert os.path.exists(alt_file), "all pairs route file %s could not be found" % alt_file
             write_status('>>> starting od result database upload', sim_key, params, conn)
-            startIdx = s2t_miv.upload_all_pairs(conn, all_pair_table, begin_second, end_second, vType,
+            startIdx = s2t_miv.upload_all_pairs(conn, all_pair_tables, begin_second, end_second, vType,
                                                 final_routes, alt_file, options.net, taz_list, startIdx)
             write_status('<<< finished od result database upload', sim_key, params, conn)
             begin_second = end_second
@@ -313,7 +313,7 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
         write_status('<<< finished all pairs t2s, routes in %s' % rou_file, sim_key, params, conn)
         assert os.path.exists(rou_file), "all pairs route file %s could not be found" % rou_file
         write_status('>>> starting od result database upload', sim_key, params, conn)
-        startIdx = s2t_pt.upload_all_pairs(conn, all_pair_table, 31 * 3600, 32 * 3600,
+        startIdx = s2t_pt.upload_all_pairs(conn, all_pair_tables, 31 * 3600, 32 * 3600,
                                            final_routes, rou_file, options.net, taz_list, startIdx)
         write_status('<<< finished od result database upload', sim_key, params, conn)
     write_status('<< finished all pairs calculation', sim_key, params, conn)
@@ -416,7 +416,8 @@ def simulation_request(options, request):
         print()
         write_status('>> starting t2s using tripfile %s' %
                      options.tapas_trips, sim_key, params, conn)
-        conn.close()
+        if conn is not None:
+            conn.close()
 
         # run t2s
         options.scale /= float(params[SP.sample])
@@ -438,7 +439,7 @@ def simulation_request(options, request):
             print()
             conn = db_manipulator.get_conn(options, conn)
             # upload trip results to db
-            _, exists = s2t_miv.check_result_table(conn, sim_key, params)
+            _, _, exists = db_manipulator.check_schema_table(conn, 'temp', '%s_%s' % (params[SP.trip_output], sim_key))
             if not exists or options.overwrite:
                 write_status('>> starting trip result database upload', sim_key, params, conn)
                 s2t_miv.upload_trip_results(conn, sim_key, params, final_routes)
@@ -460,7 +461,7 @@ def simulation_request(options, request):
         write_status(message, sim_key, params, conn, constants.MSG_TYPE.error)
 
     # exit gracefully
-    if conn:
+    if conn is not None:
         conn.close()
 
 

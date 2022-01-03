@@ -72,8 +72,8 @@ def get_conn(options_or_config_file, conn=None):
         except Exception as e:
             print("Warning! Could not load mod_spatialite, geometry related database operations won't work.", e, file=sys.stderr)
         database = options.database % os.environ
-        core = os.path.join(os.path.dirname(database), 'core.db')
-        conn.execute("ATTACH ? AS core", (core,))
+        conn.execute("ATTACH ? AS core", (os.path.join(os.path.dirname(database), 'core.db'),))
+        conn.execute("ATTACH ? AS tmp", (os.path.join(os.path.dirname(database), 'tmp.db'),))  # 'temp' is already reserved in sqlite
         conn.execute("ATTACH ? AS public", (database,))  # attaching 'public' last makes it the default if name clashes should occur
         return conn
     try:
@@ -92,6 +92,12 @@ def table_exists(conn, table, schema="public"):
     else:
         cursor.execute("SELECT table_name FROM information_schema.tables WHERE table_schema=%s AND table_name=%s", (schema, table))
     return len(cursor.fetchall()) > 0
+
+
+def check_schema_table(conn, schema, table):
+    if isinstance(conn, sqlite3.Connection) and schema == 'temp':
+        schema = 'tmp'
+    return '.'.join((schema, table)), table, table_exists(conn, table, schema)
 
 
 def execute(conn, command, parameters):
