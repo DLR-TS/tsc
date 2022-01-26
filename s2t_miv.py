@@ -247,8 +247,16 @@ CREATE TABLE %s
   trip_source traffic_source,
   CONSTRAINT %s_pkey PRIMARY KEY (taz_id_start, taz_id_end, sumo_type, is_restricted, interval_end)
 )
-""" % (schema_table, table)
-    cursor.execute(createQuery)
+"""
+    try:
+        cursor.execute(createQuery % (schema_table, table))
+    except Exception:
+        conn.rollback()
+        schema_table += "_fallback"
+        table += "_fallback"
+        cursor.execute("DROP TABLE IF EXISTS " + schema_table)
+        cursor.execute(createQuery % (schema_table, table))
+    conn.commit()
 
     entry_schema_table, table, exists = db_manipulator.check_schema_table(conn, 'temp', '%s_%s' % (params[SP.od_entry], key))
     if exists:
@@ -266,8 +274,15 @@ CREATE TABLE %s
   used_modes mode_type[],
   CONSTRAINT %s_pkey PRIMARY KEY (entry_id, used_modes)
 )
-""" % (entry_schema_table, table)
-    cursor.execute(createQuery)
+"""
+    try:
+        cursor.execute(createQuery % (entry_schema_table, table))
+    except Exception:
+        conn.rollback()
+        entry_schema_table += "_fallback"
+        table += "_fallback"
+        cursor.execute("DROP TABLE IF EXISTS " + entry_schema_table)
+        cursor.execute(createQuery % (entry_schema_table, table))
     conn.commit()
     return schema_table, entry_schema_table
 
