@@ -255,7 +255,6 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
 
     write_status('>> starting all pairs calculation', sim_key, params, conn)
     options.assignment = "bulk"
-    options.bidi_taz_file = None
     options.trips_dir = os.path.join(options.iteration_dir, 'allpairs')
     options.weights = os.path.join(options.trips_dir, os.path.basename(final_weights))
     if not os.path.exists(options.weights) or options.overwrite:

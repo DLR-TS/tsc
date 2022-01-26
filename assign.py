@@ -235,6 +235,9 @@ def run_bulk(options, first_depart, last_depart, trip_file, weight_file):
     base = trip_file[:-4]
     input_files = [trip_file] + list(sorted(glob.glob(os.path.join(os.path.dirname(options.net_file), 'pt*.xml'))))
     route_file = base + ".rou.xml.gz"
+    additional = [options.vtype_file]
+    if options.bidi_taz_file:
+        additional.append(options.bidi_taz_file)
     if os.path.exists(route_file) and not options.overwrite:
         print("Route file", route_file, "exists! Skipping computation.")
         return route_file, weight_file
@@ -242,7 +245,7 @@ def run_bulk(options, first_depart, last_depart, trip_file, weight_file):
         sumolib.checkBinary('duarouter'),
         '--net-file', options.net_file,
         '--route-files', ",".join(input_files),
-        '--additional-files', options.vtype_file,
+        '--additional-files', ",".join(additional),
         '--routing-algorithm', 'astar',
         '--routing-threads', '16',
         '--bulk-routing',
