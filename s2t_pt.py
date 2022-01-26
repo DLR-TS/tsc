@@ -105,10 +105,8 @@ def _get_all_pair_stats(rou_file, net):
     print(sumoDist)
 
 
-def _createValueTuple(od, end, real=0, sumoTime=None, sumoDist=None):
+def _createValueTuple(od, end, real, sumoTime, sumoDist):
     base = od + ("", end, real)
-    if sumoTime is None:
-        return base + (0, "{}", -1, "{}", -1)
     timeMean, timeStd = sumoTime.meanAndStdDev()
     distMean, distStd = sumoDist.meanAndStdDev()
     return base + (sumoTime.count() - real,
@@ -128,12 +126,10 @@ def upload_all_pairs(conn, tables, start, end, real_routes, rep_routes, net, taz
     sumoTime = Statistics("SUMO durations")
     sumoDist = Statistics("SUMO distances")
     real = 0
-    remain = set([(o, d) for o in taz_list for d in taz_list])
     for source, dest, faked, duration, dist in stats:
         if (source, dest) != last:
             if last is not None:
                 values.append(_createValueTuple(last, end, real, sumoTime, sumoDist))
-                remain.discard(last)
                 sumoTime = Statistics("SUMO durations")
                 sumoDist = Statistics("SUMO distances")
                 real = 0
@@ -145,11 +141,6 @@ def upload_all_pairs(conn, tables, start, end, real_routes, rep_routes, net, taz
             sumoDist.add(dist)
     if last is not None:
         values.append(_createValueTuple(last, end, real, sumoTime, sumoDist))
-        remain.discard(last)
-    if remain:
-        print("inserting dummy data for %s unconnected O-D relations" % len(remain))
-        for o, d in remain:
-            values.append(_createValueTuple((o, d), end))
     cursor = conn.cursor()
     # insert values
     odValues = []
