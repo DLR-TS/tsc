@@ -152,6 +152,8 @@ def create_template_folder(scenario_pre_dir, options):
                 if configs:
                     osmInput = glob.glob(os.path.join(osm_dir, "*.osm.xml*"))
                     if osmInput:
+                        if options.verbose:
+                            print("importing taxi stops from", osmInput[0])
                         osmTaxiStop.main(osmTaxiStop.parseArgs(["-s", osmInput[0], "-t", "busStop",
                                                                 "-n", os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % idx),
                                                                 "-o", os.path.join(scenario_template_dir, "fleet_stops.add.xml"),
@@ -171,7 +173,10 @@ def create_template_folder(scenario_pre_dir, options):
             for root, _, files in os.walk(tmp_output_dir):
                 final_files = [file_name for file_name in files if file_name.split('_')[0] == str(idx)]
                 for file_name in final_files:
-                    os.rename(os.path.join(root, file_name), os.path.join(scenario_template_dir, file_name.split('_')[1]))
+                    dest_file = os.path.join(scenario_template_dir, file_name.split('_')[1])
+                    if os.path.exists(dest_file):  # we need this for windows only
+                        os.remove(dest_file)
+                    os.rename(os.path.join(root, file_name), dest_file)
 
             shutil.rmtree(tmp_output_dir)
     setup_file = os.path.join(scenario_pre_dir, 'setup.py')
