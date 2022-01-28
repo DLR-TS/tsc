@@ -48,17 +48,17 @@ class Trajectory(object):
         return self._lonList    
 
 def geo2edge(net, lat, lon): 
-    radius = 20.
+    radius = 0.5
     x, y = net.convertLonLat2XY(lon, lat)
     edges = net.getNeighboringEdges(x, y, radius)
-    print(edges)
+    #print(edges)
     # pick the closest edge
     closestEdge= False
     if len(edges) > 0:
         #distancesAndEdges = sorted([(dist, edge) for edge, dist in edges])
         #dist, closestEdge = distancesAndEdges[0]
         closestEdge= edges[0][0].getID()
-        print(closestEdge)
+        #print(closestEdge)
     return closestEdge
     
     
@@ -105,7 +105,7 @@ def writeRouteFile(filename, trajectories):
             stoplist= []
             for i in range(len(t.getLat())):
                 edge= geo2edge(net, t.getLat()[i], t.getLon()[i])
-                print(edge)
+                #print(edge)
                 if edge:
                     edges.append(edge)
             if len(edges) > 0:
@@ -118,11 +118,45 @@ def writeRouteFile(filename, trajectories):
                         oldEdge= e
                         f.write(str(e) + " ")
                 f.write("\"/>\n")
-                #f.write("      <stop lane=\"end_0\" endPos=\"10\" until=\"50\"/>\n")
             f.write("    </vehicle>\n")
     f.write("</routes>\n")
-    print(edges)
+    #print(edges)
     f.close()
+    
+def writeTripFile(filename, trajectories):
+    f = open(filename, 'w') 
+    f.write("<routes>\n")
+    f.write("  <vType id=\"container\" length=\"1\" width=\"1\" height=\"1\" color=\"red\"/>\n")
+    f.write("  <vType id=\"transporter\" containerCapacity=\"200\" loadingDuration=\"1\" vClass=\"delivery\"/>\n")
+    f.write("  <vType id=\"cargobike\" containerCapacity=\"60\" loadingDuration=\"1\" maxSpeed=\"6.944444444444445\" vClass=\"bicycle\"/>\n")
+    for k in trajectories.keys():
+        t= trajectories[k]
+        if len(t.getLat()) > 1: 
+            edges=[]
+            stoplist= []
+            for i in range(len(t.getLat())):
+                edge= geo2edge(net, t.getLat()[i], t.getLon()[i])
+                #print(edge)
+                if edge:
+                    edges.append(edge)
+            if len(edges) > 0:
+                f.write("    <trip id=\""+k +"\" type=\"cargobike\" depart=\"containerTriggered\" from=\""+ edges[0]+"\" to=\""+ edges[-1]+"\">\n")
+                # #f.write("      <route edges=\"")
+                # oldEdge= ""
+                # for e in edges:
+                    # if e== oldEdge:
+                        # stoplist.append(e)
+                    # else:
+                        # oldEdge= e
+                        # f.write(str(e) + " ")
+                # f.write("\"/>\n")
+                for e in edges:
+                    f.write("      <stop lane=\""+ str(e)+"\" endPos=\"0\"  duration=\"60\"/>\n")
+            f.write("    </vehicle>\n")
+    f.write("</routes>\n")
+    #print(edges)
+    f.close()
+    
     
 def writeTrajectories(filename, trajectories):
     f = open(filename, 'w') 
@@ -135,7 +169,7 @@ def writeTrajectories(filename, trajectories):
     
 def writeTraces(filename, trajectories):
     f = open(filename, 'w') 
-    print(len(trajectories))
+    #print(len(trajectories))
     for k in trajectories.keys(): 
         f.write("%s:" %(trajectories[k].getID()))
         for i in range(len(trajectories[k].getLat())):
@@ -145,8 +179,7 @@ def writeTraces(filename, trajectories):
     f.close()    
     
 # Define a filename.
-filename = "tourLegsCharacteristics.csv" #"single_test.txt"# 
-#filename = "tourCharacteristics.csv" #"single_test.txt"#
+filename = "tourLegsCharacteristics.csv"#"tourCharacteristics.csv"
 ofilename= "tour.xml"
 input= open(filename, 'r')
 #skip first line
@@ -157,9 +190,9 @@ input.readline()
 edges= []
 
 net = sumolib.net.readNet('mitte_net_withoutrail4.net.xml')
-#net = sumolib.net.readNet('pre_net.net.xml.gz')
 t= {}
 trajectoryIDs= []
+skippedStops= 0
     
 while True:
     data=str(input.readline())
@@ -167,53 +200,42 @@ while True:
         break
 
     data=data.split(';')
-    id= data[0]
-    #start = data[5].split(':')
-
-    startx= float(data[5].replace(',', '.'))# legs 5 +6 
-    starty= float(data[6].replace(',', '.'))
-    
-    lat, lon =utm.to_latlon(startx, starty, 33, 'U')
     id= data[3]
-    if id in trajectoryIDs:
-        #print("old")
-        pass
-        
-    else:
-        trajectory= Trajectory(id, lat,lon)
-        trajectoryIDs.append(id)
-        #print(id)
-    #print(lat, lon)
-    #print(startx, starty)
-    #startx= float((start[0][2:]).replace(',', '.'))
-    #starty= float((start[1][2:]).replace(',', '.'))
-    edge= geo2edge(net, lat, lon)
-    if edge:
-        edges.append(edge)#startx, starty))
-    #lat, lon= pyproj.transform(gk4, wgs84, startx, starty) 
-    #end= data[7]
-    #print(startx, starty)
-    #print(lat, lon)
-    #sumolib.route.mapTrace()
-    #p = pyproj.Proj(init='EPSG:2398') 
-    #lon, lat = p(startx, starty, inverse=True)
-    #print(lat, lon)
-    #end = data[8].split(':')
-    #print(end)
+
+    startx= float(data[5].replace(',', '.')) 
+    starty= float(data[6].replace(',', '.'))
+    latStart, lonStart =utm.to_latlon(startx, starty, 33, 'U')
+    edge= geo2edge(net, latStart, lonStart)
     endx= float(data[8].replace(',', '.'))
     endy= float(data[9].replace(',', '.'))
-    lat, lon =utm.to_latlon(endx, endy, 33, 'U')
-    trajectory.addlatPosition(lat)
-    trajectory.addlonPosition(lon)
-    t[id]= trajectory
+    latEnd, lonEnd =utm.to_latlon(endx, endy, 33, 'U')   
+    edgeEnd =geo2edge(net, latEnd, lonEnd)
+    if (edge and edgeEnd):
+        if id in trajectoryIDs:
+            trajectory= t[id]
+            pass
+            
+        else:
+            trajectory= Trajectory(id, latStart,lonStart)
+            trajectoryIDs.append(id)
 
+        #edge= geo2edge(net, lat, lon)
+        if edge:
+            edges.append(edge)#startx, starty))
+
+        trajectory.addlatPosition(latEnd)
+        trajectory.addlonPosition(lonEnd)
+        t[id]= trajectory
+    else:
+        skippedStops+= 1
+print("Stops out of SUMO Net: "+str(skippedStops))
 input.close()
 #writeTrajectories("trajectories.csv",t)
 writeTraces("traces.txt", t)
 writeRouteFile("route.xml", t)
+writeTripFile("trips.xml", t)
 
 
-
-print(len(t))
+print(t.keys(), len(t))
 writeTrips("poi.xml", t)
-generatePOIs("alltrips.xml", t)
+generatePOIs("start_end_trips.xml", t)
