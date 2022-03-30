@@ -17,11 +17,8 @@
 # common helper functions
 
 from __future__ import print_function, division
-import sys
 import subprocess
-import time
 import os
-import imp
 import csv
 
 import constants
@@ -40,32 +37,6 @@ def call(cmd):
     if isinstance(cmd, str):
         cmd = filter(lambda a: a != '', cmd.split(' '))
     subprocess.call(cmd)
-
-def import_tool(name, required_env_var, path):
-    # Fast path: see if the module has already been imported.
-    try:
-        return sys.modules[name]
-    except KeyError:
-        pass
-
-    if required_env_var:
-        if required_env_var in os.environ:
-            path = os.path.join(os.environ[required_env_var], path)
-        else:
-            sys.exit('please set the environment variable "%s"' %
-                     required_env_var)
-
-    fp, pathname, description = imp.find_module(name, [path])
-    try:
-        return imp.load_module(name, fp, pathname, description)
-    except ImportError:
-        sys.exit('required tool %s not found. please check the value of "%s".' %
-                 (name, required_env_var))
-    finally:
-        # Since we may exit via an exception, close fp explicitly.
-        if fp:
-            fp.close()
-
 
 def ensure_dir(dir):
     if not os.path.isdir(dir):
