@@ -1,7 +1,5 @@
 The following new files/directories were created:
 <Test Directory>
-----__pycache__
---------tscdefs.cpython-37.pyc
 ----data
 --------scenario_workdir
 ------------mitte_net
@@ -10,24 +8,23 @@ The following new files/directories were created:
 ------------------------7zip.log
 ------------------------dua.log
 ------------------------duaIterate.params
+------------------------edgedata.add.xml
 ------------------------stdout.log
-------------------------0
-----------------------------dua_dump_000.add.xml
-----------------------------dump_000_1800.xml
+------------------------000
+----------------------------dump_1800.xml
 ----------------------------iteration_000.sumo.log
 ----------------------------iteration_000.sumocfg
 ----------------------------iteration_000_vehroutes_oneshot_meso.duarcfg
-----------------------------memory_dump_000_1800.xml
+----------------------------memory_dump_1800.xml
 ----------------------------vehroute_000.xml
 ----------------------------vehroutes_oneshot_meso_000.rou.alt.xml
 ----------------------------vehroutes_oneshot_meso_000.rou.xml
-------------------------1
-----------------------------dua_dump_001.add.xml
-----------------------------dump_001_1800.xml
+------------------------001
+----------------------------dump_1800.xml
 ----------------------------iteration_001.sumo.log
 ----------------------------iteration_001.sumocfg
 ----------------------------iteration_001_vehroutes_oneshot_meso_000.duarcfg
-----------------------------memory_dump_001_1800.xml
+----------------------------memory_dump_1800.xml
 ----------------------------vehroute_001.xml
 ----------------------------vehroutes_oneshot_meso_001.rou.alt.xml
 ----------------------------vehroutes_oneshot_meso_001.rou.xml
@@ -48,3 +45,4 @@ The following new files/directories were created:
 ------------------------rectified_twoPersonsOnly.csv
 ------------------------t2s_map_twoPersonsOnly.log
 ------------------------t2s_rectify_twoPersonsOnly.log
+----tscdefs.pyc

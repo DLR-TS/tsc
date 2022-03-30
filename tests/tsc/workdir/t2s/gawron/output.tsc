@@ -1,61 +1,61 @@
-function main called at Wed, 27 Oct 2021 16:04:56 +0000
-function rectify_input called at Wed, 27 Oct 2021 16:04:59 +0000
-Read 2 persons with a total of 4 trips from input file "C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.27Oct155331.2080\tsc.sqlite3\workdir\t2s\gawron\data\twoPersonsOnly.csv".
+function main called at Wed, 30 Mar 2022 12:55:24 +0000
+function rectify_input called at Wed, 30 Mar 2022 12:55:25 +0000
+Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tsc.30Mar125506.1126/tsc/workdir/t2s/gawron/data/twoPersonsOnly.csv".
 0 trips have inconsistent depart times.
-function rectify_input finished after 0.128119 seconds
-function map_to_edges called at Wed, 27 Oct 2021 16:04:59 +0000
-Mapping using C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.27Oct155331.2080\tsc.sqlite3\workdir\t2s\gawron\data\scenario_workdir\mitte_net\districts.taz.xml.
+function rectify_input finished after 0.026473 seconds
+function map_to_edges called at Wed, 30 Mar 2022 12:55:25 +0000
+Mapping using /home/behr_mi/.texttest/tmp/tsc.30Mar125506.1126/tsc/workdir/t2s/gawron/data/scenario_workdir/mitte_net/districts.taz.xml.
 Mapping (568.7532229983481, 913.0316369170323) to -4588215#5 (dist: 42.56) which is not in taz 110110312, best match in taz is 4597322#0 (dist: 108.25)
 read 4 TAPAS trips for 2 persons (0 unmappable)
-Mapping deviations: count 4, min 9.41 (xycoord=(720.7678498803871, 1303.540090534836), edge=320462164#2, uid=('1000005', '1000001')), max 42.56 (xycoord=(568.7532229983481, 913.0316369170323), edge=-4588215#5, uid=('1000019', '1000003')), mean 28.28 Q1 27.13, median 34.00, Q3 42.56
-1 mappings did not find an edge in the correct taz
-function map_to_edges finished after 1.102166 seconds
-using previous version of C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.27Oct155331.2080\tsc.sqlite3\workdir\t2s\gawron\data\scenario_workdir\mitte_net\iteration000\trips\rectified_twoPersonsOnly.csv
-function create_sumo_tripdefs called at Wed, 27 Oct 2021 16:05:00 +0000
+Mapping deviations: count 8, min 9.41 (xycoord=(720.7678498803871, 1303.540090534836), edge=320462164#2, uid=('1000005', '1000001')), max 42.56 (xycoord=(568.7532229983481, 913.0316369170323), edge=-4588215#5, uid=('1000019', '1000003')), mean 28.28, Q1 27.13, median 34.00, Q3 42.56
+5 mappings did not find an edge in the correct taz
+function map_to_edges finished after 0.526899 seconds
+using previous version of /home/behr_mi/.texttest/tmp/tsc.30Mar125506.1126/tsc/workdir/t2s/gawron/data/scenario_workdir/mitte_net/iteration000/trips/rectified_twoPersonsOnly.csv
+function create_sumo_tripdefs called at Wed, 30 Mar 2022 12:55:25 +0000
 read trip definitions for 4 vehicles
 created trip definitions for 4 vehicles starting between 135131 and 137351
-function create_sumo_tripdefs finished after 0.007007 seconds
-function run_duaiterate called at Wed, 27 Oct 2021 16:05:00 +0000
-Written configuration to '0/iteration_000_miv_twoPersonsOnly.duarcfg'
+function create_sumo_tripdefs finished after 0.000219 seconds
+function run_duaiterate called at Wed, 30 Mar 2022 12:55:25 +0000
+Written configuration to '000/iteration_000_miv_twoPersonsOnly.duarcfg'
 > Executing step 0
->> Running router on C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.27Oct155331.2080\tsc.sqlite3\workdir\t2s\gawron\data\scenario_workdir\mitte_net\iteration000\trips\miv_twoPersonsOnly.trips.xml
->>> Begin time: 2021-10-27 16:05:06.175009
->>> End time: 2021-10-27 16:05:10.731704
->>> Duration: 0:00:04.556695
+>> Running router on /home/behr_mi/.texttest/tmp/tsc.30Mar125506.1126/tsc/workdir/t2s/gawron/data/scenario_workdir/mitte_net/iteration000/trips/miv_twoPersonsOnly.trips.xml
+>>> Begin time: 2022-03-30 12:55:27.293009
+>>> End time: 2022-03-30 12:55:28.115577
+>>> Duration: 0:00:00.822568
 <<
 >> Running simulation
->>> Begin time: 2021-10-27 16:05:10.731704
->>> End time: 2021-10-27 16:05:16.327191
->>> Duration: 0:00:05.595487
+>>> Begin time: 2022-03-30 12:55:28.115657
+>>> End time: 2022-03-30 12:55:29.006599
+>>> Duration: 0:00:00.890942
 <<
 >> Smoothing edge weights
 >>> Updated 101 edges
 >>> Decayed 0 unseen edges
 >>> Error avg:0 mean:0
 >>> Absolute Error avg:0 mean:0
-< Step 0 ended (duration: 0:00:10.162495)
+< Step 0 ended (duration: 0:00:01.716728)
 ------------------
 
-Written configuration to '1/iteration_001_miv_twoPersonsOnly_000.duarcfg'
+Written configuration to '001/iteration_001_miv_twoPersonsOnly_000.duarcfg'
 > Executing step 1
->> Running router on 0\miv_twoPersonsOnly_000.rou.alt.xml
->>> Begin time: 2021-10-27 16:05:16.344329
->>> End time: 2021-10-27 16:05:22.184561
->>> Duration: 0:00:05.840232
+>> Running router on 000/miv_twoPersonsOnly_000.rou.alt.xml
+>>> Begin time: 2022-03-30 12:55:29.020499
+>>> End time: 2022-03-30 12:55:30.202193
+>>> Duration: 0:00:01.181694
 <<
 >> Running simulation
->>> Begin time: 2021-10-27 16:05:22.184561
->>> End time: 2021-10-27 16:05:27.928139
->>> Duration: 0:00:05.743578
+>>> Begin time: 2022-03-30 12:55:30.202277
+>>> End time: 2022-03-30 12:55:31.083970
+>>> Duration: 0:00:00.881693
 <<
 >> Smoothing edge weights
 >>> Updated 101 edges
 >>> Decayed 0 unseen edges
 >>> Error avg:0 mean:0
 >>> Absolute Error avg:0 mean:0
-< Step 1 ended (duration: 0:00:11.595406)
+< Step 1 ended (duration: 0:00:02.066404)
 ------------------
 
-dua-iterate ended (duration: 0:00:24.877333)
-function run_duaiterate finished after 27.621320 seconds
-function main finished after 31.356301 seconds
+dua-iterate ended (duration: 0:00:05.297778)
+function run_duaiterate finished after 5.399949 seconds
+function main finished after 7.025752 seconds
