@@ -39,12 +39,12 @@ else:
     sys.exit("please declare environment variable 'SUMO_HOME'")
 
 import sumolib
-from sumolib.miscutils import working_dir, benchmark, uMin, uMax, euclidean
+from sumolib.miscutils import benchmark, uMin, uMax, euclidean
 from sumolib.options import ArgumentParser
 from sumolib.miscutils import parseTime, Statistics
 
 import assign
-from constants import TH, THX, SX, SVC, MODE, CAR_MODES, TAPAS_DAY_OVERLAP_MINUTES, BACKGROUND_TRAFFIC_SUFFIX
+from constants import TH, THX, SVC, MODE, CAR_MODES, TAPAS_DAY_OVERLAP_MINUTES, BACKGROUND_TRAFFIC_SUFFIX
 import edgemapper
 from common import csv_sequence_generator, abspath_in_dir, build_uid
 
@@ -230,9 +230,8 @@ def rectify_input(options):
         # # entries
         gen = csv_sequence_generator(
             options.tapas_trips, (TH.person_id, TH.household_id), assertUniqe=True)
-        for (pid, hid), trip_sequence in gen:
+        for (pid, _), trip_sequence in gen:
             persons += 1
-            previous_row = None
             previous_dest = None
             previous_end = None
             previous_depart = None
@@ -300,7 +299,6 @@ def rectify_input(options):
                     # row[TH.source_long] = previous_row[TH.dest_long]
                     # row[TH.source_lat] = previous_row[TH.dest_lat]
                     continue
-                previous_row = row
                 previous_dest = dest
 
                 if spatial_offset is not None:
@@ -346,7 +344,7 @@ def map_trips(trip_sequence, vTypes, max_radius):
             taz_id_end = row[TH.taz_id_end]
             source = edgemapper.convertLonLat2XY(row[TH.source_long], row[TH.source_lat])
             dest = edgemapper.convertLonLat2XY(row[TH.dest_long], row[TH.dest_lat])
-            if edgemapper.trip_filter(options, row, source, dest):
+            if edgemapper.trip_filter(row, source, dest):
                 continue
             if taz_id_start.startswith("-") and source not in edgemapper.get_location_prios():
                 source_map = (None, taz_id_start[1:], None, None)

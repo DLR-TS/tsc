@@ -20,5 +20,6 @@ export GUISIM_BINARY="$SUMO_HOME/bin/sumo-gui$SUFFIX"
 export TSC_HOME=$(dirname $(dirname $(realpath $0)))
 export TEXTTEST_HOME="$TSC_HOME/tests"
 export PYTHON=python3
+export LANG=C
 
 texttest -a tsc.sqlite3.python3

@@ -97,8 +97,8 @@ def convertLonLat2XY(lon_str, lat_str):
     return _instance.net.convertLonLat2XY(round(float(lon_str), 5), round(float(lat_str), 5))
 
 
-def trip_filter(options, row, source, dest):
-    return _instance.trip_filter and not _instance.trip_filter(options, row, source, dest)
+def trip_filter(row, source, dest):
+    return _instance.trip_filter and not _instance.trip_filter(row, source, dest)
 
 
 def get_location_prios():
