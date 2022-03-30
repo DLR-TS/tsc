@@ -34,3 +34,11 @@ If you don't need it, you can omit the `-c postgres.tsccfg` part.
 The `--daemon`-flag lets the tsc loop look for new simulation requests. Alternatively you can run a specific simulation key like this: `./tsc_main.py --sim-key 2021y_06m_04d_11h_04m_34s_855ms -c postgres.tsccfg`.
 
 If you want to override certain simulation parameters on the command line use the option `--sim-param` for instance `--sim-param SUMO_TEMPLATE_FOLDER:siemensbahn,SUMO_DESTINATION_FOLDER:siemensbahn,SUMO_MODES:'0;1;2;3;5;6;261;517'`. For a list of available parameters have a look at the relevant database table `public.simulation_parameters` or at constants.py (the SP class).
+
+## Testing
+This requires [texttest](https://www.texttest.org/) to be installed.
+To run the tests you will either need a running postgresql database or you will need to configure your sqlite installation such that it can use the spatialite extension.
+Most of the time it suffices to install mod_spatialite. It is very likely that this works only with python3.
+If you have everything installed run one of the scripts in the test directory which should fire up the texttest GUI
+and allow you to run selected or all tests. Please be aware that you cannot run the tests in parallel
+if you use PostGreSQL because they all access the same database.
