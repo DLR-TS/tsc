@@ -25,10 +25,12 @@ import math
 import csv
 import random
 import shutil
-import subprocess
+import multiprocessing
 import collections
 import glob
 import re
+from collections import defaultdict
+import traceback
 
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
@@ -39,11 +41,11 @@ else:
 import sumolib
 from sumolib.miscutils import working_dir, benchmark, uMin, uMax, euclidean
 from sumolib.options import ArgumentParser
-from sumolib.miscutils import parseTime
+from sumolib.miscutils import parseTime, Statistics
 
 import assign
 from constants import TH, THX, SX, SVC, MODE, CAR_MODES, TAPAS_DAY_OVERLAP_MINUTES, BACKGROUND_TRAFFIC_SUFFIX
-from edgemapper import EdgeMapper
+import edgemapper
 from common import csv_sequence_generator, abspath_in_dir, build_uid
 
 class MappingError(Exception):
@@ -89,8 +91,6 @@ def fillOptions(argParser):
                            default=100., help="maximum standard deviation for spatial diffusion when using bounds")
     argParser.add_argument("--spatial-diffusion-bounds", default="500,5000",
                            help="lower and upper cutoff for spatial diffusion")
-    argParser.add_argument("--generate-taz-file",
-                           help="build a district file based on proximity to the trip locations")
     argParser.add_argument("--bidi-taz-file", default="",
                            help="generate trips that use the given taz file for bidirectional departure and arrival")
     argParser.add_argument("--location-priority-file", default="",
@@ -334,20 +334,62 @@ def rectify_input(options):
 
 ###############################################################################
 # map geocoordinates to network edges
+def map_trips(trip_sequence, vTypes, max_radius):
+    rows = []
+    try:
+        for row in trip_sequence:
+            if row[TH.mode] in CAR_MODES:
+                vClass = vTypes.get(row[TH.vtype], SVC.passenger)
+            else:
+                vClass = SVC.pedestrian
+            taz_id_start = row[TH.taz_id_start]
+            taz_id_end = row[TH.taz_id_end]
+            source = edgemapper.convertLonLat2XY(row[TH.source_long], row[TH.source_lat])
+            dest = edgemapper.convertLonLat2XY(row[TH.dest_long], row[TH.dest_lat])
+            if edgemapper.trip_filter(options, row, source, dest):
+                continue
+            if taz_id_start.startswith("-") and source not in edgemapper.get_location_prios():
+                source_map = (None, taz_id_start[1:], None, None)
+            else:
+                source_map = edgemapper.map_to_edge(source, taz_id_start, vClass, max_radius=max_radius)
+            if taz_id_end.startswith("-") and dest not in edgemapper.get_location_prios():
+                dest_map = (None, taz_id_end[1:], None, None)
+            else:
+                dest_map = edgemapper.map_to_edge(dest, taz_id_end, vClass, max_radius=max_radius)
+            row[THX.source_edge] = source_map[1]
+            row[THX.dest_edge] = dest_map[1]
+            row[THX.departpos] = 0
+            row[THX.arrivalpos] = 0
+            rows.append((row, source, source_map, dest, dest_map))
+    except Exception as e:
+        print(e, file=sys.stderr)
+        traceback.print_exc(file=sys.stderr)
+    return rows
+
+
+def checkDeviations(tazMap, deviations, xycoord, taz, map_result, uid, log):
+    result = 0
+    minDist, minEdge, minInTazEdge, minInTazDist = map_result
+    if minEdge is not None and minDist is not None:
+        if taz and (taz not in tazMap or minEdge not in tazMap[taz]):
+            if minInTazEdge is not None and log is not None:
+                log("Mapping %s to %s (dist: %.2f) which is not in taz %s, best match in taz is %s (dist: %.2f)" % (xycoord, minEdge, minDist, taz, minInTazEdge, minInTazDist))
+            result = 1
+        deviations.add(minDist, "xycoord=%s, edge=%s, uid=%s" % (xycoord, minEdge, uid))
+    return result
+
+
 @benchmark
 def map_to_edges(options):
-    location_prios = {}
-    if os.path.exists(options.location_priority_file):
-        for loc in sumolib.xml.parse(options.location_priority_file, "poi"):
-            xy = options.net.convertLonLat2XY(round(float(loc.lon), 5), round(float(loc.lat), 5))
-            location_prios[xy] = int(loc.type)
-    emapper = EdgeMapper(options.net, options.taz_file, options.generate_taz_file, location_prios)
-
     vTypes = {}
     if os.path.exists(options.vtype_file):
         for t in sumolib.output.parse(options.vtype_file, "vType"):
             if t.vClass is not None:
                 vTypes[t.id] = t.vClass
+    tazMap = defaultdict(set)
+    if os.path.exists(options.taz_file):
+        for t in sumolib.output.parse_fast(options.taz_file, "taz", ["id", "edges"]):
+            tazMap[t.id] = set(t.edges.split())
 
     writer = csv.DictWriter(
         open(options.mapped_trips, 'w'),
@@ -358,69 +400,46 @@ def map_to_edges(options):
     persons = 0
     rows = 0
     unmapped = 0
+    noTazEdge = 0
+    deviations = Statistics("Mapping deviations")
 
     with open(options.mapped_log, 'w') as logfile:
+        pool = multiprocessing.Pool(multiprocessing.cpu_count(), edgemapper.init, (options, tazMap))
+        results = []
         log = get_logger(logfile)
         log('Mapping using %s.' % options.taz_file)
-        for (pid, hid), trip_sequence in csv_sequence_generator(options.rectified, (TH.person_id, TH.household_id)):
+        for _, trip_sequence in csv_sequence_generator(options.rectified, (TH.person_id, TH.household_id)):
             persons += 1
-            for row in trip_sequence:
-                if row[TH.mode] in CAR_MODES:
-                    vClass = vTypes.get(row[TH.vtype], SVC.passenger)
-                else:
-                    vClass = SVC.pedestrian
+            results.append(pool.apply_async(map_trips, args=(trip_sequence, vTypes, options.max_radius)))
+        pool.close()
+        pool.join()
+
+        # iterate through results
+        for proc in results:
+            for row, source, source_map, dest, dest_map in proc.get():
+                uid = (row[TH.person_id], row[TH.household_id])
+                noTazEdge += checkDeviations(tazMap, deviations, source, row[TH.taz_id_start], source_map, uid, log)
+                noTazEdge += checkDeviations(tazMap, deviations, dest, row[TH.taz_id_end], dest_map, uid, log)
                 rows += 1
-                taz_id_start = row[TH.taz_id_start]
-                taz_id_end = row[TH.taz_id_end]
-                source = options.net.convertLonLat2XY(
-                    round(float(row[TH.source_long]), 5), round(float(row[TH.source_lat]), 5))
-                dest = options.net.convertLonLat2XY(
-                    round(float(row[TH.dest_long]), 5), round(float(row[TH.dest_lat]), 5))
-                if hasattr(options.script_module, "trip_filter") and not options.script_module.trip_filter(options, row, source, dest):
-                    continue
-                if taz_id_start.startswith("-") and source not in location_prios:
-                    source_edge = taz_id_start[1:]
-                else:
-                    source_edge = emapper.map_to_edge(
-                        source, taz_id_start, vClass,
-                        max_radius=options.max_radius, uid=(pid, hid), log=log)
-                if taz_id_end.startswith("-") and dest not in location_prios:
-                    dest_edge = taz_id_end[1:]
-                else:
-                    dest_edge = emapper.map_to_edge(
-                        dest, taz_id_end, vClass,
-                        max_radius=options.max_radius, uid=(pid, hid), log=log)
-                if source_edge is None:
+                if row[THX.source_edge] is None:
                     unmapped += 1
                     if unmapped < 10:
-                        log('Warning: could not find an edge for departure of %s from (%s, %s), depart_minute=%s (skipping trip)' % (
-                            (pid, hid), row[TH.source_lat], row[TH.source_long], row[TH.depart_minute]))
-                elif dest_edge is None:
+                        log('Warning: could not find an edge for departure of %s from (%s, %s), depart_minute=%s (skipping trip)' %
+                            (uid, row[TH.source_lat], row[TH.source_long], row[TH.depart_minute]))
+                elif row[THX.dest_edge] is None:
                     unmapped += 1
                     if unmapped < 10:
-                        log('Warning: could not find an edge for arrival of %s at (%s, %s), depart_minute=%s (skipping trip)' % (
-                            (pid, hid), row[TH.dest_lat], row[TH.dest_long], row[TH.depart_minute]))
+                        log('Warning: could not find an edge for arrival of %s at (%s, %s), depart_minute=%s (skipping trip)' %
+                            (uid, row[TH.dest_lat], row[TH.dest_long], row[TH.depart_minute]))
                 else:
-                    row[THX.source_edge] = source_edge
-                    row[THX.dest_edge] = dest_edge
-                    row[THX.departpos] = 0
-                    row[THX.arrivalpos] = 0
                     writer.writerow(row)
 
-        log('read %d TAPAS trips for %s persons (%s unmappable)' % (
-            rows, persons, unmapped))
+
+        log('read %d TAPAS trips for %s persons (%s unmappable)' % (rows, persons, unmapped))
         if rows == unmapped and unmapped > 0:
             raise MappingError('No trips left after mapping.')
-        log(emapper.errors)  # error when mapping to junction coords
-        log("%s mappings did not find an edge in the correct taz" % emapper.noTazEdge)
-
-        if options.generate_taz_file is not None:
-            with open(options.generate_taz_file, 'w') as f:
-                f.write('<tazs>\n')
-                for taz, edges in emapper.taz.items():
-                    f.write('    <taz id="%s" edges="%s"/>\n' % (taz, ' '.join(edges)))
-                f.write('</tazs>\n')
-            log("generated taz file with %s zones" % len(emapper.taz))
+        log(deviations)  # error when mapping to junction coords
+        log("%s mappings did not find an edge in the correct taz" % noTazEdge)
 
 
 ###############################################################################

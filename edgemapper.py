@@ -19,7 +19,6 @@
 from __future__ import print_function
 import os
 import sys
-from collections import defaultdict
 
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
@@ -28,24 +27,17 @@ else:
     sys.exit("please declare environment variable 'SUMO_HOME'")
 
 import sumolib
-from sumolib.miscutils import Statistics
 
 class EdgeMapper:
 
-    def __init__(self, net, taz_file, generate_taz_file, location_prios):
+    def init(self, net, taz, location_prios):
         self.net = net
         self.result_cache = {}  # geo-locations are reused frequently
-        self.errors = Statistics("Mapping deviations")
-        self.noTazEdge = 0
-        self.taz = defaultdict(set)
-        self.generate_taz_file = generate_taz_file
+        self.taz = taz
         self.location_prios = location_prios
-        if os.path.exists(taz_file):
-            for t in sumolib.output.parse_fast(taz_file, "taz", ["id", "edges"]):
-                self.taz[t.id] = set(t.edges.split())
 
-    def map_to_edge(self, xycoord, taz=None, vClass=None, min_radius=50, max_radius=1000, tazExcess=2., uid=None, log=None):
-        key = (xycoord, vClass)
+    def map_to_edge(self, xycoord, taz=None, vClass=None, min_radius=50, max_radius=1000, tazExcess=2.):
+        key = (xycoord, taz, vClass)
         if key in self.result_cache:
             return self.result_cache[key]
 
@@ -75,8 +67,6 @@ class EdgeMapper:
                             minPrioDist = dist
                             minPrioEdge = edge.getID()
                             checkPrio = False
-                    if self.generate_taz_file and dist <= minDist + min_radius:
-                        self.taz[taz].add(edge.getID())
             radius *= 2
 
         if minInTazEdge is not None and minInTazDist < max(min_radius, tazExcess * minDist):
@@ -85,11 +75,35 @@ class EdgeMapper:
         if minPrioEdge is not None:
             minDist = minPrioDist
             minEdge = minPrioEdge
-        self.result_cache[key] = minEdge
-        if minEdge is not None:
-            if taz and (taz not in self.taz or minEdge not in self.taz[taz]):
-                if minInTazEdge is not None and log is not None:
-                    log("Mapping %s to %s (dist: %.2f) which is not in taz %s, best match in taz is %s (dist: %.2f)" % (xycoord, minEdge, minDist, taz, minInTazEdge, minInTazDist))
-                self.noTazEdge += 1
-            self.errors.add(minDist, "xycoord=%s, edge=%s, uid=%s" % (xycoord, minEdge, uid))
-        return minEdge
+        result = (minDist, minEdge, minInTazEdge, minInTazDist)
+        self.result_cache[key] = result
+        return result
+
+
+_instance = EdgeMapper()
+
+
+def init(options, taz):
+    location_prios = {}
+    if os.path.exists(options.location_priority_file):
+        for loc in sumolib.xml.parse(options.location_priority_file, "poi"):
+            xy = options.net.convertLonLat2XY(round(float(loc.lon), 5), round(float(loc.lat), 5))
+            location_prios[xy] = int(loc.type)
+    _instance.init(options.net, taz, location_prios)
+    _instance.trip_filter = options.script_module.trip_filter if hasattr(options.script_module, "trip_filter") else None
+
+
+def convertLonLat2XY(lon_str, lat_str):
+    return _instance.net.convertLonLat2XY(round(float(lon_str), 5), round(float(lat_str), 5))
+
+
+def trip_filter(options, row, source, dest):
+    return _instance.trip_filter and not _instance.trip_filter(options, row, source, dest)
+
+
+def get_location_prios():
+    return _instance.location_prios
+
+
+def map_to_edge(xycoord, taz=None, vClass=None, min_radius=50, max_radius=1000, tazExcess=2.):
+    return _instance.map_to_edge(xycoord, taz, vClass, min_radius, max_radius, tazExcess)
