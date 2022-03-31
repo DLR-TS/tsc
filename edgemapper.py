@@ -84,12 +84,13 @@ _instance = EdgeMapper()
 
 
 def init(options, taz):
+    net = sumolib.net.readNet(options.net_file, withFoes=False, withConnections=False) if options.net is None else options.net
     location_prios = {}
     if os.path.exists(options.location_priority_file):
         for loc in sumolib.xml.parse(options.location_priority_file, "poi"):
-            xy = options.net.convertLonLat2XY(round(float(loc.lon), 5), round(float(loc.lat), 5))
+            xy = net.convertLonLat2XY(round(float(loc.lon), 5), round(float(loc.lat), 5))
             location_prios[xy] = int(loc.type)
-    _instance.init(options.net, taz, location_prios)
+    _instance.init(net, taz, location_prios)
     _instance.trip_filter = options.script_module.trip_filter if hasattr(options.script_module, "trip_filter") else None
 
 

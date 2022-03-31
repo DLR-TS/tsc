@@ -402,7 +402,12 @@ def map_to_edges(options):
     deviations = Statistics("Mapping deviations")
 
     with open(options.mapped_log, 'w') as logfile:
+        if os.name == "nt":
+            net_bak = options.net
+            options.net = None
         pool = multiprocessing.Pool(multiprocessing.cpu_count(), edgemapper.init, (options, tazMap))
+        if os.name == "nt":
+            options.net = net_bak
         results = []
         log = get_logger(logfile)
         log('Mapping using %s.' % options.taz_file)
