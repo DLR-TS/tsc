@@ -1,6 +1,6 @@
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
     <trip id="1000019_1000003_813_0" depart="135131" fromTaz="-4588215#5" toTaz="192298337#0" type="small_passenger_gasoline"><param key="taz_id_start" value="110110312"/><param key="taz_id_end" value="110311212"/></trip>
     <trip id="1000005_1000001_817_0" depart="135225" fromTaz="320462164#2" toTaz="340716730#1" type="medium_passenger_gasoline"><param key="taz_id_start" value="110110312"/><param key="taz_id_end" value="110311212"/></trip>
-    <trip id="1000005_1000001_850_0" depart="137205" fromTaz="340716730#1" toTaz="320462164#2" type="medium_passenger_gasoline"><param key="taz_id_start" value="110110312"/><param key="taz_id_end" value="110311212"/></trip>
+    <trip id="1000005_1000001_850_0" depart="137205" fromTaz="340716730#1" toTaz="320462164#2" type="medium_passenger_gasoline"><param key="taz_id_start" value="110110212"/><param key="taz_id_end" value="110311312"/></trip>
     <trip id="1000019_1000003_850_0" depart="137351" fromTaz="192298337#0" toTaz="-4588215#5" type="small_passenger_gasoline"><param key="taz_id_start" value="110110312"/><param key="taz_id_end" value="110311212"/></trip>
 </routes>
