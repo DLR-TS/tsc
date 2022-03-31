@@ -31,6 +31,7 @@ import glob
 import re
 from collections import defaultdict
 import traceback
+import copy
 
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
@@ -403,11 +404,10 @@ def map_to_edges(options):
 
     with open(options.mapped_log, 'w') as logfile:
         if os.name == "nt":
-            net_bak = options.net
+            options = copy.copy(options)
             options.net = None
+            options.script_module = None
         pool = multiprocessing.Pool(multiprocessing.cpu_count(), edgemapper.init, (options, tazMap))
-        if os.name == "nt":
-            options.net = net_bak
         results = []
         log = get_logger(logfile)
         log('Mapping using %s.' % options.taz_file)
