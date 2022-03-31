@@ -298,7 +298,7 @@ def main():
     argParser.add_argument("-l", "--limit", type=int,
                            help="maximum number of trips to retrieve")
     argParser.add_argument("--representatives", default="",
-                           help="set the route alternatives file to read representative travel times from")
+                           help="set the route file to read representative travel times from")
     argParser.add_argument("--real-trips", default="",
                            help="set the route file to read travel times for real trips from")
     argParser.add_argument("-a", "--all-pairs",

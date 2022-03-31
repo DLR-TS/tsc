@@ -291,14 +291,13 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
             write_status('>>> starting all pairs t2s using tripfile %s' %
                          options.tapas_trips, sim_key, params, conn)
             conn.close()
-            alt_file, _ = t2s.main(options)
+            rou_file, _ = t2s.main(options)
             conn = db_manipulator.get_conn(options, conn)
-            write_status('<<< finished all pairs t2s, routes in %s' %
-                         alt_file, sim_key, params, conn)
-            assert os.path.exists(alt_file), "all pairs route file %s could not be found" % alt_file
+            write_status('<<< finished all pairs t2s, routes in %s' % rou_file, sim_key, params, conn)
+            assert os.path.exists(rou_file), "all pairs route file %s could not be found" % rou_file
             write_status('>>> starting od result database upload', sim_key, params, conn)
             startIdx = s2t_miv.upload_all_pairs(conn, all_pair_tables, begin_second, end_second, vType,
-                                                final_routes, alt_file, options.net, taz_list, startIdx)
+                                                final_routes, rou_file, options.net, taz_list, startIdx)
             write_status('<<< finished od result database upload', sim_key, params, conn)
             begin_second = end_second
     if not modes <= set(CAR_MODES):
