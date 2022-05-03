@@ -60,7 +60,8 @@ let the netccfg refer to them.
 
 ### The vehicle types
 TAPAS assigns a vehicle type to every vehicle which needs to be mapped (by it's name) to a 
-[SUMO vehicle type](https://sumo.dlr.de/docs/Definition_of_Vehicles%2C_Vehicle_Types%2C_and_Routes.html#vehicle_types)
+[SUMO vehicle type](https://sumo.dlr.de/docs/Definition_of_Vehicles%2C_Vehicle_Types%2C_and_Routes.html#vehicle_types).
+The file `vtypes.xml` should simply list them with their properties including emission classes (if known).
 
 ### Additional data
 It may be useful to have additional files in a scenario (to be described)
