@@ -93,7 +93,7 @@ def create_template_folder(scenario_pre_dir, options):
 
     # copy static input such as vehicle types, edge lists and processing scripts
     for ff in sorted(listdir_skip_hidden(scenario_pre_dir)):
-        if ff[-3:] in ['xml', '.py', 'cfg'] and ff[:12] != 'template_gen' and ff != 'setup.py':
+        if ff[-3:] in ['.gz', 'xml', '.py', 'cfg'] and ff[:12] != 'template_gen' and ff != 'setup.py':
             print("copying %s" % ff)
             shutil.copyfile(os.path.join(scenario_pre_dir, ff), os.path.join(scenario_template_dir, ff))
 

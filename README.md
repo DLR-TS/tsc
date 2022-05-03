@@ -42,3 +42,30 @@ Most of the time it suffices to install mod_spatialite. It is very likely that t
 If you have everything installed run one of the scripts in the test directory which should fire up the texttest GUI
 and allow you to run selected or all tests. Please be aware that you cannot run the tests in parallel
 if you use PostGreSQL because they all access the same database.
+
+## Setting up a new scenario
+The `install_scenario_templates.py` script sets up a scenario template for every subdirectory in its data dir.
+So the first step to add a new scenario is to add a new subdirectory which needs at least
+1. A SUMO network named `net.net.xml.gz`.
+2. A definition of vehicle types named `vtypes.xml`
+While the tsc tooling allows a fine grained configuration those two files are everything you need to get started,
+more details are given below.
+
+### The network
+The `install_scenario_templates.py` script supports the creation of a network from OpenStreetMap data.
+If you provide one or multiple `template_gen*.netccfg` file(s) the script will execute them in lexical order
+and the last call should generate the needed `net.net.xml.gz`. This way it is possible to rebuild the network
+on every new installation. If you do so you need to provide the input (OSM XML) files in your data directory and
+let the netccfg refer to them.
+
+### The vehicle types
+TAPAS assigns a vehicle type to every vehicle which needs to be mapped (by it's name) to a 
+[SUMO vehicle type](https://sumo.dlr.de/docs/Definition_of_Vehicles%2C_Vehicle_Types%2C_and_Routes.html#vehicle_types)
+
+### Additional data
+It may be useful to have additional files in a scenario (to be described)
+- Traffic assignment zones for suburban areas
+- landmarks to speed up routing
+
+Furthermore you can define custom scripts (with the name `setup.py`) which get called in the installation process
+and can modify or generate the rquired inputs.
