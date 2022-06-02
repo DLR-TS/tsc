@@ -137,13 +137,18 @@ def create_template_folder(scenario_pre_dir, options):
 
                 for idx, config in enumerate(configs):
                     netconvert_call = [netconvert, '-c', config,
-                                       '--output-file', os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % idx),
-                                       '--ptstop-output', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % idx),
-                                       '--ptline-output', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % idx)]
+                                       '--output-file', os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % idx)]
+                    if "pt" in os.path.basename(config):
+                        # needed to work around https://github.com/eclipse/sumo/issues/10732
+                        netconvert_call += ['--ptstop-output', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % idx),
+                                            '--ptline-output', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % idx)]
                     if idx > 0:
                         netconvert_call += ['--sumo-net-file', os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % (idx-1)),
                                             '--ptstop-files', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % (idx-1)),
                                             '--ptline-files', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % (idx-1))]
+                        if "pt" in os.path.basename(config):
+                            netconvert_call += ['--ptstop-files', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % (idx-1)),
+                                                '--ptline-files', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % (idx-1))]
                     if options.verbose:
                         print(' '.join(netconvert_call))
                         sys.stdout.flush()
@@ -181,7 +186,7 @@ def create_template_folder(scenario_pre_dir, options):
             shutil.rmtree(tmp_output_dir)
     setup_file = os.path.join(scenario_pre_dir, 'setup.py')
     if os.path.exists(setup_file):
-        subprocess.call(["python", setup_file, scenario_pre_dir, scenario_template_dir])
+        subprocess.check_call(["python", setup_file, scenario_pre_dir, scenario_template_dir])
     if not os.path.exists(net_path):
         print("Could not find network '%s' for %s, cleaning up!" % (net_path, scenario_name))
         if not dir_exists:

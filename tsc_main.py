@@ -198,8 +198,7 @@ def create_new_destination_folder(options, sim_key, iteration, params):
 
         # where to put the copy of the template
         if not os.path.isdir(destination_path):
-            print("create scenario %s from scratch in %s " %
-                  (sim_key, destination_path))
+            print("creating scenario %s from scratch in %s " % (sim_key, destination_path))
             os.mkdir(destination_path)
             # get things from template folder
             for ext in ("xml", "xml.gz", "csv", "csv.gz", "params"):
@@ -420,6 +419,8 @@ def simulation_request(options, request):
         # run t2s
         options.scale /= float(params[SP.sample])
         options.script_module = get_script_module(options, params[SP.template])
+        if hasattr(options.script_module, "trip_filter") and not params[SP.trip_filter]:
+            delattr(options.script_module, "trip_filter")
         final_routes, final_weights = t2s.main(options)
         conn = db_manipulator.get_conn(options, conn)
         write_status('<< finished t2s, routes in %s' % final_routes, sim_key, params, conn)
