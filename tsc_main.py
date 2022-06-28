@@ -349,7 +349,11 @@ def get_script_module(options, template):
     try:
         if os.path.dirname(options.template_folder) not in sys.path:
             sys.path.append(os.path.dirname(options.template_folder))
-        return importlib.import_module(os.path.basename(options.template_folder) + "." + template)
+        module = importlib.import_module(os.path.basename(options.template_folder) + "." + template)
+        for f in module.__dict__.keys():
+            if f[:2] != "__":
+                return module
+        print("No scenario specific assignment or post processing functions in", template)
     except ImportError as m:
         print("No scenario specific assignment or post processing functions:", m)
     return None
