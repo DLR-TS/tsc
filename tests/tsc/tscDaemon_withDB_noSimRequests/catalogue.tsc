@@ -1,3 +1,9 @@
 The following new files/directories were created:
 <Test Directory>
-----scenariodefs.pyc
+----__pycache__
+--------tscdefs.cpython-310.pyc
+----core.db
+----data
+--------tsc.log
+----public.db
+----tmp.db

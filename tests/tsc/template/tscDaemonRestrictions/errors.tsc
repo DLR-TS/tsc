@@ -3,17 +3,17 @@ Warning: Found sharp turn with radius 6.02 at the end of edge '-122820534#1'.
 Warning: Found angle of 105.60 degrees at edge '-154046793', segment 1.
 Warning: Found sharp turn with radius 6.02 at the start of edge '122820534#0'.
 Warning: Shape for junction '4590472047' has distance 20.23 to its given position.
-Warning: Replacing loaded roundabout '153522299#3 28341062 30721656#0 30721656#1 30721656#2 30721656#3 30721656#4 421641064 421641065#0 46140373 46140380 46140384 46140385s' with '153522299#3 28341062 30721656#1 30721656#2 30721656#3 30721656#4 421641064 421641065#0 46140373 46140380 46140384 46140385s'
+Warning: Replacing loaded roundabout '153522299#3 28341062 30721656#0 30721656#1 30721656#2 30721656#3 30721656#4 421641064 421641065#0 46140373 46140380 46140384 46140385' with '153522299#3 28341062 30721656#1 30721656#2 30721656#3 30721656#4 421641064 421641065#0 46140373 46140380 46140384 46140385'.
 Warning: Lane '-105352753_0' is not connected from any incoming edge at junction '29039237'.
 Warning: Edge '-28016312#3' is not connected to outgoing edges at junction '30731464'.
 Warning: Speed of straight connection '88421001_1->110862711#0_1' reduced by 5.23 due to turning radius of 13.63 (length=12.82, angle=72.27).
 Warning: Intersecting left turns at junction '20246137' from lane '103066047#4_1' and lane '-4688786#0_1' (increase junction radius to avoid this).
 Warning: 5 total messages of type: Ambiguity in turnarounds computation at junction '%'.
-Warning: 4 total messages of type: Found angle of % degrees at edge '%', segment %.
+Warning: 5 total messages of type: Found angle of % degrees at edge '%', segment %.
 Warning: 4 total messages of type: Found sharp turn with radius % at the end of edge '%'.
 Warning: 5 total messages of type: Found sharp turn with radius % at the start of edge '%'.
 Warning: 6 total messages of type: Intersecting left turns at junction '%' from lane '%' and lane '%' (increase junction radius to avoid this).
 Warning: 1361 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
-Warning: 4 total messages of type: Speed of % connection '%' reduced by % due to turning radius of % (length=%, angle=%).
+Warning: 5 total messages of type: Speed of % connection '%' reduced by % due to turning radius of % (length=%, angle=%).
 Warning: Traffic light type 'actuated' cannot be used in mesoscopic simulation. Using 'static' as fallback.
 Warning: Network contains internal links which are ignored. Vehicles will 'jump' across junctions and thus underestimate route lengths and travel times.

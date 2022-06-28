@@ -1,10 +1,13 @@
 The following new files/directories were created:
 <Test Directory>
+----__pycache__
+--------tscdefs.cpython-310.pyc
 ----data
+--------tsc.log
 --------scenario_templates
-------------scripts.pyc
 ------------mitte_net
-----------------__init__.pyc
+----------------__pycache__
+--------------------__init__.cpython-310.pyc
 --------scenario_workdir
 ------------mitte_net
 ----------------Berlin_1223.taz.xml
@@ -33,4 +36,3 @@ The following new files/directories were created:
 ------------------------rectified_twoPersonsOnly.csv
 ------------------------t2s_map_twoPersonsOnly.log
 ------------------------t2s_rectify_twoPersonsOnly.log
-----tscdefs.pyc

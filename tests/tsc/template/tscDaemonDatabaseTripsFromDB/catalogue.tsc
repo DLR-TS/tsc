@@ -1,13 +1,14 @@
 The following new files/directories were created:
 <Test Directory>
 ----__pycache__
---------tscdefs.cpython-36.pyc
+--------tscdefs.cpython-310.pyc
 ----core.db
 ----data
+--------tsc.log
 --------scenario_templates
 ------------mitte_net
 ----------------__pycache__
---------------------__init__.cpython-36.pyc
+--------------------__init__.cpython-310.pyc
 --------scenario_workdir
 ------------VEUII-BASE2010
 ----------------Berlin_1223.taz.xml
