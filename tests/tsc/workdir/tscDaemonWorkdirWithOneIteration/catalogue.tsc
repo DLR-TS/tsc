@@ -4,6 +4,9 @@ The following new files/directories were created:
 --------tscdefs.cpython-310.pyc
 ----data
 --------tsc.log
+--------scenario_templates
+------------__pycache__
+----------------__init__.cpython-310.pyc
 --------scenario_workdir
 ------------mitte_net
 ----------------iteration001

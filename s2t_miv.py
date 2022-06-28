@@ -183,9 +183,10 @@ def _createValueTuple(od, vType, end, real, sumoTime, sumoDist):
 
 
 @benchmark
-def upload_all_pairs(conn, tables, start, end, vType, real_routes, rep_routes, net, taz_list, startIdx=0):
+def upload_all_pairs(conn, tables, start, end, vType, real_routes, rep_routes, net, startIdx=0):
     stats = _parse_vehicle_info_taz(real_routes, start, end, vType)
-    stats.extend(_get_all_pair_stats(rep_routes, net))
+    if rep_routes:
+        stats.extend(_get_all_pair_stats(rep_routes, net))
     stats.sort()
     min_samples = 5
     last = None
@@ -314,7 +315,7 @@ def main():
     if os.path.isfile(options.representatives):
         tables = create_all_pairs(conn, options.simkey, SP.OPTIONAL)
         upload_all_pairs(conn, tables, 0, 86400, "passenger", options.real_trips,
-                         options.representatives, readNet(options.net_file), [])
+                         options.representatives, readNet(options.net_file))
     if conn:
         conn.close()
 

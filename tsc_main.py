@@ -273,46 +273,49 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
             elif vt.vClass not in vtMap:
                 vtMap[vt.vClass] = vt.id
     if options.vtype_matrix:
-        print("found the following vehicle types:", vTypes)
+        print("found the following vehicle types:", list(sorted(vTypes)))
     else:
         print("found the following vehicle classes:", list(vtMap.keys()))
+    rou_file = None  # in case we have no representatives
     for mapType, vType in sorted(vtMap.items()):
         begin_second = 0
         for end_hour in params[SP.od_slices]:
             end_second = end_hour * 3600
             write_status('>>> starting all pairs for %s, slice ending at hour %s' % (
                 mapType, end_hour), sim_key, params, conn)
-            options.tapas_trips = get_trips.tripfile_name("%s_%s%02i" % (
-                get_trips.ALL_PAIRS, mapType, end_hour), target_dir=options.trips_dir)
-            trips_file = None
-            if not os.path.exists(options.tapas_trips) or options.overwrite:
-                trips_file = options.tapas_trips
-            taz_list = get_trips.write_all_pairs(conn, vType, begin_second, options.limit, trips_file, params, options.seed)
-            write_status('>>> starting all pairs t2s using tripfile %s' %
-                         options.tapas_trips, sim_key, params, conn)
+            if params[SP.representatives]:
+                options.tapas_trips = get_trips.tripfile_name("%s_%s%02i" % (
+                    get_trips.ALL_PAIRS, mapType, end_hour), target_dir=options.trips_dir)
+                trips_file = None
+                if not os.path.exists(options.tapas_trips) or options.overwrite:
+                    trips_file = options.tapas_trips
+                get_trips.write_all_pairs(conn, vType, begin_second, options.limit, trips_file, params, options.seed)
+                write_status('>>> starting all pairs t2s using tripfile %s' %
+                            options.tapas_trips, sim_key, params, conn)
+                conn.close()
+                rou_file, _ = t2s.main(options)
+                conn = db_manipulator.get_conn(options, conn)
+                write_status('<<< finished all pairs t2s, routes in %s' % rou_file, sim_key, params, conn)
+                assert os.path.exists(rou_file), "all pairs route file %s could not be found" % rou_file
+            write_status('>>> starting od result database upload', sim_key, params, conn)
+            startIdx = s2t_miv.upload_all_pairs(conn, all_pair_tables, begin_second, end_second, vType,
+                                                final_routes, rou_file, options.net, startIdx)
+            write_status('<<< finished od result database upload', sim_key, params, conn)
+            begin_second = end_second
+    if not modes <= set(CAR_MODES):
+        write_status('>>> starting all pairs for public transport', sim_key, params, conn)
+        if params[SP.representatives]:
+            options.tapas_trips = get_trips.tripfile_name("%s_public" % (get_trips.ALL_PAIRS), target_dir=options.trips_dir)
+            get_trips.write_all_pairs(conn, "public", 31 * 3600, options.limit, options.tapas_trips, params, options.seed, MODE.public)
+            write_status('>>> starting all pairs t2s using tripfile %s' % options.tapas_trips, sim_key, params, conn)
             conn.close()
             rou_file, _ = t2s.main(options)
             conn = db_manipulator.get_conn(options, conn)
             write_status('<<< finished all pairs t2s, routes in %s' % rou_file, sim_key, params, conn)
             assert os.path.exists(rou_file), "all pairs route file %s could not be found" % rou_file
-            write_status('>>> starting od result database upload', sim_key, params, conn)
-            startIdx = s2t_miv.upload_all_pairs(conn, all_pair_tables, begin_second, end_second, vType,
-                                                final_routes, rou_file, options.net, taz_list, startIdx)
-            write_status('<<< finished od result database upload', sim_key, params, conn)
-            begin_second = end_second
-    if not modes <= set(CAR_MODES):
-        write_status('>>> starting all pairs for public transport', sim_key, params, conn)
-        options.tapas_trips = get_trips.tripfile_name("%s_public" % (get_trips.ALL_PAIRS), target_dir=options.trips_dir)
-        taz_list = get_trips.write_all_pairs(conn, "public", 31 * 3600, options.limit, options.tapas_trips, params, options.seed, MODE.public)
-        write_status('>>> starting all pairs t2s using tripfile %s' % options.tapas_trips, sim_key, params, conn)
-        conn.close()
-        rou_file, _ = t2s.main(options)
-        conn = db_manipulator.get_conn(options, conn)
-        write_status('<<< finished all pairs t2s, routes in %s' % rou_file, sim_key, params, conn)
-        assert os.path.exists(rou_file), "all pairs route file %s could not be found" % rou_file
         write_status('>>> starting od result database upload', sim_key, params, conn)
         startIdx = s2t_pt.upload_all_pairs(conn, all_pair_tables, 31 * 3600, 32 * 3600,
-                                           final_routes, rou_file, options.net, taz_list, startIdx)
+                                           final_routes, rou_file, options.net, startIdx)
         write_status('<<< finished od result database upload', sim_key, params, conn)
     write_status('<< finished all pairs calculation', sim_key, params, conn)
 
@@ -446,7 +449,11 @@ def simulation_request(options, request):
             _, _, exists = db_manipulator.check_schema_table(conn, 'temp', '%s_%s' % (params[SP.trip_output], sim_key))
             if not exists or options.overwrite:
                 write_status('>> starting trip result database upload', sim_key, params, conn)
-                s2t_miv.upload_trip_results(conn, sim_key, params, final_routes)
+                try:
+                    s2t_miv.upload_trip_results(conn, sim_key, params, final_routes)
+                except ProgrammingError as message:
+                    conn.rollback()
+                    write_status(message, sim_key, params, conn, constants.MSG_TYPE.error)
                 write_status('<< finished trip result database upload', sim_key, params, conn)
                 print()
             # run all pair calculations
