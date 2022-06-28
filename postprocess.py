@@ -158,6 +158,10 @@ def create_personfile(mapped_trips, input_routes, output_routes):
 
         personfile.write("</routes>\n")
 
+        if persons == 0:
+            print("no persons imported, cancelling post processing")
+            return 0, 0
+
         print('imported %d TAPAS persons' % persons)
         print('imported %d TAPAS trips temporarily stored in %s' %
               (trips, input_routes))

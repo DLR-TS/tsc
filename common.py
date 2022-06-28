@@ -50,12 +50,13 @@ def listdir_skip_hidden(dir_path):
 
 
 def chunked_sequence_generator(sequence, markerfunc, assertUniqe=False):
-    initial_item = next(sequence)
-    chunk = [initial_item]
-    marker = markerfunc(initial_item)
+    chunk = []
+    marker = None
     known_markers = set()
 
     for item in sequence:
+        if marker is None:  # first element
+            marker = markerfunc(item)
         if markerfunc(item) == marker:
             chunk.append(item)
         else:
@@ -64,9 +65,10 @@ def chunked_sequence_generator(sequence, markerfunc, assertUniqe=False):
             chunk = [item]
             marker = markerfunc(item)
             if assertUniqe and marker in known_markers:
-                raise Exception('Marker %s appears twice in in sequence %s (using markerfunc=%s).' % (
+                raise Exception('Marker %s appears twice in sequence %s (using markerfunc=%s).' % (
                     marker, sequence, markerfunc))
-    yield marker, chunk
+    if marker is not None:
+        yield marker, chunk
 
 
 def csv_sequence_generator(csvfile, fields, assertUniqe=False):
