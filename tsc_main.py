@@ -77,6 +77,7 @@ def getOptions(args, argParser):
     argParser.add_argument("--daemon-run-time", type=int, default=-1,
                            help="limit the up time of the daemon in seconds - e.g. for debugging ")
     argParser.add_argument('--iteration', help="iterations of faked simulation requests (ranges and ints are possible)")
+    argParser.add_argument('--log', default="tsc.log", help="name of the overall log file")
     argParser.add_argument("--sim-key", help="sim_key to use when running only a single simulation")
     argParser.add_argument("--sim-param", default="",
                            help="additional parameters for simulation requests (overwrite database values)")
@@ -468,6 +469,10 @@ def main(args):
     # get the options
     argParser = ArgumentParser()
     options = getOptions(args, argParser)
+    if options.log:
+        log = open(options.log, "w")
+        sys.stdout = sumolib.TeeFile(sys.stdout, log)
+        sys.stderr = sumolib.TeeFile(sys.stderr, log)
 
     if options.clean:
         shutil.rmtree(options.workdir_folder, True)
