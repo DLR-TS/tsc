@@ -367,19 +367,39 @@ def map_trips(trip_sequence, vTypes, max_radius):
 
 
 def checkDeviations(tazMap, deviations, xycoord, taz, map_result, uid, log):
-    result = 0
     minDist, minEdge, minInTazEdge, minInTazDist = map_result
     if minEdge is not None and minDist is not None:
         if taz and (taz not in tazMap or minEdge not in tazMap[taz]):
             if minInTazEdge is not None and log is not None:
                 log("Mapping %s to %s (dist: %.2f) which is not in taz %s, best match in taz is %s (dist: %.2f)" % (xycoord, minEdge, minDist, taz, minInTazEdge, minInTazDist))
-            result = 1
+            deviations.noTazEdge += 1
         deviations.add(minDist, "xycoord=%s, edge=%s, uid=%s" % (xycoord, minEdge, uid))
-    return result
+
+
+def writeResults(res, writer, tazMap, deviations, log):
+    rows = 0
+    for row, source, source_map, dest, dest_map in res:
+        uid = (row[TH.person_id], row[TH.household_id])
+        checkDeviations(tazMap, deviations, source, row[TH.taz_id_start], source_map, uid, log)
+        checkDeviations(tazMap, deviations, dest, row[TH.taz_id_end], dest_map, uid, log)
+        rows += 1
+        if row[THX.source_edge] is None:
+            deviations.unmapped += 1
+            if deviations.unmapped < 10:
+                log('Warning: could not find an edge for departure of %s from (%s, %s), depart_minute=%s (skipping trip)' %
+                    (uid, row[TH.source_lat], row[TH.source_long], row[TH.depart_minute]))
+        elif row[THX.dest_edge] is None:
+            deviations.unmapped += 1
+            if deviations.unmapped < 10:
+                log('Warning: could not find an edge for arrival of %s at (%s, %s), depart_minute=%s (skipping trip)' %
+                    (uid, row[TH.dest_lat], row[TH.dest_long], row[TH.depart_minute]))
+        else:
+            writer.writerow(row)
+    return rows
 
 
 @benchmark
-def map_to_edges(options):
+def map_to_edges(options, parallel=False):
     vTypes = {}
     if os.path.exists(options.vtype_file):
         for t in sumolib.output.parse(options.vtype_file, "vType"):
@@ -398,51 +418,43 @@ def map_to_edges(options):
 
     persons = 0
     rows = 0
-    unmapped = 0
-    noTazEdge = 0
     deviations = Statistics("Mapping deviations")
+    deviations.unmapped = 0
+    deviations.noTazEdge = 0
 
     with open(options.mapped_log, 'w') as logfile:
         if os.name == "nt":
             options = copy.copy(options)
             options.net = None
             options.script_module = None
-        pool = multiprocessing.Pool(multiprocessing.cpu_count(), edgemapper.init, (options, tazMap))
-        results = []
+        if parallel:
+            pool = multiprocessing.Pool(multiprocessing.cpu_count(), edgemapper.init, (options, tazMap))
+            results = []
+        else:
+            edgemapper.init(options, tazMap)
         log = get_logger(logfile)
         log('Mapping using %s.' % options.taz_file)
         for _, trip_sequence in csv_sequence_generator(options.rectified, (TH.person_id, TH.household_id)):
             persons += 1
-            results.append(pool.apply_async(map_trips, args=(trip_sequence, vTypes, options.max_radius)))
-        pool.close()
-        pool.join()
-
-        # iterate through results
-        for proc in results:
-            for row, source, source_map, dest, dest_map in proc.get():
-                uid = (row[TH.person_id], row[TH.household_id])
-                noTazEdge += checkDeviations(tazMap, deviations, source, row[TH.taz_id_start], source_map, uid, log)
-                noTazEdge += checkDeviations(tazMap, deviations, dest, row[TH.taz_id_end], dest_map, uid, log)
-                rows += 1
-                if row[THX.source_edge] is None:
-                    unmapped += 1
-                    if unmapped < 10:
-                        log('Warning: could not find an edge for departure of %s from (%s, %s), depart_minute=%s (skipping trip)' %
-                            (uid, row[TH.source_lat], row[TH.source_long], row[TH.depart_minute]))
-                elif row[THX.dest_edge] is None:
-                    unmapped += 1
-                    if unmapped < 10:
-                        log('Warning: could not find an edge for arrival of %s at (%s, %s), depart_minute=%s (skipping trip)' %
-                            (uid, row[TH.dest_lat], row[TH.dest_long], row[TH.depart_minute]))
-                else:
-                    writer.writerow(row)
-
-
-        log('read %d TAPAS trips for %s persons (%s unmappable)' % (rows, persons, unmapped))
-        if rows == unmapped and unmapped > 0:
+            if parallel:
+                results.append(pool.apply_async(map_trips, args=(trip_sequence, vTypes, options.max_radius)))
+                if persons % 1000000 == 0:
+                    for proc in results:
+                        rows += writeResults(proc.get(), writer, tazMap, deviations, log)
+                    results.clear()
+            else:
+                res = map_trips(trip_sequence, vTypes, options.max_radius)
+                rows += writeResults(res, writer, tazMap, deviations, log)
+        if parallel:
+            pool.close()
+            pool.join()
+            for proc in results:
+                rows += writeResults(proc.get(), writer, tazMap, deviations, log)
+        log('read %d TAPAS trips for %s persons (%s unmappable)' % (rows, persons, deviations.unmapped))
+        if rows == deviations.unmapped and deviations.unmapped > 0:
             raise MappingError('No trips left after mapping.')
         log(deviations)  # error when mapping to junction coords
-        log("%s mappings did not find an edge in the correct taz" % noTazEdge)
+        log("%s mappings did not find an edge in the correct taz" % deviations.noTazEdge)
 
 
 ###############################################################################
