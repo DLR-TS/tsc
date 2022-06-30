@@ -234,8 +234,6 @@ def upload_all_pairs(conn, tables, start, end, vType, real_routes, rep_routes, n
 def create_all_pairs(conn, key, params):
     cursor = conn.cursor()
     schema_table, table, exists = db_manipulator.check_schema_table(conn, 'temp', '%s_%s' % (params[SP.od_output], key))
-    if exists:
-        cursor.execute("DROP TABLE " + schema_table)
     createQuery = """
 CREATE TABLE %s
 (
@@ -250,6 +248,7 @@ CREATE TABLE %s
 )
 """
     try:
+        cursor.execute("DROP TABLE IF EXISTS " + schema_table)
         cursor.execute(createQuery % (schema_table, table))
     except Exception:
         conn.rollback()

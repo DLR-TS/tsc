@@ -449,11 +449,7 @@ def simulation_request(options, request):
             _, _, exists = db_manipulator.check_schema_table(conn, 'temp', '%s_%s' % (params[SP.trip_output], sim_key))
             if not exists or options.overwrite:
                 write_status('>> starting trip result database upload', sim_key, params, conn)
-                try:
-                    s2t_miv.upload_trip_results(conn, sim_key, params, final_routes)
-                except ProgrammingError as message:
-                    conn.rollback()
-                    write_status(message, sim_key, params, conn, constants.MSG_TYPE.error)
+                s2t_miv.upload_trip_results(conn, sim_key, params, final_routes)
                 write_status('<< finished trip result database upload', sim_key, params, conn)
                 print()
             # run all pair calculations
