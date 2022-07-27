@@ -167,9 +167,9 @@ def start(options, call, pre_test, par_test, post_test):
         process_db_manipulator = multiprocessing.Process(
             target=run_instructions, args=(options, par_test))
         process_db_manipulator.start()
-    print("starting main")
+    print("starting main", call)
     sys.stdout.flush()
-    subprocess.call(call)
+    subprocess.check_call(call)
     sys.stdout.flush()
     sys.stderr.flush()
     if process_db_manipulator:

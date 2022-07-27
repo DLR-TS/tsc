@@ -1,14 +1,9 @@
 The following new files/directories were created:
 <Test Directory>
 ----__pycache__
---------tscdefs.cpython-310.pyc
-----core.db
+--------tscdefs.cpython-38.pyc
 ----data
 --------tsc.log
---------scenario_templates
-------------mitte_net
-----------------__pycache__
---------------------__init__.cpython-310.pyc
 --------scenario_workdir
 ------------VEUII-BASE2010
 ----------------Berlin_1223.taz.xml
@@ -60,5 +55,9 @@ The following new files/directories were created:
 ------------------------rectified_2015y_05m_29d_09h_01m_11s_943ms.csv
 ------------------------t2s_map_2015y_05m_29d_09h_01m_11s_943ms.log
 ------------------------t2s_rectify_2015y_05m_29d_09h_01m_11s_943ms.log
-----public.db
-----tmp.db
+--------test_templates
+------------__pycache__
+----------------__init__.cpython-38.pyc
+------------mitte_net
+----------------__pycache__
+--------------------__init__.cpython-38.pyc

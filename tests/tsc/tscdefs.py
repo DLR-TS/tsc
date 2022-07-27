@@ -8,8 +8,10 @@ tscRoot = os.environ.get("TSC_HOME", os.path.dirname(os.path.dirname(os.path.dir
 sys.path.append(tscRoot)
 testServer = os.path.join(tscRoot, os.environ.get("TSC_SERVER", "test_server.tsccfg"))
 
-def get_python_tool(rel_path, config=testServer):
+def get_python_tool(rel_path, config=testServer, templates="test_templates"):
     call = [python, os.path.join(tscRoot, rel_path)]
+    if rel_path == "tsc_main.py":
+        call += ["--template-folder", templates]
     if config:
         return call + ['-c', config]
     return call
