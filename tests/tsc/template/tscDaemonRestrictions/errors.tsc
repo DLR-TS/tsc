@@ -3,6 +3,7 @@ Warning: Found sharp turn with radius 6.02 at the end of edge '-122820534#1'.
 Warning: Found angle of 105.60 degrees at edge '-154046793', segment 1.
 Warning: Found sharp turn with radius 6.02 at the start of edge '122820534#0'.
 Warning: Shape for junction '4590472047' has distance 20.23 to its given position.
+Warning: Converting invalid rail_crossing to traffic_light at junction 'cluster_7166645753_7166645757'.
 Warning: Replacing loaded roundabout '153522299#3 28341062 30721656#0 30721656#1 30721656#2 30721656#3 30721656#4 421641064 421641065#0 46140373 46140380 46140384 46140385' with '153522299#3 28341062 30721656#1 30721656#2 30721656#3 30721656#4 421641064 421641065#0 46140373 46140380 46140384 46140385'.
 Warning: Lane '-105352753_0' is not connected from any incoming edge at junction '29039237'.
 Warning: Edge '-28016312#3' is not connected to outgoing edges at junction '30731464'.
