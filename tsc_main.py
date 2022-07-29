@@ -240,7 +240,7 @@ def create_new_iteration_folder(options, iteration, destination_path):
         except ValueError:
             assert iteration == 0, "no earlier iterations present but iteration %s was requested" % iteration
         os.mkdir(iteration_path)
-    elif not options.overwrite:
+    elif options.resume:
         print("Warning! Reusing iteration directory:", iteration_path)
     return iteration_path
 
@@ -257,7 +257,7 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
     options.assignment = "bulk"
     options.trips_dir = os.path.join(options.iteration_dir, 'allpairs')
     options.weights = os.path.join(options.trips_dir, os.path.basename(final_weights))
-    if not os.path.exists(options.weights) or options.overwrite:
+    if not os.path.exists(options.weights) or not options.resume:
         s2t_miv.aggregate_weights(final_weights, params[SP.od_slices], options.weights)
     else:
         print("Reusing aggregated weights:", options.weights)
@@ -287,7 +287,7 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
                 options.tapas_trips = get_trips.tripfile_name("%s_%s%02i" % (
                     get_trips.ALL_PAIRS, mapType, end_hour), target_dir=options.trips_dir)
                 trips_file = None
-                if not os.path.exists(options.tapas_trips) or options.overwrite:
+                if not os.path.exists(options.tapas_trips) or not options.resume:
                     trips_file = options.tapas_trips
                 get_trips.write_all_pairs(conn, vType, begin_second, options.limit, trips_file, params, options.seed)
                 write_status('>>> starting all pairs t2s using tripfile %s' %
@@ -387,7 +387,7 @@ def simulation_request(options, request):
         options.tapas_trips = os.path.join(scenario_basedir, "background_traffic.csv")
         if iteration == 0 and params[SP.add_traffic_table] and conn is not None:
 #            options.modes = ','.join(CAR_MODES)
-            if not os.path.exists(options.tapas_trips) or options.overwrite:
+            if not os.path.exists(options.tapas_trips) or not options.resume:
                 get_trips.write_background_trips(conn, params[SP.add_traffic_table],
                                                  options.limit, options.tapas_trips, params)
             options.location_priority_file = os.path.abspath(os.path.join(scenario_basedir, 'location_priorities.xml'))
@@ -416,7 +416,7 @@ def simulation_request(options, request):
         else:
             assert sim_key is not None, 'no sim_key for db given'
             options.tapas_trips = get_trips.tripfile_name(sim_key, target_dir=options.trips_dir)
-            if not os.path.exists(options.tapas_trips) or options.overwrite:
+            if not os.path.exists(options.tapas_trips) or not options.resume:
                 get_trips.write_trips(conn, sim_key, options.limit, options.tapas_trips, params)
         print()
         write_status('>> starting t2s using tripfile %s' %
@@ -447,7 +447,7 @@ def simulation_request(options, request):
             conn = db_manipulator.get_conn(options, conn)
             # upload trip results to db
             _, _, exists = db_manipulator.check_schema_table(conn, 'temp', '%s_%s' % (params[SP.trip_output], sim_key))
-            if not exists or options.overwrite:
+            if not exists or not options.resume:
                 write_status('>> starting trip result database upload', sim_key, params, conn)
                 s2t_miv.upload_trip_results(conn, sim_key, params, final_routes)
                 write_status('<< finished trip result database upload', sim_key, params, conn)

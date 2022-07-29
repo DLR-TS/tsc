@@ -11,7 +11,7 @@ testServer = os.path.join(tscRoot, os.environ.get("TSC_SERVER", "test_server.tsc
 def get_python_tool(rel_path, config=testServer, templates="test_templates"):
     call = [python, os.path.join(tscRoot, rel_path)]
     if rel_path == "tsc_main.py":
-        call += ["--template-folder", templates, "--overwrite"]
+        call += ["--template-folder", templates]
     if config:
         return call + ['-c', config]
     return call

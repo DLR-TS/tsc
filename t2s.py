@@ -104,8 +104,8 @@ def fillOptions(argParser):
     argParser.add_argument("-m", "--modes", default=','.join(CAR_MODES),
                            help="the traffic modes to retrieve as a list of integers (default: '%(default)s')")
     argParser.add_argument("--subnet-file", help="specifying the subnet to use to rerun a subnet assignment")
-    argParser.add_argument("-O", "--overwrite", action="store_true", default=False,
-                           help="overwrite existing files instead or reusing them")
+    argParser.add_argument("--resume", action="store_true", default=False,
+                           help="reuse existing files instead of overwriting them")
 
 
 def getSumoTripfileName(trips_dir, tapas_trips):
@@ -571,7 +571,7 @@ def main(options):
                           glob.glob(os.path.join(options.iteration_dir, "oneshot", "aggregated*.xml"))[0], options.subnet_file)
         return
 
-    if options.rectify and (options.overwrite or not os.path.isfile(options.rectified)):
+    if options.rectify and (not options.resume or not os.path.isfile(options.rectified)):
         rectify_input(options)
         if options.rectify_only:
             return
@@ -582,7 +582,7 @@ def main(options):
             print("using %s as rectified input" % options.tapas_trips)
             shutil.copyfile(options.tapas_trips, options.rectified)
 
-    if options.domap and (options.overwrite or not os.path.isfile(options.mapped_trips)):
+    if options.domap and (not options.resume or not os.path.isfile(options.mapped_trips)):
         map_to_edges(options)
         if options.map_and_exit:
             return
@@ -598,8 +598,8 @@ def main(options):
     # IV-Routing
     first_depart = uMax
     last_depart = uMin
-    if options.dotripdefs and (options.overwrite or not os.path.isfile(options.trips_for_dua)):
-        if os.path.isfile(options.rectified) and not options.overwrite:
+    if options.dotripdefs and (not options.resume or not os.path.isfile(options.trips_for_dua)):
+        if os.path.isfile(options.rectified) and options.resume:
             print("using previous version of %s" % options.rectified)
         suffix = BACKGROUND_TRAFFIC_SUFFIX if options.iteration_dir is None else "0"
         first_depart, last_depart = create_sumo_tripdefs(options, options.scale, suffix, {})

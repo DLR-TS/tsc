@@ -1,40 +1,39 @@
-function main called at Wed, 30 Mar 2022 12:54:03 +0000
-function rectify_input called at Wed, 30 Mar 2022 12:54:04 +0000
-Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tsc.30Mar125402.1032/tsc/workdir/t2s/complete/data/twoPersonsOnly.csv".
+function main called at Thu, 28 Jul 2022 11:22:47 +0000
+function rectify_input called at Thu, 28 Jul 2022 11:22:48 +0000
+Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul112227.41591/tsc.sqlite3.python3/workdir/t2s/complete/data/twoPersonsOnly.csv".
 0 trips have inconsistent depart times.
-function rectify_input finished after 0.026789 seconds
-function map_to_edges called at Wed, 30 Mar 2022 12:54:04 +0000
-Mapping using /home/behr_mi/.texttest/tmp/tsc.30Mar125402.1032/tsc/workdir/t2s/complete/data/scenario_workdir/mitte_net/districts.taz.xml.
+function rectify_input finished after 0.031078 seconds
+function map_to_edges called at Thu, 28 Jul 2022 11:22:48 +0000
+Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul112227.41591/tsc.sqlite3.python3/workdir/t2s/complete/data/scenario_workdir/mitte_net/districts.taz.xml.
 Mapping (568.7532229983481, 913.0316369170323) to -4588215#5 (dist: 42.56) which is not in taz 110110312, best match in taz is 4597322#0 (dist: 108.25)
 read 4 TAPAS trips for 2 persons (0 unmappable)
 Mapping deviations: count 8, min 9.41 (xycoord=(720.7678498803871, 1303.540090534836), edge=320462164#2, uid=('1000005', '1000001')), max 42.56 (xycoord=(568.7532229983481, 913.0316369170323), edge=-4588215#5, uid=('1000019', '1000003')), mean 28.28, Q1 27.13, median 34.00, Q3 42.56
 5 mappings did not find an edge in the correct taz
-function map_to_edges finished after 0.431492 seconds
-using previous version of /home/behr_mi/.texttest/tmp/tsc.30Mar125402.1032/tsc/workdir/t2s/complete/data/scenario_workdir/mitte_net/iteration000/trips/rectified_twoPersonsOnly.csv
-function create_sumo_tripdefs called at Wed, 30 Mar 2022 12:54:04 +0000
+function map_to_edges finished after 0.267702 seconds
+function create_sumo_tripdefs called at Thu, 28 Jul 2022 11:22:48 +0000
 read trip definitions for 4 vehicles
 created trip definitions for 4 vehicles starting between 135131 and 137351
-function create_sumo_tripdefs finished after 0.000221 seconds
-function run_oneshot called at Wed, 30 Mar 2022 12:54:04 +0000
+function create_sumo_tripdefs finished after 0.000237 seconds
+function run_oneshot called at Thu, 28 Jul 2022 11:22:48 +0000
 Loading configuration ... done.
-Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.30Mar125402.1032/tsc/workdir/t2s/complete/data/scenario_workdir/mitte_net/net.net.xml' ... 
-done (550ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.30Mar125402.1032/tsc/workdir/t2s/complete/data/scenario_workdir/mitte_net/vtypes.xml' ... done (10ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.30Mar125402.1032/tsc/workdir/t2s/complete/data/scenario_workdir/mitte_net/iteration000/oneshot/dump_oneshot_meso.xml' ... done (3ms).
+Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul112227.41591/tsc.sqlite3.python3/workdir/t2s/complete/data/scenario_workdir/mitte_net/net.net.xml' ... 
+done (482ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul112227.41591/tsc.sqlite3.python3/workdir/t2s/complete/data/scenario_workdir/mitte_net/vtypes.xml' ... done (9ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul112227.41591/tsc.sqlite3.python3/workdir/t2s/complete/data/scenario_workdir/mitte_net/iteration000/oneshot/dump_oneshot_meso.xml' ... done (5ms).
 Loading done.
-Simulation version v1_12_0+1644-aaab3831d72 started with time: 135131.00
+Simulation version v1_14_1+0087-34c3c566a7b started with time: 135131.00
 Simulation ended at time: 148151.00
 Reason: The final simulation step has been reached.
 Performance: 
- Duration: 1.22s
- Real time factor: 10672.1
- UPS: 1769.672131
+ Duration: 1.61s
+ Real time factor: 8097.01
+ UPS: 1360.696517
 Vehicles: 
  Inserted: 4
  Running: 0
  Waiting: 0
 
-AStarRouter answered 9 queries and explored 1404.56 edges on average.
-AStarRouter spent 0.01s answering queries (0.78ms on average).
-function run_oneshot finished after 1.934659 seconds
-function main finished after 3.460733 seconds
+AStarRouter answered 9 queries and explored 1411.67 edges on average.
+AStarRouter spent 0.01s answering queries (1.44ms on average).
+function run_oneshot finished after 2.301065 seconds
+function main finished after 3.096376 seconds
