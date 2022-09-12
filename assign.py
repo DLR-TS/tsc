@@ -33,7 +33,6 @@ import duaIterate
 import sumolib
 from sumolib.miscutils import working_dir, benchmark
 import cutRoutes
-import sort_routes
 
 from common import abspath_in_dir
 from constants import TAPAS_EXTRA_TIME
@@ -131,7 +130,7 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
     oneshot_routes = abspath_in_dir(
         oneshot_dir, 'vehroutes_%s.rou.xml' % suffix)
     oneshot_weights = abspath_in_dir(oneshot_dir, 'aggregated_%s.xml' % suffix)
-    if os.path.exists(oneshot_routes) and not options.overwrite:
+    if os.path.exists(oneshot_routes) and options.resume:
         print("Route file", oneshot_routes, "exists! Skipping assignment.")
         return oneshot_routes, oneshot_weights
     aggregation = 1800
@@ -238,7 +237,7 @@ def run_bulk(options, first_depart, last_depart, trip_file, weight_file):
     additional = [options.vtype_file]
     if options.bidi_taz_file:
         additional.append(options.bidi_taz_file)
-    if os.path.exists(route_file) and not options.overwrite:
+    if os.path.exists(route_file) and options.resume:
         print("Route file", route_file, "exists! Skipping computation.")
         return route_file, weight_file
     duarouter_args = [
