@@ -78,9 +78,6 @@
     <delete from="136814979" fromLane="2" to="136814976#0" toLane="2"/>
     <delete from="15242269" fromLane="1" to="-332164875#3" toLane="1"/>
     <delete from="15242269" fromLane="2" to="593851931" toLane="2"/>
-    <delete from="233763052" fromLane="0" to="460608297" toLane="0"/>
-    <delete from="24599308" fromLane="1" to="698801383" toLane="1"/>
-    <delete from="24599308" fromLane="2" to="698801383" toLane="2"/>
     <delete from="25219772#0" fromLane="1" to="4484045" toLane="3"/>
     <delete from="25394870#0" fromLane="3" to="25394871" toLane="1"/>
     <delete from="25394870#0" fromLane="4" to="25394871" toLane="2"/>
@@ -96,8 +93,6 @@
     <delete from="332164875#0" fromLane="1" to="593851931" toLane="1"/>
     <delete from="332573584#0" fromLane="1" to="57387247" toLane="1"/>
     <delete from="37535101#0" fromLane="3" to="4797965#0" toLane="4"/>
-    <delete from="40110825" fromLane="2" to="24599308" toLane="1"/>
-    <delete from="40110825" fromLane="3" to="24599308" toLane="2"/>
     <delete from="43285930" fromLane="0" to="460608297" toLane="1"/>
     <delete from="4446636#6" fromLane="1" to="-332164875#3" toLane="1"/>
     <delete from="4446636#6" fromLane="2" to="593851931" toLane="2"/>
@@ -105,8 +100,6 @@
     <delete from="4446677" fromLane="2" to="25219772#0" toLane="1"/>
     <delete from="4453034#0" fromLane="1" to="4804146#0" toLane="1"/>
     <delete from="4453034#0" fromLane="5" to="33066934#0" toLane="1"/>
-    <delete from="4537041" fromLane="0" to="24599308" toLane="1"/>
-    <delete from="4537041" fromLane="1" to="24599308" toLane="2"/>
     <delete from="57387200#0" fromLane="2" to="57387247" toLane="3"/>
     <delete from="57387200#0" fromLane="3" to="57387247" toLane="4"/>
     <delete from="57387200#0" fromLane="4" to="57387247" toLane="5"/>
@@ -165,14 +158,10 @@
     <connection from="37535101#0" fromLane="2" to="4797965#0" toLane="4" />
     <connection from="37535101#0" fromLane="3" to="57387201#0" toLane="1" />
     <connection from="37535101#0" fromLane="3" to="57387201#0" toLane="2" />
-    <connection from="40110825" fromLane="2" to="24599308" toLane="0" />
-    <connection from="40110825" fromLane="3" to="24599308" toLane="1" />
     <connection from="442725348#3" fromLane="2" to="4484043" toLane="2" />
     <connection from="4446636#6" fromLane="2" to="593851931" toLane="3" />
     <connection from="4446677" fromLane="2" to="25219772#0" toLane="2" />
     <connection from="4453034#0" fromLane="5" to="33066934#0" toLane="4" />
-    <connection from="4537041" fromLane="0" to="24599308" toLane="2" />
-    <connection from="4537041" fromLane="1" to="24599308" toLane="3" />
     <connection from="454730429" fromLane="0" to="43285930" toLane="0" />
     <connection from="460608297" fromLane="0" to="4764111" toLane="0" />
     <connection from="460608297" fromLane="1" to="4764111" toLane="1" />
