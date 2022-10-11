@@ -11,7 +11,7 @@
     <node id="26662466" tl="26662466" type="traffic_light"/>
     <node id="26785751" tl="26785751" type="traffic_light"/>
     <node id="cluster_26759725_3051210670_34780709" tl="cluster_26759725_3051210670_34780709" type="traffic_light"/>
-    <node id="cluster_26759727_26759728_26759729_26759730_6603475852_6603475853" tl="cluster_26759727_26759728_26759729_26759730_6603475852_6603475853" type="traffic_light"/>
+    <node id="cluster_26759727_26759728_26759729_26759730_#2more" tl="cluster_26759727_26759728_26759729_26759730_#2more" type="traffic_light"/>
     <node id="cluster_4403887066_4403887080_4403887081" tl="cluster_4403887066_4403887080_4403887081" type="traffic_light"/>
 
     <!-- Changed Elements -->
