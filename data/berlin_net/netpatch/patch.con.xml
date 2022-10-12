@@ -138,7 +138,6 @@
     <connection from="-729371699#2" fromLane="2" to="-4446677" toLane="2" />
     <connection from="136814979" fromLane="1" to="136814976#0" toLane="2" />
     <connection from="15242269" fromLane="2" to="593851931" toLane="3" />
-    <connection from="233763052" fromLane="0" to="460608297" toLane="1" />
     <connection from="24599308" fromLane="1" to="698801383" toLane="0" keepClear="0"/>
     <connection from="24599308" fromLane="2" to="698801383" toLane="1" keepClear="0"/>
     <connection from="24599308" fromLane="3" to="698801383" toLane="2" keepClear="0"/>

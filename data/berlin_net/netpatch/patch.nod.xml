@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- manual modifications for Spandau by Stefanie Schoene 2021-05-19 -->
 <nodes version="1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/nodes_file.xsd">
-    <!-- Deleted Elements -->
-    <delete id="6561995746"/>
     <!-- Created Elements -->
     <node id="gneJ2" type="priority" x="45716.02" y="44538.66"/>
     <!-- Changed Elements -->
