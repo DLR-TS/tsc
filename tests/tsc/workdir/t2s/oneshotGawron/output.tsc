@@ -1,82 +1,82 @@
-function main called at Thu, 28 Jul 2022 11:22:51 +0000
-function rectify_input called at Thu, 28 Jul 2022 11:22:51 +0000
-Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul112227.41591/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/twoPersonsOnly.csv".
+function main called at Fri, 14 Oct 2022 15:19:05 +0000
+function rectify_input called at Fri, 14 Oct 2022 15:19:06 +0000
+Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/twoPersonsOnly.csv".
 0 trips have inconsistent depart times.
-function rectify_input finished after 0.036748 seconds
-function map_to_edges called at Thu, 28 Jul 2022 11:22:51 +0000
-Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul112227.41591/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/districts.taz.xml.
+function rectify_input finished after 0.068842 seconds
+function map_to_edges called at Fri, 14 Oct 2022 15:19:06 +0000
+Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/districts.taz.xml.
 Mapping (568.7532229983481, 913.0316369170323) to -4588215#5 (dist: 42.56) which is not in taz 110110312, best match in taz is 4597322#0 (dist: 108.25)
 read 4 TAPAS trips for 2 persons (0 unmappable)
 Mapping deviations: count 8, min 9.41 (xycoord=(720.7678498803871, 1303.540090534836), edge=320462164#2, uid=('1000005', '1000001')), max 42.56 (xycoord=(568.7532229983481, 913.0316369170323), edge=-4588215#5, uid=('1000019', '1000003')), mean 28.28, Q1 27.13, median 34.00, Q3 42.56
 5 mappings did not find an edge in the correct taz
-function map_to_edges finished after 0.341363 seconds
-function create_sumo_tripdefs called at Thu, 28 Jul 2022 11:22:52 +0000
+function map_to_edges finished after 0.760038 seconds
+function create_sumo_tripdefs called at Fri, 14 Oct 2022 15:19:07 +0000
 read trip definitions for 4 vehicles
 created trip definitions for 4 vehicles starting between 135131 and 137351
-function create_sumo_tripdefs finished after 0.000301 seconds
-function run_oneshot called at Thu, 28 Jul 2022 11:22:52 +0000
+function create_sumo_tripdefs finished after 0.000286 seconds
+function run_oneshot called at Fri, 14 Oct 2022 15:19:07 +0000
 Loading configuration ... done.
-Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul112227.41591/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/net.net.xml' ... 
-done (581ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul112227.41591/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/vtypes.xml' ... done (9ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul112227.41591/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/iteration000/oneshot/dump_oneshot_meso.xml' ... done (5ms).
+Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/net.net.xml' ... 
+done (1574ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/vtypes.xml' ... done (17ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/iteration000/oneshot/dump_oneshot_meso.xml' ... done (14ms).
 Loading done.
-Simulation version v1_14_1+0087-34c3c566a7b started with time: 135131.00
+Simulation version v1_14_1+1757-dea40b50d78 started with time: 135131.00.
 Simulation ended at time: 148151.00
 Reason: The final simulation step has been reached.
 Performance: 
- Duration: 1.62s
- Real time factor: 8042
- UPS: 1351.451513
+ Duration: 5.94s
+ Real time factor: 2191.18
+ UPS: 368.226186
 Vehicles: 
  Inserted: 4
  Running: 0
  Waiting: 0
 
 AStarRouter answered 9 queries and explored 1411.67 edges on average.
-AStarRouter spent 0.01s answering queries (1.56ms on average).
-function run_oneshot finished after 2.418967 seconds
-function run_duaiterate called at Thu, 28 Jul 2022 11:22:54 +0000
+AStarRouter spent 0.03s answering queries (2.89ms on average).
+function run_oneshot finished after 8.119130 seconds
+function run_duaiterate called at Fri, 14 Oct 2022 15:19:15 +0000
 Written configuration to '000/iteration_000_vehroutes_oneshot_meso.duarcfg'
 > Executing step 0
->> Running router on /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul112227.41591/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/iteration000/oneshot/vehroutes_oneshot_meso.rou.xml
->>> Begin time: 2022-07-28 11:22:55.541755
->>> End time: 2022-07-28 11:22:56.442838
->>> Duration: 0:00:00.901083
+>> Running router on /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/iteration000/oneshot/vehroutes_oneshot_meso.rou.xml
+>>> Begin time: 2022-10-14 15:19:17.544473
+>>> End time: 2022-10-14 15:19:18.945540
+>>> Duration: 0:00:01.401067
 <<
 >> Running simulation
->>> Begin time: 2022-07-28 11:22:56.442876
->>> End time: 2022-07-28 11:22:57.287419
->>> Duration: 0:00:00.844543
+>>> Begin time: 2022-10-14 15:19:18.945593
+>>> End time: 2022-10-14 15:19:21.078499
+>>> Duration: 0:00:02.132906
 <<
 >> Smoothing edge weights
 >>> Updated 103 edges
 >>> Decayed 0 unseen edges
 >>> Error avg:0 mean:0
 >>> Absolute Error avg:0 mean:0
-< Step 0 ended (duration: 0:00:01.747290)
+< Step 0 ended (duration: 0:00:03.535988)
 ------------------
 
 Written configuration to '001/iteration_001_vehroutes_oneshot_meso_000.duarcfg'
 > Executing step 1
 >> Running router on 000/vehroutes_oneshot_meso_000.rou.alt.xml
->>> Begin time: 2022-07-28 11:22:57.292962
->>> End time: 2022-07-28 11:22:58.372744
->>> Duration: 0:00:01.079782
+>>> Begin time: 2022-10-14 15:19:21.091744
+>>> End time: 2022-10-14 15:19:24.149665
+>>> Duration: 0:00:03.057921
 <<
 >> Running simulation
->>> Begin time: 2022-07-28 11:22:58.372791
->>> End time: 2022-07-28 11:22:59.258121
->>> Duration: 0:00:00.885330
+>>> Begin time: 2022-10-14 15:19:24.149717
+>>> End time: 2022-10-14 15:19:25.999130
+>>> Duration: 0:00:01.849413
 <<
 >> Smoothing edge weights
 >>> Updated 103 edges
 >>> Decayed 0 unseen edges
 >>> Error avg:0 mean:0
 >>> Absolute Error avg:0 mean:0
-< Step 1 ended (duration: 0:00:01.966842)
+< Step 1 ended (duration: 0:00:04.909371)
 ------------------
 
-dua-iterate ended (duration: 0:00:04.461947)
-function run_duaiterate finished after 4.543835 seconds
-function main finished after 7.896441 seconds
+dua-iterate ended (duration: 0:00:09.940260)
+function run_duaiterate finished after 10.124969 seconds
+function main finished after 20.486621 seconds

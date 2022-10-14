@@ -1,57 +1,57 @@
 running pre test instructions
-parsing /home/behr_mi/tsc/test_server.tsccfg
-starting main ['python', '/home/behr_mi/tsc/tsc_main.py', '--template-folder', 'test_templates', '--overwrite', '-c', '/home/behr_mi/tsc/test_server.tsccfg', '--fake-tripfile', 'empty.csv', '-l', '2', '--limit', '50000', '--sim-param', 'SUMO_TEMPLATE_FOLDER:mitte_net,SUMO_DESTINATION_FOLDER:mitte_net,DB_TABLE_ADDITIONAL_TRAFFIC:']
+parsing /home/behr_mi/tsc/sqlite3.tsccfg
+starting main ['python3', '/home/behr_mi/tsc/tsc_main.py', '--template-folder', 'test_templates', '-c', '/home/behr_mi/tsc/sqlite3.tsccfg', '--fake-tripfile', 'empty.csv', '-l', '2', '--limit', '50000', '--sim-param', 'SUMO_TEMPLATE_FOLDER:mitte_net,SUMO_DESTINATION_FOLDER:mitte_net,DB_TABLE_ADDITIONAL_TRAFFIC:']
 db_status_started: berlin_2010 0 > Begin
 [('DB_CAR_FLEET_KEY', 'MID2008_Y2010_BERLIN'), ('DB_HH_SAMPLE_SIZE', '1.0'), ('DB_TABLE_ADDITIONAL_TRAFFIC', ''), ('DB_TABLE_CARS', 'berlin_cars'), ('DB_TABLE_REPRESENTATIVES', 'berlin_location_representatives'), ('DB_TABLE_SUMO_OD_ENTRY', 'sumo_od_entry'), ('DB_TABLE_SUMO_OD_OUTPUT', 'sumo_od'), ('DB_TABLE_SUMO_STATUS', 'global_sumo_status'), ('DB_TABLE_SUMO_TRIP_OUTPUT', 'sumo_trip'), ('DB_TABLE_TAZ', 'berlin_taz'), ('DB_TABLE_TRIPS', 'berlin_trips'), ('DELETE_INTERMEDIATE_RESULTS', 'false'), ('DELETE_TEMP', 'false'), ('ITERATION', '0'), ('MAX_SUMO_ITERATION', '1'), ('SHARING_FLEET_SIZE', '100'), ('SHARING_VEHICLE_CAPACITY', '5'), ('SLICE', [24]), ('SUMO_DESTINATION_FOLDER', 'mitte_net'), ('SUMO_MODES', '2;4'), ('SUMO_NET_PARAMETER', '{}'), ('SUMO_TEMPLATE_FOLDER', 'mitte_net'), ('SUMO_TRIP_FILTER', '')]
 creating scenario berlin_2010 from scratch in scenario_workdir/mitte_net 
 db_status_message: berlin_2010 0 >> iteration dir: scenario_workdir/mitte_net/iteration000 
 
 db_status_message: berlin_2010 0 >> starting t2s using tripfile empty.csv
-function main called at Wed, 27 Jul 2022 15:57:27 +0000
-function rectify_input called at Wed, 27 Jul 2022 15:57:27 +0000
-Read 0 persons with a total of 0 trips from input file "/home/behr_mi/.texttest/tmp/tsc.1_from_27Jul154322.2205364/tsc/template/tscDaemonEmptyTripsFile/data/empty.csv".
+function main called at Fri, 14 Oct 2022 15:18:25 +0000
+function rectify_input called at Fri, 14 Oct 2022 15:18:26 +0000
+Read 0 persons with a total of 0 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyTripsFile/data/empty.csv".
 0 trips have inconsistent depart times.
-function rectify_input finished after 0.003721 seconds
-function map_to_edges called at Wed, 27 Jul 2022 15:57:27 +0000
-Mapping using /home/behr_mi/.texttest/tmp/tsc.1_from_27Jul154322.2205364/tsc/template/tscDaemonEmptyTripsFile/data/scenario_workdir/mitte_net/districts.taz.xml.
+function rectify_input finished after 0.016608 seconds
+function map_to_edges called at Fri, 14 Oct 2022 15:18:26 +0000
+Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyTripsFile/data/scenario_workdir/mitte_net/districts.taz.xml.
 read 0 TAPAS trips for 0 persons (0 unmappable)
 Mapping deviations: no values
 0 mappings did not find an edge in the correct taz
-function map_to_edges finished after 0.005904 seconds
-function create_sumo_tripdefs called at Wed, 27 Jul 2022 15:57:27 +0000
+function map_to_edges finished after 0.021199 seconds
+function create_sumo_tripdefs called at Fri, 14 Oct 2022 15:18:26 +0000
 read trip definitions for 0 vehicles
 created trip definitions for 0 vehicles starting between 0 and 0
-function create_sumo_tripdefs finished after 0.002393 seconds
-function run_oneshot called at Wed, 27 Jul 2022 15:57:27 +0000
+function create_sumo_tripdefs finished after 0.016374 seconds
+function run_oneshot called at Fri, 14 Oct 2022 15:18:27 +0000
 Loading configuration ... done.
-Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.1_from_27Jul154322.2205364/tsc/template/tscDaemonEmptyTripsFile/data/scenario_workdir/mitte_net/net.net.xml' ... 
-done (410ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.1_from_27Jul154322.2205364/tsc/template/tscDaemonEmptyTripsFile/data/scenario_workdir/mitte_net/vtypes.xml' ... done (7ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.1_from_27Jul154322.2205364/tsc/template/tscDaemonEmptyTripsFile/data/scenario_workdir/mitte_net/iteration000/oneshot/dump_oneshot_meso.xml' ... done (3ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.1_from_27Jul154322.2205364/tsc/template/tscDaemonEmptyTripsFile/data/scenario_workdir/mitte_net/bidi.taz.xml' ... done (145ms).
+Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyTripsFile/data/scenario_workdir/mitte_net/net.net.xml' ... 
+done (1487ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyTripsFile/data/scenario_workdir/mitte_net/vtypes.xml' ... done (27ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyTripsFile/data/scenario_workdir/mitte_net/iteration000/oneshot/dump_oneshot_meso.xml' ... done (5ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyTripsFile/data/scenario_workdir/mitte_net/bidi.taz.xml' ... done (576ms).
 Loading done.
-Simulation version v1_14_1+0044-65b8203321f started with time: 0.00
+Simulation version v1_14_1+1679-3ce128f43ea started with time: 0.00.
 Simulation ended at time: 10800.00
 Reason: The final simulation step has been reached.
 Performance: 
- Duration: 0.40s
- Real time factor: 26865.7
+ Duration: 1.66s
+ Real time factor: 6521.74
  UPS: 0.000000
 Vehicles: 
  Inserted: 0
  Running: 0
  Waiting: 0
 
-function run_oneshot finished after 0.968591 seconds
-function main finished after 1.487975 seconds
-db_status_message: berlin_2010 0 << finished t2s, routes in /home/behr_mi/.texttest/tmp/tsc.1_from_27Jul154322.2205364/tsc/template/tscDaemonEmptyTripsFile/data/scenario_workdir/mitte_net/iteration000/oneshot/vehroutes_oneshot_meso.rou.xml
+function run_oneshot finished after 3.870521 seconds
+function main finished after 5.490553 seconds
+db_status_message: berlin_2010 0 << finished t2s, routes in /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyTripsFile/data/scenario_workdir/mitte_net/iteration000/oneshot/vehroutes_oneshot_meso.rou.xml
 
 db_status_message: berlin_2010 0 >> starting postprocessing
-function post called at Wed, 27 Jul 2022 15:57:28 +0000
-function create_personfile called at Wed, 27 Jul 2022 15:57:28 +0000
-parsed 0 routes from /home/behr_mi/.texttest/tmp/tsc.1_from_27Jul154322.2205364/tsc/template/tscDaemonEmptyTripsFile/data/scenario_workdir/mitte_net/iteration000/oneshot/vehroutes_oneshot_meso.rou.xml
+function post called at Fri, 14 Oct 2022 15:18:30 +0000
+function create_personfile called at Fri, 14 Oct 2022 15:18:31 +0000
+parsed 0 routes from /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyTripsFile/data/scenario_workdir/mitte_net/iteration000/oneshot/vehroutes_oneshot_meso.rou.xml
 no persons imported, cancelling post processing
-function create_personfile finished after 0.002899 seconds
+function create_personfile finished after 0.012378 seconds
 Warning! Unknown size class 0
 Warning! Unknown fuel type 2
 Warning! Unknown fuel type 2
@@ -79,22 +79,22 @@ Warning! Unknown size class 99
 Warning! Unknown size class 99
 Warning! Unknown size class 99
 Warning! Unknown size class 99
-function post finished after 2.030152 seconds
+function post finished after 2.900073 seconds
 db_status_message: berlin_2010 0 << finished postprocessing
 
 db_status_message: berlin_2010 0 >> starting trip result database upload
-function upload_trip_results called at Wed, 27 Jul 2022 15:57:30 +0000
-function _parse_vehicle_info called at Wed, 27 Jul 2022 15:57:30 +0000
+function upload_trip_results called at Fri, 14 Oct 2022 15:18:33 +0000
+function _parse_vehicle_info called at Fri, 14 Oct 2022 15:18:33 +0000
 Parsed results for 0 vehicles and persons
 SUMO durations: no values
 SUMO distances: no values
-function _parse_vehicle_info finished after 0.003040 seconds
-function upload_trip_results finished after 0.012998 seconds
+function _parse_vehicle_info finished after 0.008875 seconds
+function upload_trip_results finished after 0.036026 seconds
 db_status_message: berlin_2010 0 << finished trip result database upload
 
 db_status_message: berlin_2010 0 >> starting all pairs calculation
-function aggregate_weights called at Wed, 27 Jul 2022 15:57:30 +0000
-function aggregate_weights finished after 0.003513 seconds
+function aggregate_weights called at Fri, 14 Oct 2022 15:18:34 +0000
+function aggregate_weights finished after 0.003970 seconds
 found the following vehicle classes: []
 db_status_message: berlin_2010 0 << finished all pairs calculation
 db_status_finished: berlin_2010 0 < End

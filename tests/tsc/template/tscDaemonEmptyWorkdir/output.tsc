@@ -5,47 +5,47 @@ creating scenario berlin_2010 from scratch in scenario_workdir/mitte_net
 db_status_message: berlin_2010 0 >> iteration dir: scenario_workdir/mitte_net/iteration000 
 
 db_status_message: berlin_2010 0 >> starting t2s using tripfile twoPersonsOnly.csv
-function main called at Thu, 28 Jul 2022 11:11:53 +0000
-function rectify_input called at Thu, 28 Jul 2022 11:11:53 +0000
-Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/twoPersonsOnly.csv".
+function main called at Fri, 14 Oct 2022 15:18:08 +0000
+function rectify_input called at Fri, 14 Oct 2022 15:18:09 +0000
+Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/twoPersonsOnly.csv".
 0 trips have inconsistent depart times.
-function rectify_input finished after 0.030715 seconds
-function map_to_edges called at Thu, 28 Jul 2022 11:11:53 +0000
-Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/districts.taz.xml.
+function rectify_input finished after 0.239944 seconds
+function map_to_edges called at Fri, 14 Oct 2022 15:18:10 +0000
+Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/districts.taz.xml.
 Mapping (568.7532229983481, 913.0316369170323) to -4588215#5 (dist: 42.56) which is not in taz 110110312, best match in taz is 4597322#0 (dist: 108.25)
 read 4 TAPAS trips for 2 persons (0 unmappable)
 Mapping deviations: count 8, min 9.41 (xycoord=(720.7678498803871, 1303.540090534836), edge=320462164#2, uid=('1000005', '1000001')), max 42.56 (xycoord=(568.7532229983481, 913.0316369170323), edge=-4588215#5, uid=('1000019', '1000003')), mean 28.28, Q1 27.13, median 34.00, Q3 42.56
 5 mappings did not find an edge in the correct taz
-function map_to_edges finished after 0.191836 seconds
-function create_sumo_tripdefs called at Thu, 28 Jul 2022 11:11:53 +0000
+function map_to_edges finished after 0.631361 seconds
+function create_sumo_tripdefs called at Fri, 14 Oct 2022 15:18:10 +0000
 read trip definitions for 4 vehicles
 created trip definitions for 4 vehicles starting between 135131 and 137351
-function create_sumo_tripdefs finished after 0.003155 seconds
-function run_oneshot called at Thu, 28 Jul 2022 11:11:53 +0000
+function create_sumo_tripdefs finished after 0.009026 seconds
+function run_oneshot called at Fri, 14 Oct 2022 15:18:10 +0000
 Loading configuration ... done.
-Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/net.net.xml' ... 
-done (359ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/vtypes.xml' ... done (6ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/iteration000/oneshot/dump_oneshot_meso.xml' ... done (4ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/bidi.taz.xml' ... done (131ms).
+Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/net.net.xml' ... 
+done (1000ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/vtypes.xml' ... done (20ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/iteration000/oneshot/dump_oneshot_meso.xml' ... done (6ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/bidi.taz.xml' ... done (376ms).
 Loading done.
-Simulation version v1_14_1+0087-34c3c566a7b started with time: 135131.00
+Simulation version v1_14_1+1679-3ce128f43ea started with time: 135131.00.
 Simulation ended at time: 148151.00
 Reason: The final simulation step has been reached.
 Performance: 
- Duration: 1.03s
- Real time factor: 12640.8
- UPS: 1677.669903
+ Duration: 4.15s
+ Real time factor: 3134.33
+ UPS: 415.984593
 Vehicles: 
  Inserted: 4
  Running: 0
  Waiting: 0
 
 AStarRouter answered 8 queries and explored 2924.50 edges on average.
-AStarRouter spent 0.02s answering queries (2.50ms on average).
-function run_oneshot finished after 1.583426 seconds
-function main finished after 2.408023 seconds
-db_status_message: berlin_2010 0 << finished t2s, routes in /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/iteration000/oneshot/vehroutes_oneshot_meso.rou.xml
+AStarRouter spent 0.05s answering queries (6.00ms on average).
+function run_oneshot finished after 5.622449 seconds
+function main finished after 8.019416 seconds
+db_status_message: berlin_2010 0 << finished t2s, routes in /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/iteration000/oneshot/vehroutes_oneshot_meso.rou.xml
 db_status_finished: berlin_2010 0 < End
 Warning! No database connection given, operating on files only.
 db_status_started: berlin_2010 1 > Begin
@@ -53,47 +53,47 @@ db_status_started: berlin_2010 1 > Begin
 db_status_message: berlin_2010 1 >> iteration dir: scenario_workdir/mitte_net/iteration001 
 
 db_status_message: berlin_2010 1 >> starting t2s using tripfile twoPersonsOnly.csv
-function main called at Thu, 28 Jul 2022 11:11:55 +0000
-function rectify_input called at Thu, 28 Jul 2022 11:11:56 +0000
-Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/twoPersonsOnly.csv".
+function main called at Fri, 14 Oct 2022 15:18:16 +0000
+function rectify_input called at Fri, 14 Oct 2022 15:18:17 +0000
+Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/twoPersonsOnly.csv".
 0 trips have inconsistent depart times.
-function rectify_input finished after 0.035455 seconds
-function map_to_edges called at Thu, 28 Jul 2022 11:11:56 +0000
-Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/districts.taz.xml.
+function rectify_input finished after 0.066419 seconds
+function map_to_edges called at Fri, 14 Oct 2022 15:18:17 +0000
+Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/districts.taz.xml.
 Mapping (568.7532229983481, 913.0316369170323) to -4588215#5 (dist: 42.56) which is not in taz 110110312, best match in taz is 4597322#0 (dist: 108.25)
 read 4 TAPAS trips for 2 persons (0 unmappable)
 Mapping deviations: count 8, min 9.41 (xycoord=(720.7678498803871, 1303.540090534836), edge=320462164#2, uid=('1000005', '1000001')), max 42.56 (xycoord=(568.7532229983481, 913.0316369170323), edge=-4588215#5, uid=('1000019', '1000003')), mean 28.28, Q1 27.13, median 34.00, Q3 42.56
 5 mappings did not find an edge in the correct taz
-function map_to_edges finished after 0.285193 seconds
-function create_sumo_tripdefs called at Thu, 28 Jul 2022 11:11:56 +0000
+function map_to_edges finished after 0.496706 seconds
+function create_sumo_tripdefs called at Fri, 14 Oct 2022 15:18:17 +0000
 read trip definitions for 4 vehicles
 created trip definitions for 4 vehicles starting between 135131 and 137351
-function create_sumo_tripdefs finished after 0.003665 seconds
-function run_oneshot called at Thu, 28 Jul 2022 11:11:56 +0000
+function create_sumo_tripdefs finished after 0.014144 seconds
+function run_oneshot called at Fri, 14 Oct 2022 15:18:18 +0000
 Loading configuration ... done.
-Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/net.net.xml' ... 
-done (561ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/vtypes.xml' ... done (9ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/iteration001/oneshot/dump_oneshot_meso.xml' ... done (5ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/bidi.taz.xml' ... done (195ms).
+Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/net.net.xml' ... 
+done (978ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/vtypes.xml' ... done (18ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/iteration001/oneshot/dump_oneshot_meso.xml' ... done (5ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/bidi.taz.xml' ... done (402ms).
 Loading done.
-Simulation version v1_14_1+0087-34c3c566a7b started with time: 135131.00
+Simulation version v1_14_1+1679-3ce128f43ea started with time: 135131.00.
 Simulation ended at time: 148151.00
 Reason: The final simulation step has been reached.
 Performance: 
- Duration: 1.87s
- Real time factor: 6955.13
- UPS: 923.076923
+ Duration: 6.50s
+ Real time factor: 2004
+ UPS: 265.968909
 Vehicles: 
  Inserted: 4
  Running: 0
  Waiting: 0
 
 AStarRouter answered 8 queries and explored 2924.50 edges on average.
-AStarRouter spent 0.03s answering queries (3.88ms on average).
-function run_oneshot finished after 2.643902 seconds
-function main finished after 3.604752 seconds
-db_status_message: berlin_2010 1 << finished t2s, routes in /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/iteration001/oneshot/vehroutes_oneshot_meso.rou.xml
+AStarRouter spent 0.05s answering queries (6.25ms on average).
+function run_oneshot finished after 8.062904 seconds
+function main finished after 9.547946 seconds
+db_status_message: berlin_2010 1 << finished t2s, routes in /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/iteration001/oneshot/vehroutes_oneshot_meso.rou.xml
 db_status_finished: berlin_2010 1 < End
 Warning! No database connection given, operating on files only.
 db_status_started: berlin_2010 2 > Begin
@@ -101,57 +101,57 @@ db_status_started: berlin_2010 2 > Begin
 db_status_message: berlin_2010 2 >> iteration dir: scenario_workdir/mitte_net/iteration002 
 
 db_status_message: berlin_2010 2 >> starting t2s using tripfile twoPersonsOnly.csv
-function main called at Thu, 28 Jul 2022 11:11:59 +0000
-function rectify_input called at Thu, 28 Jul 2022 11:11:59 +0000
-Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/twoPersonsOnly.csv".
+function main called at Fri, 14 Oct 2022 15:18:26 +0000
+function rectify_input called at Fri, 14 Oct 2022 15:18:27 +0000
+Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/twoPersonsOnly.csv".
 0 trips have inconsistent depart times.
-function rectify_input finished after 0.026906 seconds
-function map_to_edges called at Thu, 28 Jul 2022 11:11:59 +0000
-Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/districts.taz.xml.
+function rectify_input finished after 0.071842 seconds
+function map_to_edges called at Fri, 14 Oct 2022 15:18:27 +0000
+Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/districts.taz.xml.
 Mapping (568.7532229983481, 913.0316369170323) to -4588215#5 (dist: 42.56) which is not in taz 110110312, best match in taz is 4597322#0 (dist: 108.25)
 read 4 TAPAS trips for 2 persons (0 unmappable)
 Mapping deviations: count 8, min 9.41 (xycoord=(720.7678498803871, 1303.540090534836), edge=320462164#2, uid=('1000005', '1000001')), max 42.56 (xycoord=(568.7532229983481, 913.0316369170323), edge=-4588215#5, uid=('1000019', '1000003')), mean 28.28, Q1 27.13, median 34.00, Q3 42.56
 5 mappings did not find an edge in the correct taz
-function map_to_edges finished after 0.311823 seconds
-function create_sumo_tripdefs called at Thu, 28 Jul 2022 11:11:59 +0000
+function map_to_edges finished after 0.686983 seconds
+function create_sumo_tripdefs called at Fri, 14 Oct 2022 15:18:28 +0000
 read trip definitions for 4 vehicles
 created trip definitions for 4 vehicles starting between 135131 and 137351
-function create_sumo_tripdefs finished after 0.003691 seconds
-function run_oneshot called at Thu, 28 Jul 2022 11:11:59 +0000
+function create_sumo_tripdefs finished after 0.003163 seconds
+function run_oneshot called at Fri, 14 Oct 2022 15:18:28 +0000
 Loading configuration ... done.
-Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/net.net.xml' ... 
-done (448ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/vtypes.xml' ... done (7ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/iteration002/oneshot/dump_oneshot_meso.xml' ... done (4ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/bidi.taz.xml' ... done (155ms).
+Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/net.net.xml' ... 
+done (1390ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/vtypes.xml' ... done (27ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/iteration002/oneshot/dump_oneshot_meso.xml' ... done (26ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/bidi.taz.xml' ... done (563ms).
 Loading done.
-Simulation version v1_14_1+0087-34c3c566a7b started with time: 135131.00
+Simulation version v1_14_1+1679-3ce128f43ea started with time: 135131.00.
 Simulation ended at time: 148151.00
 Reason: The final simulation step has been reached.
 Performance: 
- Duration: 1.11s
- Real time factor: 11687.6
- UPS: 1551.166966
+ Duration: 7.46s
+ Real time factor: 1744.37
+ UPS: 231.511254
 Vehicles: 
  Inserted: 4
  Running: 0
  Waiting: 0
 
 AStarRouter answered 8 queries and explored 2924.50 edges on average.
-AStarRouter spent 0.02s answering queries (2.50ms on average).
-function run_oneshot finished after 1.752187 seconds
-function main finished after 2.614766 seconds
-db_status_message: berlin_2010 2 << finished t2s, routes in /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/iteration002/oneshot/vehroutes_oneshot_meso.rou.xml
+AStarRouter spent 0.05s answering queries (5.88ms on average).
+function run_oneshot finished after 9.568067 seconds
+function main finished after 11.784757 seconds
+db_status_message: berlin_2010 2 << finished t2s, routes in /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/iteration002/oneshot/vehroutes_oneshot_meso.rou.xml
 
 db_status_message: berlin_2010 2 >> starting postprocessing
-function post called at Thu, 28 Jul 2022 11:12:01 +0000
-function create_personfile called at Thu, 28 Jul 2022 11:12:01 +0000
-parsed 4 routes from /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/iteration002/oneshot/vehroutes_oneshot_meso.rou.xml
+function post called at Fri, 14 Oct 2022 15:18:37 +0000
+function create_personfile called at Fri, 14 Oct 2022 15:18:37 +0000
+parsed 4 routes from /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/iteration002/oneshot/vehroutes_oneshot_meso.rou.xml
 imported 2 TAPAS persons
-imported 4 TAPAS trips temporarily stored in /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.28Jul111152.39571/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/iteration002/oneshot/vehroutes_oneshot_meso.rou.xml
+imported 4 TAPAS trips temporarily stored in /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.14Oct151806.25438/tsc.sqlite3.python3/template/tscDaemonEmptyWorkdir/data/scenario_workdir/mitte_net/iteration002/oneshot/vehroutes_oneshot_meso.rou.xml
 Simulation start: 48731
 Simulation end guessed from TAPAS durations: 50268.060856894 (blame person ('1000019',))
-function create_personfile finished after 0.004489 seconds
-function post finished after 49.716200 seconds
+function create_personfile finished after 0.004523 seconds
+function post finished after 73.037553 seconds
 db_status_message: berlin_2010 2 << finished postprocessing
 db_status_finished: berlin_2010 2 < End
