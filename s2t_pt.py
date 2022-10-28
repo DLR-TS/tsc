@@ -110,8 +110,8 @@ def _createValueTuple(od, end, real, sumoTime, sumoDist):
     timeMean, timeStd = sumoTime.meanAndStdDev()
     distMean, distStd = sumoDist.meanAndStdDev()
     return base + (sumoTime.count() - real,
-                   "{%s}" % (str(timeMean)[1:-1]), sum(timeStd) / len(timeStd),
-                   "{%s}" % (str(distMean)[1:-1]), sum(distStd) / len(distStd))
+                   "{%s}" % (str(timeMean.tolist())[1:-1]), sum(timeStd) / len(timeStd),
+                   "{%s}" % (str(distMean.tolist())[1:-1]), sum(distStd) / len(distStd))
 
 
 @benchmark
@@ -137,8 +137,8 @@ def upload_all_pairs(conn, tables, start, end, real_routes, rep_routes, net, taz
         if not faked or sumoTime.count() < min_samples:
             if not faked:
                 real += 1
-            sumoTime.add(duration)
-            sumoDist.add(dist)
+            sumoTime.add(np.array(duration))
+            sumoDist.add(np.array(dist))
     if last is not None:
         values.append(_createValueTuple(last, end, real, sumoTime, sumoDist))
     cursor = conn.cursor()
