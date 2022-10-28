@@ -115,7 +115,7 @@ def _createValueTuple(od, end, real, sumoTime, sumoDist):
 
 
 @benchmark
-def upload_all_pairs(conn, tables, start, end, real_routes, rep_routes, net, taz_list, startIdx=0):
+def upload_all_pairs(conn, tables, start, end, real_routes, rep_routes, net, startIdx=0):
     stats = list(_parse_person_info_taz(real_routes, start, end))
     print("Parsed taz results for %s persons from %s." % (len(stats), real_routes))
     stats.extend(_get_all_pair_stats(rep_routes, net))
