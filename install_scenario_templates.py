@@ -77,6 +77,14 @@ def evaluate_pre_scen(options):
                     yield os.path.join(p, d)
 
 
+def ensure_tmp(scenario_template_dir):
+    tmp_output_dir = os.path.join(scenario_template_dir, 'tmp_output')
+    if os.path.exists(tmp_output_dir):
+        shutil.rmtree(tmp_output_dir)
+    os.mkdir(tmp_output_dir)
+    return tmp_output_dir
+
+
 def create_template_folder(scenario_pre_dir, options):
     scenario_name = os.path.basename(scenario_pre_dir)
     # create (template) subfolder in scenarios for the 'selected scenarios'
@@ -99,6 +107,7 @@ def create_template_folder(scenario_pre_dir, options):
 
     net_name = 'net.net.xml.gz'
     net_path = os.path.join(scenario_template_dir, net_name)
+    generated = os.path.join(scenario_template_dir, "generated_nets.txt")
     if not options.no_network:
         # check for navteq-dlr or osm data
         navteq_dlr_dir = os.path.join(scenario_pre_dir, 'navteq-dlr')
@@ -108,11 +117,7 @@ def create_template_folder(scenario_pre_dir, options):
             # emulate symlink
             navteq_dlr_dir = os.path.join(options.pre, open(navteq_dlr_dir).read().strip())
         if os.path.isdir(navteq_dlr_dir) or os.path.isdir(osm_dir):
-            # make temporary output folder
-            tmp_output_dir = os.path.join(scenario_template_dir, 'tmp_output')
-            if os.path.exists(tmp_output_dir):
-                shutil.rmtree(tmp_output_dir)
-            os.mkdir(tmp_output_dir)
+            tmp_output_dir = ensure_tmp(scenario_template_dir)
 
             if os.path.isdir(navteq_dlr_dir):
                 # get the zip file containing the network
@@ -137,18 +142,15 @@ def create_template_folder(scenario_pre_dir, options):
 
                 for idx, config in enumerate(configs):
                     netconvert_call = [netconvert, '-c', config,
-                                       '--output-file', os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % idx)]
-                    if "pt" in os.path.basename(config):
-                        # needed to work around https://github.com/eclipse/sumo/issues/10732
-                        netconvert_call += ['--ptstop-output', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % idx),
-                                            '--ptline-output', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % idx)]
+                                       '--output-file', os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % idx),
+                                       '--ptstop-output', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % idx),
+                                       '--ptline-output', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % idx)]
                     if idx > 0:
                         netconvert_call += ['--sumo-net-file', os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % (idx-1)),
                                             '--ptstop-files', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % (idx-1)),
+                                            '--ptline-files', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % (idx-1)),
+                                            '--ptstop-files', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % (idx-1)),
                                             '--ptline-files', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % (idx-1))]
-                        if "pt" in os.path.basename(config):
-                            netconvert_call += ['--ptstop-files', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % (idx-1)),
-                                                '--ptline-files', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % (idx-1))]
                     if options.verbose:
                         print(' '.join(netconvert_call))
                         sys.stdout.flush()
@@ -186,13 +188,23 @@ def create_template_folder(scenario_pre_dir, options):
             shutil.rmtree(tmp_output_dir)
     setup_file = os.path.join(scenario_pre_dir, 'setup.py')
     if os.path.exists(setup_file):
-        subprocess.check_call(["python", setup_file, scenario_pre_dir, scenario_template_dir])
-    if not os.path.exists(net_path):
+        subprocess.check_call([sys.executable, setup_file, scenario_pre_dir, scenario_template_dir])
+    if not os.path.exists(net_path) and not os.path.exists(generated):
         print("Could not find network '%s' for %s, cleaning up!" % (net_path, scenario_name))
         if not dir_exists:
             shutil.rmtree(scenario_template_dir)
         return
+    if os.path.exists(generated):
+        with open(generated) as netlist:
+            net_files = [os.path.join(scenario_template_dir, n.strip()) for n in netlist.readlines()]
+    else:
+        net_files = [net_path]
+    for net_file in net_files:
+        build_taz_etc(scenario_pre_dir, net_file)
 
+
+def build_taz_etc(scenario_pre_dir, net_path):
+    scenario_template_dir = os.path.dirname(net_path)
     net = None
     bidi_path = os.path.join(scenario_template_dir, "bidi.taz.xml")
     if not os.path.exists(bidi_path) or os.path.getmtime(bidi_path) < os.path.getmtime(net_path):
@@ -206,8 +218,7 @@ def create_template_folder(scenario_pre_dir, options):
     if os.path.isdir(gtfs_dir):
         if options.verbose:
             print("calling gtfs2pt")
-        # make temporary output folder
-        os.mkdir(tmp_output_dir)
+        tmp_output_dir = ensure_tmp(scenario_template_dir)
         for cfg in glob.glob(os.path.join(gtfs_dir, "*.cfg")):
             gtfs_call = ['-c', cfg, '-n', os.path.abspath(net_path),
                          '--additional-output', os.path.join(scenario_template_dir, 'pt_routes.add.xml'),
@@ -217,7 +228,7 @@ def create_template_folder(scenario_pre_dir, options):
                          '--fcd', os.path.join(tmp_output_dir, 'fcd'),
                          '--gpsdat', os.path.join(tmp_output_dir, 'gpsdat'),
                          '--vtype-output', os.path.join(tmp_output_dir, 'vType.xml')]
-            if os.path.isdir(osm_dir) and glob.glob(os.path.join(scenario_template_dir, 'ptlines*')):
+            if glob.glob(os.path.join(scenario_template_dir, 'ptlines*')):
                 # if routes from osm
                 osm_routes = glob.glob(os.path.join(scenario_template_dir, 'ptlines*'))[0]
                 gtfs_call += ['--osm-routes', osm_routes, '--repair',
@@ -289,7 +300,8 @@ def create_template_folder(scenario_pre_dir, options):
                          "--routing-threads", "24", "-v",
                          "-o", "NUL", "--ignore-errors", "--aggregate-warnings", "5"])
     else:
-        print("could not find landmark data for %s" % scenario_name)
+        print("could not find landmark data for %s" % scenario_template_dir)
+
 
 if __name__ == "__main__":
     # generate scenario template folders from input-folders.
