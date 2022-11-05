@@ -148,8 +148,6 @@ def create_template_folder(scenario_pre_dir, options):
                     if idx > 0:
                         netconvert_call += ['--sumo-net-file', os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % (idx-1)),
                                             '--ptstop-files', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % (idx-1)),
-                                            '--ptline-files', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % (idx-1)),
-                                            '--ptstop-files', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % (idx-1)),
                                             '--ptline-files', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % (idx-1))]
                     if options.verbose:
                         print(' '.join(netconvert_call))
