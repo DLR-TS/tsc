@@ -1,7 +1,5 @@
 Warning: Traffic light type 'actuated' cannot be used in mesoscopic simulation. Using 'static' as fallback.
 Warning: Network contains internal links which are ignored. Vehicles will 'jump' across junctions and thus underestimate route lengths and travel times.
-Warning: Traffic light type 'actuated' cannot be used in mesoscopic simulation. Using 'static' as fallback.
-Warning: Network contains internal links which are ignored. Vehicles will 'jump' across junctions and thus underestimate route lengths and travel times.
 Warning: At actuated tlLogic 'GS_25663498', linkIndex 2 has no controlling detector.
 Warning: At actuated tlLogic 'GS_25663498', linkIndex 3 has no controlling detector.
 Warning: At actuated tlLogic 'GS_25663747', linkIndex 10 has no controlling detector.
@@ -18,3 +16,5 @@ Warning: At actuated tlLogic 'cluster_1857304353_29784556_29784557_343372788', l
 Warning: At actuated tlLogic 'cluster_1857304353_29784556_29784557_343372788', linkIndex 7 has no controlling detector.
 Warning: At actuated tlLogic 'cluster_262471375_343590422_3730313106', linkIndex 5 has no controlling detector.
 Warning: At actuated tlLogic 'cluster_262471375_343590422_3730313106', linkIndex 6 has no controlling detector.
+Warning: Traffic light type 'actuated' cannot be used in mesoscopic simulation. Using 'static' as fallback.
+Warning: Network contains internal links which are ignored. Vehicles will 'jump' across junctions and thus underestimate route lengths and travel times.
