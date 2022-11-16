@@ -42,7 +42,6 @@ def run_duaiterate(options, first_depart, last_depart, trip_file, weight_file, m
     dua_dir = os.path.join(options.iteration_dir, 'dua')
     if not os.path.exists(dua_dir):
         os.makedirs(dua_dir)
-    duaIterate_params = abspath_in_dir(dua_dir, 'duaIterate.params')
 
     aggregation = 1800
     begin = (int(first_depart) / aggregation) * aggregation
@@ -98,7 +97,7 @@ def run_duaiterate(options, first_depart, last_depart, trip_file, weight_file, m
             'sumo--meso-taufj', '1.4',
             'sumo--meso-taujf', '2.0',
             'sumo--meso-taujj', '2.0',
-            'sumo--meso-jam-threshold', '-1',  # edge speed specific threshold
+            'sumo--meso-jam-threshold=-1',  # edge speed specific threshold
             'sumo--meso-junction-control.limited',
         ]
     params += [
@@ -108,8 +107,8 @@ def run_duaiterate(options, first_depart, last_depart, trip_file, weight_file, m
         'duarouter--vtype-output', '/dev/null',
         'duarouter--routing-threads', '16',
     ]
-    with open(duaIterate_params, 'w') as f:
-        print(os.linesep.join(params), file=f)
+    with open(abspath_in_dir(dua_dir, 'duaIterate.cfg'), 'w') as f:
+        print(duaIterate.initOptions().parse_args(args=params).config_as_string, file=f)
 
     with working_dir(dua_dir):
         duaIterate.main(params)
@@ -203,6 +202,7 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
 
         <begin value="%s"/>
         <end value="%s"/>
+        <time-to-teleport.ride value="3600"/>
         %s
 
 </configuration>""" % (options.net_file, ",".join(trips),
