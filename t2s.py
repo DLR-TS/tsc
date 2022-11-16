@@ -187,7 +187,7 @@ def rectify_input(options):
     # report overlapping times
     # filter trips wich start on the next day
     # filter trips by mode (optional)
-    # diffuse geoCoordinates with a gausian (mu = 0, sigma = spatialDiffuse meters)
+    # diffuse geoCoordinates with a gaussian (mu = 0, sigma = spatialDiffuse meters)
     # since tapas inputs tends to show strong spatial clustering (call it
     # parking related diffusion)
     diffusion_map = {}

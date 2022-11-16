@@ -18,13 +18,11 @@ assign_trips = assign.run_default
 
 @benchmark
 def post(options, params, conn, routefile):
-    procs = [postprocess.run_pedestrian_sumo(options, routefile),
-             postprocess.run_emission_sumo(options, params, conn, routefile)]
-    err = None
-    for p in procs:
-        if p is not None:
-            retcode = p[1].wait()
-            if retcode:
-                err = subprocess.CalledProcessError(retcode, p[0])
-    if err:
-        raise err
+    p = postprocess.run_pedestrian_sumo(options, routefile)
+    retcode = p[1].wait()
+    if retcode:
+        raise subprocess.CalledProcessError(retcode, p[0])
+    p = postprocess.run_emission_sumo(options, params, conn, routefile)
+    retcode = p[1].wait()
+    if retcode:
+        raise subprocess.CalledProcessError(retcode, p[0])
