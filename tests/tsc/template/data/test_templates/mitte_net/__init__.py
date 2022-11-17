@@ -23,6 +23,7 @@ def post(options, params, conn, routefile):
     if retcode:
         raise subprocess.CalledProcessError(retcode, p[0])
     p = postprocess.run_emission_sumo(options, params, conn, routefile)
-    retcode = p[1].wait()
-    if retcode:
-        raise subprocess.CalledProcessError(retcode, p[0])
+    if p is not None:
+        retcode = p[1].wait()
+        if retcode:
+            raise subprocess.CalledProcessError(retcode, p[0])
