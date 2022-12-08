@@ -85,6 +85,15 @@ def ensure_tmp(scenario_template_dir):
     return tmp_output_dir
 
 
+def get_symlink_dir(scenario_pre_dir, subdir):
+    check_dir = os.path.join(scenario_pre_dir, subdir)
+    if not os.path.isfile(check_dir):
+        return check_dir
+    with open(check_dir) as s:
+        TSC_HOME = os.path.abspath(os.path.dirname(__file__))
+        return os.path.join(scenario_pre_dir, s.read().strip().replace("$TSC_HOME", TSC_HOME))
+
+
 def create_template_folder(scenario_pre_dir, options):
     scenario_name = os.path.basename(scenario_pre_dir)
     # create (template) subfolder in scenarios for the 'selected scenarios'
@@ -212,7 +221,7 @@ def build_taz_etc(scenario_pre_dir, net_path):
     add = bidi_path
 
     # check for gtfs folder and import
-    gtfs_dir = os.path.join(scenario_pre_dir, 'gtfs')
+    gtfs_dir = get_symlink_dir(scenario_pre_dir, 'gtfs')
     if os.path.isdir(gtfs_dir):
         if options.verbose:
             print("calling gtfs2pt")
@@ -236,10 +245,7 @@ def build_taz_etc(scenario_pre_dir, net_path):
         shutil.rmtree(tmp_output_dir)
 
     # check for shapes folder and import from shapes
-    shapes_dir = os.path.join(scenario_pre_dir, 'shapes')
-    if os.path.isfile(shapes_dir):
-        # emulate symlink
-        shapes_dir = os.path.join(options.pre, open(shapes_dir).read().strip())
+    shapes_dir = get_symlink_dir(scenario_pre_dir, 'shapes')
     if os.path.isdir(shapes_dir):
         polyconvert = sumolib.checkBinary('polyconvert')
         idCol = dict([e.split(":") for e in options.shape_id_column.split(",")])
@@ -269,6 +275,7 @@ def build_taz_etc(scenario_pre_dir, net_path):
                 reader = edgesInDistricts.DistrictEdgeComputer(net)
                 reader.computeWithin(polys, eIDoptions)
                 reader.writeResults(eIDoptions)
+
     if options.suburb_taz:
         tazFile = os.path.join(scenario_template_dir, options.suburb_taz + ".taz.xml")
         if not os.path.exists(tazFile) or os.path.getmtime(tazFile) < os.path.getmtime(net_path):
