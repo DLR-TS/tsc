@@ -60,6 +60,8 @@ def parse_person(p):
                 walkDuration[idx] = ended - rideEnd
             walkLength[idx] += float(stage.routeLength)
         elif stage.name == "ride":
+            if stage.depart is None:  # something went wrong
+                break
             if idx == 0:
                 idx = 1
                 initWait = float(stage.depart) - float(p.depart) - walkDuration[0]
