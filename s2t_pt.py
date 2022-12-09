@@ -15,7 +15,7 @@
 # @author  Michael Behrisch
 # @date    2021-10-06
 
-# parse duarouter all pair ozutput for public transport and upload the results to the database
+# parse duarouter all pair output for public transport and upload the results to the database
 
 from __future__ import print_function, division
 import os
