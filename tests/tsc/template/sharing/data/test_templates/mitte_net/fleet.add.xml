@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+     <vType id="taxi" vClass="taxi">
+        <param key="has.taxi.device" value="true"/>
+    </vType>
+    <trip id="taxi_busStop_0_0" type="taxi" depart="0.00"><stop busStop="busStop_0" triggered="person"/></trip>
+    <trip id="taxi_busStop_0_1" type="taxi" depart="0.00"><stop busStop="busStop_0" triggered="person"/></trip>
+</additional>

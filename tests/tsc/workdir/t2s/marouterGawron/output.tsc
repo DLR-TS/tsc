@@ -1,25 +1,23 @@
-function main called at Wed, 27 Oct 2021 16:06:21 +0000
-function rectify_input called at Wed, 27 Oct 2021 16:06:23 +0000
-Read 2 persons with a total of 4 trips from input file "C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.27Oct155331.2080\tsc.sqlite3\workdir\t2s\marouterGawron\data\twoPersonsOnly.csv".
+function main called at Fri, 09 Dec 2022 11:27:24 +0000
+function rectify_input called at Fri, 09 Dec 2022 11:27:25 +0000
+Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Dec112645.40806/tsc.sqlite3.python3/workdir/t2s/marouterGawron/data/twoPersonsOnly.csv".
 0 trips have inconsistent depart times.
-function rectify_input finished after 0.130062 seconds
-function map_to_edges called at Wed, 27 Oct 2021 16:06:24 +0000
-Mapping using C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.27Oct155331.2080\tsc.sqlite3\workdir\t2s\marouterGawron\data\scenario_workdir\mitte_net\districts.taz.xml.
-Mapping (568.7532229983481, 913.0316369170323) to -4588215#5 (dist: 42.56) which is not in taz 110110312, best match in taz is 4597322#0 (dist: 108.25)
+function rectify_input finished after 0.032332 seconds
+function map_to_edges called at Fri, 09 Dec 2022 11:27:25 +0000
+Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Dec112645.40806/tsc.sqlite3.python3/workdir/t2s/marouterGawron/data/scenario_workdir/mitte_net/districts.taz.xml.
 read 4 TAPAS trips for 2 persons (0 unmappable)
-Mapping deviations: count 4, min 9.41 (xycoord=(720.7678498803871, 1303.540090534836), edge=320462164#2, uid=('1000005', '1000001')), max 42.56 (xycoord=(568.7532229983481, 913.0316369170323), edge=-4588215#5, uid=('1000019', '1000003')), mean 28.28 Q1 27.13, median 34.00, Q3 42.56
-1 mappings did not find an edge in the correct taz
-function map_to_edges finished after 1.053083 seconds
-using previous version of C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.27Oct155331.2080\tsc.sqlite3\workdir\t2s\marouterGawron\data\scenario_workdir\mitte_net\iteration000\trips\rectified_twoPersonsOnly.csv
-function create_sumo_tripdefs called at Wed, 27 Oct 2021 16:06:25 +0000
+Mapping deviations: count 8, min 9.41 (xycoord=(720.7678498803871, 1303.540090534836), edge=320462164#2, uid=('1000005', '1000001')), max 42.56 (xycoord=(568.7532229983481, 913.0316369170323), edge=-4588215#5, uid=('1000019', '1000003')), mean 28.28, Q1 27.13, median 34.00, Q3 42.56
+0 mappings did not find an edge in the correct taz
+function map_to_edges finished after 0.192273 seconds
+function create_sumo_tripdefs called at Fri, 09 Dec 2022 11:27:25 +0000
 read trip definitions for 4 vehicles
 created trip definitions for 4 vehicles starting between 135131 and 137351
-function create_sumo_tripdefs finished after 0.007015 seconds
-function run_marouter called at Wed, 27 Oct 2021 16:06:25 +0000
+function create_sumo_tripdefs finished after 0.000270 seconds
+function run_marouter called at Fri, 09 Dec 2022 11:27:25 +0000
 Loading configuration ... done.
 Loading net ... done.
-Loading additional file 'C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.27Oct155331.2080\tsc.sqlite3\workdir\t2s\marouterGawron\data\scenario_workdir\mitte_net\districts.taz.xml'  ... done.
-Loading routes and trips from 'C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.27Oct155331.2080\tsc.sqlite3\workdir\t2s\marouterGawron\data\scenario_workdir\mitte_net\iteration000\trips\miv_twoPersonsOnly.trips.xml' ... done.
+Loading additional file '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Dec112645.40806/tsc.sqlite3.python3/workdir/t2s/marouterGawron/data/scenario_workdir/mitte_net/districts.taz.xml'  ... done.
+Loading routes and trips from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Dec112645.40806/tsc.sqlite3.python3/workdir/t2s/marouterGawron/data/scenario_workdir/mitte_net/iteration000/trips/miv_twoPersonsOnly.trips.xml' ... done.
 4.00 valid vehicles loaded (total seen: 4.00).
  starting interval 133200.00
   starting iteration 0
@@ -33,51 +31,53 @@ Loading routes and trips from 'C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.27Oct1
   starting iteration 2
   starting iteration 3
   starting iteration 4
-AStarRouter answered 20 queries and explored 2285.00 edges on average.
-AStarRouter spent 0.05s answering queries (2.55ms on average).
+AStarRouter answered 15 queries and explored 2335.60 edges on average.
+AStarRouter spent 0.01s answering queries (0.87ms on average).
+AStarRouter answered 5 queries and explored 2285.00 edges on average.
+AStarRouter spent 0.01s answering queries (1.00ms on average).
 Success.
-function run_marouter finished after 4.703109 seconds
-function run_duaiterate called at Wed, 27 Oct 2021 16:06:29 +0000
-Written configuration to '0/iteration_000_ma_flows.duarcfg'
+function run_marouter finished after 0.588654 seconds
+function run_duaiterate called at Fri, 09 Dec 2022 11:27:25 +0000
+Written configuration to '000/iteration_000_ma_flows.duarcfg'
 > Executing step 0
->> Running router on C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.27Oct155331.2080\tsc.sqlite3\workdir\t2s\marouterGawron\data\scenario_workdir\mitte_net\iteration000\marouter\ma_flows.rou.xml
->>> Begin time: 2021-10-27 16:06:35.008136
->>> End time: 2021-10-27 16:06:39.582828
->>> Duration: 0:00:04.574692
+>> Running router on /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Dec112645.40806/tsc.sqlite3.python3/workdir/t2s/marouterGawron/data/scenario_workdir/mitte_net/iteration000/marouter/ma_flows.rou.xml
+>>> Begin time: 2022-12-09 11:27:26.662848
+>>> End time: 2022-12-09 11:27:27.440254
+>>> Duration: 0:00:00.777406
 <<
 >> Running simulation
->>> Begin time: 2021-10-27 16:06:39.582828
->>> End time: 2021-10-27 16:06:45.182543
->>> Duration: 0:00:05.599715
+>>> Begin time: 2022-12-09 11:27:27.440297
+>>> End time: 2022-12-09 11:27:28.308774
+>>> Duration: 0:00:00.868477
 <<
 >> Smoothing edge weights
->>> Updated 84 edges
+>>> Updated 96 edges
 >>> Decayed 0 unseen edges
 >>> Error avg:0 mean:0
 >>> Absolute Error avg:0 mean:0
-< Step 0 ended (duration: 0:00:10.183102)
+< Step 0 ended (duration: 0:00:01.647640)
 ------------------
 
-Written configuration to '1/iteration_001_ma_flows_000.duarcfg'
+Written configuration to '001/iteration_001_ma_flows_000.duarcfg'
 > Executing step 1
->> Running router on 0\ma_flows_000.rou.alt.xml
->>> Begin time: 2021-10-27 16:06:45.197627
->>> End time: 2021-10-27 16:06:51.008491
->>> Duration: 0:00:05.810864
+>> Running router on 000/ma_flows_000.rou.alt.xml
+>>> Begin time: 2022-12-09 11:27:28.314771
+>>> End time: 2022-12-09 11:27:29.398850
+>>> Duration: 0:00:01.084079
 <<
 >> Running simulation
->>> Begin time: 2021-10-27 16:06:51.009499
->>> End time: 2021-10-27 16:06:58.325991
->>> Duration: 0:00:07.316492
+>>> Begin time: 2022-12-09 11:27:29.398888
+>>> End time: 2022-12-09 11:27:30.272212
+>>> Duration: 0:00:00.873324
 <<
 >> Smoothing edge weights
->>> Updated 84 edges
+>>> Updated 96 edges
 >>> Decayed 0 unseen edges
 >>> Error avg:0 mean:0
 >>> Absolute Error avg:0 mean:0
-< Step 1 ended (duration: 0:00:13.137904)
+< Step 1 ended (duration: 0:00:01.959019)
 ------------------
 
-dua-iterate ended (duration: 0:00:26.554923)
-function run_duaiterate finished after 28.465784 seconds
-function main finished after 36.774733 seconds
+dua-iterate ended (duration: 0:00:04.320709)
+function run_duaiterate finished after 4.410277 seconds
+function main finished after 5.721505 seconds

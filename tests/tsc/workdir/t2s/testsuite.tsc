@@ -7,6 +7,9 @@ rectifyMap
 # Test the complete t2s chain for development
 complete
 
+# Test the complete t2s chain with wrong taz
+wrongTaz
+
 # Test the complete t2s chain with scale 2
 scale2
 

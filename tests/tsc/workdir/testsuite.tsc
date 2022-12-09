@@ -4,9 +4,6 @@ get_trips
 # Tests for manipulating trips received from tapas
 t2s
 
-# Tests for manipulating trips with sharing mode received from tapas
-t2s_sharing
-
 # Tests for writing information back to tapas
 s2t_miv
 

@@ -24,3 +24,9 @@ tscDaemonVTypeMatrix
 
 # parsing an empty trips file
 tscDaemonEmptyTripsFile
+
+# trips file with persons who want to walk
+walking
+
+# trips file with persons who want to use car sharing
+sharing

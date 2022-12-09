@@ -1,0 +1,39 @@
+function main called at Fri, 09 Dec 2022 11:26:10 +0000
+function rectify_input called at Fri, 09 Dec 2022 11:26:10 +0000
+Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Dec112609.40737/tsc.sqlite3.python3/workdir/t2s/wrongTaz/data/twoPersonsWrongTaz.csv".
+0 trips have inconsistent depart times.
+function rectify_input finished after 0.022563 seconds
+function map_to_edges called at Fri, 09 Dec 2022 11:26:10 +0000
+Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Dec112609.40737/tsc.sqlite3.python3/workdir/t2s/wrongTaz/data/scenario_workdir/mitte_net/districts.taz.xml.
+Mapping (568.7532229983481, 913.0316369170323) to -4588215#5 (dist: 42.56) which is not in taz 110110312, best match in taz is 4597322#0 (dist: 108.25)
+read 4 TAPAS trips for 2 persons (0 unmappable)
+Mapping deviations: count 8, min 9.41 (xycoord=(720.7678498803871, 1303.540090534836), edge=320462164#2, uid=('1000005', '1000001')), max 42.56 (xycoord=(568.7532229983481, 913.0316369170323), edge=-4588215#5, uid=('1000019', '1000003')), mean 28.28, Q1 27.13, median 34.00, Q3 42.56
+5 mappings did not find an edge in the correct taz
+function map_to_edges finished after 0.194392 seconds
+function create_sumo_tripdefs called at Fri, 09 Dec 2022 11:26:11 +0000
+read trip definitions for 4 vehicles
+created trip definitions for 4 vehicles starting between 135131 and 137351
+function create_sumo_tripdefs finished after 0.000262 seconds
+function run_oneshot called at Fri, 09 Dec 2022 11:26:11 +0000
+Loading configuration ... done.
+Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Dec112609.40737/tsc.sqlite3.python3/workdir/t2s/wrongTaz/data/scenario_workdir/mitte_net/net.net.xml' ... 
+done (362ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Dec112609.40737/tsc.sqlite3.python3/workdir/t2s/wrongTaz/data/scenario_workdir/mitte_net/vtypes.xml' ... done (7ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Dec112609.40737/tsc.sqlite3.python3/workdir/t2s/wrongTaz/data/scenario_workdir/mitte_net/iteration000/oneshot/dump_oneshot_meso.xml' ... done (4ms).
+Loading done.
+Simulation version v1_15_0+0897-359cbec9b38 started with time: 135131.00.
+Simulation ended at time: 148151.00
+Reason: The final simulation step has been reached.
+Performance: 
+ Duration: 0.69s
+ Real time factor: 18815
+ UPS: 3161.849711
+Vehicles: 
+ Inserted: 4
+ Running: 0
+ Waiting: 0
+
+AStarRouter answered 9 queries and explored 1411.67 edges on average.
+AStarRouter spent 0.02s answering queries (1.67ms on average).
+function run_oneshot finished after 1.219589 seconds
+function main finished after 1.797643 seconds
