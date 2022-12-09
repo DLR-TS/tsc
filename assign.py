@@ -152,6 +152,7 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
         additional.append(os.path.join(base_dir, 'suburb.taz.xml'))
     specificPT = glob.glob(abspath_in_dir(oneshot_dir, 'pt*.xml'))
     additional += sorted(specificPT if specificPT else glob.glob(os.path.join(base_dir, 'pt*.xml')))
+    additional += sorted(glob.glob(os.path.join(base_dir, 'fleet*.xml')), reverse=True)
 
     tempcfg = abspath_in_dir(oneshot_dir, '%s_temp.sumocfg' % suffix)
     addOpt = ""
