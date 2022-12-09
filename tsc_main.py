@@ -96,6 +96,8 @@ def getOptions(args, argParser):
 
 def get_simulation_requests(options):
     overrides = dict([item.split(":") for item in options.sim_param.split(",") if item])
+    if options.modes is not None:
+        overrides["SUMO_MODES"] = options.modes
     if options.fake_tripfile or options.sim_key:
         if options.sim_key is None:
             options.sim_key = DEFAULT_SIMKEY

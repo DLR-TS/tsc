@@ -1,6 +1,0 @@
-Warning: Traffic light type 'actuated' cannot be used in mesoscopic simulation. Using 'static' as fallback.
-Warning: Network contains internal links which are ignored. Vehicles will 'jump' across junctions and thus underestimate route lengths and travel times.
-Warning: Teleporting person '1000019_1000003_813_0'; waited too long, from edge '-4588215#5', time=138731.00.
-Warning: Teleporting person '1000005_1000001_817_0'; waited too long, from edge '320462164#2', time=138825.00.
-Warning: Teleporting person '1000005_1000001_850_0'; waited too long, from edge '340716730#1', time=140805.00.
-Warning: Teleporting person '1000019_1000003_850_0'; waited too long, from edge '192298337#0', time=140951.00.

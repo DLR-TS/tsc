@@ -101,8 +101,7 @@ def fillOptions(argParser):
     argParser.add_argument("--bike-type", default="ped_bike", help="treat bicycles as pedestrians with the given type")
     argParser.add_argument("--shift-departure-hours", type=int, default=24, dest="shiftdeparthours",
                            help="shift departure times by the given number of hours (to handle trips that depart before midnight)")
-    argParser.add_argument("-m", "--modes", default=','.join(CAR_MODES),
-                           help="the traffic modes to retrieve as a list of integers (default: '%(default)s')")
+    argParser.add_argument("-m", "--modes", help="the traffic modes to retrieve as a list of integers")
     argParser.add_argument("--subnet-file", help="specifying the subnet to use to rerun a subnet assignment")
     argParser.add_argument("--resume", action="store_true", default=False,
                            help="reuse existing files instead of overwriting them")
@@ -134,6 +133,10 @@ def checkOptions(options):
         options.taz_file = os.path.abspath(options.taz_file)
     if options.bidi_taz_file:
         options.bidi_taz_file = os.path.abspath(options.bidi_taz_file)
+
+    if options.modes is None:
+        # cannot use a default because tsc_main wants to check whether it has been set manually
+        options.modes = ','.join(CAR_MODES)
 
     if options.subnet_file is None:
         assert options.tapas_trips is not None, "tripfile is not given"
