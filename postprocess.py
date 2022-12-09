@@ -124,7 +124,7 @@ def create_personfile(mapped_trips, input_routes, output_routes):
                     #       % (row[THX.depart_second], source_edge))
 
                     # fixed duration
-                    person_lines.append('        <walk from="%s" to="%s"/>' % (redges[-1], source_edge))
+                    person_lines.append('        <walk from="%s" to="%s"/>' % (previous_dest_edge, source_edge))
                     person_lines.append('        <stop duration="%s" lane="%s_0" endPos="%s" friendlyPos="true"/>'
                                         % (stopping_time, source_edge, previous_arrival_pos))
 
@@ -145,8 +145,7 @@ def create_personfile(mapped_trips, input_routes, output_routes):
 
             person_lines.append('    </person>\n')
 
-            routed_item = '\n'.join(
-                person_lines) + '\n'.join(vehicle_lines) + '\n'
+            routed_item = '\n'.join(person_lines) + '\n'.join(vehicle_lines) + '\n'
             routes_xml_lines.append((depart, routed_item))
 
             if arrival_guess > sim_end:
