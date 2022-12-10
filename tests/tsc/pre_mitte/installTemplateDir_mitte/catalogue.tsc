@@ -1,8 +1,10 @@
 The following new files/directories were created:
 <Test Directory>
+----__pycache__
+--------tscdefs.cpython-38.pyc
 ----data
 --------scenario_templates
-------------scripts.py
+------------__init__.py
 ------------mitte_net
 ----------------Berlin Verkehrsbezirke (1193 VBz) GK4_zone.poly.xml
 ----------------Berlin_1223.poly.xml
@@ -12,6 +14,8 @@ The following new files/directories were created:
 ----------------__init__.py
 ----------------bidi.taz.xml
 ----------------districts.taz.xml
+----------------fleet.add.xml
+----------------fleet_stops.add.xml
 ----------------missing.xml
 ----------------net.net.xml.gz
 ----------------ptVtypes.xml
@@ -20,6 +24,4 @@ The following new files/directories were created:
 ----------------ptlines.xml.gz
 ----------------repair_errors.txt
 ----------------stops.add.xml.gz
-----------------suburb.taz.xml
 ----------------vtypes.xml
-----tscdefs.pyc
