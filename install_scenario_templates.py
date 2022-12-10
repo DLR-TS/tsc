@@ -107,6 +107,9 @@ def create_template_folder(scenario_pre_dir, options):
     else:
         # make a new template folder
         os.makedirs(scenario_template_dir)
+    log_dir = os.path.join(scenario_template_dir, "log")
+    if not os.path.exists(log_dir):
+        os.mkdir(log_dir)
 
     # copy static input such as vehicle types, edge lists and processing scripts
     for ff in sorted(listdir_skip_hidden(scenario_pre_dir)):
@@ -152,6 +155,7 @@ def create_template_folder(scenario_pre_dir, options):
                 for idx, config in enumerate(configs):
                     netconvert_call = [netconvert, '-c', config,
                                        '--output-file', os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % idx),
+                                       '--log', os.path.join(log_dir, '%s.log' % os.path.basename(config)[:-8]),
                                        '--ptstop-output', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % idx),
                                        '--ptline-output', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % idx)]
                     if idx > 0:
@@ -212,6 +216,7 @@ def create_template_folder(scenario_pre_dir, options):
 
 def build_taz_etc(scenario_pre_dir, net_path):
     scenario_template_dir = os.path.dirname(net_path)
+    log_dir = os.path.join(scenario_template_dir, "log")
     net = None
     bidi_path = os.path.join(scenario_template_dir, "bidi.taz.xml")
     if not os.path.exists(bidi_path) or os.path.getmtime(bidi_path) < os.path.getmtime(net_path):
@@ -239,8 +244,8 @@ def build_taz_etc(scenario_pre_dir, net_path):
                 # if routes from osm
                 osm_routes = glob.glob(os.path.join(scenario_template_dir, 'ptlines*'))[0]
                 gtfs_call += ['--osm-routes', osm_routes, '--repair',
-                              '--dua-repair-output', os.path.join(scenario_template_dir, 'repair_errors.txt'),
-                              '--warning-output',  os.path.join(scenario_template_dir, 'missing.xml')]
+                              '--dua-repair-output', os.path.join(log_dir, 'repair_errors.txt'),
+                              '--warning-output',  os.path.join(log_dir, 'missing.xml')]
             gtfs2pt.main(gtfs2pt.get_options(gtfs_call))
         shutil.rmtree(tmp_output_dir)
 

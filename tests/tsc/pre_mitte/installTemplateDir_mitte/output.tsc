@@ -4,13 +4,13 @@ copying __init__.py
 copying ptVtypes.xml
 copying vtypes.xml
 starting to import osm ...
-/home/micha/sumo/bin/netconvert -c pre_test/mitte_net/template_gen0.netccfg --output-file /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_net.net.xml.gz --ptstop-output /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_stops.add.xml.gz --ptline-output /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_ptlines.xml.gz
+/home/micha/sumo/bin/netconvert -c pre_test/mitte_net/template_gen0.netccfg --output-file /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_net.net.xml.gz --log /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/log/template_gen0.log --ptstop-output /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_stops.add.xml.gz --ptline-output /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_ptlines.xml.gz
 Parsing types from 'pre_test/mitte_net/osm/berlin_net.typ.xml' ... done.
 Parsing nodes from osm-file 'pre_test/mitte_net/osm/osm_bbox.osm.xml' ... 
 Found and substituted 92 osm nodes.
-done (991ms).
+done (979ms).
 Parsing edges from osm-file 'pre_test/mitte_net/osm/osm_bbox.osm.xml' ... 
-done (845ms).
+done (838ms).
 Removing duplicate edges ... done.
 Adding new type 'cycleway.track|highway.primary' (first occurence for edge '4045243').
 Adding new type 'cycleway.lane|highway.primary' (first occurence for edge '4068078').
@@ -29,7 +29,7 @@ Adding new type 'cycleway.track|highway.residential' (first occurence for edge '
 Adding new type 'cycleway.lane|highway.pedestrian' (first occurence for edge '687804455').
 Adding new type 'cycleway.lane|cycleway.track|highway.tertiary' (first occurence for edge '850240180').
 Parsing relations from osm-file 'pre_test/mitte_net/osm/osm_bbox.osm.xml' ... 
-done (406ms).
+done (398ms).
  Removed 1171 traffic lights before loading plain-XML
  Import done:
    18196 nodes loaded.
@@ -67,31 +67,31 @@ Added 15 edges to connect 12 buffer stops in both directions.
 Added 14 bidi-edges between 4 pairs of railway switches (count by length: 1:2 2:1 10:1)
 Added 0 bidi-edges for public transport stops and a total of 84 bidi-edges to ensure connectivity of stops (6 stops remain disconnected)
 DijkstraRouter answered 249 queries and explored 85.32 edges on average.
-DijkstraRouter spent 0.00s answering queries (0.01ms on average).
+DijkstraRouter spent 0.00s answering queries (0.00ms on average).
 Joining tram edges ... 
 done (14ms).
  Joined 415 tram edges into roads.
 Joining junction clusters ... 
 done (25ms).
  Joined 160 junction cluster(s).
-Removing empty nodes and geometry nodes ... done (68ms).
+Removing empty nodes and geometry nodes ... done (73ms).
    15667 nodes removed.
-Moving network to origin ... done (39ms).
+Moving network to origin ... done (40ms).
 Computing turning directions ... 
-done (3ms).
-Assigning nodes to traffic lights ... done (13ms).
+done (2ms).
+Assigning nodes to traffic lights ... done (14ms).
 Guessing and setting on-/off-ramps ... done (3ms).
 Removing sharp turn with radius 4.70 at the end of edge '171851825#7'.
 Removing sharp turn with radius 8.80 at the end of edge '24864947#0'.
 Removing sharp turn with radius 3.57 at the start of edge '4685666#11'.
-Sorting nodes' edges ... done (2ms).
+Sorting nodes' edges ... done (3ms).
 Computing node shapes ... 
 done (54ms).
-Computing edge shapes ... done (26ms).
+Computing edge shapes ... done (27ms).
 Computing node types ... 
-done (1ms).
+done (2ms).
 Computing priorities ... done (2ms).
-Computing approached edges ... done (3ms).
+Computing approached edges ... done (2ms).
 Guessing and setting roundabouts ... 
  Guessed 3 roundabout(s).
 done (1ms).
@@ -99,17 +99,17 @@ Computing approaching lanes ... done (11ms).
 Dividing of lanes on approached lanes ... done (8ms).
 Processing turnarounds ... done (2ms).
 Rechecking of lane endings ... 
-done (1ms).
-Joining traffic light nodes ... done (2ms).
+done (2ms).
+Joining traffic light nodes ... done (1ms).
 Computing traffic light control information ... done (2ms).
-Computing node logics ... done (31ms).
+Computing node logics ... done (29ms).
 Computing traffic light logics ... 
-done (19ms).
+done (15ms).
  133 traffic light(s) computed.
 Added 7 stops for superposed rail edges.
-Find accesses for pt rail stops ... done (32ms).
+Find accesses for pt rail stops ... done (31ms).
 DijkstraRouter answered 20 queries and explored 20.45 edges on average.
-DijkstraRouter spent 0.00s answering queries (0.05ms on average).
+DijkstraRouter spent 0.00s answering queries (0.00ms on average).
 -----------------------------------------------------
 Summary:
  Node type statistics:
@@ -125,18 +125,18 @@ Summary:
   Applied offset     : -389385.39,-5817703.98
   Converted boundary : 0.00,0.00,8608.99,5009.41
 -----------------------------------------------------
-Writing network ... done (318ms).
+Writing network ... done (311ms).
 Success.
-/home/micha/sumo/bin/netconvert -c pre_test/mitte_net/template_gen1.netccfg --output-file /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/1_net.net.xml.gz --ptstop-output /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/1_stops.add.xml.gz --ptline-output /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/1_ptlines.xml.gz --sumo-net-file /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_net.net.xml.gz --ptstop-files /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_stops.add.xml.gz --ptline-files /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_ptlines.xml.gz
-Parsing sumo-net from '/home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_net.net.xml.gz' ... done (206ms).
+/home/micha/sumo/bin/netconvert -c pre_test/mitte_net/template_gen1.netccfg --output-file /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/1_net.net.xml.gz --log /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/log/template_gen1.log --ptstop-output /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/1_stops.add.xml.gz --ptline-output /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/1_ptlines.xml.gz --sumo-net-file /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_net.net.xml.gz --ptstop-files /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_stops.add.xml.gz --ptline-files /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_ptlines.xml.gz
+Parsing sumo-net from '/home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_net.net.xml.gz' ... done (211ms).
 Parsing nodes from 'pre_test/mitte_net/netpatch/patch.nod.xml' ... done.
 Parsing edges from 'pre_test/mitte_net/netpatch/patch.edg.xml' ... done.
 Parsing edges from 'pre_test/mitte_net/netpatch/patch_tram.edg.xml' ... done.
 Parsing connections from 'pre_test/mitte_net/netpatch/patch.con.xml' ... done.
 Parsing connections from 'pre_test/mitte_net/netpatch/patch_tram.con.xml' ... done.
 Parsing traffic lights from 'pre_test/mitte_net/netpatch/patch.tll.xml' ... done.
-Parsing public transport stops from '/home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_stops.add.xml.gz' ... done.
-Parsing public transport lines from '/home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_ptlines.xml.gz' ... done.
+Parsing public transport stops from '/home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_stops.add.xml.gz' ... done.
+Parsing public transport lines from '/home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/tmp_output/0_ptlines.xml.gz' ... done.
  Import done:
    1970 nodes loaded.
    52 types loaded.
@@ -152,8 +152,8 @@ done (2ms).
 Assigning nodes to traffic lights ... done (0ms).
 Sorting nodes' edges ... done (2ms).
 Computing node shapes ... 
-done (52ms).
-Computing edge shapes ... done (26ms).
+done (53ms).
+Computing edge shapes ... done (25ms).
 Computing node types ... done (0ms).
 Computing priorities ... done (2ms).
 Computing approached edges ... done (0ms).
@@ -167,7 +167,7 @@ Computing traffic light control information ... done (1ms).
 Computing node logics ... done (29ms).
 Computing traffic light logics ... done (0ms).
  133 traffic light(s) computed.
-Find accesses for pt rail stops ... done (34ms).
+Find accesses for pt rail stops ... done (31ms).
 -----------------------------------------------------
 Summary:
  Node type statistics:
@@ -183,36 +183,36 @@ Summary:
   Applied offset     : 0.00,0.00
   Converted boundary : 0.00,0.00,8608.99,5009.41
 -----------------------------------------------------
-Writing network ... done (315ms).
+Writing network ... done (311ms).
 Success.
 importing taxi stops from pre_test/mitte_net/osm/osm_bbox.osm.xml
-calling generateBidiDistricts.main /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/net.net.xml.gz, /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/bidi.taz.xml
+calling generateBidiDistricts.main /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/net.net.xml.gz, /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/bidi.taz.xml
 calling gtfs2pt
-function import_gtfs called at Sat, 10 Dec 2022 20:11:35 +0000
-function import_gtfs finished after 11.389947 seconds
-function filter_gtfs called at Sat, 10 Dec 2022 20:11:47 +0000
-function filter_gtfs finished after 4.599513 seconds
-function import_osm called at Sat, 10 Dec 2022 20:11:51 +0000
+function import_gtfs called at Sat, 10 Dec 2022 22:11:44 +0000
+function import_gtfs finished after 10.901850 seconds
+function filter_gtfs called at Sat, 10 Dec 2022 22:11:55 +0000
+function filter_gtfs finished after 4.500830 seconds
+function import_osm called at Sat, 10 Dec 2022 22:12:00 +0000
 Reading up to time step: 0.00Reading up to time step: 200.00Success.
-189 of 203 routes have been imported, see '/home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/repair_errors.txt' for more information.
-function import_osm finished after 0.237288 seconds
-function map_gtfs_osm called at Sat, 10 Dec 2022 20:11:52 +0000
-function map_gtfs_osm finished after 18.919269 seconds
+189 of 203 routes have been imported, see '/home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/log/repair_errors.txt' for more information.
+function import_osm finished after 0.246234 seconds
+function map_gtfs_osm called at Sat, 10 Dec 2022 22:12:00 +0000
+function map_gtfs_osm finished after 18.820104 seconds
 Success.
 Success.
 Success.
 Loading net ... done.
-Loading additional file '/home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/bidi.taz.xml'  ... done.
+Loading additional file '/home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/bidi.taz.xml'  ... done.
 Skipped until: 0.00
-Not all given gtfs elements have been mapped, see /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/missing.xml for more information
-generating taz file /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/districts.taz.xml
-importing shapes from pre_test/mitte_net/shapes/Berlin Verkehrsbezirke (1193 VBz) GK4_zone.dbf ...
-calculating contained edges for /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/Berlin Verkehrsbezirke (1193 VBz) GK4_zone.poly.xml ...
-generating taz file /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/RBS_OD_ORT_1412.taz.xml
-importing shapes from pre_test/mitte_net/shapes/RBS_OD_ORT_1412.dbf ...
-calculating contained edges for /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/RBS_OD_ORT_1412.poly.xml ...
-generating taz file /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/Berlin_1223.taz.xml
-importing shapes from pre_test/mitte_net/shapes/Berlin_1223.dbf ...
-calculating contained edges for /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/Berlin_1223.poly.xml ...
+Not all given gtfs elements have been mapped, see /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/log/missing.xml for more information
+generating taz file /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/districts.taz.xml
+importing shapes from /home/micha/programming/tsc/data/berlin_net/shapes/Berlin Verkehrsbezirke (1193 VBz) GK4_zone.dbf ...
+calculating contained edges for /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/Berlin Verkehrsbezirke (1193 VBz) GK4_zone.poly.xml ...
+generating taz file /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/RBS_OD_ORT_1412.taz.xml
+importing shapes from /home/micha/programming/tsc/data/berlin_net/shapes/RBS_OD_ORT_1412.dbf ...
+calculating contained edges for /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/RBS_OD_ORT_1412.poly.xml ...
+generating taz file /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/Berlin_1223.taz.xml
+importing shapes from /home/micha/programming/tsc/data/berlin_net/shapes/Berlin_1223.dbf ...
+calculating contained edges for /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/Berlin_1223.poly.xml ...
 generating landmark file pre_test/mitte_net/landmarks
-generating landmark file /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec201109.582293/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/landmarks.csv.gz
+generating landmark file /home/micha/.texttest/tmp/tsc.sqlite3.python3.10Dec221118.587117/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/data/scenario_templates/mitte_net/landmarks.csv.gz
