@@ -66,6 +66,8 @@ def getOptions():
                            help="name of file listing landmark edges")
     argParser.add_argument("--no-network", action="store_true", default=False,
                            help="skip network building")
+    argParser.add_argument("--osm-ptlines", action="store_true", default=False,
+                           help="use osm information on public transport lines")
     return argParser.parse_args()
 
 
@@ -113,7 +115,7 @@ def create_template_folder(scenario_pre_dir, options):
 
     # copy static input such as vehicle types, edge lists and processing scripts
     for ff in sorted(listdir_skip_hidden(scenario_pre_dir)):
-        if ff[-3:] in ['.gz', 'xml', '.py', 'cfg'] and ff[:12] != 'template_gen' and ff != 'setup.py':
+        if (ff[-3:] in ['.gz', 'xml', 'cfg'] and ff[:12] != 'template_gen') or ff == '__init__.py':
             print("copying %s" % ff)
             shutil.copyfile(os.path.join(scenario_pre_dir, ff), os.path.join(scenario_template_dir, ff))
 
@@ -155,13 +157,15 @@ def create_template_folder(scenario_pre_dir, options):
                 for idx, config in enumerate(configs):
                     netconvert_call = [netconvert, '-c', config,
                                        '--output-file', os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % idx),
-                                       '--log', os.path.join(log_dir, '%s.log' % os.path.basename(config)[:-8]),
-                                       '--ptstop-output', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % idx),
-                                       '--ptline-output', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % idx)]
+                                       '--log', os.path.join(log_dir, '%s.log' % os.path.basename(config)[:-8])]
+                    if options.osm_ptlines:
+                        netconvert_call += ['--ptstop-output', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % idx),
+                                            '--ptline-output', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % idx)]
                     if idx > 0:
-                        netconvert_call += ['--sumo-net-file', os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % (idx-1)),
-                                            '--ptstop-files', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % (idx-1)),
-                                            '--ptline-files', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % (idx-1))]
+                        netconvert_call += ['--sumo-net-file', os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % (idx-1))]
+                        if options.osm_ptlines:
+                            netconvert_call += ['--ptstop-files', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % (idx-1)),
+                                                '--ptline-files', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % (idx-1))]
                     if options.verbose:
                         print(' '.join(netconvert_call))
                         sys.stdout.flush()
