@@ -254,7 +254,7 @@ def build_taz_etc(scenario_pre_dir, net_path):
     if os.path.isdir(shapes_dir):
         polyconvert = sumolib.checkBinary('polyconvert')
         idCol = dict([e.split(":") for e in options.shape_id_column.split(",")])
-        for dbf in glob.glob(os.path.join(shapes_dir, "*.dbf")):
+        for dbf in sorted(glob.glob(os.path.join(shapes_dir, "*.dbf"))):
             prefix = os.path.basename(dbf)[:-4]
             tazFile = os.path.join(scenario_template_dir, "districts.taz.xml")
             if prefix in idCol:
