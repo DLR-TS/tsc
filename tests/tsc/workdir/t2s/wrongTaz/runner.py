@@ -3,7 +3,7 @@ import subprocess
 import tscdefs
 
 tripFile = 'twoPersonsWrongTaz.csv'
-net = os.path.join('scenario_workdir','mitte_net', 'net.net.xml')
+net = os.path.join('scenario_workdir','mitte_net', 'net.net.xml.gz')
 iteration_dir = os.path.join('scenario_workdir','mitte_net', 'iteration000')
 
 os.chdir("data")

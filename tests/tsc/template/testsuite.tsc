@@ -1,6 +1,3 @@
-# Tests for the smaller mitte scenario
-mitte
-
 # Daemon has to create a new workdir for the scenario
 tscDaemonEmptyWorkdir
 
@@ -30,3 +27,6 @@ walking
 
 # trips file with persons who want to use car sharing
 sharing
+
+# trips file with persons who want to use public transport
+public_transport

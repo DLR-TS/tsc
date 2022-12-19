@@ -2,15 +2,17 @@ The following new files/directories were created:
 <Test Directory>
 ----__pycache__
 --------tscdefs.cpython-38.pyc
+----core.db
 ----data
 --------tsc.log
 --------scenario_workdir
 ------------mitte_net
-----------------Berlin_1223.taz.xml
-----------------RBS_OD_ORT_1412.taz.xml
-----------------bidi.taz.xml
-----------------districts.taz.xml
-----------------net.net.xml
+----------------Berlin_1223.taz.xml.gz
+----------------RBS_OD_ORT_1412.taz.xml.gz
+----------------bidi.taz.xml.gz
+----------------districts.taz.xml.gz
+----------------landmarks.csv.gz
+----------------net.net.xml.gz
 ----------------vtypes.xml
 ----------------iteration000
 --------------------emission_routes.xml
@@ -62,3 +64,5 @@ The following new files/directories were created:
 ------------mitte_net
 ----------------__pycache__
 --------------------__init__.cpython-38.pyc
+----public.db
+----tmp.db

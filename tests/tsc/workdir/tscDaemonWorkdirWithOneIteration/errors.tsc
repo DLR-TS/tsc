@@ -1,5 +1,1 @@
 Warning: Traffic light type 'actuated' cannot be used in mesoscopic simulation. Using 'static' as fallback.
-Warning: Network contains internal links which are ignored. Vehicles will 'jump' across junctions and thus underestimate route lengths and travel times.
-Warning: No connection between edge '23343818#6-source' and edge '-4685763#4-sink' found.
-Warning: No route for vehicle '1000327_1000065_965_0' found.
-Warning: Removing vehicle '1000327_1000065_965_0' which has no valid route.

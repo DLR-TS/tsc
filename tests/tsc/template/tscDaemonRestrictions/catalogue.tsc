@@ -6,11 +6,12 @@ The following new files/directories were created:
 --------tsc.log
 --------scenario_workdir
 ------------mitte_net
-----------------Berlin_1223.taz.xml
-----------------RBS_OD_ORT_1412.taz.xml
-----------------bidi.taz.xml
-----------------districts.taz.xml
-----------------net.net.xml
+----------------Berlin_1223.taz.xml.gz
+----------------RBS_OD_ORT_1412.taz.xml.gz
+----------------bidi.taz.xml.gz
+----------------districts.taz.xml.gz
+----------------landmarks.csv.gz
+----------------net.net.xml.gz
 ----------------restricted_edges.edg.xml
 ----------------restrictions.typ.xml
 ----------------vtypes.xml
