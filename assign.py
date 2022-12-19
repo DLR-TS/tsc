@@ -234,7 +234,7 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
 @benchmark
 def run_bulk(options, first_depart, last_depart, trip_file, weight_file):
     base = trip_file[:-4]
-    input_files = [trip_file] + list(sorted(glob.glob(os.path.join(os.path.dirname(options.net_file), 'pt*.xml'))))
+    input_files = [trip_file] + list(sorted(glob.glob(os.path.join(os.path.dirname(options.net_file), 'pt*.xml*'))))
     route_file = base + ".rou.xml.gz"
     additional = [options.vtype_file]
     if options.bidi_taz_file:
