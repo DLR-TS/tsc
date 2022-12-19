@@ -53,10 +53,12 @@ output:AStarRouter spent .*
 output:parsing .*tsccfg{REPLACE parsing <tsccfg>}
 output:No module named scripts{REPLACE No module named 'scripts'}
 output:starting main.*{REPLACE starting main <cmd>}
+output:.*/data/mitte_test/{REPLACE data/mitte_test/}
 errors:Exception AttributeError: AttributeError("'NoneType' object has no attribute 'Error_GetErrorCount'",) in <bound method
 errors:Network contains internal links which are ignored.
 errors:Ran [0-9]+ tests in [0-9]+\.[0-9]+s{REPLACE Ran <COUNT> tests in <TIME>}
 errors:{INTERNAL writedir}{REPLACE <texttest sandbox>}
+errors:.*/data/mitte_test/{REPLACE data/mitte_test/}
 catalogue:.pyc
 catalogue:__pycache__
 catalogue:----core.db
