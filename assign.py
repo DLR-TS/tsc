@@ -139,7 +139,8 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
         additional.append(options.bidi_taz_file)
     base_dir = os.path.dirname(options.net_file)
     if not meso:
-        for add in (os.path.join(base_dir, 'tlsOffsets.add.xml'), os.path.join(oneshot_dir, 'vehroutes_%s_tls.add.xml' % suffix)):
+        for add in (os.path.join(base_dir, 'tlsOffsets.add.xml'),
+                    os.path.join(oneshot_dir, 'vehroutes_%s_tls.add.xml' % suffix)):
             if os.path.exists(add):
                 additional.append(add)
     extra_opt = addOpt.split()
@@ -149,10 +150,10 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
     trips = [trip_file]
     if os.path.exists(options.background_trips):
         trips.append(options.background_trips)
-        additional.append(os.path.join(base_dir, 'suburb.taz.xml'))
-    specificPT = glob.glob(abspath_in_dir(oneshot_dir, 'pt*.xml'))
-    additional += sorted(specificPT if specificPT else glob.glob(os.path.join(base_dir, 'pt*.xml')))
-    additional += sorted(glob.glob(os.path.join(base_dir, 'fleet*.xml')), reverse=True)
+        additional.append(glob.glob(os.path.join(base_dir, 'suburb.taz.xml*'))[0])
+    specificPT = glob.glob(abspath_in_dir(oneshot_dir, 'pt*.xml*'))
+    additional += sorted(specificPT if specificPT else glob.glob(os.path.join(base_dir, 'pt*.xml*')))
+    additional += sorted(glob.glob(os.path.join(base_dir, 'fleet*.xml*')), reverse=True)
 
     tempcfg = abspath_in_dir(oneshot_dir, '%s_temp.sumocfg' % suffix)
     addOpt = ""
@@ -165,9 +166,9 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
         <meso-junction-control.limited value="true"/>
         <meso-minor-penalty value="0.5"/>
         <meso-tls-penalty value="0.5"/>"""
-    if meso and os.path.exists(os.path.join(base_dir, "landmarks.csv")):
+    if meso and os.path.exists(os.path.join(base_dir, "landmarks.csv.gz")):
         addOpt += """
-        <astar.landmark-distances value="%s"/>""" % os.path.join(base_dir, "landmarks.csv")
+        <astar.landmark-distances value="%s"/>""" % os.path.join(base_dir, "landmarks.csv.gz")
     with open(tempcfg, 'w') as f:
         f.write(
             """<configuration>
@@ -214,7 +215,7 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
         )
 
     oneshotcfg = abspath_in_dir(oneshot_dir, '%s.sumocfg' % suffix)
-    oneshot_emissions = abspath_in_dir(oneshot_dir, 'emissions_%s.xml' % suffix)
+    # oneshot_emissions = abspath_in_dir(oneshot_dir, 'emissions_%s.xml' % suffix)
     with working_dir(oneshot_dir):
         with open(additional[1], 'w') as f:
             f.write('<additional>\n    <edgeData id="dump" freq="%s" file="%s" excludeEmpty="true" minSamples="1"/>\n' %

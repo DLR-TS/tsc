@@ -128,7 +128,7 @@ def checkOptions(options):
         options.vtype_file = os.path.abspath(options.vtype_file)
     if options.taz_file is None:
         options.taz_file = abspath_in_dir(
-            os.path.dirname(options.net_file), "districts.taz.xml")
+            os.path.dirname(options.net_file), "districts.taz.xml.gz")
     else:
         options.taz_file = os.path.abspath(options.taz_file)
     if options.bidi_taz_file:

@@ -222,7 +222,7 @@ def build_taz_etc(scenario_pre_dir, net_path):
     scenario_template_dir = os.path.dirname(net_path)
     log_dir = os.path.join(scenario_template_dir, "log")
     net = None
-    bidi_path = os.path.join(scenario_template_dir, "bidi.taz.xml")
+    bidi_path = os.path.join(scenario_template_dir, "bidi.taz.xml.gz")
     if not os.path.exists(bidi_path) or os.path.getmtime(bidi_path) < os.path.getmtime(net_path):
         if options.verbose:
             print("calling generateBidiDistricts.main %s, %s" % (net_path, bidi_path))
@@ -237,8 +237,8 @@ def build_taz_etc(scenario_pre_dir, net_path):
         tmp_output_dir = ensure_tmp(scenario_template_dir)
         for cfg in glob.glob(os.path.join(gtfs_dir, "*.cfg")):
             gtfs_call = ['-c', cfg, '-n', os.path.abspath(net_path),
-                         '--additional-output', os.path.join(scenario_template_dir, 'pt_routes.add.xml'),
-                         '--route-output', os.path.join(scenario_template_dir, 'pt_vehicles.add.xml'),
+                         '--additional-output', os.path.join(scenario_template_dir, 'pt_routes.add.xml.gz'),
+                         '--route-output', os.path.join(scenario_template_dir, 'pt_vehicles.add.xml.gz'),
                          '--map-output', os.path.join(tmp_output_dir, 'output'),
                          '--network-split', os.path.join(tmp_output_dir, 'resources'),
                          '--fcd', os.path.join(tmp_output_dir, 'fcd'),
@@ -260,23 +260,23 @@ def build_taz_etc(scenario_pre_dir, net_path):
         idCol = dict([e.split(":") for e in options.shape_id_column.split(",")])
         for dbf in sorted(glob.glob(os.path.join(shapes_dir, "*.dbf"))):
             prefix = os.path.basename(dbf)[:-4]
-            tazFile = os.path.join(scenario_template_dir, "districts.taz.xml")
+            tazFile = os.path.join(scenario_template_dir, "districts.taz.xml.gz")
             if prefix in idCol:
-                tazFile = os.path.join(scenario_template_dir, prefix + ".taz.xml")
+                tazFile = os.path.join(scenario_template_dir, prefix + ".taz.xml.gz")
             if options.verbose:
                 print("generating taz file %s" % tazFile)
             if not os.path.exists(tazFile) or os.path.getmtime(tazFile) < os.path.getmtime(net_path):
                 if options.verbose:
                     print("importing shapes from %s ..." % dbf)
                 polyReader = sumolib.shapes.polygon.PolygonReader(True)
-                polyFile = os.path.join(scenario_template_dir, prefix + ".poly.xml")
+                polyFile = os.path.join(scenario_template_dir, prefix + ".poly.xml.gz")
                 subprocess.call([polyconvert, "-n", net_path, "-o", polyFile,
                                  "--shapefile-prefixes", os.path.join(shapes_dir, prefix),
                                  "--shapefile.add-param", "--shapefile.traditional-axis-mapping",
                                  "--shapefile.id-column", idCol.get(prefix, idCol["*"])])
                 if options.verbose:
                     print("calculating contained edges for %s ..." % polyFile)
-                parse(polyFile, polyReader)
+                parse(sumolib.open(polyFile), polyReader)
                 polys = polyReader.getPolygons()
                 if net is None:
                     net = sumolib.net.readNet(net_path, withConnections=False, withFoes=False)
@@ -286,7 +286,7 @@ def build_taz_etc(scenario_pre_dir, net_path):
                 reader.writeResults(eIDoptions)
 
     if options.suburb_taz:
-        tazFile = os.path.join(scenario_template_dir, options.suburb_taz + ".taz.xml")
+        tazFile = os.path.join(scenario_template_dir, options.suburb_taz + ".taz.xml.gz")
         if not os.path.exists(tazFile) or os.path.getmtime(tazFile) < os.path.getmtime(net_path):
             if options.verbose:
                 print("generating taz file %s" % tazFile)

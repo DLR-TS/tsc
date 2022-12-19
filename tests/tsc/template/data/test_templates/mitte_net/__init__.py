@@ -2,7 +2,7 @@
 @file    __init__.py
 @author  Michael.Behrisch@dlr.de
 @date    2015-06-10
-@version $Id: __init__.py 4620 2015-06-27 14:06:36Z behr_mi $
+@version $Id: __init__.py 8298 2020-03-05 12:31:51Z behr_mi $
 
 custom script collection for berlin_2010
 
@@ -18,12 +18,13 @@ assign_trips = assign.run_default
 
 @benchmark
 def post(options, params, conn, routefile):
-    p = postprocess.run_pedestrian_sumo(options, routefile)
-    retcode = p[1].wait()
-    if retcode:
-        raise subprocess.CalledProcessError(retcode, p[0])
-    p = postprocess.run_emission_sumo(options, params, conn, routefile)
-    if p is not None:
-        retcode = p[1].wait()
-        if retcode:
-            raise subprocess.CalledProcessError(retcode, p[0])
+    procs = [postprocess.run_pedestrian_sumo(options, routefile),
+             postprocess.run_emission_sumo(options, params, conn, routefile)]
+    err = None
+    for p in procs:
+        if p is not None:
+            retcode = p[1].wait()
+            if retcode:
+                err = subprocess.CalledProcessError(retcode, p[0])
+    if err:
+        raise err
