@@ -52,7 +52,7 @@ def parse_person(p):
             if stage.cost:
                 walkDuration[idx] += float(stage.cost)
                 if idx == 0:
-                    ended = walkDuration[idx]
+                    ended = walkDuration[idx] + rideEnd
             else:
                 ended = float(stage.ended)
                 walkDuration[idx] = ended - rideEnd
