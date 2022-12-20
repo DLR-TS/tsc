@@ -1,14 +1,15 @@
 Warning: Traffic light type 'actuated' cannot be used in mesoscopic simulation. Using 'static' as fallback.
 Warning: Vehicle class 'bicycle' of vType 'ped_bike' is set as ignored by option --meso-ignore-lanes-by-vclass to ensure default vehicle capacity. Set option --meso-lane-queue for multi-modal meso simulation
 Warning: Teleporting person '1000005_1000001_817_0'; waited too long, from edge '340498982#3', time=139051.00.
-Warning: Teleporting person '1000005_1000001_817_0' from vehicle destination edge '340606520#1' to intended destination edge '24914109' time=139422.00
-Warning: Teleporting person '1000005_1000001_850_0' from vehicle destination edge '150394035#8' to intended destination edge '150394035#4' time=139645.00
-Warning: Teleporting person '1000019_1000003_813_0'; waited too long, from edge '289830064', time=139700.00.
+Warning: Teleporting person '1000005_1000001_850_0' from vehicle destination edge '150394035#8' to intended destination edge '150394035#4' time=139635.00
+Warning: Teleporting person '1000005_1000001_817_0' from vehicle destination edge '340606520#1' to intended destination edge '24914109' time=139713.00
+Warning: Teleporting person '1000005_1000001_850_0' from vehicle destination edge '222389420#0' to intended destination edge '169195795#2' time=140131.00
+Warning: Teleporting person '1000019_1000003_813_0'; waited too long, from edge '93628051#3', time=140799.00.
 Warning: Teleporting person '1000019_1000003_850_0'; waited too long, from edge '175479659#0', time=141567.00.
-Warning: Teleporting person '1000005_1000001_817_0'; waited too long, from edge '93628051#3', time=143139.00.
-Warning: Teleporting person '1000005_1000001_850_0'; waited too long, from edge '61584187#0', time=143266.00.
-Warning: Teleporting person '1000019_1000003_813_0'; waited too long, from edge '10596831#0', time=144105.00.
-Warning: Teleporting person '1000019_1000003_850_0'; waited too long, from edge '150394035#4', time=145167.00.
+Warning: Teleporting person '1000019_1000003_850_0' from vehicle destination edge '150394035#8' to intended destination edge '150394035#4' time=141795.00
+Warning: Teleporting person '1000005_1000001_850_0'; waited too long, from edge '340498988#0', time=143731.00.
+Warning: Teleporting person '1000005_1000001_817_0'; waited too long, from edge '93628051#3', time=143739.00.
+Warning: Teleporting person '1000019_1000003_813_0'; waited too long, from edge '-336572467#1', time=145395.00.
 Warning: At actuated tlLogic '1412045005', linkIndex 12 has no controlling detector.
 Warning: At actuated tlLogic '1412045005', linkIndex 13 has no controlling detector.
 Warning: At actuated tlLogic '1412045005', linkIndex 14 has no controlling detector.
