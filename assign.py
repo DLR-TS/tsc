@@ -256,6 +256,7 @@ def run_bulk(options, first_depart, last_depart, trip_file, weight_file):
         '--write-costs',
         '--route-length',
         '--ignore-errors',
+        '--unsorted-input',
         '--verbose'
     ]
     if weight_file is None:
