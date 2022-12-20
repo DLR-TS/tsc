@@ -276,7 +276,7 @@ def build_taz_etc(scenario_pre_dir, net_path):
                                  "--shapefile.id-column", idCol.get(prefix, idCol["*"])])
                 if options.verbose:
                     print("calculating contained edges for %s ..." % polyFile)
-                parse(sumolib.open(polyFile), polyReader)
+                parse(sumolib.openz(polyFile), polyReader)
                 polys = polyReader.getPolygons()
                 if net is None:
                     net = sumolib.net.readNet(net_path, withConnections=False, withFoes=False)
