@@ -1,7 +1,7 @@
 The following new files/directories were created:
 <Test Directory>
 ----__pycache__
---------tscdefs.cpython-38.pyc
+--------tscdefs.cpython-310.pyc
 ----core.db
 ----data
 --------tsc.log
@@ -14,7 +14,7 @@ The following new files/directories were created:
 ----------------landmarks.csv.gz
 ----------------net.net.xml.gz
 ----------------ptVtypes.xml
-----------------pt_routes.add.xml.gz
+----------------pt_stops.add.xml.gz
 ----------------pt_vehicles.add.xml.gz
 ----------------vtypes.xml
 ----------------iteration000
@@ -63,9 +63,9 @@ The following new files/directories were created:
 ------------------------t2s_rectify_twoPersonsOnly.log
 --------test_templates
 ------------__pycache__
-----------------__init__.cpython-38.pyc
+----------------__init__.cpython-310.pyc
 ------------mitte_net
 ----------------__pycache__
---------------------__init__.cpython-38.pyc
+--------------------__init__.cpython-310.pyc
 ----public.db
 ----tmp.db

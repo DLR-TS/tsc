@@ -237,7 +237,7 @@ def build_taz_etc(scenario_pre_dir, net_path):
         tmp_output_dir = ensure_tmp(scenario_template_dir)
         for cfg in glob.glob(os.path.join(gtfs_dir, "*.cfg")):
             gtfs_call = ['-c', cfg, '-n', os.path.abspath(net_path),
-                         '--additional-output', os.path.join(scenario_template_dir, 'pt_routes.add.xml.gz'),
+                         '--additional-output', os.path.join(scenario_template_dir, 'pt_stops.add.xml.gz'),
                          '--route-output', os.path.join(scenario_template_dir, 'pt_vehicles.add.xml.gz'),
                          '--map-output', os.path.join(tmp_output_dir, 'output'),
                          '--network-split', os.path.join(tmp_output_dir, 'resources'),
@@ -270,10 +270,12 @@ def build_taz_etc(scenario_pre_dir, net_path):
                     print("importing shapes from %s ..." % dbf)
                 polyReader = sumolib.shapes.polygon.PolygonReader(True)
                 polyFile = os.path.join(scenario_template_dir, prefix + ".poly.xml.gz")
-                subprocess.call([polyconvert, "-n", net_path, "-o", polyFile,
+                call = [polyconvert, "-n", net_path, "-o", polyFile,
                                  "--shapefile-prefixes", os.path.join(shapes_dir, prefix),
                                  "--shapefile.add-param", "--shapefile.traditional-axis-mapping",
-                                 "--shapefile.id-column", idCol.get(prefix, idCol["*"])])
+                                 "--shapefile.id-column", idCol.get(prefix, idCol["*"])]
+                print(" ".join(call))
+                subprocess.call(call)
                 if options.verbose:
                     print("calculating contained edges for %s ..." % polyFile)
                 parse(sumolib.openz(polyFile), polyReader)
