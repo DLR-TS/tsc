@@ -10,8 +10,8 @@ prefix = os.path.join(here, "spandau")
 boundary = "13.1907,52.529,13.3053,52.566"
 output_net = prefix + ".net.xml"
 
-copies = ["move_urban/vtypes.xml", "move_urban/*.taz.xml",
-          "move_urban/pt*.xml"]
+copies = ["move_urban/vtypes.xml", "move_urban/*.taz.xml.gz",
+          "move_urban/pt*.xml.gz"]
 
 # copy selected files from berlin scenario
 for source in copies:
@@ -43,7 +43,7 @@ with open(prefix + ".txt", "w") as edge_out:
 
 with open(prefix + '_bidi.taz.xml', 'w') as bidi:
     bidi.write('<tazs>\n')
-    for taz in sumolib.output.parse(os.path.join(here, 'bidi.taz.xml'), 'taz'):
+    for taz in sumolib.output.parse(os.path.join(here, 'bidi.taz.xml.gz'), 'taz'):
         if taz.id in edges:
             taz.edges = " ".join([e for e in taz.edges.split() if e in edges])
             bidi.write(taz.toXML("    "))

@@ -11,8 +11,8 @@ boundary = "13.1907,52.529,13.3053,52.566"
 output_net = prefix + ".net.xml"
 
 copies = ["berlin_net/vtypes.xml", "berlin_net/net.net.xml.gz",
-          "berlin_net/landmarks.csv.gz", "berlin_net/*.taz.xml",
-          "berlin_net/pt*.xml"]
+          "berlin_net/landmarks.csv.gz", "berlin_net/*.taz.xml.gz",
+          "berlin_net/pt*.xml.gz"]
 
 # copy selected files from berlin scenario
 for source in copies:
@@ -57,7 +57,7 @@ with open(prefix + ".txt", "w") as edge_out:
 
 with open(prefix + '_bidi.taz.xml', 'w') as bidi:
     bidi.write('<tazs>\n')
-    for taz in sumolib.xml.parse(os.path.join(here, 'bidi.taz.xml'), 'taz'):
+    for taz in sumolib.xml.parse(os.path.join(here, 'bidi.taz.xml.gz'), 'taz'):
         if taz.id in edges:
             taz.edges = " ".join([e for e in taz.edges.split() if e in edges])
             bidi.write(taz.toXML("    "))
