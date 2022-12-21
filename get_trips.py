@@ -220,13 +220,7 @@ def write_all_pairs(conn, vType, depart, limit, tripfile, params, seed, mode=MOD
                 end_reps = reps[end]
                 sl = [s + e for s in start_reps for e in end_reps]
                 if len(sl) > num_samples:
-                    if sys.version_info.minor < 11:
-                        # the additional random parameter ensures the same results for python 2 and 3
-                        # but is deprecated for 3.10 and later
-                        random.shuffle(sl, random=random.random)
-                        sl = sl[:num_samples]
-                    else:
-                        sl = random.sample(sl, num_samples)
+                    sl = random.sample(sl, num_samples)
                 for trip in sl:
                     num_rows += 1
                     columns = list(template)
