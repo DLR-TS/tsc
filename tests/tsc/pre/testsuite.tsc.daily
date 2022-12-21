@@ -1,0 +1,5 @@
+# Test on setting up the basic infrastructure for tapas sumo
+installTemplateDir
+
+# Tests using a reduced net
+installTemplateDir_mitte
