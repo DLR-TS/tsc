@@ -42,7 +42,7 @@ import osmTaxiStop  # noqa
 import db_manipulator
 import import_navteq
 import get_germany_taz
-from common import listdir_skip_hidden
+from common import listdir_skip_hidden, call
 
 
 def getOptions():
@@ -166,10 +166,7 @@ def create_template_folder(scenario_pre_dir, options):
                         if options.osm_ptlines:
                             netconvert_call += ['--ptstop-files', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % (idx-1)),
                                                 '--ptline-files', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % (idx-1))]
-                    if options.verbose:
-                        print(' '.join(netconvert_call))
-                        sys.stdout.flush()
-                    subprocess.check_call(netconvert_call)
+                    call(netconvert_call, options.verbose)
 
                 if configs:
                     osmInput = glob.glob(os.path.join(osm_dir, "*.osm.xml*"))
@@ -183,13 +180,8 @@ def create_template_folder(scenario_pre_dir, options):
 
                 poly_config = os.path.join(scenario_pre_dir, 'template_gen.polycfg')
                 if os.path.isfile(poly_config):
-                    polyconvert = sumolib.checkBinary('polyconvert')
-                    polyconvertCmd = [polyconvert, '-c', poly_config,
-                                      '-o', os.path.join(scenario_template_dir, "shapes.xml"), '-v']
-                    if options.verbose:
-                        print(polyconvertCmd)
-                        sys.stdout.flush()
-                    subprocess.call(polyconvertCmd)
+                    call([sumolib.checkBinary('polyconvert'), '-c', poly_config,
+                          '-o', os.path.join(scenario_template_dir, "shapes.xml"), '-v'], options.verbose)
 
             # find last files
             for root, _, files in os.walk(tmp_output_dir):
@@ -203,7 +195,7 @@ def create_template_folder(scenario_pre_dir, options):
             shutil.rmtree(tmp_output_dir)
     setup_file = os.path.join(scenario_pre_dir, 'setup.py')
     if os.path.exists(setup_file):
-        subprocess.check_call([sys.executable, setup_file, scenario_pre_dir, scenario_template_dir])
+        call([sys.executable, setup_file, scenario_pre_dir, scenario_template_dir], options.verbose)
     if not os.path.exists(net_path) and not os.path.exists(generated):
         print("Could not find network '%s' for %s, cleaning up!" % (net_path, scenario_name))
         if not dir_exists:
@@ -270,12 +262,10 @@ def build_taz_etc(scenario_pre_dir, net_path):
                     print("importing shapes from %s ..." % dbf)
                 polyReader = sumolib.shapes.polygon.PolygonReader(True)
                 polyFile = os.path.join(scenario_template_dir, prefix + ".poly.xml.gz")
-                call = [polyconvert, "-n", net_path, "-o", polyFile,
-                                 "--shapefile-prefixes", os.path.join(shapes_dir, prefix),
-                                 "--shapefile.add-param", "--shapefile.traditional-axis-mapping",
-                                 "--shapefile.id-column", idCol.get(prefix, idCol["*"])]
-                print(" ".join(call))
-                subprocess.call(call)
+                call([polyconvert, "-n", net_path, "-o", polyFile,
+                      "--shapefile-prefixes", os.path.join(shapes_dir, prefix),
+                      "--shapefile.add-param", "--shapefile.traditional-axis-mapping",
+                      "--shapefile.id-column", idCol.get(prefix, idCol["*"])], options.verbose)
                 if options.verbose:
                     print("calculating contained edges for %s ..." % polyFile)
                 parse(sumolib.openz(polyFile), polyReader)
@@ -305,16 +295,13 @@ def build_taz_etc(scenario_pre_dir, net_path):
         add += "," + tazFile
     lm = os.path.join(scenario_pre_dir, options.landmarks)
     if os.path.isfile(lm):
-        if options.verbose:
-            print("generating landmark file %s" % lm)
-        duarouter = sumolib.checkBinary('duarouter')
         landmarkFile = os.path.join(scenario_template_dir, "landmarks.csv.gz")
         if options.verbose:
-            print("generating landmark file %s" % landmarkFile)
-        subprocess.call([duarouter, "-n", net_path, "-a", add, "--astar.landmark-distances", lm,
-                         "--astar.save-landmark-distances", landmarkFile,
-                         "--routing-threads", "24", "-v",
-                         "-o", "NUL", "--ignore-errors", "--aggregate-warnings", "5"])
+            print("generating landmark file %s from %s" % (landmarkFile, lm))
+        call([sumolib.checkBinary('duarouter'), "-n", net_path, "-a", add, "--astar.landmark-distances", lm,
+              "--astar.save-landmark-distances", landmarkFile,
+              "--routing-threads", "24", "-v",
+              "-o", "NUL", "--ignore-errors", "--aggregate-warnings", "5"], options.verbose)
     else:
         print("could not find landmark data for %s" % scenario_template_dir)
 

@@ -19,6 +19,7 @@
 from __future__ import print_function, division
 import subprocess
 import os
+import sys
 import csv
 
 import constants
@@ -31,12 +32,12 @@ def abspath_in_dir(d, f):
         # getcwd (and thus abspath) can fail on cifs mounts, see https://bugs.python.org/issue17525
         return os.path.normpath(os.path.join(os.environ['PWD'], d, f))
 
-def call(cmd):
-    # ensure unix compatibility
-    print(cmd)
-    if isinstance(cmd, str):
-        cmd = filter(lambda a: a != '', cmd.split(' '))
-    subprocess.call(cmd)
+def call(cmd, verbose=False):
+    if verbose:
+        print(" ".join(cmd))
+    sys.stdout.flush()
+    sys.stderr.flush()
+    subprocess.check_call(cmd)
 
 def ensure_dir(dir):
     if not os.path.isdir(dir):
