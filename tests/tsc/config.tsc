@@ -33,21 +33,13 @@ output:Duration:
 output:ended (duration:
 output:answered .* queries and explored
 output:{INTERNAL writedir}{REPLACE <texttest sandbox>}
-output:([A-Z]:)?/.*/bin/netconvert(.exe)?{REPLACE <netconvert>}
-output:([A-Z]:)?/.*/bin/polyconvert(.exe)?{REPLACE <polyconvert>}
+output:([A-Z]:)?/.*/bin/netconvert(.exe)?{REPLACE netconvert}
+output:([A-Z]:)?/.*/bin/polyconvert(.exe)?{REPLACE polyconvert}
+output:([A-Z]:)?/.*/bin/duarouter(.exe)?{REPLACE duarouter}
 output:([A-Z]:)?/.*/osm_scenario_pre{REPLACE <osm_scenario_pre>}
 output:Simulation.*started with{REPLACE Simulation started with}
 output:Parsing types from '.*/{REPLACE Parsing types from osm/typemap}
 output:Written configuration to '.*/{REPLACE Written configuration to '}
-output:Parsing nodes from osm-file '.*/{REPLACE Parsing nodes from osm-file }
-output:Parsing edges from osm-file '.*/{REPLACE Parsing edges from osm-file }
-output:Parsing relations from osm-file '.*/{REPLACE Parsing relations from osm-file }
-output:Parsing nodes from '.*/{REPLACE Parsing nodes from patch-file }
-output:Parsing edges from '.*/{REPLACE Parsing edges from patch-file }
-output:Parsing connections from '.*/{REPLACE Parsing nodes from patch-file }
-output:Parsing traffic lights from '.*/{REPLACE Parsing edges from patch-file }
-output:importing shapes from .*/{REPLACE importing shapes from shapes/}
-output:Removing sharp turn .*
 output:AStarRouter spent .*
 output:parsing .*tsccfg{REPLACE parsing <tsccfg>}
 output:No module named scripts{REPLACE No module named 'scripts'}

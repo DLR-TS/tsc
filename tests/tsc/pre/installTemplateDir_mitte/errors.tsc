@@ -309,7 +309,7 @@ Warning! Disconnected route '112232896' between '237751546#2' and '237751552', n
 Warning! Disconnected route '112250898' between '459344271' and '230957297', no path found. Keeping longer part.
 Warning! Disconnected route '112250984' between '237751546#2' and '237751552', no path found. Keeping longer part.
 Warning! Disconnected route '112251060' between '459344271' and '230957297', no path found. Keeping longer part.
-Warning! No net /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.3_from_21Dez102146.27795/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/resources/subway.net.xml
+Warning! No net /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.21Dec152649.34605/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/resources/subway.net.xml
 Warning! Disconnected route '105361629' between '169953964#7' and '83146233#0#0', no path found. Keeping longer part.
 Warning! Disconnected route '105361771.trimmed' between '169953964#7' and '83146233#0#0', no path found. Keeping longer part.
 Warning! Disconnected route '105361771.trimmed' between '83146233#0#0' and '168253001#0', no path found. Keeping longer part.
@@ -379,7 +379,7 @@ Warning! Disconnected route '106008336' between '153427725#9' and '83146233#0#0'
 Warning! Disconnected route '106008336.trimmed' between '291670885#0' and '144529199#5', no path found. Keeping longer part.
 Warning: Cannot derive file name for alternatives output, skipping it.
 Warning: No route input specified or all routes were invalid.
-Warning: Not all network edges were found in the lookup table '/home/behr_mi/tsc/data/mitte_test/landmarks' for landmark edge '47016365#0'. Saving new matrix to '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.3_from_21Dez102146.27795/tsc.sqlite3.python3/pre_mitte/installTemplateDir_mitte/scenario_templates/mitte_test/landmarks.csv.gz'.
+Warning: Not all network edges were found in the lookup table '/home/behr_mi/tsc/data/mitte_test/landmarks' for landmark edge '47016365#0'. Saving new matrix to '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.21Dec152649.34605/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/landmarks.csv.gz'.
 Warning: No connection between edge '47016365#0' and edge '-10596872#1' found.
 Warning: No connection between edge '47016365#0' and edge '-10596872#1' found.
 Warning: No connection between edge '47016365#0' and edge '-109819340#1' found.
