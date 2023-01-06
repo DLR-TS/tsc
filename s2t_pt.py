@@ -141,19 +141,15 @@ def upload_all_pairs(conn, tables, start, end, real_routes, rep_routes, net, sta
             sumoDist.add(np.array(dist))
     if last is not None:
         values.append(_createValueTuple(last, end, real, sumoTime, sumoDist))
-    cursor = conn.cursor()
     # insert values
     odValues = []
     entryValues = []
     for idx, v in enumerate(values):
         odValues.append(str(v[:4] + (startIdx + idx,)))
         entryValues.append(str(v[4:] + (startIdx + idx, "{car}")))
-    odQuery = """INSERT INTO %s (taz_id_start, taz_id_end, sumo_type, interval_end, entry_id)
-VALUES %s""" % (tables[0], ','.join(odValues))
-    cursor.execute(odQuery)
-    insertQuery = """INSERT INTO %s (realtrip_count, representative_count,
- travel_time_sec, travel_time_stddev, distance_real, distance_stddev, entry_id, used_modes)
-VALUES %s""" % (tables[1], ','.join(entryValues))
-    cursor.execute(insertQuery)
-    conn.commit()
+    odQuery = "INSERT INTO %s (taz_id_start, taz_id_end, sumo_type, interval_end, entry_id) VALUES ?" % tables[0]
+    db_manipulator.insertmany(conn, odQuery, odValues)
+    insertQuery = """INSERT INTO %s (realtrip_count, representative_count, travel_time_sec, travel_time_stddev,
+                     distance_real, distance_stddev, entry_id, used_modes) VALUES ?""" % tables[1]
+    db_manipulator.insertmany(conn, insertQuery, entryValues)
     return startIdx + len(values)

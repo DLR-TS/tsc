@@ -105,11 +105,23 @@ def execute(conn, command, parameters):
     try:
         if not isinstance(conn, sqlite3.Connection):
             command = command.replace('?', '%s')
-            if command.startswith("INSERT") and len(parameters) > 1000:
-                psycopg2.extras.execute_values(cursor, command, parameters)
-                conn.commit()
-                return
         cursor.execute(command, parameters)
+    except psycopg2.errors.ReadOnlySqlTransaction as e:
+        print(e)
+    conn.commit()
+
+
+def insertmany(conn, command, parameters):
+    if not parameters:
+        return
+    cursor = conn.cursor()
+    try:
+        if isinstance(conn, sqlite3.Connection):
+            command = command.replace('?', '(%s)' % (", ".join(len(parameters[0]) * ["?"])))
+            cursor.executemany(command, parameters)
+        else:
+            command = command.replace('?', '%s')
+            psycopg2.extras.execute_values(cursor, command, parameters)
     except psycopg2.errors.ReadOnlySqlTransaction as e:
         print(e)
     conn.commit()
