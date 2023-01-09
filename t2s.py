@@ -105,6 +105,8 @@ def fillOptions(argParser):
     argParser.add_argument("--subnet-file", help="specifying the subnet to use to rerun a subnet assignment")
     argParser.add_argument("--resume", action="store_true", default=False,
                            help="reuse existing files instead of overwriting them")
+    argParser.add_argument("-b", "--representatives-bbox",
+                           help="bounding box to limit valid taz represantives (west,south,east,north)")
 
 
 def getSumoTripfileName(trips_dir, tapas_trips):
@@ -370,6 +372,10 @@ def map_trips(trip_sequence, vTypes, max_radius):
 
 
 def checkDeviations(tazMap, deviations, xycoord, taz, map_result, uid, log):
+    key = (xycoord, taz)
+    if key in deviations.reported:
+        return
+    deviations.reported.add(key)
     minDist, minEdge, minInTazEdge, minInTazDist = map_result
     if minEdge is not None and minDist is not None:
         if taz and (taz not in tazMap or minEdge not in tazMap[taz]):
@@ -424,6 +430,7 @@ def map_to_edges(options, parallel=False):
     deviations = Statistics("Mapping deviations")
     deviations.unmapped = 0
     deviations.noTazEdge = 0
+    deviations.reported = set()
 
     with open(options.mapped_log, 'w') as logfile:
         if os.name == "nt":

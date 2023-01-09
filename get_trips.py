@@ -181,7 +181,7 @@ def write_background_trips(conn, trip_table, limit, tripfile, params):
     return command
 
 
-def write_all_pairs(conn, vType, depart, limit, tripfile, params, seed, mode=MODE.car):
+def write_all_pairs(conn, vType, depart, limit, tripfile, params, seed, mode=MODE.car, bbox=None):
     random.seed(seed)
     fieldnames = TH.KEEP_COLUMNS + [THX.depart_second]
     template = list(fieldnames)
@@ -196,10 +196,12 @@ def write_all_pairs(conn, vType, depart, limit, tripfile, params, seed, mode=MOD
     num_samples = 5
     reps = collections.defaultdict(list)
     cursor = conn.cursor()
-    command = """SELECT taz_num_id, id, st_X(representative_coordinate), st_Y(representative_coordinate)
-                 FROM core.%s r, core.%s t WHERE r.taz_id = t.taz_id ORDER BY taz_num_id, id""" % (
-                 params[SP.representatives], params[SP.taz_table])
-    cursor.execute(command)
+    command = """SELECT taz_num_id, id, st_X(representative_coordinate) AS X, st_Y(representative_coordinate) AS Y
+                 FROM core.%s r, core.%s t WHERE r.taz_id = t.taz_id""" % (
+                    params[SP.representatives], params[SP.taz_table])
+    if bbox:
+        command += " AND X > %s AND Y > %s AND X < %s AND Y < %s" % tuple(bbox.split(","))
+    cursor.execute(command + " ORDER BY taz_num_id, id")
     for row in cursor:
         reps[row[0]].append(row[1:])
     keys = sorted(reps.keys())

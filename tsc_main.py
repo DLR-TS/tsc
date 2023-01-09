@@ -291,7 +291,8 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
                 trips_file = None
                 if not os.path.exists(options.tapas_trips) or not options.resume:
                     trips_file = options.tapas_trips
-                get_trips.write_all_pairs(conn, vType, begin_second, options.limit, trips_file, params, options.seed)
+                get_trips.write_all_pairs(conn, vType, begin_second, options.limit, trips_file, params, options.seed,
+                                          bbox=options.representatives_bbox)
                 write_status('>>> starting all pairs t2s using tripfile %s' %
                             options.tapas_trips, sim_key, params, conn)
                 conn.close()
@@ -308,7 +309,8 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
         write_status('>>> starting all pairs for public transport', sim_key, params, conn)
         if params[SP.representatives]:
             options.tapas_trips = get_trips.tripfile_name("%s_public" % (get_trips.ALL_PAIRS), target_dir=options.trips_dir)
-            get_trips.write_all_pairs(conn, "public", 31 * 3600, options.limit, options.tapas_trips, params, options.seed, MODE.public)
+            get_trips.write_all_pairs(conn, "public", 31 * 3600, options.limit, options.tapas_trips, params,
+                                      options.seed, MODE.public, bbox=options.representatives_bbox)
             write_status('>>> starting all pairs t2s using tripfile %s' % options.tapas_trips, sim_key, params, conn)
             conn.close()
             rou_file, _ = t2s.main(options)
