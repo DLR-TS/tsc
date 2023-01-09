@@ -41,6 +41,7 @@ output:Simulation.*started with{REPLACE Simulation started with}
 output:Parsing types from '.*/{REPLACE Parsing types from osm/typemap}
 output:Written configuration to '.*/{REPLACE Written configuration to '}
 output:AStarRouter spent .*
+output:DijkstraRouter spent .*
 output:parsing .*tsccfg{REPLACE parsing <tsccfg>}
 output:No module named scripts{REPLACE No module named 'scripts'}
 output:starting main.*{REPLACE starting main <cmd>}

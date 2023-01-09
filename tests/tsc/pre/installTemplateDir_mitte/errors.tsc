@@ -124,11 +124,11 @@ Warning: Last stop edge '207364192#0' is not part of the route of line '2014286'
 Warning: No connection found between stops on edge '153427725#6' and edge '144529199#7'.
 Warning: No connection found between stops on edge '118423895' and edge '93707132#3'.
 Warning: No connection found between stops on edge '118423895' and edge '52580073'.
-Warning: Ambiguous tram edges '30710062#3' and '30710062#4' for lane '4685730#0_1'.
-Warning: Ambiguous tram edges '24864947#21' and '24864947#22' for lane '33685647#0_1'.
+Warning: Ambiguous tram edges '4791641#10' and '4791641#11' for lane '-112441857#0_1'.
 Warning: Ambiguous tram edges '106863633#2' and '106863633#3' for lane '-33685647#0_1'.
 Warning: Ambiguous tram edges '4791641#11' and '4791641#12' for lane '-97133107#7_1'.
 Warning: Ambiguous tram edges '104765080#6' and '104765080#7' for lane '112441857#0_1'.
+Warning: Ambiguous tram edges '118423895' and '316975485#0' for lane '291670881#5_3'.
 Warning: Splitting vector close to end (pos: 16.32, length: 16.34)
 Warning: Not joining junctions 1063817172,1860618618 (only 1 entry node).
 Warning: Reducing junction cluster 1631101155,29221599,3129452762,6795798233,7766315010 (parallel incoming -19801644#0,780281639#0).
@@ -224,7 +224,7 @@ Warning: Lane '318015897#0_2' is not connected from any incoming edge at junctio
 Warning: 45 total messages of type: Ambiguity in turnarounds computation at junction '%'.
 Warning: 10 total messages of type: Found sharp turn with radius % at the end of edge '%'.
 Warning: 9 total messages of type: Found sharp turn with radius % at the start of edge '%'.
-Warning: 8 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
+Warning: 7 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
 Warning: Ambiguity in turnarounds computation at junction '1762976307'.
 Warning: Found sharp turn with radius 2.53 at the end of edge '137954786'.
 Warning: Found sharp turn with radius 5.54 at the start of edge '941490734'.
@@ -235,7 +235,7 @@ Warning: 45 total messages of type: Ambiguity in turnarounds computation at junc
 Warning: 3 total messages of type: Found angle of % degrees at edge '%', segment %.
 Warning: 10 total messages of type: Found sharp turn with radius % at the end of edge '%'.
 Warning: 9 total messages of type: Found sharp turn with radius % at the start of edge '%'.
-Warning: 8 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
+Warning: 7 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
 Warning: Ambiguity in turnarounds computation at junction '1762976307'.
 Warning: Found sharp turn with radius 2.53 at the end of edge '137954786'.
 Warning: Found sharp turn with radius 7.17 at the start of edge '941490839'.
@@ -246,8 +246,8 @@ Warning: 2 total messages of type: Ambiguity in turnarounds computation at junct
 Warning: 3 total messages of type: Found angle of % degrees at edge '%', segment %.
 Warning: 6 total messages of type: Found sharp turn with radius % at the end of edge '%'.
 Warning: 5 total messages of type: Found sharp turn with radius % at the start of edge '%'.
-Warning: 7 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
-Warning: 48 total messages of type: Non-static traffic light '%' does not define variable phase length.
+Warning: 5 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
+Warning: 49 total messages of type: Non-static traffic light '%' does not define variable phase length.
 Warning: Ambiguity in turnarounds computation at junction '1792333625'.
 Warning: Replacing loaded roundabout '28341062 421641064 46140373 46140380 46140384 46140385 941491994 941492725 941492726 941492727 941492728 941492735' with '28341062 421641064 46140373 46140380 46140384 46140385 941491994 941492726 941492727 941492728 941492735'.
 Warning: Edge '-4687155' is not connected to outgoing edges at junction '492025918'.
@@ -309,7 +309,7 @@ Warning! Disconnected route '112232896' between '237751546#2' and '237751552', n
 Warning! Disconnected route '112250898' between '459344271' and '230957297', no path found. Keeping longer part.
 Warning! Disconnected route '112250984' between '237751546#2' and '237751552', no path found. Keeping longer part.
 Warning! Disconnected route '112251060' between '459344271' and '230957297', no path found. Keeping longer part.
-Warning! No net /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.21Dec152649.34605/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/resources/subway.net.xml
+Warning! No net /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/resources/subway.net.xml
 Warning! Disconnected route '105361629' between '169953964#7' and '83146233#0#0', no path found. Keeping longer part.
 Warning! Disconnected route '105361771.trimmed' between '169953964#7' and '83146233#0#0', no path found. Keeping longer part.
 Warning! Disconnected route '105361771.trimmed' between '83146233#0#0' and '168253001#0', no path found. Keeping longer part.
@@ -379,10 +379,10 @@ Warning! Disconnected route '106008336' between '153427725#9' and '83146233#0#0'
 Warning! Disconnected route '106008336.trimmed' between '291670885#0' and '144529199#5', no path found. Keeping longer part.
 Warning: Cannot derive file name for alternatives output, skipping it.
 Warning: No route input specified or all routes were invalid.
-Warning: Not all network edges were found in the lookup table '/home/behr_mi/tsc/data/mitte_test/landmarks' for landmark edge '47016365#0'. Saving new matrix to '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.21Dec152649.34605/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/landmarks.csv.gz'.
+Warning: Not all network edges were found in the lookup table '/home/behr_mi/tsc/data/mitte_test/landmarks' for landmark edge '47016365#0'. Saving new matrix to '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/landmarks.csv.gz'.
 Warning: No connection between edge '47016365#0' and edge '-10596872#1' found.
 Warning: No connection between edge '47016365#0' and edge '-10596872#1' found.
 Warning: No connection between edge '47016365#0' and edge '-109819340#1' found.
 Warning: No connection between edge '47016365#0' and edge '-109819340#2' found.
 Warning: No connection between edge '47016365#0' and edge '-109819340#3' found.
-Warning: 9096 total messages of type: No connection between edge '%' and edge '%' found.
+Warning: 9100 total messages of type: No connection between edge '%' and edge '%' found.
