@@ -127,6 +127,26 @@ def insertmany(conn, table, columns, parameters):
     conn.commit()
 
 
+def create_table(conn, schema, table, createQuery):
+    schema_table, table, _ = check_schema_table(conn, schema, table)
+    cursor = conn.cursor()
+    try:
+        cursor.execute("DROP TABLE IF EXISTS " + schema_table)
+        cursor.execute(createQuery % (schema_table, table))
+    except Exception:
+        conn.rollback()
+        schema_table += "_fallback"
+        table += "_fallback"
+        cursor.execute("DROP TABLE IF EXISTS " + schema_table)
+        cursor.execute(createQuery % (schema_table, table))
+    if not isinstance(conn, sqlite3.Connection):
+        cursor.execute("SELECT 1 FROM pg_roles WHERE rolname='tapas_admin_group'")
+        if len(cursor.fetchall()) > 0:
+            cursor.execute("GRANT ALL PRIVILEGES ON TABLE %s TO tapas_admin_group" % schema_table)
+    conn.commit()
+    return schema_table
+
+
 def run_sql(conn, sql):
     cursor = conn.cursor()
     command = ""

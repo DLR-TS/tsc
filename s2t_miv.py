@@ -131,11 +131,8 @@ def upload_trip_results(conn, key, params, routes, limit=None):
         print("Warning! No database connection, writing trip info to file %s.csv." % table)
         print('\n'.join(map(str, tripstats[:limit])), file=open(table + ".csv", "w"))
         return
-    schema_table, table, exists = db_manipulator.check_schema_table(conn, 'temp', table)
-    cursor = conn.cursor()
-    if exists:
-        cursor.execute("DROP TABLE " + schema_table)
-    createQuery = """
+    if tripstats:
+        createQuery = """
 CREATE TABLE %s
 (
   p_id integer NOT NULL,
@@ -146,13 +143,10 @@ CREATE TABLE %s
   distance_real double precision[],
   CONSTRAINT %s_pkey PRIMARY KEY (p_id, hh_id, start_time_min, clone_id)
 )
-""" % (schema_table, table)
-    cursor.execute(createQuery)
-    if tripstats:
-        values = [str(tuple([str(e).replace("(", "{").replace(")", "}")  for e in t])) for t in tripstats[:limit]]
-        insertQuery = "INSERT INTO %s (p_id, hh_id, start_time_min, clone_id, travel_time_sec, distance_real) VALUES "
-        cursor.execute(insertQuery % schema_table + ','.join(values))
-        conn.commit()
+"""
+        schema_table = db_manipulator.create_table(conn, 'temp', table, createQuery)
+        values = [tuple([str(e).replace("(", "{").replace(")", "}")  for e in t]) for t in tripstats[:limit]]
+        db_manipulator.insertmany(conn, schema_table, "p_id, hh_id, start_time_min, clone_id, travel_time_sec, distance_real", values)
 
 
 @benchmark
@@ -223,8 +217,6 @@ def upload_all_pairs(conn, tables, start, end, vType, real_routes, rep_routes, n
 
 
 def create_all_pairs(conn, key, params):
-    cursor = conn.cursor()
-    schema_table, table, exists = db_manipulator.check_schema_table(conn, 'temp', '%s_%s' % (params[SP.od_output], key))
     createQuery = """
 CREATE TABLE %s
 (
@@ -238,20 +230,7 @@ CREATE TABLE %s
   CONSTRAINT %s_pkey PRIMARY KEY (taz_id_start, taz_id_end, sumo_type, is_restricted, interval_end)
 )
 """
-    try:
-        cursor.execute("DROP TABLE IF EXISTS " + schema_table)
-        cursor.execute(createQuery % (schema_table, table))
-    except Exception:
-        conn.rollback()
-        schema_table += "_fallback"
-        table += "_fallback"
-        cursor.execute("DROP TABLE IF EXISTS " + schema_table)
-        cursor.execute(createQuery % (schema_table, table))
-    conn.commit()
-
-    entry_schema_table, table, exists = db_manipulator.check_schema_table(conn, 'temp', '%s_%s' % (params[SP.od_entry], key))
-    if exists:
-        cursor.execute("DROP TABLE " + schema_table)
+    schema_table = db_manipulator.create_table(conn, 'temp', '%s_%s' % (params[SP.od_output], key), createQuery)
     createQuery = """
 CREATE TABLE %s
 (
@@ -266,15 +245,7 @@ CREATE TABLE %s
   CONSTRAINT %s_pkey PRIMARY KEY (entry_id, used_modes)
 )
 """
-    try:
-        cursor.execute(createQuery % (entry_schema_table, table))
-    except Exception:
-        conn.rollback()
-        entry_schema_table += "_fallback"
-        table += "_fallback"
-        cursor.execute("DROP TABLE IF EXISTS " + entry_schema_table)
-        cursor.execute(createQuery % (entry_schema_table, table))
-    conn.commit()
+    entry_schema_table = db_manipulator.create_table(conn, 'temp', '%s_%s' % (params[SP.od_entry], key), createQuery)
     return schema_table, entry_schema_table
 
 

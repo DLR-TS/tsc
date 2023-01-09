@@ -196,11 +196,12 @@ def write_all_pairs(conn, vType, depart, limit, tripfile, params, seed, mode=MOD
     num_samples = 5
     reps = collections.defaultdict(list)
     cursor = conn.cursor()
-    command = """SELECT taz_num_id, id, st_X(representative_coordinate) AS X, st_Y(representative_coordinate) AS Y
-                 FROM core.%s r, core.%s t WHERE r.taz_id = t.taz_id""" % (
-                    params[SP.representatives], params[SP.taz_table])
+    x, y = "st_X(representative_coordinate)", "st_Y(representative_coordinate)"
+    command = "SELECT taz_num_id, id, %s, %s FROM core.%s r, core.%s t WHERE r.taz_id = t.taz_id" % (
+                x, y, params[SP.representatives], params[SP.taz_table])
     if bbox:
-        command += " AND X > %s AND Y > %s AND X < %s AND Y < %s" % tuple(bbox.split(","))
+        b = bbox.split(",")
+        command += " AND %s > %s AND %s > %s AND %s < %s AND %s < %s" % (x, b[0], y, b[1], x, b[2], y, b[3])
     cursor.execute(command + " ORDER BY taz_num_id, id")
     for row in cursor:
         reps[row[0]].append(row[1:])
