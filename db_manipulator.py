@@ -111,17 +111,17 @@ def execute(conn, command, parameters):
     conn.commit()
 
 
-def insertmany(conn, command, parameters):
+def insertmany(conn, table, columns, parameters):
     if not parameters:
         return
     cursor = conn.cursor()
     try:
+        command = "INSERT INTO %s(%s) VALUES " % (table, columns)
         if isinstance(conn, sqlite3.Connection):
-            command = command.replace('?', '(%s)' % (", ".join(len(parameters[0]) * ["?"])))
+            command += '(%s)' % (", ".join(len(parameters[0]) * ["?"]))
             cursor.executemany(command, parameters)
         else:
-            command = command.replace('?', '%s')
-            psycopg2.extras.execute_values(cursor, command, parameters)
+            psycopg2.extras.execute_values(cursor, command + '%s', parameters)
     except psycopg2.errors.ReadOnlySqlTransaction as e:
         print(e)
     conn.commit()

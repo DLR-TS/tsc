@@ -215,11 +215,10 @@ def upload_all_pairs(conn, tables, start, end, vType, real_routes, rep_routes, n
     for idx, v in enumerate(values):
         odValues.append(v[:4] + (startIdx + idx,))
         entryValues.append(v[4:] + (startIdx + idx, "{car}"))
-    odQuery = "INSERT INTO %s (taz_id_start, taz_id_end, sumo_type, interval_end, entry_id) VALUES ?" % tables[0]
-    db_manipulator.insertmany(conn, odQuery, odValues)
-    insertQuery = """INSERT INTO %s (realtrip_count, representative_count, travel_time_sec, travel_time_stddev,
-                     distance_real, distance_stddev, entry_id, used_modes) VALUES ?""" % tables[1]
-    db_manipulator.insertmany(conn, insertQuery, entryValues)
+    db_manipulator.insertmany(conn, tables[0], "taz_id_start, taz_id_end, sumo_type, interval_end, entry_id", odValues)
+    columns = """realtrip_count, representative_count, travel_time_sec, travel_time_stddev,
+                 distance_real, distance_stddev, entry_id, used_modes"""
+    db_manipulator.insertmany(conn, tables[1], columns, entryValues)
     return startIdx + len(values)
 
 
