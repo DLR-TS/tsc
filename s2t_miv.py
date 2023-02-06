@@ -92,7 +92,7 @@ def _parse_vehicle_info(routes):
     sumoDist = Statistics("SUMO distances")
     stats = []
     for v in output.parse(routes, ('vehicle', 'person')):
-        if not v.id.endswith(BACKGROUND_TRAFFIC_SUFFIX) and v.depart != "triggered":
+        if not v.line and not v.id.endswith(BACKGROUND_TRAFFIC_SUFFIX) and v.depart != "triggered":
             duration = float(v.arrival) - float(v.depart)
             length = float(v.routeLength) if v.routeLength else 0
             sumoTime.add(duration, v.id)
