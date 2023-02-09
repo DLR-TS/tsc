@@ -10,6 +10,6 @@ Warning: 55 total messages of type: Ambiguity in turnarounds computation at junc
 Warning: 3 total messages of type: Found angle of % degrees at edge '%', segment %.
 Warning: 10 total messages of type: Found sharp turn with radius % at the end of edge '%'.
 Warning: 13 total messages of type: Found sharp turn with radius % at the start of edge '%'.
-Warning: 1353 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
+Warning: 1352 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
 Warning: 2 total messages of type: Shape for junction '%' has distance % to its given position.
 Warning: Traffic light type 'actuated' cannot be used in mesoscopic simulation. Using 'static' as fallback.

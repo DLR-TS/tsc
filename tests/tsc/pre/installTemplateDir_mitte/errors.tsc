@@ -317,7 +317,7 @@ Warning! Disconnected route '112232896' between '237751546#2' and '237751552', n
 Warning! Disconnected route '112250898' between '459344271' and '230957297', no path found. Keeping longer part.
 Warning! Disconnected route '112250984' between '237751546#2' and '237751552', no path found. Keeping longer part.
 Warning! Disconnected route '112251060' between '459344271' and '230957297', no path found. Keeping longer part.
-Warning! No net /home/micha/.texttest/tmp/tsc.sqlite3.python3.27Jan180649.626606/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/resources/subway.net.xml
+Warning! No net /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Feb134652.24007/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/resources/subway.net.xml
 Warning! Disconnected route '105361629' between '169953964#7' and '83146233#0#0', no path found. Keeping longer part.
 Warning! Disconnected route '105361771.trimmed' between '169953964#7' and '83146233#0#0', no path found. Keeping longer part.
 Warning! Disconnected route '105361771.trimmed' between '83146233#0#0' and '168253001#0', no path found. Keeping longer part.
@@ -385,6 +385,34 @@ Warning! Disconnected route '106007996' between '93705439#2' and '171867099#1', 
 Warning! Disconnected route '106008180.trimmed' between '93705439#2' and '171867099#1', no path found. Keeping longer part.
 Warning! Disconnected route '106008336' between '153427725#9' and '83146233#0#0', no path found. Keeping longer part.
 Warning! Disconnected route '106008336.trimmed' between '291670885#0' and '144529199#5', no path found. Keeping longer part.
+Warning: Ambiguity in turnarounds computation at junction '1762976307'.
+Warning: Ambiguity in turnarounds computation at junction '1769589022'.
+Warning: Ambiguity in turnarounds computation at junction '1769589034'.
+Warning: Ambiguity in turnarounds computation at junction '1769589042'.
+Warning: Ambiguity in turnarounds computation at junction '1792333625'.
+Warning: Found sharp turn with radius 6.02 at the end of edge '-122820534#1'.
+Warning: Found sharp turn with radius 5.54 at the start of edge '-143201758#1'.
+Warning: Found sharp turn with radius 7.17 at the start of edge '-175916784#1'.
+Warning: Found sharp turn with radius 4.80 at the end of edge '-24243245#5'.
+Warning: Found sharp turn with radius 2.53 at the start of edge '-4615405#2'.
+Warning: Found sharp turn with radius 6.02 at the start of edge '122820534#0'.
+Warning: Found sharp turn with radius 2.53 at the end of edge '137954786'.
+Warning: Found sharp turn with radius 5.54 at the end of edge '143201758#0'.
+Warning: Found sharp turn with radius 7.17 at the end of edge '175916784#0'.
+Warning: Found sharp turn with radius 4.80 at the start of edge '24243245#2'.
+Warning: Found angle of 111.04 degrees at edge '295627704#2', segment 3.
+Warning: Found angle of 111.04 degrees at edge '317183774#0', segment 16.
+Warning: Found angle of 130.49 degrees at edge '632065766#0', segment 3.
+Warning: Shape for junction '29215055' has distance 75.74 to its given position.
+Warning: Lane '-46138135_1' is not connected from any incoming edge at junction '310350795'.
+Warning: Lane '-713731455_1' is not connected from any incoming edge at junction '295586470'.
+Warning: Lane '167893762#0_0' is not connected from any incoming edge at junction '1792333626'.
+Warning: Lane '29311581#0_1' is not connected from any incoming edge at junction '27410807'.
+Warning: Lane '318015897#0_2' is not connected from any incoming edge at junction '3243718354'.
+Warning: 45 total messages of type: Ambiguity in turnarounds computation at junction '%'.
+Warning: 10 total messages of type: Found sharp turn with radius % at the end of edge '%'.
+Warning: 9 total messages of type: Found sharp turn with radius % at the start of edge '%'.
+Warning: 7 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
 Warning: Cannot derive file name for alternatives output, skipping it.
 Warning: No route input specified or all routes were invalid.
 Warning: No connection between edge '47016365#0' and edge '-10596872#1' found.
@@ -392,4 +420,4 @@ Warning: No connection between edge '47016365#0' and edge '-10596872#1' found.
 Warning: No connection between edge '47016365#0' and edge '-109819340#1' found.
 Warning: No connection between edge '47016365#0' and edge '-109819340#2' found.
 Warning: No connection between edge '47016365#0' and edge '-109819340#3' found.
-Warning: 9100 total messages of type: No connection between edge '%' and edge '%' found.
+Warning: 9364 total messages of type: No connection between edge '%' and edge '%' found.

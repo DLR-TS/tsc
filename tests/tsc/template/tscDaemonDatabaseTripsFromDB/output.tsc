@@ -9,14 +9,14 @@ fetched 1356 rows
 wrote 1356 rows to scenario_workdir/VEUII-BASE2010/iteration000/trips/2015y_05m_29d_09h_01m_11s_943ms.csv
 
 db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >> starting t2s using tripfile scenario_workdir/VEUII-BASE2010/iteration000/trips/2015y_05m_29d_09h_01m_11s_943ms.csv
-function main called at Mon, 09 Jan 2023 14:51:53 +0000
-function rectify_input called at Mon, 09 Jan 2023 14:51:53 +0000
-Read 1251 persons with a total of 1356 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/iteration000/trips/2015y_05m_29d_09h_01m_11s_943ms.csv".
+function main called at Thu, 09 Feb 2023 13:49:43 +0000
+function rectify_input called at Thu, 09 Feb 2023 13:49:44 +0000
+Read 1251 persons with a total of 1356 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Feb134942.24199/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/iteration000/trips/2015y_05m_29d_09h_01m_11s_943ms.csv".
 0 trips have inconsistent depart times.
 Dropped 8 trips because of gaps, avg: 3225.593819782133, maximum: 10238.41775637289 (for trip 103236475_101892664_1054_0).
-function rectify_input finished after 0.085227 seconds
-function map_to_edges called at Mon, 09 Jan 2023 14:51:53 +0000
-Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/districts.taz.xml.gz.
+function rectify_input finished after 0.087013 seconds
+function map_to_edges called at Thu, 09 Feb 2023 13:49:44 +0000
+Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Feb134942.24199/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/districts.taz.xml.gz.
 Warning: could not find an edge for departure of ('100000397', '100000397') from (52.53241977, 13.35002099), depart_minute=976 (skipping trip)
 Warning: could not find an edge for departure of ('100000657', '100000657') from (52.51231057, 13.32697818), depart_minute=719 (skipping trip)
 Warning: could not find an edge for departure of ('100000840', '100000840') from (52.55548391, 13.34659572), depart_minute=441 (skipping trip)
@@ -47,60 +47,60 @@ Mapping (2042.5371168620186, 2192.0930427499115) to 4610362#5 (dist: 13.92) whic
 read 1348 TAPAS trips for 1251 persons (835 unmappable)
 Mapping deviations: count 372, min 0.54 (xycoord=(1359.279515003378, 650.529753622599), edge=-67099797#0, uid=('100478955', '100320520')), max 1596.97 (xycoord=(-1187.1648688146379, 3610.127755854279), edge=116793954, uid=('100084638', '100084638')), mean 204.58, Q1 10.24, median 16.23, Q3 65.82
 90 mappings did not find an edge in the correct taz
-function map_to_edges finished after 0.572209 seconds
-function create_sumo_tripdefs called at Mon, 09 Jan 2023 14:51:54 +0000
+function map_to_edges finished after 0.622140 seconds
+function create_sumo_tripdefs called at Thu, 09 Feb 2023 13:49:44 +0000
 read trip definitions for 513 vehicles
 created trip definitions for 1026 vehicles starting between 112028 and 167065
-function create_sumo_tripdefs finished after 0.008265 seconds
-function run_oneshot called at Mon, 09 Jan 2023 14:51:54 +0000
+function create_sumo_tripdefs finished after 0.008725 seconds
+function run_oneshot called at Thu, 09 Feb 2023 13:49:44 +0000
 Loading configuration ... done.
-Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/net.net.xml.gz' ... 
-done (292ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/vtypes.xml' ... done (7ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/iteration000/oneshot/dump_oneshot_meso.xml' ... done (4ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/bidi.taz.xml.gz' ... done (139ms).
+Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Feb134942.24199/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/net.net.xml.gz' ... 
+done (296ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Feb134942.24199/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/vtypes.xml' ... done (7ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Feb134942.24199/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/iteration000/oneshot/dump_oneshot_meso.xml' ... done (5ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Feb134942.24199/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/bidi.taz.xml.gz' ... done (136ms).
 Loading done.
-Simulation version v1_15_0+1384-267f149c13a started with time: 112028.00.
+Simulation version v1_16_0+0063-3374ec74bb0 started with time: 112028.00.
 Simulation ended at time: 177865.00
 Reason: The final simulation step has been reached.
 Performance: 
- Duration: 3.70s
- Real time factor: 17808.2
- UPS: 7839.058696
+ Duration: 2.43s
+ Real time factor: 27060
+ UPS: 11852.856556
 Vehicles: 
  Inserted: 1026
  Running: 0
  Waiting: 0
 
-AStarRouter answered 1020 queries and explored 218.04 edges on average.
-AStarRouter spent 0.28s answering queries (0.27ms on average).
-AStarRouter answered 21 queries and explored 138.05 edges on average.
-AStarRouter spent 0.01s answering queries (0.24ms on average).
-function run_oneshot finished after 4.149054 seconds
-function main finished after 5.453540 seconds
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 << finished t2s, routes in /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/iteration000/oneshot/vehroutes_oneshot_meso.rou.xml
+AStarRouter answered 1019 queries and explored 216.93 edges on average.
+AStarRouter spent 0.26s answering queries (0.25ms on average).
+AStarRouter answered 21 queries and explored 137.81 edges on average.
+AStarRouter spent 0.01s answering queries (0.29ms on average).
+function run_oneshot finished after 2.887662 seconds
+function main finished after 4.203789 seconds
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 << finished t2s, routes in /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Feb134942.24199/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/iteration000/oneshot/vehroutes_oneshot_meso.rou.xml
 
 db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >> starting trip result database upload
-function upload_trip_results called at Mon, 09 Jan 2023 14:51:58 +0000
-function _parse_vehicle_info called at Mon, 09 Jan 2023 14:51:58 +0000
+function upload_trip_results called at Thu, 09 Feb 2023 13:49:47 +0000
+function _parse_vehicle_info called at Thu, 09 Feb 2023 13:49:47 +0000
 Parsed results for 1026 vehicles and persons
-SUMO durations: count 1026, min 1.00 (102530463_101485030_503_1), max 466.00 (100400222_100273347_431_0), mean 28.25, Q1 2.00, median 4.00, Q3 9.00
-SUMO distances: count 1026, min 5.13 (102066241_101239884_575_1), max 4374.49 (100400222_100273347_431_1), mean 268.17, Q1 21.59, median 47.39, Q3 96.77
-function _parse_vehicle_info finished after 0.098579 seconds
-function upload_trip_results finished after 0.122559 seconds
+SUMO durations: count 1026, min 1.00 (102530463_101485030_503_1), max 466.00 (100400222_100273347_431_0), mean 28.11, Q1 2.00, median 4.00, Q3 9.00
+SUMO distances: count 1026, min 5.13 (102066241_101239884_575_1), max 4374.49 (100400222_100273347_431_1), mean 269.86, Q1 21.59, median 47.39, Q3 96.77
+function _parse_vehicle_info finished after 0.102473 seconds
+function upload_trip_results finished after 0.125418 seconds
 db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 << finished trip result database upload
 
 db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >> starting all pairs calculation
-function aggregate_weights called at Mon, 09 Jan 2023 14:51:58 +0000
-function aggregate_weights finished after 0.192458 seconds
+function aggregate_weights called at Thu, 09 Feb 2023 13:49:48 +0000
+function aggregate_weights finished after 0.067828 seconds
 found the following vehicle classes: ['passenger']
 db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs for passenger, slice ending at hour 24.0
 wrote 42839 rows to scenario_workdir/VEUII-BASE2010/iteration000/allpairs/all_pairs_passenger24.csv
 db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting all pairs t2s using tripfile scenario_workdir/VEUII-BASE2010/iteration000/allpairs/all_pairs_passenger24.csv
-function main called at Mon, 09 Jan 2023 14:51:59 +0000
-using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/iteration000/allpairs/all_pairs_passenger24.csv as rectified input
-function map_to_edges called at Mon, 09 Jan 2023 14:51:59 +0000
-Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/districts.taz.xml.gz.
+function main called at Thu, 09 Feb 2023 13:49:48 +0000
+using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Feb134942.24199/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/iteration000/allpairs/all_pairs_passenger24.csv as rectified input
+function map_to_edges called at Thu, 09 Feb 2023 13:49:48 +0000
+Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Feb134942.24199/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/districts.taz.xml.gz.
 Mapping (1087.4520966036944, 2279.0150752263144) to 437325051#0 (dist: 8.82) which is not in taz 110109822, best match in taz is -7917219#3 (dist: 120.93)
 Mapping (1577.1669913597289, 2934.633303419687) to -172078325#4 (dist: 8.67) which is not in taz 110109912, best match in taz is 4597254 (dist: 64.22)
 Mapping (2593.237173535221, 2541.5606477269903) to 24241762#3 (dist: 11.14) which is not in taz 110110121, best match in taz is -4613293#0 (dist: 60.11)
@@ -138,27 +138,27 @@ Mapping (809.7784634758718, 1458.4445962226018) to 24240246#0 (dist: 17.66) whic
 read 42839 TAPAS trips for 42839 persons (0 unmappable)
 Mapping deviations: count 409, min 0.21 (xycoord=(2987.034415431437, 1838.530006770976), edge=-312176585, uid=('1100203524', '2110764076')), max 149.78 (xycoord=(433.04763782426016, 1791.8344558458775), edge=-909333702, uid=('1100203524', '1100203524')), mean 21.78, Q1 10.18, median 14.36, Q3 27.05
 34 mappings did not find an edge in the correct taz
-function map_to_edges finished after 2.308367 seconds
-function create_sumo_tripdefs called at Mon, 09 Jan 2023 14:52:01 +0000
+function map_to_edges finished after 1.234155 seconds
+function create_sumo_tripdefs called at Thu, 09 Feb 2023 13:49:49 +0000
 read trip definitions for 42839 vehicles
 created trip definitions for 42839 vehicles starting between 86400 and 86400
-function create_sumo_tripdefs finished after 0.571740 seconds
-function run_bulk called at Mon, 09 Jan 2023 14:52:02 +0000
-Written configuration to '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/iteration000/allpairs/miv_all_pairs_passenger24.trips.duarcfg'
+function create_sumo_tripdefs finished after 0.399200 seconds
+function run_bulk called at Thu, 09 Feb 2023 13:49:49 +0000
+Written configuration to '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Feb134942.24199/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/iteration000/allpairs/miv_all_pairs_passenger24.trips.duarcfg'
 computing routes for all TAZ-pairs using weights from scenario_workdir/VEUII-BASE2010/iteration000/allpairs/aggregated_oneshot_meso.xml
-function run_bulk finished after 4.350284 seconds
-function main finished after 7.249518 seconds
-db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished all pairs t2s, routes in /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/iteration000/allpairs/miv_all_pairs_passenger24.trips.rou.xml.gz
+function run_bulk finished after 3.455192 seconds
+function main finished after 5.118127 seconds
+db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished all pairs t2s, routes in /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Feb134942.24199/tsc.sqlite3.python3/template/tscDaemonDatabaseTripsFromDB/data/scenario_workdir/VEUII-BASE2010/iteration000/allpairs/miv_all_pairs_passenger24.trips.rou.xml.gz
 db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 >>> starting od result database upload
-function upload_all_pairs called at Mon, 09 Jan 2023 14:52:06 +0000
-function _parse_vehicle_info_taz called at Mon, 09 Jan 2023 14:52:06 +0000
+function upload_all_pairs called at Thu, 09 Feb 2023 13:49:53 +0000
+function _parse_vehicle_info_taz called at Thu, 09 Feb 2023 13:49:53 +0000
 Parsed taz results for 56 vehicles
-function _parse_vehicle_info_taz finished after 0.145854 seconds
-function _get_all_pair_stats called at Mon, 09 Jan 2023 14:52:06 +0000
-function _get_all_pair_stats finished after 0.003511 seconds
-SUMO durations: count 42839, min 0.37 (1100284408_1100779857_0_0), max 698.58 (1100283931_1100277417_0_0), mean 230.33, Q1 122.79, median 212.82, Q3 328.57
-SUMO distances: count 42839, min 5.13 (1100284408_1100779857_0_0), max 8913.82 (1100283931_1100277417_0_0), mean 2815.01, Q1 1434.06, median 2571.88, Q3 4043.72
-function upload_all_pairs finished after 1.200566 seconds
+function _parse_vehicle_info_taz finished after 0.133455 seconds
+function _get_all_pair_stats called at Thu, 09 Feb 2023 13:49:53 +0000
+function _get_all_pair_stats finished after 0.003146 seconds
+SUMO durations: count 42839, min 0.37 (1100284408_1100779857_0_0), max 698.51 (1100283931_1100277417_0_0), mean 230.97, Q1 122.99, median 213.42, Q3 329.50
+SUMO distances: count 42839, min 5.13 (1100284408_1100779857_0_0), max 8913.82 (1100283931_1100277417_0_0), mean 2815.41, Q1 1433.06, median 2569.93, Q3 4050.93
+function upload_all_pairs finished after 1.221798 seconds
 db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 <<< finished od result database upload
 db_status_message: 2015y_05m_29d_09h_01m_11s_943ms 0 << finished all pairs calculation
 db_status_finished: 2015y_05m_29d_09h_01m_11s_943ms 0 < End
