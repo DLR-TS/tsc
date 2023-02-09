@@ -29,6 +29,7 @@ from xml.sax import parse
 
 if 'SUMO_HOME' in os.environ:
     sys.path += [os.path.join(os.environ['SUMO_HOME'], 'tools'),
+                 os.path.join(os.environ['SUMO_HOME'], 'tools', 'net'),
                  os.path.join(os.environ['SUMO_HOME'], 'tools', 'import', 'gtfs'),
                  os.path.join(os.environ['SUMO_HOME'], 'tools', 'import', 'osm')]
 else:
@@ -38,6 +39,7 @@ import edgesInDistricts  # noqa
 import generateBidiDistricts  # noqa
 import gtfs2pt  # noqa
 import osmTaxiStop  # noqa
+import split_at_stops  # noqa
 
 import db_manipulator
 import import_navteq
@@ -212,15 +214,6 @@ def create_template_folder(scenario_pre_dir, options):
 
 def build_taz_etc(scenario_pre_dir, net_path):
     scenario_template_dir = os.path.dirname(net_path)
-    log_dir = os.path.join(scenario_template_dir, "log")
-    net = None
-    bidi_path = os.path.join(scenario_template_dir, "bidi.taz.xml.gz")
-    if not os.path.exists(bidi_path) or os.path.getmtime(bidi_path) < os.path.getmtime(net_path):
-        if options.verbose:
-            print("calling generateBidiDistricts.main %s, %s" % (net_path, bidi_path))
-        net = generateBidiDistricts.main(net_path, bidi_path, 20., 500., True)
-    add = bidi_path
-
     # check for gtfs folder and import
     gtfs_dir = get_symlink_dir(scenario_pre_dir, 'gtfs')
     if os.path.isdir(gtfs_dir):
@@ -229,8 +222,8 @@ def build_taz_etc(scenario_pre_dir, net_path):
         tmp_output_dir = ensure_tmp(scenario_template_dir)
         for cfg in glob.glob(os.path.join(gtfs_dir, "*.cfg")):
             gtfs_call = ['-c', cfg, '-n', os.path.abspath(net_path),
-                         '--additional-output', os.path.join(scenario_template_dir, 'pt_stops.add.xml.gz'),
-                         '--route-output', os.path.join(scenario_template_dir, 'pt_vehicles.add.xml.gz'),
+                         '--additional-output', os.path.join(tmp_output_dir, 'pt_stops.add.xml.gz'),
+                         '--route-output', os.path.join(tmp_output_dir, 'pt_vehicles.add.xml.gz'),
                          '--map-output', os.path.join(tmp_output_dir, 'output'),
                          '--network-split', os.path.join(tmp_output_dir, 'resources'),
                          '--fcd', os.path.join(tmp_output_dir, 'fcd'),
@@ -243,7 +236,27 @@ def build_taz_etc(scenario_pre_dir, net_path):
                               '--dua-repair-output', os.path.join(log_dir, 'repair_errors.txt'),
                               '--warning-output',  os.path.join(log_dir, 'missing.xml')]
             gtfs2pt.main(gtfs2pt.get_options(gtfs_call))
+            tmp_net = os.path.join(scenario_template_dir, os.path.basename(net_path))
+            os.rename(os.path.abspath(net_path), tmp_net)
+            split_call = ['-n', tmp_net,
+                         '-r', os.path.join(tmp_output_dir, 'pt_vehicles.add.xml.gz'),
+                         '--split-output', os.path.join(tmp_output_dir, 'splits.edg.xml'),
+                         '--stop-output', os.path.join(scenario_template_dir, 'pt_stops.add.xml.gz'),
+                         '--route-output', os.path.join(scenario_template_dir, 'pt_vehicles.add.xml.gz'),
+                         '-o', os.path.abspath(net_path),
+                         os.path.join(tmp_output_dir, 'pt_stops.add.xml.gz')]
+            split_at_stops.main(split_at_stops.get_options(split_call))
         shutil.rmtree(tmp_output_dir)
+
+    # generate bidi taz
+    log_dir = os.path.join(scenario_template_dir, "log")
+    net = None
+    bidi_path = os.path.join(scenario_template_dir, "bidi.taz.xml.gz")
+    if not os.path.exists(bidi_path) or os.path.getmtime(bidi_path) < os.path.getmtime(net_path):
+        if options.verbose:
+            print("calling generateBidiDistricts.main %s, %s" % (net_path, bidi_path))
+        net = generateBidiDistricts.main(net_path, bidi_path, 20., 500., True)
+    add = bidi_path
 
     # check for shapes folder and import from shapes
     shapes_dir = get_symlink_dir(scenario_pre_dir, 'shapes')
