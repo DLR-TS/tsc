@@ -170,16 +170,6 @@ def create_template_folder(scenario_pre_dir, options):
                                                 '--ptline-files', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % (idx-1))]
                     call(netconvert_call, options.verbose)
 
-                if configs:
-                    osmInput = glob.glob(os.path.join(osm_dir, "*.osm.xml*"))
-                    if osmInput:
-                        if options.verbose:
-                            print("importing taxi stops from", osmInput[0])
-                        osmTaxiStop.main(osmTaxiStop.parseArgs(["-s", osmInput[0], "-t", "busStop",
-                                                                "-n", os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % idx),
-                                                                "-o", os.path.join(scenario_template_dir, "fleet_stops.add.xml"),
-                                                                "-f", os.path.join(scenario_template_dir, "fleet.add.xml")]))
-
                 poly_config = os.path.join(scenario_pre_dir, 'template_gen.polycfg')
                 if os.path.isfile(poly_config):
                     call([sumolib.checkBinary('polyconvert'), '-c', poly_config,
@@ -209,13 +199,14 @@ def create_template_folder(scenario_pre_dir, options):
     else:
         net_files = [net_path]
     for net_file in net_files:
+        build_gtfs(get_symlink_dir(scenario_pre_dir, 'gtfs'), net_file)
+        build_fleet(osm_dir, net_file)
         build_taz_etc(scenario_pre_dir, net_file)
 
 
-def build_taz_etc(scenario_pre_dir, net_path):
+def build_gtfs(gtfs_dir, net_path):
     scenario_template_dir = os.path.dirname(net_path)
-    # check for gtfs folder and import
-    gtfs_dir = get_symlink_dir(scenario_pre_dir, 'gtfs')
+    log_dir = os.path.join(scenario_template_dir, "log")
     if os.path.isdir(gtfs_dir):
         if options.verbose:
             print("calling gtfs2pt")
@@ -248,8 +239,22 @@ def build_taz_etc(scenario_pre_dir, net_path):
             split_at_stops.main(split_at_stops.get_options(split_call))
         shutil.rmtree(tmp_output_dir)
 
+
+def build_fleet(osm_dir, net_path):
+    scenario_template_dir = os.path.dirname(net_path)
+    osmInput = glob.glob(os.path.join(osm_dir, "*.osm.xml*"))
+    if osmInput:
+        if options.verbose:
+            print("importing taxi stops from", osmInput[0])
+        osmTaxiStop.main(osmTaxiStop.parseArgs(["-s", osmInput[0], "-t", "busStop",
+                                                "-n", os.path.abspath(net_path),
+                                                "-o", os.path.join(scenario_template_dir, "fleet_stops.add.xml"),
+                                                "-f", os.path.join(scenario_template_dir, "fleet.add.xml")]))
+
+
+def build_taz_etc(scenario_pre_dir, net_path):
+    scenario_template_dir = os.path.dirname(net_path)
     # generate bidi taz
-    log_dir = os.path.join(scenario_template_dir, "log")
     net = None
     bidi_path = os.path.join(scenario_template_dir, "bidi.taz.xml.gz")
     if not os.path.exists(bidi_path) or os.path.getmtime(bidi_path) < os.path.getmtime(net_path):
