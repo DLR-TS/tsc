@@ -476,7 +476,7 @@ def simulation_request(options, request):
         conn.close()
 
 
-def main(args):
+def main(args=None):
     # get the options
     argParser = ArgumentParser()
     options = getOptions(args, argParser)
