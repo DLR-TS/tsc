@@ -1,17 +1,3 @@
 [build-system]
-requires = ["setuptools>=61"]
+requires = [ "setuptools>=42" ]
 build-backend = "setuptools.build_meta"
-
-[project]
-name = "tapas-sumo-coupling"
-version = "0.16.1"
-dependencies = [
-    "eclipse-sumo",
-    "rtree",
-    "pyproj",
-    "psycopg2",
-    "pandas"
-]
-
-[project.scripts]
-tapas-sumo-coupling = "tapas_sumo_coupling:tsc_main.main"
