@@ -1,8 +1,7 @@
 import os
 import sys
 import unittest
-tscRoot = os.environ.get("TSC_HOME", os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))))
-sys.path.append(tscRoot)
+import tscdefs
 import get_trips
 
 class TestGetTrips(unittest.TestCase):
