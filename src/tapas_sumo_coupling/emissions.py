@@ -18,19 +18,14 @@
 
 from __future__ import print_function, division
 import os
-import sys
-import math
 import csv
-import subprocess
-import time
 from collections import defaultdict
 
 import sumolib
-from sumolib.miscutils import benchmark, uMax
 
-from common import csv_sequence_generator, abspath_in_dir, build_uid
-from constants import TH, THX, SX, TAPAS_EXTRA_TIME, SP
-from db_manipulator import table_exists
+from tapas_sumo_coupling.common import abspath_in_dir, build_uid
+from tapas_sumo_coupling.constants import TH, SP
+from tapas_sumo_coupling.database import table_exists
 
 SMALL_CARS = (1, 2, 101)
 MEDIUM_CARS = (3, 4, 9, 10, 102)

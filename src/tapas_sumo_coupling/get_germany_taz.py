@@ -26,18 +26,18 @@ import ast
 sys.path.append(os.path.join(os.environ['SUMO_HOME'], 'tools'))
 import sumolib  # noqa
 
-import db_manipulator  # noqa
+from tapas_sumo_coupling import database  # noqa
 
 
 def parse_args():
     argParser = sumolib.options.ArgumentParser()
-    db_manipulator.add_db_arguments(argParser)
+    database.add_db_arguments(argParser)
     argParser.add_argument("-o", "--output", default="d-modell.poly.xml", help="output file")
     return argParser.parse_args()
 
 
 def get_polys(server_options, table='quesadillas.zonierung_d_modell', net=None):
-    conn = db_manipulator.get_conn(server_options)
+    conn = database.get_conn(server_options)
     if conn is None:
         print("Warning! No database, cannot retrieve suburbian TAZ.")
         return

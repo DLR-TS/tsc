@@ -18,7 +18,6 @@
 from __future__ import print_function, division
 import os
 import sys
-import collections
 import numpy as np
 
 if 'SUMO_HOME' in os.environ:
@@ -28,13 +27,11 @@ else:
     sys.exit("please declare environment variable 'SUMO_HOME'")
 
 from sumolib import output
-from sumolib.miscutils import Statistics, benchmark, uMin, uMax
-from sumolib.net import readNet
-from sumolib.options import ArgumentParser
+from sumolib.miscutils import Statistics, benchmark
 
-from common import csv_sequence_generator, parseTaz
-from constants import TH, THX, SX, SP, BACKGROUND_TRAFFIC_SUFFIX
-import db_manipulator
+from tapas_sumo_coupling.common import parseTaz
+from tapas_sumo_coupling.constants import BACKGROUND_TRAFFIC_SUFFIX
+from tapas_sumo_coupling import database
 
 
 def parse_person(p):
@@ -147,8 +144,8 @@ def upload_all_pairs(conn, tables, start, end, real_routes, rep_routes, net, sta
     for idx, v in enumerate(values):
         odValues.append(v[:4] + (startIdx + idx,))
         entryValues.append(v[4:] + (startIdx + idx, "{car}"))
-    db_manipulator.insertmany(conn, tables[0], "taz_id_start, taz_id_end, sumo_type, interval_end, entry_id", odValues)
+    database.insertmany(conn, tables[0], "taz_id_start, taz_id_end, sumo_type, interval_end, entry_id", odValues)
     columns = """realtrip_count, representative_count, travel_time_sec, travel_time_stddev,
                  distance_real, distance_stddev, entry_id, used_modes"""
-    db_manipulator.insertmany(conn, tables[1], columns, entryValues)
+    database.insertmany(conn, tables[1], columns, entryValues)
     return startIdx + len(values)

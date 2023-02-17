@@ -16,7 +16,6 @@
 
 #constants especially for database table handling
 
-import os
 TAPAS_DAY_OVERLAP_MINUTES = 60 * 4  # do not allow the day to reach further into the next or last day
 TAPAS_EXTRA_TIME = 3600 * 3  # allow for some stragglers / late night activities
 BACKGROUND_TRAFFIC_SUFFIX = 'b'

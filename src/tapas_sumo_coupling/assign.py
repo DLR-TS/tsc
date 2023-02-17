@@ -34,8 +34,8 @@ import sumolib
 from sumolib.miscutils import working_dir, benchmark
 import cutRoutes
 
-from common import abspath_in_dir
-from constants import TAPAS_EXTRA_TIME
+from tapas_sumo_coupling.common import abspath_in_dir
+from tapas_sumo_coupling.constants import TAPAS_EXTRA_TIME
 
 @benchmark
 def run_duaiterate(options, first_depart, last_depart, trip_file, weight_file, meso=True):

@@ -22,7 +22,7 @@ import os
 import sys
 import csv
 
-import constants
+from tapas_sumo_coupling import constants
 
 
 def abspath_in_dir(d, f):

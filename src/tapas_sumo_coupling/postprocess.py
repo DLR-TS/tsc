@@ -21,19 +21,17 @@ from __future__ import print_function, division
 import os
 import sys
 import math
-import csv
 import subprocess
 import time
-from collections import defaultdict
 
 sys.path.append(os.path.join(os.environ['SUMO_HOME'], 'tools'))
 import sumolib
 from sumolib.miscutils import benchmark, uMax
 
-from common import csv_sequence_generator, abspath_in_dir, build_uid
-from constants import TH, THX, SX, TAPAS_EXTRA_TIME, CAR_MODES, SP
-import db_manipulator
-import emissions
+from tapas_sumo_coupling.common import csv_sequence_generator, abspath_in_dir, build_uid
+from tapas_sumo_coupling.constants import TH, THX, TAPAS_EXTRA_TIME, CAR_MODES, SP
+from tapas_sumo_coupling import database
+from tapas_sumo_coupling import emissions
 
 
 def call(cmd):
@@ -257,10 +255,10 @@ def run_emission_sumo(options, params, conn, routefile, emission_model="HBEFA3",
 
 if __name__ == "__main__":
     argParser = sumolib.options.ArgumentParser()
-    db_manipulator.add_db_arguments(argParser)
+    database.add_db_arguments(argParser)
     argParser.add_argument("routes")
     options = argParser.parse_args()
     options.iteration_dir = "."
-    conn = db_manipulator.get_conn(options)
+    conn = database.get_conn(options)
     run_emission_sumo(options, SP.OPTIONAL, conn, options.routes)
     conn.close()

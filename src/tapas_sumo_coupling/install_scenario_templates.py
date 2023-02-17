@@ -23,7 +23,6 @@ from __future__ import print_function
 import os
 import sys
 import shutil
-import subprocess
 import glob
 from xml.sax import parse
 
@@ -41,15 +40,13 @@ import gtfs2pt  # noqa
 import osmTaxiStop  # noqa
 import split_at_stops  # noqa
 
-import db_manipulator
-import import_navteq
-import get_germany_taz
-from common import listdir_skip_hidden, call
+from tapas_sumo_coupling import database, import_navteq, get_germany_taz
+from tapas_sumo_coupling.common import listdir_skip_hidden, call
 
 
 def getOptions():
     argParser = sumolib.options.ArgumentParser()
-    db_manipulator.add_db_arguments(argParser)
+    database.add_db_arguments(argParser)
     argParser.add_argument("--clean", action="store_true", default=False,
                            help="remove any old data before processing")
     argParser.add_argument("-v", "--verbose", action="store_true",
@@ -199,16 +196,16 @@ def create_template_folder(scenario_pre_dir, options):
     else:
         net_files = [net_path]
     for net_file in net_files:
-        build_gtfs(get_symlink_dir(scenario_pre_dir, 'gtfs'), net_file)
-        build_fleet(osm_dir, net_file)
-        build_taz_etc(scenario_pre_dir, net_file)
+        build_gtfs(get_symlink_dir(scenario_pre_dir, 'gtfs'), net_file, options.verbose)
+        build_fleet(osm_dir, net_file, options.verbose)
+        build_taz_etc(scenario_pre_dir, net_file, options)
 
 
-def build_gtfs(gtfs_dir, net_path):
+def build_gtfs(gtfs_dir, net_path, verbose):
     scenario_template_dir = os.path.dirname(net_path)
     log_dir = os.path.join(scenario_template_dir, "log")
     if os.path.isdir(gtfs_dir):
-        if options.verbose:
+        if verbose:
             print("calling gtfs2pt")
         tmp_output_dir = ensure_tmp(scenario_template_dir)
         for cfg in glob.glob(os.path.join(gtfs_dir, "*.cfg")):
@@ -240,11 +237,11 @@ def build_gtfs(gtfs_dir, net_path):
         shutil.rmtree(tmp_output_dir)
 
 
-def build_fleet(osm_dir, net_path):
+def build_fleet(osm_dir, net_path, verbose):
     scenario_template_dir = os.path.dirname(net_path)
     osmInput = glob.glob(os.path.join(osm_dir, "*.osm.xml*"))
     if osmInput:
-        if options.verbose:
+        if verbose:
             print("importing taxi stops from", osmInput[0])
         osmTaxiStop.main(osmTaxiStop.parseArgs(["-s", osmInput[0], "-t", "busStop",
                                                 "-n", os.path.abspath(net_path),
@@ -252,7 +249,7 @@ def build_fleet(osm_dir, net_path):
                                                 "-f", os.path.join(scenario_template_dir, "fleet.add.xml")]))
 
 
-def build_taz_etc(scenario_pre_dir, net_path):
+def build_taz_etc(scenario_pre_dir, net_path, options):
     scenario_template_dir = os.path.dirname(net_path)
     # generate bidi taz
     net = None
@@ -324,7 +321,7 @@ def build_taz_etc(scenario_pre_dir, net_path):
         print("could not find landmark data for %s" % scenario_template_dir)
 
 
-if __name__ == "__main__":
+def main():
     # generate scenario template folders from input-folders.
     # Each scenario has it's general data sorted
     # in an separate folder underneath pre_scen
@@ -341,3 +338,7 @@ if __name__ == "__main__":
         create_template_folder(path, options)
     if not os.path.exists(os.path.join(options.templates, "__init__.py")):
         open(os.path.join(options.templates, "__init__.py"), 'w').close()
+
+
+if __name__ == "__main__":
+    main()
