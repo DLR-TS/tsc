@@ -227,7 +227,7 @@ def build_gtfs(gtfs_dir, net_path):
                               '--dua-repair-output', os.path.join(log_dir, 'repair_errors.txt'),
                               '--warning-output',  os.path.join(log_dir, 'missing.xml')]
             gtfs2pt.main(gtfs2pt.get_options(gtfs_call))
-            tmp_net = os.path.join(scenario_template_dir, os.path.basename(net_path))
+            tmp_net = os.path.join(tmp_output_dir, os.path.basename(net_path))
             os.rename(os.path.abspath(net_path), tmp_net)
             split_call = ['-n', tmp_net,
                          '-r', os.path.join(tmp_output_dir, 'pt_vehicles.add.xml.gz'),
