@@ -1,0 +1,35 @@
+Beschreibung der Spaltenparameter:
+
+-	carrierID: ID des Carriers
+
+-	cepLabel: Der Name des Carriers (z.B. dhl, hermes etc.)
+
+-	carrierFleetSize: Flottengröße, die die Anzahl der vom Carrier eingesetzten Fahrzeuge angibt
+
+-	vehicleType - die ID den Vehicle-Type, der dem Carrier zur Verfügung steht.
+
+-	vehicleDriver_Id - die ID des Fahrers, der die Tourstrecke durchführt
+
+-	tourDriver_Id - die ID des Fahrers, der die Tour durchführt
+
+-	startLinkID - gibt die Link-ID auf dem Netzwerk an, die den Ursprung der Fahrt angibt
+
+-	startLocation: Geokoordinaten des Reiseursprungs
+
+-	endLinkID: gibt die Link-ID des Reiseziels im Netzwerk an
+
+-	endLocation: Geokoordinaten des Reiseziels.
+
+-	startTime: Abfahrtszeit vom Ursprungsort (in Sekunden)
+
+-	endTime: Ankunftszeit am Reiseziel (in Sekunden)
+
+-	demand - die Anzahl der Waren, die in jeder Etappe einer Tour geliefert werden (in Paketen)
+
+-	customerType: Die Art des Kunden, der die Pakete erhält (B2B/B2C)
+
+-	tripDistance: Distanz zwischen Ursprung und Ziel (in Metern)
+
+-	tripDuration: Reisezeit zwischen Ursprung und Ziel (in Sekunden)
+
+-	stopDuration - die stopDuration oder StopTime ist die Zeit zwischen der Ankunft des Fahrers an einem Lieferziel und der Abfahrt des Fahrers zur nächsten Lieferung. (in Sekunden)
