@@ -3,6 +3,7 @@ import os
 import sys
 import csv
 import collections
+import pyproj
 sys.path.append(os.path.join(os.environ["SUMO_HOME"], "tools"))
 import sumolib
 
@@ -30,16 +31,33 @@ def writeRouteFile(filename, vehicle_routes):
         f.write("</routes>\n")
 
 
+def generateLoadingZones(infile, outfile):
+    transformer = pyproj.Transformer.from_crs("EPSG:31468", "EPSG:4326")
+    with sumolib.openz(infile, encoding="utf-8-sig") as zones, open(outfile, 'w') as out:
+        sumolib.xml.writeHeader(out, root="additional")
+        for data in csv.DictReader(zones, delimiter=";"):
+            id = data["ID"]
+            x = float(data["X_GK4"].replace(',', '.'))
+            y = float(data["Y_GK4"].replace(',', '.'))
+            lat, lon = transformer.transform(y, x)
+            out.write('    <poi id="zone_%s" color="0,128,0" lon="%s" lat="%s"/>\n' % (id, lon, lat))
+        out.write("</additional>")
+
+
 def getOptions():
     argParser = sumolib.options.ArgumentParser()
     argParser.add_argument("-t", "--tourlegs", default="tourLegsCharacteristics_UTM.csv.gz",
                            help="tour input data")
+    argParser.add_argument("-l", "--loading-zones", default="Ladezonen_100m_Duplicates_Filtered_by_BuildingBlocks.csv.gz",
+                           help="loading zones input data")
     argParser.add_argument("-n", "--network", default="net.net.xml.gz",
                            help="name of network file")
     argParser.add_argument("-o", "--output", default="tour.rou.xml",
                            help="route output file")
-    argParser.add_argument("-p", "--poi-output", default="trajectories.add.xml",
-                           help="poi output file")
+    argParser.add_argument("-p", "--trajectory-poi-output", default="trajectories.add.xml",
+                           help="trajectory poi output file")
+    argParser.add_argument("-z", "--loading-zone-poi-output", default="zones.add.xml",
+                           help="loading zone poi output file")
     argParser.add_argument("-r", "--radius", type=float, default=10.,
                            help="search radius")
     return argParser.parse_args()
@@ -102,7 +120,8 @@ def main():
         skipped_routes += 1
     print("Unmatched routes: ", skipped_routes)
     writeRouteFile(options.output, routes)
-    generatePOIs(options.poi_output, t)
+    generatePOIs(options.trajectory_poi_output, t)
+    generateLoadingZones(options.loading_zones, options.loading_zone_poi_output)
 
 
 if __name__ == "__main__":
