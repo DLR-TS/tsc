@@ -26,7 +26,7 @@ def writeRouteFile(filename, vehicle_routes):
             f.write('    <vehicle id="%s" type="%s" depart="%s">\n' % attr)
             f.write('        <route edges="%s"/>\n' % (" ".join([e.getID() for e in edges])))
             for s in stops:
-                f.write('        <stop lane="%s" duration="%s"/>\n' % s)
+                f.write('        <stop lane="%s" endPos="%.2f" duration="%s"/>\n' % s)
             f.write('    </vehicle>\n')
         f.write("</routes>\n")
 
@@ -89,9 +89,10 @@ def main():
                         for lane, d in net.getNeighboringLanes(x, y, options.radius):
                             if lane.allows("delivery") and d < m:
                                 m = d
-                                min_lane = lane.getID()
+                                min_lane = lane
                         if min_lane:
-                            stops.append((min_lane, dur))
+                            pos, _ = min_lane.getClosestLanePosAndDist((x, y))
+                            stops.append((min_lane.getID(), pos, dur))
                     routes.append(((last_id, typ, start_time), route, stops))
                 else:
                     skipped_routes += 1
@@ -111,11 +112,15 @@ def main():
             endy = float(data["endLocationY_UTM"].replace(',', '.')) + y_off
             trajectory.append((endx, endy))
             t[id].append(net.convertXY2LonLat(endx, endy))
-            stop_pos.append((endx, endy, float(data["stopDuration"].replace(',', '.'))))
+            duration = float(data["stopDuration"].replace(',', '.'))
+            if stop_pos and stop_pos[-1][:2] == (endx, endy):
+                stop_pos[-1] = (endx, endy, stop_pos[-1][2] + duration)
+            else:
+                stop_pos.append((endx, endy, duration))
             last_id = id
     route = sumolib.route.mapTrace(trajectory, net, 100, fillGaps=1000)
     if route:
-        routes.append(((id, t), route))
+        routes.append(((id, t), route, stops))
     else:
         skipped_routes += 1
     print("Unmatched routes: ", skipped_routes)
