@@ -58,9 +58,30 @@ def getOptions():
                            help="trajectory poi output file")
     argParser.add_argument("-z", "--loading-zone-poi-output", default="zones.add.xml",
                            help="loading zone poi output file")
-    argParser.add_argument("-r", "--radius", type=float, default=10.,
+    argParser.add_argument("-r", "--radius", type=float, default=200.,
                            help="search radius")
     return argParser.parse_args()
+
+
+def addRoute(routes, veh, trajectory, stop_pos, net, radius):
+    route = sumolib.route.mapTrace(trajectory, net, radius, fillGaps=2000, vClass="delivery")
+    if route:
+        stops = []
+        for x, y, dur in stop_pos:
+            m = 1e400
+            min_lane = None
+            last_index = 0
+            for lane, d in net.getNeighboringLanes(x, y, radius):
+                if lane.getEdge() in route[last_index:] and lane.allows("delivery") and d < m:
+                    m = d
+                    min_lane = lane
+            if min_lane:
+                pos, _ = min_lane.getClosestLanePosAndDist((x, y))
+                stops.append((min_lane.getID(), pos, dur))
+                last_index = route.index(min_lane.getEdge(), last_index)
+        routes.append((veh, route, stops))
+        return True
+    return False
 
 
 def main():
@@ -79,22 +100,7 @@ def main():
         for data in csv.DictReader(tourlegs, delimiter=";"):
             id = data["vehicleDriver_Id"]
             if last_id and id != last_id:
-                route = sumolib.route.mapTrace(trajectory, net, options.radius, fillGaps=100)
-                # print(route)
-                if route:
-                    stops = []
-                    for x, y, dur in stop_pos:
-                        m = 1e400
-                        min_lane = None
-                        for lane, d in net.getNeighboringLanes(x, y, options.radius):
-                            if lane.allows("delivery") and d < m:
-                                m = d
-                                min_lane = lane
-                        if min_lane:
-                            pos, _ = min_lane.getClosestLanePosAndDist((x, y))
-                            stops.append((min_lane.getID(), pos, dur))
-                    routes.append(((last_id, typ, start_time), route, stops))
-                else:
+                if not addRoute(routes, (last_id, typ, start_time), trajectory, stop_pos, net, options.radius):
                     skipped_routes += 1
                 trajectory = []
                 stop_pos = []
@@ -118,10 +124,7 @@ def main():
             else:
                 stop_pos.append((endx, endy, duration))
             last_id = id
-    route = sumolib.route.mapTrace(trajectory, net, 100, fillGaps=1000)
-    if route:
-        routes.append(((id, t), route, stops))
-    else:
+    if not addRoute(routes, (last_id, typ, start_time), trajectory, stop_pos, net, options.radius):
         skipped_routes += 1
     print("Unmatched routes: ", skipped_routes)
     writeRouteFile(options.output, routes)
