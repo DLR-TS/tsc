@@ -2,5 +2,9 @@
 .idea
 __pycache__
 *.pyc
+/build
+/dist
 /scenario_templates
 /scenario_workdir
+/src/tapas_sumo_coupling.egg-info/
+/tsc.log

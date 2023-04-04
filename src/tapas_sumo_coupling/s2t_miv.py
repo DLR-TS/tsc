@@ -31,14 +31,14 @@ else:
 
 import sumolib
 from sumolib import output
-from sumolib.miscutils import Statistics, benchmark, uMin, uMax
+from sumolib.miscutils import Statistics, benchmark
 from sumolib.net import readNet
 from sumolib.options import ArgumentParser
 
-from common import csv_sequence_generator, parseTaz
-from constants import TH, THX, SX, SP, BACKGROUND_TRAFFIC_SUFFIX
-import db_manipulator
-import s2t_pt
+from tapas_sumo_coupling.common import parseTaz
+from tapas_sumo_coupling.constants import SP, BACKGROUND_TRAFFIC_SUFFIX
+from tapas_sumo_coupling import database
+from tapas_sumo_coupling import s2t_pt
 
 
 @benchmark
@@ -144,9 +144,9 @@ CREATE TABLE %s
   CONSTRAINT %s_pkey PRIMARY KEY (p_id, hh_id, start_time_min, clone_id)
 )
 """
-        schema_table = db_manipulator.create_table(conn, 'temp', table, createQuery)
+        schema_table = database.create_table(conn, 'temp', table, createQuery)
         values = [tuple([str(e).replace("(", "{").replace(")", "}")  for e in t]) for t in tripstats[:limit]]
-        db_manipulator.insertmany(conn, schema_table, "p_id, hh_id, start_time_min, clone_id, travel_time_sec, distance_real", values)
+        database.insertmany(conn, schema_table, "p_id, hh_id, start_time_min, clone_id, travel_time_sec, distance_real", values)
 
 
 @benchmark
@@ -209,10 +209,10 @@ def upload_all_pairs(conn, tables, start, end, vType, real_routes, rep_routes, n
     for idx, v in enumerate(values):
         odValues.append(v[:4] + (startIdx + idx,))
         entryValues.append(v[4:] + (startIdx + idx, "{car}"))
-    db_manipulator.insertmany(conn, tables[0], "taz_id_start, taz_id_end, sumo_type, interval_end, entry_id", odValues)
+    database.insertmany(conn, tables[0], "taz_id_start, taz_id_end, sumo_type, interval_end, entry_id", odValues)
     columns = """realtrip_count, representative_count, travel_time_sec, travel_time_stddev,
                  distance_real, distance_stddev, entry_id, used_modes"""
-    db_manipulator.insertmany(conn, tables[1], columns, entryValues)
+    database.insertmany(conn, tables[1], columns, entryValues)
     return startIdx + len(values)
 
 
@@ -230,7 +230,7 @@ CREATE TABLE %s
   CONSTRAINT %s_pkey PRIMARY KEY (taz_id_start, taz_id_end, sumo_type, is_restricted, interval_end)
 )
 """
-    schema_table = db_manipulator.create_table(conn, 'temp', '%s_%s' % (params[SP.od_output], key), createQuery)
+    schema_table = database.create_table(conn, 'temp', '%s_%s' % (params[SP.od_output], key), createQuery)
     createQuery = """
 CREATE TABLE %s
 (
@@ -245,14 +245,14 @@ CREATE TABLE %s
   CONSTRAINT %s_pkey PRIMARY KEY (entry_id, used_modes)
 )
 """
-    entry_schema_table = db_manipulator.create_table(conn, 'temp', '%s_%s' % (params[SP.od_entry], key), createQuery)
+    entry_schema_table = database.create_table(conn, 'temp', '%s_%s' % (params[SP.od_entry], key), createQuery)
     return schema_table, entry_schema_table
 
 
 @benchmark
 def main():
     argParser = ArgumentParser()
-    db_manipulator.add_db_arguments(argParser)
+    database.add_db_arguments(argParser)
     argParser.add_argument("-n", "--net-file",
                            help="specifying the net file of the scenario to use")
     argParser.add_argument("-k", "--simkey", default="test",
@@ -270,7 +270,7 @@ def main():
     if len(args) == 2:
         aggregate_weights(args[0], [float(x) for x in args[1].split(",")])
         return
-    conn = db_manipulator.get_conn(options)
+    conn = database.get_conn(options)
     if os.path.isfile(options.real_trips) and not options.all_pairs:
         upload_trip_results(conn, options.simkey, SP.OPTIONAL, options.real_trips, options.limit)
     if os.path.isfile(options.representatives):

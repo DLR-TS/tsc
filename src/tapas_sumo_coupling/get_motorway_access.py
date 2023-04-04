@@ -28,19 +28,19 @@ else:
     sys.exit("please declare environment variable 'SUMO_HOME'")
 from sumolib.options import ArgumentParser
 
-import db_manipulator
+from tapas_sumo_coupling import database
 
 
 def parse_args():
     argParser = ArgumentParser()
-    db_manipulator.add_db_arguments(argParser)
+    database.add_db_arguments(argParser)
     argParser.add_argument("-o", "--output", default="osm_scenario_pre/mitte_net/location_priorities.xml", help="output file")
     options = argParser.parse_args()
     return options
 
 
 def get_locations(server, table):
-    conn = db_manipulator.get_conn(server)
+    conn = database.get_conn(server)
     for suffix in ("start", "end"):
         command = """SELECT DISTINCT taz_id_%s, lon_%s, lat_%s FROM core.%s
                      WHERE taz_id_%s < -1000000""" % (suffix, suffix, suffix, table, suffix)

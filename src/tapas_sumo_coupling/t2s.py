@@ -44,10 +44,10 @@ from sumolib.miscutils import benchmark, uMin, uMax, euclidean
 from sumolib.options import ArgumentParser
 from sumolib.miscutils import parseTime, Statistics
 
-import assign
-from constants import TH, THX, SVC, MODE, CAR_MODES, TAPAS_DAY_OVERLAP_MINUTES, BACKGROUND_TRAFFIC_SUFFIX
-import edgemapper
-from common import csv_sequence_generator, abspath_in_dir, build_uid
+from tapas_sumo_coupling import assign
+from tapas_sumo_coupling.constants import TH, THX, SVC, MODE, CAR_MODES, TAPAS_DAY_OVERLAP_MINUTES, BACKGROUND_TRAFFIC_SUFFIX
+from tapas_sumo_coupling import edgemapper
+from tapas_sumo_coupling.common import csv_sequence_generator, abspath_in_dir, build_uid
 
 class MappingError(Exception):
     pass

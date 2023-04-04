@@ -47,21 +47,14 @@ else:
 import sumolib
 from sumolib.options import ArgumentParser
 
-import common
-import constants
-import db_manipulator
-import get_trips
-import t2s
-import s2t_miv
-import s2t_pt
-from constants import SP, CAR_MODES, MODE
-import get_motorway_access
+from tapas_sumo_coupling import common, constants, database, get_motorway_access, get_trips, t2s, s2t_miv, s2t_pt
+from tapas_sumo_coupling.constants import SP, CAR_MODES, MODE
 
 DEFAULT_SIMKEY = "berlin_2010"
 
 def getOptions(args, argParser):
     t2s.fillOptions(argParser)
-    db_manipulator.add_db_arguments(argParser)
+    database.add_db_arguments(argParser)
     argParser.add_argument("--workdir-folder", default='scenario_workdir',
                            help="specifying the workdir directory of the scenarios to use")
     argParser.add_argument("--template-folder", default='scenario_templates',
@@ -87,9 +80,8 @@ def getOptions(args, argParser):
                            help="save OD matrix disaggregated by vehicle type instead of class")
 
     options = argParser.parse_args(args=args)
-    if len(args) == 0:
-        argParser.print_help()
-        sys.exit()
+    if not options.fake_tripfile and not options.host:
+        sys.exit("You need either a database connection or a fake tripfile!")
     options.limit = " LIMIT %s" % options.limit if options.limit else ""
     return options
 
@@ -103,7 +95,7 @@ def get_simulation_requests(options):
             options.sim_key = DEFAULT_SIMKEY
             initial_sim_params = dict(SP.OPTIONAL)
         else:
-            conn = db_manipulator.get_conn(options)
+            conn = database.get_conn(options)
             initial_sim_params = get_trips.get_sim_params(conn, options.sim_key, overrides)
             conn.close()
             if initial_sim_params is None:
@@ -297,7 +289,7 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
                             options.tapas_trips, sim_key, params, conn)
                 conn.close()
                 rou_file, _ = t2s.main(options)
-                conn = db_manipulator.get_conn(options, conn)
+                conn = database.get_conn(options, conn)
                 write_status('<<< finished all pairs t2s, routes in %s' % rou_file, sim_key, params, conn)
                 assert os.path.exists(rou_file), "all pairs route file %s could not be found" % rou_file
             write_status('>>> starting od result database upload', sim_key, params, conn)
@@ -314,7 +306,7 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
             write_status('>>> starting all pairs t2s using tripfile %s' % options.tapas_trips, sim_key, params, conn)
             conn.close()
             rou_file, _ = t2s.main(options)
-            conn = db_manipulator.get_conn(options, conn)
+            conn = database.get_conn(options, conn)
             write_status('<<< finished all pairs t2s, routes in %s' % rou_file, sim_key, params, conn)
             assert os.path.exists(rou_file), "all pairs route file %s could not be found" % rou_file
         write_status('>>> starting od result database upload', sim_key, params, conn)
@@ -346,7 +338,7 @@ def write_status(message, sim_key, params, conn=None, msg_type=constants.MSG_TYP
           (msg_type, sim_key, params[SP.iteration], message))
     if conn is not None and sim_key is not None:
         command = "INSERT INTO public.%s (sim_key, iteration, status_time, status, msg_type) VALUES (?, ?, ?, ?, ?);"
-        db_manipulator.execute(conn, command % params[SP.status],
+        database.execute(conn, command % params[SP.status],
                                (sim_key, params[SP.iteration], datetime.datetime.now(), str(message), msg_type))
         # make sure the time stamp is unique, otherwise the primary key is violated
         time.sleep(0.01)
@@ -371,7 +363,7 @@ def simulation_request(options, request):
     sim_key, iteration, params = request
     try:
         # connect to the database (prod-system)
-        conn = db_manipulator.get_conn(options)
+        conn = database.get_conn(options)
         if conn is None:
             print("Warning! No database connection given, operating on files only.")
 
@@ -408,7 +400,7 @@ def simulation_request(options, request):
 
         # create a new iteration folder
         options.iteration_dir = create_new_iteration_folder(options, iteration, scenario_basedir)
-        conn = db_manipulator.get_conn(options, conn)
+        conn = database.get_conn(options, conn)
         write_status(">> iteration dir: %s " % options.iteration_dir, sim_key, params, conn)
         options.trips_dir = os.path.join(options.iteration_dir, 'trips')
         if not os.path.exists(options.trips_dir):
@@ -434,7 +426,7 @@ def simulation_request(options, request):
         if hasattr(options.script_module, "trip_filter") and not params[SP.trip_filter]:
             delattr(options.script_module, "trip_filter")
         final_routes, final_weights = t2s.main(options)
-        conn = db_manipulator.get_conn(options, conn)
+        conn = database.get_conn(options, conn)
         write_status('<< finished t2s, routes in %s' % final_routes, sim_key, params, conn)
         assert os.path.exists(final_routes), "route file %s could not be found" % final_routes
         assert os.path.exists(final_weights), "weight dump file %s could not be found" % final_weights
@@ -448,19 +440,19 @@ def simulation_request(options, request):
 
         if conn is not None:
             print()
-            conn = db_manipulator.get_conn(options, conn)
+            conn = database.get_conn(options, conn)
             # upload trip results to db
-            _, _, exists = db_manipulator.check_schema_table(conn, 'temp', '%s_%s' % (params[SP.trip_output], sim_key))
+            _, _, exists = database.check_schema_table(conn, 'temp', '%s_%s' % (params[SP.trip_output], sim_key))
             if not exists or not options.resume:
                 write_status('>> starting trip result database upload', sim_key, params, conn)
                 s2t_miv.upload_trip_results(conn, sim_key, params, final_routes)
                 write_status('<< finished trip result database upload', sim_key, params, conn)
                 print()
             # run all pair calculations
-            conn = db_manipulator.get_conn(options, conn)
+            conn = database.get_conn(options, conn)
             run_all_pairs(options, conn, sim_key, params, final_routes, final_weights)
 
-        conn = db_manipulator.get_conn(options, conn)
+        conn = database.get_conn(options, conn)
         cleanup([final_routes, final_weights], options.iteration_dir,
                  sim_key, iteration, params, conn)
 
@@ -476,7 +468,7 @@ def simulation_request(options, request):
         conn.close()
 
 
-def main(args):
+def main(args=None):
     # get the options
     argParser = ArgumentParser()
     options = getOptions(args, argParser)
@@ -487,7 +479,7 @@ def main(args):
 
     if options.clean:
         shutil.rmtree(options.workdir_folder, True)
-        conn = db_manipulator.get_conn(options)
+        conn = database.get_conn(options)
         if conn is None:
             print("Warning! No database connection given, deleting files only.")
         else:

@@ -22,12 +22,10 @@ from __future__ import print_function
 import os
 import sys
 import zipfile
-import glob
 import subprocess
 from optparse import OptionParser
 
-from common import ensure_dir
-from constants import SVC
+from tapas_sumo_coupling.common import ensure_dir
 
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')

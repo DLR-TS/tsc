@@ -1,7 +1,7 @@
 import os
 import tscdefs
-import db_manipulator
+import database
 
 os.chdir("data")
-db_manipulator.start(tscdefs.testServer, tscdefs.get_python_tool("tsc_main.py") + ['--daemon', '--daemon-run-time', '10'],
+database.start(tscdefs.testServer, tscdefs.get_python_tool("tsc_main.py") + ['--daemon', '--daemon-run-time', '10'],
                      [open("initialState.sql")], [], [["SELECT sim_key, iteration, status, msg_type FROM public.global_sumo_status ORDER BY status_time;"]])

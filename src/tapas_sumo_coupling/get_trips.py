@@ -28,16 +28,15 @@ import math
 sys.path.append(os.path.join(os.environ['SUMO_HOME'], 'tools'))
 from sumolib.options import ArgumentParser
 
-from constants import TH, MODE, THX, SP, CAR_MODES
-import db_manipulator
-from db_manipulator import table_exists
+from tapas_sumo_coupling import database
+from tapas_sumo_coupling.constants import TH, MODE, THX, SP, CAR_MODES
 
 ALL_PAIRS = 'all_pairs'
 
 
 def parse_args():
     argParser = ArgumentParser()
-    db_manipulator.add_db_arguments(argParser)
+    database.add_db_arguments(argParser)
     argParser.add_argument("-a", "--all-pairs", dest="all_pairs",
                            default=False, action="store_true",
                            help="Generate trips for all pairs of traffic zones")
@@ -70,7 +69,7 @@ def get_sim_params(conn, sim_key, overrides):
     sim_params = dict(SP.OPTIONAL)
     sim_params.update(dict(cursor_open.fetchall()))
     sim_params.update(overrides)
-    if not table_exists(conn, sim_params[SP.od_slice_table], "core"):
+    if not database.table_exists(conn, sim_params[SP.od_slice_table], "core"):
         return None
     command_timeline = """SELECT "matrixMap_distribution" FROM core.%s WHERE "matrixMap_name" = '%s'""" % (
         sim_params[SP.od_slice_table], sim_params[SP.od_slice_key])
@@ -84,7 +83,7 @@ def get_sim_params(conn, sim_key, overrides):
 
 def get_active_sim_keys(server_options, overrides):
     sys.stdout.flush()
-    conn = db_manipulator.get_conn(server_options)
+    conn = database.get_conn(server_options)
     # get any open combination of sim_key and iteration
     cursor_open = conn.cursor()
     command = """SELECT sim_key, CAST(param_value AS INT) AS iteration FROM public.simulation_parameters
@@ -104,7 +103,7 @@ def get_active_sim_keys(server_options, overrides):
             continue
         # check whether the iteration is or was already running
         if sim_params.get(SP.status):
-            assert table_exists(conn, sim_params[SP.status]), ("Status table does not exist. Sim key: %s" % (sim_key))
+            assert database.table_exists(conn, sim_params[SP.status]), ("Status table does not exist. Sim key: %s" % (sim_key))
             command_status = "SELECT msg_type FROM public.%s WHERE sim_key = '%s' AND iteration = %s ORDER BY status_time DESC LIMIT 1" % (
                 sim_params[SP.status], sim_key, iteration)
             cursor_open.execute(command_status)
@@ -143,7 +142,7 @@ def write_trips(conn, sim_key, limit, tripfile, params):
     taz_table = params[SP.taz_table]
     modes = params[SP.modes].replace(";", ",")
 
-    assert table_exists(conn, trip_table), "No trip table (%s) found" % trip_table
+    assert database.table_exists(conn, trip_table), "No trip table (%s) found" % trip_table
     fieldnames = TH.KEEP_COLUMNS
     columns = list(fieldnames)  # make a copy
     columns[fieldnames.index(TH.taz_id_start)] = "taz1.taz_num_id AS %s" % TH.taz_id_start
@@ -169,7 +168,7 @@ def write_trips(conn, sim_key, limit, tripfile, params):
 
 
 def write_background_trips(conn, trip_table, limit, tripfile, params):
-    assert table_exists(conn, trip_table, "core"), "No trip table (%s) found" % trip_table
+    assert database.table_exists(conn, trip_table, "core"), "No trip table (%s) found" % trip_table
     fieldnames = TH.KEEP_COLUMNS
     columns = list(fieldnames)  # make a copy
     columns[fieldnames.index(TH.vtype)] = "cars.vtype_id AS %s" % TH.vtype
@@ -254,7 +253,7 @@ def tripfile_name(key, limit=None, target_dir='iteration/trips'):
 
 def main():
     options = parse_args()
-    conn = db_manipulator.get_conn(options)
+    conn = database.get_conn(options)
     if options.all_pairs:
         params = {SP.representatives: options.representatives,
                   SP.taz_table: options.taztable,

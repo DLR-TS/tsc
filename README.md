@@ -21,19 +21,23 @@ You need to have a working SUMO installation and your environment variable SUMO_
 ## Installing
 1. Clone this repo `git clone https://github.com/DLR-TS/tsc` (do another pull if you cloned without having lfs active).
 2. Copy postgres_template.tsccfg (e.g. to postgres.tsccfg) and enter the database connection details (server, user, passwd)
-3. Run `./install_scenario_templates.py -c postgres.tsccfg`
-4. (optional) Testfield Lower Saxony `git clone https://github.com/DLR-TS/sumo-scenarios` and `./install_scenario_templates.py -c postgres.tsccfg -p ../sumo-scenarios/`. This will try to install other scenarios as well but you can safely ignore the corresponding warnings.
+3. Run `pip install --user .` (developers may want to add `-e` here for an editable install, this requires pip>=23.0)
+4. Run `tsc_install -c postgres.tsccfg`
+5. (optional) Testfield Lower Saxony `git clone https://github.com/DLR-TS/sumo-scenarios` and `tsc_install -c postgres.tsccfg -p ../sumo-scenarios/`. This will try to install other scenarios as well but you can safely ignore the corresponding warnings.
 
 The installation needs the database connection only if you plan to use scenarios with (Germany wide) background traffic. 
 If you don't need it, you can omit the `-c postgres.tsccfg` part.
 
 ## Running
 1. Prepare the credentials file postgres.tsccfg as described in section Installing
-2. Run `./tsc_main.py -c postgres.tsccfg --daemon` 
+2. Run `tsc_main -c postgres.tsccfg --daemon`
 
-The `--daemon`-flag lets the tsc loop look for new simulation requests. Alternatively you can run a specific simulation key like this: `./tsc_main.py --sim-key 2021y_06m_04d_11h_04m_34s_855ms -c postgres.tsccfg`.
+The `--daemon`-flag lets the tsc loop look for new simulation requests. Alternatively you can run a specific
+simulation key like this: `tsc_main --sim-key 2021y_06m_04d_11h_04m_34s_855ms -c postgres.tsccfg`.
 
-If you want to override certain simulation parameters on the command line use the option `--sim-param` for instance `--sim-param SUMO_TEMPLATE_FOLDER:siemensbahn,SUMO_DESTINATION_FOLDER:siemensbahn,SUMO_MODES:'0;1;2;3;5;6;261;517'`. For a list of available parameters have a look at the relevant database table `public.simulation_parameters` or at constants.py (the SP class).
+If you want to override certain simulation parameters on the command line use the option `--sim-param` for instance
+`--sim-param SUMO_TEMPLATE_FOLDER:siemensbahn,SUMO_DESTINATION_FOLDER:siemensbahn,SUMO_MODES:'0;1;2;3;5;6;261;517'`.
+For a list of available parameters have a look at the relevant database table `public.simulation_parameters` or at constants.py (the SP class).
 
 ## Testing
 This requires [texttest](https://www.texttest.org/) to be installed (using `pip install --user texttest` or the windows installer).
@@ -44,7 +48,7 @@ and allow you to run selected or all tests. Please be aware that you cannot run 
 if you use PostGreSQL because they all access the same database.
 
 ## Setting up a new scenario
-The `install_scenario_templates.py` script sets up a scenario template for every subdirectory in its data dir.
+The `tsc_install` script sets up a scenario template for every subdirectory in its data dir.
 So the first step to add a new scenario is to add a new subdirectory which needs at least
 1. A SUMO network named `net.net.xml.gz`.
 2. A definition of vehicle types named `vtypes.xml`
@@ -52,7 +56,7 @@ While the tsc tooling allows a fine grained configuration those two files are ev
 more details are given below.
 
 ### The network
-The `install_scenario_templates.py` script supports the creation of a network from OpenStreetMap data.
+The `tsc_install` script supports the creation of a network from OpenStreetMap data.
 If you provide one or multiple `template_gen*.netccfg` file(s) the script will execute them in lexical order
 and the last call should generate the needed `net.net.xml.gz`. This way it is possible to rebuild the network
 on every new installation. If you do so you need to provide the input (OSM XML) files in your data directory and
