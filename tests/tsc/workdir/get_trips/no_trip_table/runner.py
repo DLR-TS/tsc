@@ -1,6 +1,6 @@
 import os
 import tscdefs
-import database
+from tapas_sumo_coupling import database
 import subprocess
 
 database.run_instructions(tscdefs.testServer, [open("data/initialState.sql")])

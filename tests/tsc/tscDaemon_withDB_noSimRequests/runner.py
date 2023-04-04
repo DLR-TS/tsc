@@ -1,6 +1,6 @@
 import os
 import tscdefs
-import database
+from tapas_sumo_coupling import database
 
 updateCmd = """DELETE FROM simulation_parameters;"""
 

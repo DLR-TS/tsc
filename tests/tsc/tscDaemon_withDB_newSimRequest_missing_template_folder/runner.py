@@ -1,6 +1,6 @@
 import os
 import tscdefs
-import database
+from tapas_sumo_coupling import database
 
 updateCmd = "UPDATE simulation_parameters SET param_value='nonExistentDir' WHERE sim_key='1969y_07m_21d_03h_56m_12s_345ms' AND param_key='SUMO_TEMPLATE_FOLDER';"
                

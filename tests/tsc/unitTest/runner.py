@@ -2,7 +2,7 @@ import os
 import sys
 import unittest
 import tscdefs
-import get_trips
+from tapas_sumo_coupling import get_trips
 
 class TestGetTrips(unittest.TestCase):
 

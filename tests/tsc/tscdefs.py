@@ -5,7 +5,6 @@ import sys
 python = os.environ.get("PYTHON", "python")
 sys.path.append(os.path.join(os.environ["SUMO_HOME"], 'tools'))
 tscRoot = os.environ.get("TSC_HOME", os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-sys.path.append(os.path.join(tscRoot, "src", "tapas_sumo_coupling"))
 testServer = os.path.join(tscRoot, os.environ.get("TSC_SERVER", "test_server.tsccfg"))
 
 def get_python_tool(rel_path, config=testServer, templates="test_templates"):

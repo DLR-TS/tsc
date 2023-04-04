@@ -1,7 +1,7 @@
 import os
 import datetime
 import tscdefs
-import database
+from tapas_sumo_coupling import database
 
 updateCmd = "INSERT INTO public.global_sumo_status VALUES('2015y_01m_19d_15h_55m_15s_386ms', 0, '%s', 'disabled', 'error');" % datetime.datetime.now().isoformat()
 

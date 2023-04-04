@@ -1,7 +1,7 @@
 import os
 import tscdefs
 import subprocess
-import database
+from tapas_sumo_coupling import database
 
 updateCmd = ["UPDATE public.simulation_parameters SET sim_key='2015y_05m_29d_09h_01m_11s_943ms';",
              "UPDATE public.simulation_parameters SET param_value='test_trips' WHERE param_key='DB_TABLE_TRIPS';",
