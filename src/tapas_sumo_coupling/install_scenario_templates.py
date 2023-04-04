@@ -88,10 +88,10 @@ def ensure_tmp(scenario_template_dir):
 
 def get_symlink_dir(scenario_pre_dir, subdir):
     check_dir = os.path.join(scenario_pre_dir, subdir)
-    if not os.path.isfile(check_dir):
+    if os.path.isdir(check_dir):
         return check_dir
     with open(check_dir) as s:
-        TSC_HOME = os.path.abspath(os.path.dirname(__file__))
+        TSC_HOME = os.environ.get("TSC_HOME", os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
         return os.path.join(scenario_pre_dir, s.read().strip().replace("$TSC_HOME", TSC_HOME))
 
 
