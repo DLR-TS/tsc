@@ -4,6 +4,6 @@
      <vType id="taxi" vClass="taxi">
         <param key="has.taxi.device" value="true"/>
     </vType>
-    <trip id="taxi_busStop_0_0" type="taxi" depart="0.00"><stop busStop="busStop_0" triggered="person"/></trip>
-    <trip id="taxi_busStop_0_1" type="taxi" depart="0.00"><stop busStop="busStop_0" triggered="person"/></trip>
+    <trip id="taxi_busStop_0_0" type="taxi" depart="begin"><stop busStop="busStop_0" triggered="person"/></trip>
+    <trip id="taxi_busStop_0_1" type="taxi" depart="begin"><stop busStop="busStop_0" triggered="person"/></trip>
 </additional>

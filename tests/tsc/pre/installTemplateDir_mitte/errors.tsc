@@ -317,7 +317,7 @@ Warning! Disconnected route '112232896' between '237751546#2' and '237751552', n
 Warning! Disconnected route '112250898' between '459344271' and '230957297', no path found. Keeping longer part.
 Warning! Disconnected route '112250984' between '237751546#2' and '237751552', no path found. Keeping longer part.
 Warning! Disconnected route '112251060' between '459344271' and '230957297', no path found. Keeping longer part.
-Warning! No net /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Feb134652.24007/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/resources/subway.net.xml
+Warning! No net /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.04Apr121714.5314/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/resources/subway.net.xml
 Warning! Disconnected route '105361629' between '169953964#7' and '83146233#0#0', no path found. Keeping longer part.
 Warning! Disconnected route '105361771.trimmed' between '169953964#7' and '83146233#0#0', no path found. Keeping longer part.
 Warning! Disconnected route '105361771.trimmed' between '83146233#0#0' and '168253001#0', no path found. Keeping longer part.
@@ -420,4 +420,4 @@ Warning: No connection between edge '47016365#0' and edge '-10596872#1' found.
 Warning: No connection between edge '47016365#0' and edge '-109819340#1' found.
 Warning: No connection between edge '47016365#0' and edge '-109819340#2' found.
 Warning: No connection between edge '47016365#0' and edge '-109819340#3' found.
-Warning: 9364 total messages of type: No connection between edge '%' and edge '%' found.
+Warning: 9318 total messages of type: No connection between edge '%' and edge '%' found.
