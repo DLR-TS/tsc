@@ -31,17 +31,29 @@ def writeRouteFile(filename, vehicle_routes):
         f.write("</routes>\n")
 
 
-def generateLoadingZones(infile, outfile):
+def generateLoadingZones(net, options):
     transformer = pyproj.Transformer.from_crs("EPSG:31468", "EPSG:4326")
-    with sumolib.openz(infile, encoding="utf-8-sig") as zones, open(outfile, 'w') as out:
-        sumolib.xml.writeHeader(out, root="additional")
+    with sumolib.openz(options.loading_zones, encoding="utf-8-sig") as zones, open(options.loading_zone_poi_output, 'w') as pois, open(options.loading_zone_stop_output, 'w') as stops:
+        sumolib.xml.writeHeader(pois, root="additional")
+        sumolib.xml.writeHeader(stops, root="additional")
         for data in csv.DictReader(zones, delimiter=";"):
             id = data["ID"]
-            x = float(data["X_GK4"].replace(',', '.'))
-            y = float(data["Y_GK4"].replace(',', '.'))
-            lat, lon = transformer.transform(y, x)
-            out.write('    <poi id="zone_%s" color="0,128,0" lon="%s" lat="%s"/>\n' % (id, lon, lat))
-        out.write("</additional>")
+            xgk = float(data["X_GK4"].replace(',', '.'))
+            ygk = float(data["Y_GK4"].replace(',', '.'))
+            lat, lon = transformer.transform(ygk, xgk)
+            pois.write('    <poi id="zone_%s" color="0,128,0" lon="%s" lat="%s"/>\n' % (id, lon, lat))
+
+            m = 1e400
+            min_lane = None
+            x, y = net.convertLonLat2XY(lon, lat)
+            for lane, d in net.getNeighboringLanes(x, y, options.radius):
+                if lane.allows("delivery") and d < m:
+                    m = d
+                    min_lane = lane
+            if min_lane:
+                stop.write('    <busStop id="zone_%s" lane="%s" endPos="%s"/>\n' % (id, lon, lat))
+        pois.write("</additional>")
+        stops.write("</additional>")
 
 
 def getOptions():
@@ -56,7 +68,9 @@ def getOptions():
                            help="route output file")
     argParser.add_argument("-p", "--trajectory-poi-output", default="trajectories.add.xml",
                            help="trajectory poi output file")
-    argParser.add_argument("-z", "--loading-zone-poi-output", default="zones.add.xml",
+    argParser.add_argument("-s", "--loading-zone-stop-output", default="zones.add.xml",
+                           help="loading zone output file")
+    argParser.add_argument("-z", "--loading-zone-poi-output", default="zone_pois.add.xml",
                            help="loading zone poi output file")
     argParser.add_argument("-r", "--radius", type=float, default=200.,
                            help="search radius")
@@ -129,7 +143,7 @@ def main():
     print("Unmatched routes: ", skipped_routes)
     writeRouteFile(options.output, routes)
     generatePOIs(options.trajectory_poi_output, t)
-    generateLoadingZones(options.loading_zones, options.loading_zone_poi_output)
+    generateLoadingZones(net, options)
 
 
 if __name__ == "__main__":
