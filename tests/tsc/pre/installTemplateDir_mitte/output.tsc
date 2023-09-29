@@ -4,13 +4,13 @@ copying __init__.py
 copying ptVtypes.xml
 copying vtypes.xml
 starting to import osm ...
-/home/behr_mi/sumo/bin/netconvert -c /home/behr_mi/tsc/data/mitte_test/template_gen0.netccfg --output-file /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/0_net.net.xml.gz --log /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/log/template_gen0.log
+/home/behr_mi/sumo/bin/netconvert -c /home/behr_mi/tsc/data/mitte_test/template_gen0.netccfg --output-file /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/0_net.net.xml.gz --log /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/log/template_gen0.log
 Parsing types from '/home/behr_mi/tsc/data/mitte_test/osm/berlin_net.typ.xml' ... done.
 Parsing nodes from osm-file '/home/behr_mi/tsc/data/mitte_test/osm/osm_bbox.osm.xml.gz' ... 
 Found and substituted 92 osm nodes.
-done (1819ms).
+done (2015ms).
 Parsing edges from osm-file '/home/behr_mi/tsc/data/mitte_test/osm/osm_bbox.osm.xml.gz' ... 
-done (1428ms).
+done (1739ms).
 Removing duplicate edges ... done.
 Adding new type 'cycleway.track|highway.primary' (first occurrence for edge '4045243').
 Adding new type 'cycleway.lane|highway.primary' (first occurrence for edge '4068078').
@@ -29,21 +29,21 @@ Adding new type 'cycleway.track|highway.residential' (first occurrence for edge 
 Adding new type 'cycleway.lane|highway.pedestrian' (first occurrence for edge '687804455').
 Adding new type 'cycleway.lane|cycleway.track|highway.tertiary' (first occurrence for edge '850240180').
 Parsing relations from osm-file '/home/behr_mi/tsc/data/mitte_test/osm/osm_bbox.osm.xml.gz' ... 
-done (765ms).
+done (836ms).
  Removed 1171 traffic lights before loading plain-XML
  Import done:
    18196 nodes loaded.
    52 types loaded.
    12114 edges loaded.
 Proj projection parameters used: '+proj=utm +zone=33 +ellps=WGS84 +datum=WGS84 +units=m +no_defs'.
-Removing self-loops ... done (2ms).
+Removing self-loops ... done (3ms).
 Finding largest components ... 
 Found 25 components and removed 24 (847 edges).
-done (22ms).
+done (38ms).
 Processing public transport stops ... 
-done (11ms).
+done (17ms).
 Revising public transport stops based on pt lines ... 
-done (16ms).
+done (20ms).
 Align pt stop id signs with corresponding edge id signs ... done (0ms).
 Removing sharp turn with radius 8.49 at the end of edge '104765080#16'.
 Removing sharp turn with radius 5.03 at the end of edge '106863633#5'.
@@ -59,62 +59,58 @@ Removing sharp turn with radius 8.03 at the end of edge '30123145#0'.
 Removing sharp turn with radius 4.29 at the start of edge '30123145#2'.
 Removing sharp turn with radius 8.04 at the start of edge '4791641#6'.
 Removing sharp turn with radius 5.82 at the end of edge '86934323#4'.
-Found 4 reversible edge sequences between broken rail nodes
-Reversed 4 sequences (count by length: 5:1 6:1 11:2)
-Added 3 edges to connect 1 buffer stops in both directions.
-Added 10 bidi-edges between 1 pairs of railway switches (count by length: 10:1)
-Added 0 bidi-edges for public transport stops and a total of 7 bidi-edges to ensure connectivity of stops (6 stops remain disconnected)
-DijkstraRouter answered 123 queries and explored 117.51 edges on average.
-DijkstraRouter spent 0.00s answering queries (0.02ms on average).
+Added 4 bidi-edges for public transport stops and a total of 32 bidi-edges to ensure connectivity of stops (6 stops remain disconnected)
+DijkstraRouter answered 145 queries and explored 103.17 edges on average.
+DijkstraRouter spent 0.00s answering queries (0.03ms on average).
 Joining tram edges ... 
-done (18ms).
- Joined 415 tram edges into roads.
+done (27ms).
+ Joined 405 tram edges into roads.
 Joining junction clusters ... 
-done (34ms).
+done (55ms).
  Joined 161 junction cluster(s).
-Removing empty nodes and geometry nodes ... done (82ms).
-   15294 nodes removed.
-Moving network to origin ... done (56ms).
+Removing empty nodes and geometry nodes ... done (130ms).
+   15287 nodes removed.
+Moving network to origin ... done (83ms).
 Computing turning directions ... 
-done (6ms).
-Assigning nodes to traffic lights ... done (18ms).
-Guessing and setting on-/off-ramps ... done (5ms).
+done (5ms).
+Assigning nodes to traffic lights ... done (30ms).
+Guessing and setting on-/off-ramps ... done (8ms).
 Removing sharp turn with radius 4.70 at the end of edge '171851825#7'.
 Removing sharp turn with radius 8.80 at the end of edge '24864947#0'.
 Removing sharp turn with radius 3.57 at the start of edge '4685666#11'.
-Sorting nodes' edges ... done (3ms).
+Sorting nodes' edges ... done (6ms).
 Computing node shapes ... 
-done (59ms).
-Computing edge shapes ... done (32ms).
+done (113ms).
+Computing edge shapes ... done (58ms).
 Computing node types ... 
-done (2ms).
-Computing priorities ... done (3ms).
-Computing approached edges ... done (3ms).
+done (4ms).
+Computing priorities ... done (5ms).
+Computing approached edges ... done (7ms).
 Guessing and setting roundabouts ... 
  Guessed 3 roundabout(s).
-done (1ms).
-Computing approaching lanes ... done (14ms).
-Dividing of lanes on approached lanes ... done (13ms).
-Processing turnarounds ... done (4ms).
+done (2ms).
+Computing approaching lanes ... done (26ms).
+Dividing of lanes on approached lanes ... done (23ms).
+Processing turnarounds ... done (6ms).
 Rechecking of lane endings ... 
-done (3ms).
-Joining traffic light nodes ... done (2ms).
-Computing traffic light control information ... done (3ms).
-Computing node logics ... done (40ms).
+done (5ms).
+Joining traffic light nodes ... done (3ms).
+Computing traffic light control information ... done (5ms).
+Computing node logics ... done (71ms).
 Computing traffic light logics ... 
-done (20ms).
+done (37ms).
  133 traffic light(s) computed.
-Added 5 stops for superposed rail edges.
-Find accesses for pt rail stops ... done (14ms).
-DijkstraRouter answered 12 queries and explored 10.08 edges on average.
+Added 4 stops for superposed rail edges.
+Find accesses for pt rail stops ... done (22ms).
+DijkstraRouter answered 22 queries and explored 104.55 edges on average.
 DijkstraRouter spent 0.00s answering queries (0.00ms on average).
 -----------------------------------------------------
 Summary:
  Node type statistics:
   Unregulated junctions       : 0
-  Dead-end junctions          : 84
-  Priority junctions          : 1091
-  Right-before-left junctions : 369
+  Dead-end junctions          : 91
+  Priority junctions          : 1092
+  Right-before-left junctions : 366
   Traffic light junctions      : 143
   Rail crossing junctions      : 2
   Rail signal junctions      : 2
@@ -123,10 +119,10 @@ Summary:
   Applied offset     : -389385.39,-5818229.46
   Converted boundary : 0.00,0.00,7456.71,4483.93
 -----------------------------------------------------
-Writing network ... done (350ms).
+Writing network ... done (525ms).
 Success.
-/home/behr_mi/sumo/bin/netconvert -c /home/behr_mi/tsc/data/mitte_test/template_gen1.netccfg --output-file /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/1_net.net.xml.gz --log /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/log/template_gen1.log --sumo-net-file /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/0_net.net.xml.gz
-Parsing sumo-net from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/0_net.net.xml.gz' ... done (250ms).
+/home/behr_mi/sumo/bin/netconvert -c /home/behr_mi/tsc/data/mitte_test/template_gen1.netccfg --output-file /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/1_net.net.xml.gz --log /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/log/template_gen1.log --sumo-net-file /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/0_net.net.xml.gz
+Parsing sumo-net from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/0_net.net.xml.gz' ... done (302ms).
 Parsing nodes from '/home/behr_mi/tsc/data/mitte_test/netpatch/patch.nod.xml' ... done.
 Parsing edges from '/home/behr_mi/tsc/data/mitte_test/netpatch/patch.edg.xml' ... done.
 Parsing edges from '/home/behr_mi/tsc/data/mitte_test/netpatch/patch_tram.edg.xml' ... done.
@@ -134,39 +130,39 @@ Parsing connections from '/home/behr_mi/tsc/data/mitte_test/netpatch/patch.con.x
 Parsing connections from '/home/behr_mi/tsc/data/mitte_test/netpatch/patch_tram.con.xml' ... done.
 Parsing traffic lights from '/home/behr_mi/tsc/data/mitte_test/netpatch/patch.tll.xml' ... done.
  Import done:
-   1691 nodes loaded.
-   52 types loaded.
-   3903 edges loaded.
-Removing self-loops ... done (0ms).
+   1696 nodes loaded.
+   24 types loaded.
+   3908 edges loaded.
+Removing self-loops ... done (1ms).
 Removing empty nodes ... done (5ms).
    0 nodes removed.
 Computing turning directions ... 
 done (4ms).
 Assigning nodes to traffic lights ... done (0ms).
-Sorting nodes' edges ... done (3ms).
+Sorting nodes' edges ... done (5ms).
 Computing node shapes ... 
-done (56ms).
-Computing edge shapes ... done (35ms).
+done (106ms).
+Computing edge shapes ... done (53ms).
 Computing node types ... done (0ms).
-Computing priorities ... done (3ms).
-Computing approached edges ... done (1ms).
-Guessing and setting roundabouts ... done (1ms).
+Computing priorities ... done (5ms).
+Computing approached edges ... done (0ms).
+Guessing and setting roundabouts ... done (2ms).
 Computing approaching lanes ... done (0ms).
-Dividing of lanes on approached lanes ... done (12ms).
+Dividing of lanes on approached lanes ... done (14ms).
 Processing turnarounds ... done (0ms).
 Rechecking of lane endings ... 
-done (3ms).
+done (4ms).
 Computing traffic light control information ... done (2ms).
-Computing node logics ... done (66ms).
-Computing traffic light logics ... done (0ms).
+Computing node logics ... done (72ms).
+Computing traffic light logics ... done (1ms).
  133 traffic light(s) computed.
 -----------------------------------------------------
 Summary:
  Node type statistics:
   Unregulated junctions       : 0
-  Dead-end junctions          : 84
-  Priority junctions          : 1091
-  Right-before-left junctions : 369
+  Dead-end junctions          : 91
+  Priority junctions          : 1092
+  Right-before-left junctions : 366
   Traffic light junctions      : 143
   Rail crossing junctions      : 2
   Rail signal junctions      : 2
@@ -175,11 +171,11 @@ Summary:
   Applied offset     : 0.00,0.00
   Converted boundary : 0.00,0.00,7456.71,4483.93
 -----------------------------------------------------
-Writing network ... done (379ms).
+Writing network ... done (514ms).
 Success.
 calling gtfs2pt
-function import_gtfs called at Fri, 10 Feb 2023 09:36:12 +0000
-function import_gtfs finished after 24.323679 seconds
+function import_gtfs called at Fri, 29 Sep 2023 12:54:14 +0000
+function import_gtfs finished after 30.383405 seconds
 Success.
 Success.
 Success.
@@ -187,32 +183,32 @@ Success.
 Success.
 Success.
 importing taxi stops from /home/behr_mi/tsc/data/mitte_test/osm/osm_bbox.osm.xml.gz
-calling generateBidiDistricts.main /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/net.net.xml.gz, /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/bidi.taz.xml.gz
-generating taz file /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/districts.taz.xml.gz
+calling generateBidiDistricts.main /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/net.net.xml.gz, /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/bidi.taz.xml.gz
+generating taz file /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/districts.taz.xml.gz
 importing shapes from /home/behr_mi/tsc/data/berlin_net/shapes/Berlin Verkehrsbezirke (1193 VBz) GK4_zone.dbf ...
-/home/behr_mi/sumo/bin/polyconvert -n /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/net.net.xml.gz -o /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/Berlin Verkehrsbezirke (1193 VBz) GK4_zone.poly.xml.gz --shapefile-prefixes /home/behr_mi/tsc/data/berlin_net/shapes/Berlin Verkehrsbezirke (1193 VBz) GK4_zone --shapefile.add-param --shapefile.traditional-axis-mapping --shapefile.id-column NO
+/home/behr_mi/sumo/bin/polyconvert -n /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/net.net.xml.gz -o /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/Berlin Verkehrsbezirke (1193 VBz) GK4_zone.poly.xml.gz --shapefile-prefixes /home/behr_mi/tsc/data/berlin_net/shapes/Berlin Verkehrsbezirke (1193 VBz) GK4_zone --shapefile.add-param --shapefile.traditional-axis-mapping --shapefile.id-column NO
 Success.
-calculating contained edges for /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/Berlin Verkehrsbezirke (1193 VBz) GK4_zone.poly.xml.gz ...
-generating taz file /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/Berlin_1223.taz.xml.gz
+calculating contained edges for /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/Berlin Verkehrsbezirke (1193 VBz) GK4_zone.poly.xml.gz ...
+generating taz file /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/Berlin_1223.taz.xml.gz
 importing shapes from /home/behr_mi/tsc/data/berlin_net/shapes/Berlin_1223.dbf ...
-/home/behr_mi/sumo/bin/polyconvert -n /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/net.net.xml.gz -o /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/Berlin_1223.poly.xml.gz --shapefile-prefixes /home/behr_mi/tsc/data/berlin_net/shapes/Berlin_1223 --shapefile.add-param --shapefile.traditional-axis-mapping --shapefile.id-column VBZ_ID
+/home/behr_mi/sumo/bin/polyconvert -n /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/net.net.xml.gz -o /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/Berlin_1223.poly.xml.gz --shapefile-prefixes /home/behr_mi/tsc/data/berlin_net/shapes/Berlin_1223 --shapefile.add-param --shapefile.traditional-axis-mapping --shapefile.id-column VBZ_ID
 Success.
-calculating contained edges for /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/Berlin_1223.poly.xml.gz ...
-generating taz file /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/RBS_OD_ORT_1412.taz.xml.gz
+calculating contained edges for /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/Berlin_1223.poly.xml.gz ...
+generating taz file /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/RBS_OD_ORT_1412.taz.xml.gz
 importing shapes from /home/behr_mi/tsc/data/berlin_net/shapes/RBS_OD_ORT_1412.dbf ...
-/home/behr_mi/sumo/bin/polyconvert -n /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/net.net.xml.gz -o /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/RBS_OD_ORT_1412.poly.xml.gz --shapefile-prefixes /home/behr_mi/tsc/data/berlin_net/shapes/RBS_OD_ORT_1412 --shapefile.add-param --shapefile.traditional-axis-mapping --shapefile.id-column ORT
+/home/behr_mi/sumo/bin/polyconvert -n /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/net.net.xml.gz -o /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/RBS_OD_ORT_1412.poly.xml.gz --shapefile-prefixes /home/behr_mi/tsc/data/berlin_net/shapes/RBS_OD_ORT_1412 --shapefile.add-param --shapefile.traditional-axis-mapping --shapefile.id-column ORT
 Success.
-calculating contained edges for /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/RBS_OD_ORT_1412.poly.xml.gz ...
-generating landmark file /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/landmarks.csv.gz from /home/behr_mi/tsc/data/mitte_test/landmarks
-/home/behr_mi/sumo/bin/duarouter -n /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/net.net.xml.gz -a /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/bidi.taz.xml.gz --astar.landmark-distances /home/behr_mi/tsc/data/mitte_test/landmarks --astar.save-landmark-distances /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/landmarks.csv.gz --routing-threads 24 -v -o NUL --ignore-errors --aggregate-warnings 5
+calculating contained edges for /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/RBS_OD_ORT_1412.poly.xml.gz ...
+generating landmark file /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/landmarks.csv.gz from /home/behr_mi/tsc/data/mitte_test/landmarks
+/home/behr_mi/sumo/bin/duarouter -n /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/net.net.xml.gz -a /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/bidi.taz.xml.gz --astar.landmark-distances /home/behr_mi/tsc/data/mitte_test/landmarks --astar.save-landmark-distances /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/landmarks.csv.gz --routing-threads 24 -v -o NUL --ignore-errors --aggregate-warnings 5
 Loading net ... done.
-Loading additional file '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/bidi.taz.xml.gz'  ... done.
+Loading additional file '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/bidi.taz.xml.gz'  ... done.
 Skipped until: 0.00
 Calculating new lookup table.
-Saving new matrix to '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.10Feb093603.14122/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/landmarks.csv.gz'.
-DijkstraRouter answered 11882 queries and explored 1.21 edges on average.
-DijkstraRouter spent 0.03s answering queries (0.00ms on average).
-DijkstraRouter answered 11882 queries and explored 1.21 edges on average.
+Saving new matrix to '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.29Sep125403.18112/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/landmarks.csv.gz'.
+DijkstraRouter answered 11867 queries and explored 1.21 edges on average.
+DijkstraRouter spent 0.04s answering queries (0.00ms on average).
+DijkstraRouter answered 11867 queries and explored 1.21 edges on average.
 DijkstraRouter spent 0.03s answering queries (0.00ms on average).
 Reading up to time step: 0.00Routes found between time steps 0.00 and 0.00.
 Success.

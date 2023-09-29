@@ -1,6 +1,5 @@
 Warning: Ambiguity in turnarounds computation at junction '1762976307'.
 Warning: Found sharp turn with radius 6.02 at the end of edge '-122820534#1'.
-Warning: Found sharp turn with radius 5.54 at the start of edge '-143201758#1'.
 Warning: Found angle of 111.04 degrees at edge '295627704#2', segment 3.
 Warning: Shape for junction '29215055' has distance 73.24 to its given position.
 Warning: Converting invalid rail_crossing to priority junction 'cluster_4913100483_4913100484'.
@@ -8,8 +7,7 @@ Warning: Replacing loaded roundabout '153522299#3 28341062 30721656#0 30721656#1
 Warning: Lane '-100113767#1_0' is not connected from any incoming edge at junction '2494624950'.
 Warning: 55 total messages of type: Ambiguity in turnarounds computation at junction '%'.
 Warning: 3 total messages of type: Found angle of % degrees at edge '%', segment %.
-Warning: 10 total messages of type: Found sharp turn with radius % at the end of edge '%'.
-Warning: 13 total messages of type: Found sharp turn with radius % at the start of edge '%'.
+Warning: 24 total messages of type: Found sharp turn with radius % at the % of edge '%'.
 Warning: 1352 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
 Warning: 2 total messages of type: Shape for junction '%' has distance % to its given position.
 Warning: Traffic light type 'actuated' cannot be used in mesoscopic simulation. Using 'static' as fallback.
