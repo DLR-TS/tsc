@@ -41,6 +41,9 @@ def get_polys(server_options, table='quesadillas.zonierung_d_modell', net=None):
     if conn is None:
         print("Warning! No database, cannot retrieve suburbian TAZ.")
         return
+    if not database.table_exists(conn, table.split(".")[1], table.split(".")[0]):
+        print("Warning! Table '%s' does not exist, cannot retrieve suburbian TAZ." % table)
+        return
     command = "SELECT vbz_6561, ST_ASTEXT(ST_TRANSFORM(the_geom, 4326)) FROM %s" % table
     cursor = conn.cursor()
     cursor.execute(command)
