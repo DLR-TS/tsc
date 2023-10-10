@@ -2,8 +2,6 @@
 Combining traffic demand estimation with microscopic traffic simulation
 
 ## Requirements
-### Git
-Make sure you have git-lfs on your system (`sudo apt-get install git-lfs`) and activated for your user (`git lfs install`).
 
 ### Python
 The scripts should work with Python 2.7 and Python 3.5 or later. The psycopg2 adapter is needed for database communication.
@@ -12,20 +10,24 @@ if you need GTFS import.
 (`sudo apt-get install python-psycopg2 python-rtree python-pandas` and/or `sudo apt-get install python3-psycopg2 python3-rtree python3-pandas`).
 This can also be done using pip (tested with RedHat EL 7):
 `pip install --user wheel -r requirements.txt`
-Wheel is needed for rtree installer
+Wheel is needed for the rtree installer.
 
 ### SUMO
 You need to have a working SUMO installation and your environment variable SUMO_HOME needs to be set. On ubuntu
 `sudo apt-get install sumo` should suffice.
 
 ## Installing
-1. Clone this repo `git clone https://github.com/DLR-TS/tsc` (do another pull if you cloned without having lfs active).
+1. Clone this repo `git clone https://github.com/DLR-TS/tsc`.
 2. Copy postgres_template.tsccfg (e.g. to postgres.tsccfg) and enter the database connection details (server, user, passwd)
 3. Run `pip install --user .` (developers may want to add `-e` here for an editable install, this requires pip>=23.0)
-4. Run `tsc_install -c postgres.tsccfg`
-5. (optional) Testfield Lower Saxony `git clone https://github.com/DLR-TS/sumo-scenarios` and `tsc_install -c postgres.tsccfg -p ../sumo-scenarios/`. This will try to install other scenarios as well but you can safely ignore the corresponding warnings.
+4. Install scenarios for Berlin and Testfield Lower Saxony `git clone https://github.com/DLR-TS/sumo-scenarios` and `tsc_install -c postgres.tsccfg -p ../sumo-scenarios/`. This will try to install other scenarios as well but you can safely ignore the corresponding warnings.
 
-The installation needs the database connection only if you plan to use scenarios with (Germany wide) background traffic. 
+### Optional old scenarios
+1. Make sure you have git-lfs on your system (`sudo apt-get install git-lfs`) and activated for your user (`git lfs install`).
+2. Do another `git pull` in the tsc directory if you cloned without having lfs active.
+3. Run `tsc_install -c postgres.tsccfg` directly in the tsc checkout.
+
+The installations need the database connection only if you plan to use scenarios with (Germany wide) background traffic.
 If you don't need it, you can omit the `-c postgres.tsccfg` part.
 
 ## Running
@@ -74,3 +76,6 @@ It may be useful to have additional files in a scenario (to be described)
 
 Furthermore you can define custom scripts (with the name `setup.py`) which get called in the installation process
 and can modify or generate the rquired inputs.
+
+## Documentation
+For a (german) description of the database layout and some details on the process have a look at the "Lastenheft" in the docs folder.

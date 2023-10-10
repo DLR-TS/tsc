@@ -4,7 +4,7 @@
 # to use it run (GUI applications need more work)
 # $ docker run -it tsc bash
 
-FROM ghcr.io/eclipse/sumo:nightly
+FROM ghcr.io/eclipse-sumo/sumo:nightly
 
 # tsc needs lfs for the old scenarios in data, but currently we only install from sumo-scenarios
 #RUN apt-get -y install git-lfs; git lfs install
