@@ -17,6 +17,10 @@ You need to have a working SUMO installation and your environment variable SUMO_
 `sudo apt-get install sumo` should suffice.
 
 ## Installing
+For the latest pre-release do `python3 -m pip install --extra-index-url https://test.pypi.org/simple tapas-sumo-coupling`
+
+For bleeding edge:
+
 1. Clone this repo `git clone https://github.com/DLR-TS/tsc`.
 2. Copy postgres_template.tsccfg (e.g. to postgres.tsccfg) and enter the database connection details (server, user, passwd)
 3. Run `pip install --user .` (developers may want to add `-e` here for an editable install, this requires pip>=23.0)
