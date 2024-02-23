@@ -24,7 +24,7 @@ For bleeding edge:
 1. Clone this repo `git clone https://github.com/DLR-TS/tsc`.
 2. Copy postgres_template.tsccfg (e.g. to postgres.tsccfg) and enter the database connection details (server, user, passwd)
 3. Run `pip install --user .` (developers may want to add `-e` here for an editable install, this requires pip>=23.0)
-4. Install scenarios for Berlin and Testfield Lower Saxony `git clone https://github.com/DLR-TS/sumo-scenarios` and `tsc_install -c postgres.tsccfg -p ../sumo-scenarios/`. This will try to install other scenarios as well but you can safely ignore the corresponding warnings.
+4. Install scenarios for Berlin and Testfield Lower Saxony `git clone --recursive --depth 1 https://github.com/DLR-TS/sumo-scenarios` and `tsc_install -c postgres.tsccfg -p ../sumo-scenarios/`. This will try to install other scenarios as well but you can safely ignore the corresponding warnings.
 
 ### Optional old scenarios
 1. Make sure you have git-lfs on your system (`sudo apt-get install git-lfs`) and activated for your user (`git lfs install`).
