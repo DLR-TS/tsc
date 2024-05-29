@@ -3,28 +3,54 @@ Combining traffic demand estimation with microscopic traffic simulation
 
 ## Requirements
 
+### SUMO
+You need to have a working SUMO installation and your environment variable SUMO_HOME needs to be set.
+On ubuntu you could try:
+
+```
+sudo add-apt-repository ppa:sumo/stable
+sudo apt-get update
+sudo apt-get install sumo sumo-tools sumo-doc
+```
+
+Then open a new login shell and check whether `echo $SUMO_HOME` generates an output like `/usr/share/sumo`. This directory should contain
+subdirectories like `data` and `tools`.
+
 ### Python
-The scripts should work with Python 2.7 and Python 3.5 or later. The psycopg2 adapter is needed for database communication.
+The scripts should work with Python 3.7 or later (if absolutely necessary, you might try Python 2.7).
+If you prefer installing via your package manager do something like
+`sudo apt-get install python3-psycopg2 python3-rtree python3-pandas`.
+The psycopg2 adapter is needed for database communication.
 It is strongly recommended to have the rtree module which speeds up several lookup procedures and pandas
 if you need GTFS import.
-(`sudo apt-get install python-psycopg2 python-rtree python-pandas` and/or `sudo apt-get install python3-psycopg2 python3-rtree python3-pandas`).
-This can also be done using pip (tested with RedHat EL 7):
-`pip install --user wheel -r requirements.txt`
-Wheel is needed for the rtree installer.
 
-### SUMO
-You need to have a working SUMO installation and your environment variable SUMO_HOME needs to be set. On ubuntu
-`sudo apt-get install sumo` should suffice.
+### Virtual Environments
+If you don't want to mess with your system or don't have sudo rights, you can do everything in a virtual environment:
+
+```
+python3 -m venv tscenv
+. tscenv/bin/activate
+python3 -m pip install -U pip
+git clone https://github.com/DLR-TS/tsc
+python3 -m pip install -r tsc/requirements.txt
+python3 -m pip install eclipse-sumo
+```
 
 ## Installing
+If you did not do it before start to clone this repo `git clone https://github.com/DLR-TS/tsc`.
+
 For the latest pre-release do `python3 -m pip install --extra-index-url https://test.pypi.org/simple tapas-sumo-coupling`
 
 For bleeding edge:
 
-1. Clone this repo `git clone https://github.com/DLR-TS/tsc`.
-2. Copy postgres_template.tsccfg (e.g. to postgres.tsccfg) and enter the database connection details (server, user, passwd)
-3. Run `pip install --user .` (developers may want to add `-e` here for an editable install, this requires pip>=23.0)
-4. Install scenarios for Berlin and Testfield Lower Saxony `git clone --recursive --depth 1 https://github.com/DLR-TS/sumo-scenarios` and `tsc_install -c postgres.tsccfg -p ../sumo-scenarios/`. This will try to install other scenarios as well but you can safely ignore the corresponding warnings.
+1. Change the directory `cd tsc`.
+2. Upgrade pip `python3 -m pip install -U pip`.
+3. Run `python3 -m pip install --user .` (developers may want to use `python3 -m pip install -e --user .` here for an editable install).
+
+Make sure you have the relevant bin directories in your PATH (you should be able to run `sumo` and `tsc_main`). Now install the scenarios:
+
+4. Copy postgres_template.tsccfg (e.g. to postgres.tsccfg) and enter the database connection details (server, user, passwd)
+5. Install scenarios for Berlin and Testfield Lower Saxony `git clone --recursive --depth 1 https://github.com/DLR-TS/sumo-scenarios` and `tsc_install -c postgres.tsccfg -p ../sumo-scenarios/`. This will try to install other scenarios as well but you can safely ignore the corresponding warnings.
 
 ### Optional old scenarios
 1. Make sure you have git-lfs on your system (`sudo apt-get install git-lfs`) and activated for your user (`git lfs install`).
@@ -46,7 +72,7 @@ If you want to override certain simulation parameters on the command line use th
 For a list of available parameters have a look at the relevant database table `public.simulation_parameters` or at constants.py (the SP class).
 
 ## Testing
-This requires [texttest](https://www.texttest.org/) to be installed (using `pip install --user texttest` or the windows installer).
+This requires [texttest](https://www.texttest.org/) to be installed (using `python3 -m pip install --user texttest` or the windows installer).
 To run the tests you will either need a running postgresql database or you will need to configure your sqlite installation such that it can use the spatialite extension.
 Most of the time it suffices to install mod_spatialite (`sudo apt-get install libsqlite3-mod-spatialite`). It is very likely that this works only with python3.
 If you have everything installed run one of the scripts in the test directory which should fire up the texttest GUI
