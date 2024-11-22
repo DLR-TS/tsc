@@ -2,6 +2,17 @@
 #Bash script for the test run.
 #sets environment variables and starts texttest
 
+pushd `dirname $0` > /dev/null
+shopt -s nullglob  # expand the pattern to an empty list if no env exists
+for i in *env/bin/activate; do
+  if test x"$VIRTUAL_ENV" = x; then
+    echo "Activating virtual environment $(dirname $(dirname $i))."
+    source $i
+  else
+    echo "Virtual environment $VIRTUAL_ENV already active, ignoring $(dirname $(dirname $i))."
+  fi
+done
+popd > /dev/null
 if test x"$SUMO_HOME" = x; then
   export SUMO_HOME="$HOME/sumo"
 fi

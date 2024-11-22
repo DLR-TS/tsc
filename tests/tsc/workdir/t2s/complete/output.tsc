@@ -1,38 +1,37 @@
-function main called at Mon, 09 Jan 2023 14:52:17 +0000
-function rectify_input called at Mon, 09 Jan 2023 14:52:18 +0000
-Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/workdir/t2s/complete/data/twoPersonsOnly.csv".
+function main called at Fri, 22 Nov 2024 14:37:22 +0000
+function rectify_input called at Fri, 22 Nov 2024 14:37:22 +0000
+Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.22Nov143707.215807/tsc.sqlite3.python3/workdir/t2s/complete/data/twoPersonsOnly.csv".
 0 trips have inconsistent depart times.
-function rectify_input finished after 0.038749 seconds
-function map_to_edges called at Mon, 09 Jan 2023 14:52:18 +0000
-Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/workdir/t2s/complete/data/scenario_workdir/mitte_net/districts.taz.xml.gz.
+function rectify_input finished after 0.047737 seconds
+function map_to_edges called at Fri, 22 Nov 2024 14:37:22 +0000
+Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.22Nov143707.215807/tsc.sqlite3.python3/workdir/t2s/complete/data/scenario_workdir/mitte_net/districts.taz.xml.gz.
 read 4 TAPAS trips for 2 persons (0 unmappable)
 Mapping deviations: count 4, min 9.41 (xycoord=(720.7678498803871, 1303.540090534836), edge=320462164#1, uid=('1000005', '1000001')), max 42.56 (xycoord=(568.7532229983481, 913.0316369170323), edge=-4588215#5, uid=('1000019', '1000003')), mean 27.86, Q1 26.08, median 33.39, Q3 42.56
 0 mappings did not find an edge in the correct taz
-function map_to_edges finished after 0.278366 seconds
-function create_sumo_tripdefs called at Mon, 09 Jan 2023 14:52:18 +0000
+function map_to_edges finished after 0.390010 seconds
+function create_sumo_tripdefs called at Fri, 22 Nov 2024 14:37:23 +0000
 read trip definitions for 4 vehicles
 created trip definitions for 4 vehicles starting between 135131 and 137351
-function create_sumo_tripdefs finished after 0.000266 seconds
-function run_oneshot called at Mon, 09 Jan 2023 14:52:18 +0000
+function create_sumo_tripdefs finished after 0.000271 seconds
+function run_oneshot called at Fri, 22 Nov 2024 14:37:23 +0000
 Loading configuration ... done.
-Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/workdir/t2s/complete/data/scenario_workdir/mitte_net/net.net.xml.gz' ... 
-done (586ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/workdir/t2s/complete/data/scenario_workdir/mitte_net/vtypes.xml' ... done (13ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.09Jan145151.18704/tsc.sqlite3.python3/workdir/t2s/complete/data/scenario_workdir/mitte_net/iteration000/oneshot/dump_oneshot_meso.xml' ... done (6ms).
+Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.22Nov143707.215807/tsc.sqlite3.python3/workdir/t2s/complete/data/scenario_workdir/mitte_net/net.net.xml.gz' ...
+ done (512ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.22Nov143707.215807/tsc.sqlite3.python3/workdir/t2s/complete/data/scenario_workdir/mitte_net/vtypes.xml' ... done (14ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.22Nov143707.215807/tsc.sqlite3.python3/workdir/t2s/complete/data/scenario_workdir/mitte_net/iteration000/oneshot/dump_oneshot_meso.xml' ... done (8ms).
 Loading done.
-Simulation version v1_15_0+1384-267f149c13a started with time: 135131.00.
-Simulation ended at time: 148151.00
+Simulation version v1_21_0+0858-8d0a625183d started with time: 135131.00.
+Simulation ended at time: 148151.00.
 Reason: The final simulation step has been reached.
-Performance: 
- Duration: 1.07s
- Real time factor: 12213.9
- UPS: 2893.996248
-Vehicles: 
+Performance:
+ Duration: 0.57s
+ Real time factor: 22722.5
+ UPS: 5383.944154
+Vehicles:
  Inserted: 4
  Running: 0
  Waiting: 0
-
 AStarRouter answered 12 queries and explored 1631.25 edges on average.
-AStarRouter spent 0.02s answering queries (1.58ms on average).
-function run_oneshot finished after 1.890596 seconds
-function main finished after 2.872745 seconds
+AStarRouter spent 0.02s answering queries (1.83ms on average).
+function run_oneshot finished after 1.307303 seconds
+function main finished after 2.319281 seconds
