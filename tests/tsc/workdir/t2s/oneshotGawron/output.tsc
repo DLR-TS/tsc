@@ -1,80 +1,81 @@
-function main called at Fri, 22 Nov 2024 14:37:25 +0000
-function rectify_input called at Fri, 22 Nov 2024 14:37:25 +0000
-Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.22Nov143707.215807/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/twoPersonsOnly.csv".
+function main called at Mon, 06 Jan 2025 14:09:52 +0000
+function rectify_input called at Mon, 06 Jan 2025 14:09:52 +0000
+Read 2 persons with a total of 4 trips from input file "/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.1_from_06Jan140647.3267488/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/twoPersonsOnly.csv".
 0 trips have inconsistent depart times.
-function rectify_input finished after 0.045355 seconds
-function map_to_edges called at Fri, 22 Nov 2024 14:37:25 +0000
-Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.22Nov143707.215807/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/districts.taz.xml.gz.
+function rectify_input finished after 0.040643 seconds
+function map_to_edges called at Mon, 06 Jan 2025 14:09:52 +0000
+Mapping using /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.1_from_06Jan140647.3267488/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/districts.taz.xml.gz.
 read 4 TAPAS trips for 2 persons (0 unmappable)
 Mapping deviations: count 4, min 9.41 (xycoord=(720.7678498803871, 1303.540090534836), edge=320462164#1, uid=('1000005', '1000001')), max 42.56 (xycoord=(568.7532229983481, 913.0316369170323), edge=-4588215#5, uid=('1000019', '1000003')), mean 27.86, Q1 26.08, median 33.39, Q3 42.56
 0 mappings did not find an edge in the correct taz
-function map_to_edges finished after 0.320040 seconds
-function create_sumo_tripdefs called at Fri, 22 Nov 2024 14:37:26 +0000
+function map_to_edges finished after 0.265036 seconds
+function create_sumo_tripdefs called at Mon, 06 Jan 2025 14:09:53 +0000
 read trip definitions for 4 vehicles
 created trip definitions for 4 vehicles starting between 135131 and 137351
-function create_sumo_tripdefs finished after 0.000273 seconds
-function run_oneshot called at Fri, 22 Nov 2024 14:37:26 +0000
+function create_sumo_tripdefs finished after 0.000233 seconds
+function run_oneshot called at Mon, 06 Jan 2025 14:09:53 +0000
 Loading configuration ... done.
-Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.22Nov143707.215807/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/net.net.xml.gz' ...
- done (469ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.22Nov143707.215807/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/vtypes.xml' ... done (49ms).
-Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.22Nov143707.215807/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/iteration000/oneshot/dump_oneshot_meso.xml' ... done (14ms).
+Loading net-file from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.1_from_06Jan140647.3267488/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/net.net.xml.gz' ...
+ done (514ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.1_from_06Jan140647.3267488/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/vtypes.xml' ... done (15ms).
+Loading additional-files from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.1_from_06Jan140647.3267488/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/iteration000/oneshot/dump_oneshot_meso.xml' ... done (7ms).
+Loading route-files incrementally from '/home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.1_from_06Jan140647.3267488/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/iteration000/trips/miv_twoPersonsOnly.trips.xml'
 Loading done.
-Simulation version v1_21_0+0858-8d0a625183d started with time: 135131.00.
+Simulation version v1_21_0+1675-dee0fa12f5b started with time: 135131.00.
 Simulation ended at time: 148151.00.
 Reason: The final simulation step has been reached.
 Performance:
- Duration: 0.64s
- Real time factor: 20312
- UPS: 4812.792512
+ Duration: 0.55s
+ Real time factor: 23587
+ UPS: 5588.768116
 Vehicles:
  Inserted: 4
  Running: 0
  Waiting: 0
 AStarRouter answered 12 queries and explored 1631.25 edges on average.
-AStarRouter spent 0.02s answering queries (1.92ms on average).
-function run_oneshot finished after 1.380831 seconds
-function run_duaiterate called at Fri, 22 Nov 2024 14:37:27 +0000
+AStarRouter spent 0.02s answering queries (1.83ms on average).
+function run_oneshot finished after 1.300005 seconds
+function run_duaiterate called at Mon, 06 Jan 2025 14:09:54 +0000
 Written configuration to '000/iteration_000_vehroutes_oneshot_meso.duarcfg'
 > Executing step 0
->> Running router on /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.22Nov143707.215807/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/iteration000/oneshot/vehroutes_oneshot_meso.rou.xml
->>> Begin time: 2024-11-22 14:37:28.841464
->>> End time: 2024-11-22 14:37:29.610520
->>> Duration: 0:00:00.769056
+>> Running router on /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.1_from_06Jan140647.3267488/tsc.sqlite3.python3/workdir/t2s/oneshotGawron/data/scenario_workdir/mitte_net/iteration000/oneshot/vehroutes_oneshot_meso.rou.xml
+>>> Begin time: 2025-01-06 14:09:55.086965
+>>> End time: 2025-01-06 14:09:55.588385
+>>> Duration: 0:00:00.501420
 <<
 >> Running simulation
->>> Begin time: 2024-11-22 14:37:29.610561
->>> End time: 2024-11-22 14:37:30.502608
->>> Duration: 0:00:00.892047
+>>> Begin time: 2025-01-06 14:09:55.588444
+>>> End time: 2025-01-06 14:09:56.102136
+>>> Duration: 0:00:00.513692
 <<
 >> Smoothing edge weights
 >>> Updated 114 edges
 >>> Decayed 0 unseen edges
 >>> Error avg:0 mean:0
 >>> Absolute Error avg:0 mean:0
-< Step 0 ended (duration: 0:00:01.663807)
+< Step 0 ended (duration: 0:00:01.020784)
 ------------------
 
 Written configuration to '001/iteration_001_vehroutes_oneshot_meso_000.duarcfg'
 > Executing step 1
 >> Running router on 000/vehroutes_oneshot_meso_000.rou.alt.xml
->>> Begin time: 2024-11-22 14:37:30.508992
->>> End time: 2024-11-22 14:37:32.292842
->>> Duration: 0:00:01.783850
+>>> Begin time: 2025-01-06 14:09:56.111536
+>>> End time: 2025-01-06 14:09:56.960277
+>>> Duration: 0:00:00.848741
 <<
 >> Running simulation
->>> Begin time: 2024-11-22 14:37:32.292877
->>> End time: 2024-11-22 14:37:33.219851
->>> Duration: 0:00:00.926974
+>>> Begin time: 2025-01-06 14:09:56.960310
+>>> End time: 2025-01-06 14:09:57.479298
+>>> Duration: 0:00:00.518988
 <<
 >> Smoothing edge weights
 >>> Updated 114 edges
 >>> Decayed 0 unseen edges
 >>> Error avg:0 mean:0
 >>> Absolute Error avg:0 mean:0
-< Step 1 ended (duration: 0:00:02.712901)
+< Step 1 ended (duration: 0:00:01.369724)
 ------------------
 
-dua-iterate ended (duration: 0:00:05.317216)
-function run_duaiterate finished after 5.539091 seconds
-function main finished after 7.823457 seconds
+dua-iterate ended (duration: 0:00:03.001246)
+function run_duaiterate finished after 3.120346 seconds
+function main finished after 5.086951 seconds
