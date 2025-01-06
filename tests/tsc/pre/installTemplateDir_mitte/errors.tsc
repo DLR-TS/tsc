@@ -245,7 +245,7 @@ Warning: 7 total messages of type: Converting invalid rail_crossing to priority 
 Warning: 4 total messages of type: Found angle of % degrees at edge '%', segment %.
 Warning: 28 total messages of type: Found sharp turn with radius % at the % of edge '%'.
 Warning: 14 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
-Warning: 41 total messages of type: Non-static traffic light '%' does not define variable phase length.
+Warning: 52 total messages of type: Non-static traffic light '%' does not define variable phase length.
 Warning: Ambiguity in turnarounds computation at junction '1631101114'.
 Warning: Converting invalid rail_crossing to priority junction '1011319238'.
 Warning: Edge '-4687155' is not connected to outgoing edges at junction '492025918'.
@@ -255,7 +255,7 @@ Warning: 4 total messages of type: Ambiguity in turnarounds computation at junct
 Warning: 16 total messages of type: Converting invalid rail_crossing to priority junction '%'.
 Warning: 4 total messages of type: Edge '%' is not connected to outgoing edges at junction '%'.
 Warning: 31 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
-Warning: 41 total messages of type: Non-static traffic light '%' does not define variable phase length.
+Warning: 42 total messages of type: Non-static traffic light '%' does not define variable phase length.
 Warning! No mapping library found, falling back to tracemapper.
 Warning! Disconnected route '105575287' between '340606520#1' and '109804590#0', no path found. Keeping longer part.
 Warning! Disconnected route '105575296.trimmed' between '340606520#1' and '109804590#0', no path found. Keeping longer part.
@@ -283,7 +283,7 @@ Warning! Disconnected route '112247573' between '230976795#0' and '230957297', n
 Warning! Disconnected route '112247620' between '230976795#0' and '230957297', no path found. Keeping longer part.
 Warning! Disconnected route '112250898' between '230976795#0' and '230957297', no path found. Keeping longer part.
 Warning! Disconnected route '112251060' between '230976795#0' and '230957297', no path found. Keeping longer part.
-Warning! No net /home/micha/.texttest/tmp/tsc.sqlite3.python3.21May082839.147686/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/resources/subway.net.xml
+Warning! No net /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.06Jan140647.3265995/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/resources/subway.net.xml
 Warning! Disconnected route '105361629' between '169953964#7' and '83146233#0#0', no path found. Keeping longer part.
 Warning! Disconnected route '105361771.trimmed' between '169953964#7' and '83146233#0#0', no path found. Keeping longer part.
 Warning! Disconnected route '105361830' between '-168253001#3' and '83146233#0#0', no path found. Keeping longer part.
@@ -370,9 +370,4 @@ Warning: 36 total messages of type: Found sharp turn with radius % at the % of e
 Warning: 16 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
 Warning: Cannot derive file name for alternatives output, skipping it.
 Warning: No route input specified or all routes were invalid.
-Warning: No connection between edge '47016365#0' and edge '-109819340#1' found.
-Warning: No connection between edge '47016365#0' and edge '-109819340#2' found.
-Warning: No connection between edge '47016365#0' and edge '-109819340#3' found.
-Warning: No connection between edge '47016365#0' and edge '-120948266' found.
-Warning: No connection between edge '47016365#0' and edge '-143201758#1' found.
-Warning: 10623 total messages of type: No connection between edge '%' and edge '%' found.
+Warning: Landmark 47016365#0 is not reachable from 798 edges and is unable to reach 770 out of 13503 total edges.
