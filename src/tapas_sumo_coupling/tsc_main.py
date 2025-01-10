@@ -445,7 +445,7 @@ def simulation_request(options, request):
             _, _, exists = database.check_schema_table(conn, 'temp', '%s_%s' % (params[SP.trip_output], sim_key))
             if not exists or not options.resume:
                 write_status('>> starting trip result database upload', sim_key, params, conn)
-                s2t_miv.upload_trip_results(conn, sim_key, params, final_routes)
+                s2t_miv.upload_trip_results(conn, sim_key, params, final_routes, options.trip_emissions)
                 write_status('<< finished trip result database upload', sim_key, params, conn)
                 print()
             # run all pair calculations

@@ -107,6 +107,8 @@ def fillOptions(argParser):
                            help="reuse existing files instead of overwriting them")
     argParser.add_argument("-b", "--representatives-bbox",
                            help="bounding box to limit valid taz represantives (west,south,east,north)")
+    argParser.add_argument("--trip-emissions", metavar="FILE",
+                           help="write trip specific emission output to FILE")
 
 
 def getSumoTripfileName(trips_dir, tapas_trips):

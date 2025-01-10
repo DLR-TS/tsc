@@ -169,6 +169,10 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
     if meso and os.path.exists(os.path.join(base_dir, "landmarks.csv.gz")):
         addOpt += """
         <astar.landmark-distances value="%s"/>""" % os.path.join(base_dir, "landmarks.csv.gz")
+    if options.trip_emissions:
+        addOpt += """
+        <tripinfo-output value="%s"/>
+        <device.emissions.probability value="1"/>""" % options.trip_emissions
     with open(tempcfg, 'w') as f:
         f.write(
             """<configuration>

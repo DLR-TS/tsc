@@ -110,6 +110,30 @@ def _parse_vehicle_info(routes):
 
 
 @benchmark
+def _parse_vehicle_emissions(tripinfos):
+    electric = Statistics("Electric")
+    fuel = Statistics("Fuel")
+    energy = {}
+    emissions = {}
+    for v in output.parse(tripinfos, 'tripinfo'):
+        if not v.line and not v.id.endswith(BACKGROUND_TRAFFIC_SUFFIX) and v.depart != "triggered":
+            # SUMO returns Wh, we want MJ
+            e = float(v.emissions[0].electricity_abs) * 3600e-6
+            # Gasoline and Diesel have a energy density of about 46 MJ / kg, see https://en.wikipedia.org/wiki/Energy_density
+            # SUMO returns mg, hence e-6
+            f = float(v.emissions[0].fuel_abs) * 46e-6
+            c = float(v.emissions[0].CO2_abs) * 1e-3
+            electric.add(e, v.id)
+            fuel.add(f, v.id)
+            energy[tuple(v.id.split('_'))] = (e, f)
+            emissions[tuple(v.id.split('_'))] = (c,)
+    print("Parsed emission results for %s vehicles:" % len(energy))
+    print(electric)
+    print(fuel)
+    return energy, emissions
+
+
+@benchmark
 def _parse_vehicle_info_taz(routes, start, end, vType):
     stats = []
     if os.path.isfile(routes):
@@ -124,8 +148,15 @@ def _parse_vehicle_info_taz(routes, start, end, vType):
 
 
 @benchmark
-def upload_trip_results(conn, key, params, routes, limit=None):
+def upload_trip_results(conn, key, params, routes, trip_emissions=None, limit=None):
     tripstats = _parse_vehicle_info(routes)
+    columns = "p_id, hh_id, start_time_min, clone_id, travel_time_sec, distance_real"
+    emission_column_def = ""
+    if trip_emissions:
+        columns += ", energy_MJ, emission_g"
+        emission_column_def = "energy_MJ double precision[], emission_g double precision[],"
+        energy, emissions = _parse_vehicle_emissions(os.path.join(os.path.dirname(routes), trip_emissions))
+        tripstats = [t + (energy[t[:-2]], emissions[t[:-2]]) for t in tripstats[:limit]]
     table = '%s_%s' % (params[SP.trip_output], key)
     if conn is None:
         print("Warning! No database connection, writing trip info to file %s.csv." % table)
@@ -133,7 +164,7 @@ def upload_trip_results(conn, key, params, routes, limit=None):
         return
     if tripstats:
         createQuery = """
-CREATE TABLE %s
+CREATE TABLE %%s
 (
   p_id integer NOT NULL,
   hh_id integer NOT NULL,
@@ -141,12 +172,13 @@ CREATE TABLE %s
   clone_id integer NOT NULL DEFAULT 0,
   travel_time_sec double precision[],
   distance_real double precision[],
-  CONSTRAINT %s_pkey PRIMARY KEY (p_id, hh_id, start_time_min, clone_id)
+  %s
+  CONSTRAINT %%s_pkey PRIMARY KEY (p_id, hh_id, start_time_min, clone_id)
 )
-"""
+""" % emission_column_def
         schema_table = database.create_table(conn, 'temp', table, createQuery)
-        values = [tuple([str(e).replace("(", "{").replace(")", "}")  for e in t]) for t in tripstats[:limit]]
-        database.insertmany(conn, schema_table, "p_id, hh_id, start_time_min, clone_id, travel_time_sec, distance_real", values)
+        values = [tuple([str(e).replace("(", "{").replace(")", "}") for e in t]) for t in tripstats[:limit]]
+        database.insertmany(conn, schema_table, columns, values)
 
 
 @benchmark
@@ -272,7 +304,7 @@ def main():
         return
     conn = database.get_conn(options)
     if os.path.isfile(options.real_trips) and not options.all_pairs:
-        upload_trip_results(conn, options.simkey, SP.OPTIONAL, options.real_trips, options.limit)
+        upload_trip_results(conn, options.simkey, SP.OPTIONAL, options.real_trips, limit=options.limit)
     if os.path.isfile(options.representatives):
         tables = create_all_pairs(conn, options.simkey, SP.OPTIONAL)
         upload_all_pairs(conn, tables, 0, 86400, "passenger", options.real_trips,
