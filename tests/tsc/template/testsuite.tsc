@@ -19,6 +19,9 @@ threeIterationsDeleteNonFinal
 # generate all pair matrix by vtype
 tscDaemonVTypeMatrix
 
+# generate trip emissions
+tscDaemonTripEmissions
+
 # parsing an empty trips file
 tscDaemonEmptyTripsFile
 
