@@ -117,16 +117,19 @@ def _parse_vehicle_emissions(tripinfos):
     emissions = {}
     for v in output.parse(tripinfos, 'tripinfo'):
         if not v.line and not v.id.endswith(BACKGROUND_TRAFFIC_SUFFIX) and v.depart != "triggered":
+            em = v.emissions[0]
             # SUMO returns Wh, we want MJ
-            e = float(v.emissions[0].electricity_abs) * 3600e-6
+            e = float(em.electricity_abs) * 3600e-6
             # Gasoline and Diesel have a energy density of about 46 MJ / kg, see https://en.wikipedia.org/wiki/Energy_density
             # SUMO returns mg, hence e-6
-            f = float(v.emissions[0].fuel_abs) * 46e-6
-            c = float(v.emissions[0].CO2_abs) * 1e-3
+            f = float(em.fuel_abs) * 46e-6
+            # SUMO returns mg, wqe want g, hence e-3
+            c = tuple([float(em.CO_abs) * 1e-3, float(em.CO2_abs) * 1e-3, float(em.HC_abs) * 1e-3,
+                       float(em.PMx_abs) * 1e-3, float(em.NOx_abs) * 1e-3])
             electric.add(e, v.id)
             fuel.add(f, v.id)
             energy[tuple(v.id.split('_'))] = (e, f)
-            emissions[tuple(v.id.split('_'))] = (c,)
+            emissions[tuple(v.id.split('_'))] = c
     print("Parsed emission results for %s vehicles:" % len(energy))
     print(electric)
     print(fuel)
