@@ -36,6 +36,7 @@ else:
 import sumolib  # noqa
 import edgesInDistricts  # noqa
 import generateBidiDistricts  # noqa
+import generateLandmarks  # noqa
 import gtfs2pt  # noqa
 import osmTaxiStop  # noqa
 import split_at_stops  # noqa
@@ -61,8 +62,6 @@ def getOptions():
                            help="name of the column in the shape files which contains the taz id")
     argParser.add_argument("--suburb-taz", default="suburb",
                            help="name of taz file for surrounding districts")
-    argParser.add_argument("--landmarks", default="landmarks",
-                           help="name of file listing landmark edges")
     argParser.add_argument("--no-network", action="store_true", default=False,
                            help="skip network building")
     argParser.add_argument("--osm-ptlines", action="store_true", default=False,
@@ -308,17 +307,15 @@ def build_taz_etc(scenario_pre_dir, net_path, options):
             reader.computeWithin(polys, eIDoptions)
             reader.writeResults(eIDoptions)
         add += "," + tazFile
-    lm = os.path.join(scenario_pre_dir, options.landmarks)
-    if os.path.isfile(lm):
-        landmarkFile = os.path.join(scenario_template_dir, "landmarks.csv.gz")
-        if options.verbose:
-            print("generating landmark file %s from %s" % (landmarkFile, lm))
-        call([sumolib.checkBinary('duarouter'), "-n", net_path, "-a", add, "--astar.landmark-distances", lm,
-              "--astar.save-landmark-distances", landmarkFile,
-              "--routing-threads", "24", "-v",
-              "-o", "NUL", "--ignore-errors", "--aggregate-warnings", "5"], options.verbose)
-    else:
-        print("could not find landmark data for %s" % scenario_template_dir)
+    landmarkEdges = os.path.join(scenario_template_dir, "landmarks.txt")
+    generateLandmarks.main(generateLandmarks.get_options["-n", net_path, "-o", landmarkEdges])
+    landmarkFile = os.path.join(scenario_template_dir, "landmarks.csv.gz")
+    if options.verbose:
+        print("generating landmark file %s from %s" % (landmarkFile, landmarkEdges))
+    call([sumolib.checkBinary('duarouter'), "-n", net_path, "-a", add, "--astar.landmark-distances", landmarkEdges,
+            "--astar.save-landmark-distances", landmarkFile,
+            "--routing-threads", "24", "-v",
+            "-o", "NUL", "--ignore-errors", "--aggregate-warnings", "5"], options.verbose)
 
 
 def main():
