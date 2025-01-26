@@ -308,7 +308,7 @@ def build_taz_etc(scenario_pre_dir, net_path, options):
             reader.writeResults(eIDoptions)
         add += "," + tazFile
     landmarkEdges = os.path.join(scenario_template_dir, "landmarks.txt")
-    generateLandmarks.main(generateLandmarks.get_options["-n", net_path, "-o", landmarkEdges])
+    generateLandmarks.main(generateLandmarks.get_options(["-n", net_path, "-o", landmarkEdges]))
     landmarkFile = os.path.join(scenario_template_dir, "landmarks.csv.gz")
     if options.verbose:
         print("generating landmark file %s from %s" % (landmarkFile, landmarkEdges))
