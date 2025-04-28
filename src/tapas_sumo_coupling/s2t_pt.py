@@ -19,7 +19,8 @@ from __future__ import print_function, division
 import os
 import sys
 import numpy as np
-np.set_printoptions(legacy="1.25")
+if np.version.version >= '2':
+    np.set_printoptions(legacy="1.25")
 
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
