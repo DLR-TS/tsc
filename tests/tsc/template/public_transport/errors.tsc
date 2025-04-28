@@ -1,5 +1,28 @@
 Warning: Traffic light type 'actuated' cannot be used in mesoscopic simulation. Using 'static' as fallback.
 Warning: Vehicle class 'bicycle' of vType 'ped_bike' is set as ignored by option --meso-ignore-lanes-by-vclass to ensure default vehicle capacity. Set option --meso-lane-queue for multi-modal meso simulation
+Warning: Edge '-222328410' is shorter than 15.00m (10.41m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '-438496646#0' is shorter than 15.00m (5.15m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '-99729383#9' is shorter than 15.00m (11.94m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '167893762#4' is shorter than 15.00m (10.37m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '155533124#4' is shorter than 15.00m (8.91m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '93628042#7' is shorter than 15.00m (14.83m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '24864947#18' is shorter than 15.00m (8.05m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '4791641#2' is shorter than 15.00m (8.87m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '10596872#2' is shorter than 15.00m (2.40m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '144014237#0' is shorter than 15.00m (10.51m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '168253001#4' is shorter than 15.00m (13.31m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '168253001#6' is shorter than 15.00m (5.84m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '153427725#10' is shorter than 15.00m (11.07m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '26757071#4' is shorter than 15.00m (13.66m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '291696980#1' is shorter than 15.00m (14.43m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '291670890#6' is shorter than 15.00m (14.41m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '803025464#0' is shorter than 15.00m (8.40m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '4687140#9' is shorter than 15.00m (7.57m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '110862591#1' is shorter than 15.00m (6.44m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '288762492#1' is shorter than 15.00m (14.70m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '171867096#5' is shorter than 15.00m (8.54m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '314983832#3' is shorter than 15.00m (8.68m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '83146233#6' is shorter than 15.00m (11.04m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: At actuated tlLogic '1412045005', linkIndex 12,13,14,15,16 has no controlling detector.
 Warning: At actuated tlLogic 'GS_243993451', linkIndex 13,14 has no controlling detector.
 Warning: At actuated tlLogic 'GS_25662542', linkIndex 9,10,11,16 has no controlling detector.
