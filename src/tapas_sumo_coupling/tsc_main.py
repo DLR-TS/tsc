@@ -277,7 +277,7 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
             end_second = end_hour * 3600
             write_status('>>> starting all pairs for %s, slice ending at hour %s' % (
                 mapType, end_hour), sim_key, params, conn)
-            if params[SP.representatives]:
+            if params[SP.representatives] not in (None, '', 'none'):
                 options.tapas_trips = get_trips.tripfile_name("%s_%s%02i" % (
                     get_trips.ALL_PAIRS, mapType, end_hour), target_dir=options.trips_dir)
                 trips_file = None
@@ -299,7 +299,7 @@ def run_all_pairs(options, conn, sim_key, params, final_routes, final_weights):
             begin_second = end_second
     if not modes <= set(CAR_MODES):
         write_status('>>> starting all pairs for public transport', sim_key, params, conn)
-        if params[SP.representatives]:
+        if params[SP.representatives] not in (None, '', 'none'):
             options.tapas_trips = get_trips.tripfile_name("%s_public" % (get_trips.ALL_PAIRS), target_dir=options.trips_dir)
             get_trips.write_all_pairs(conn, "public", 31 * 3600, options.limit, options.tapas_trips, params,
                                       options.seed, MODE.public, bbox=options.representatives_bbox)
