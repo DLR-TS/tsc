@@ -28,18 +28,17 @@ if you need GTFS import.
 If you don't want to mess with your system or don't have sudo rights, you can do everything in a virtual environment:
 
 ```
-python3 -m venv tscenv
-. tscenv/bin/activate
+python3 -m venv tsc_env
+. tsc_env/bin/activate
 python3 -m pip install -U pip
 git clone https://github.com/DLR-TS/tsc
 python3 -m pip install -r tsc/requirements.txt
 python3 -m pip install eclipse-sumo
+python3 -m pip install tsc
 ```
 
 ## Installing
 If you did not do it before start to clone this repo `git clone https://github.com/DLR-TS/tsc`.
-
-For the latest pre-release do `python3 -m pip install --extra-index-url https://test.pypi.org/simple tapas-sumo-coupling`
 
 For bleeding edge:
 
@@ -50,7 +49,8 @@ For bleeding edge:
 Make sure you have the relevant bin directories in your PATH (you should be able to run `sumo` and `tsc_main`). Now install the scenarios:
 
 4. Copy postgres_template.tsccfg (e.g. to postgres.tsccfg) and enter the database connection details (server, user, passwd)
-5. Install scenarios for Berlin and Testfield Lower Saxony `git clone --recursive --depth 1 https://github.com/DLR-TS/sumo-scenarios` and `tsc_install -c postgres.tsccfg -p ../sumo-scenarios/`. This will try to install other scenarios as well but you can safely ignore the corresponding warnings.
+5. Install scenarios for Berlin and Testfield Lower Saxony `git clone --recursive --depth 1 https://github.com/DLR-TS/sumo-scenarios` and `tsc_install -c postgres.tsccfg -p ../sumo-scenarios/`.
+   This will try to install other scenarios as well but you can safely ignore the corresponding warnings.
 
 ### Optional old scenarios
 1. Make sure you have git-lfs on your system (`sudo apt-get install git-lfs`) and activated for your user (`git lfs install`).
