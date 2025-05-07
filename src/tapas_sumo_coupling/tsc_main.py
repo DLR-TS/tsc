@@ -381,7 +381,7 @@ def simulation_request(options, request):
             options.taz_file = os.path.abspath(os.path.join(scenario_basedir, 'Berlin_1223.taz.xml.gz'))
         options.bidi_taz_file = os.path.abspath(os.path.join(scenario_basedir, 'bidi.taz.xml.gz'))
         options.tapas_trips = os.path.join(scenario_basedir, "background_traffic.csv")
-        if iteration == 0 and params[SP.add_traffic_table] and conn is not None:
+        if iteration == 0 and params[SP.add_traffic_table] not in (None, '', 'none') and conn is not None:
 #            options.modes = ','.join(CAR_MODES)
             if not os.path.exists(options.tapas_trips) or not options.resume:
                 get_trips.write_background_trips(conn, params[SP.add_traffic_table],
