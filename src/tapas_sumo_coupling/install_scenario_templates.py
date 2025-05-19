@@ -26,6 +26,14 @@ import shutil
 import glob
 from xml.sax import parse
 
+if 'SUMO_HOME' not in os.environ:
+    try:
+        import sumo
+        # If there is a directory "sumo" in the current path, the import will succeed, so we need to double check.
+        if hasattr(sumo, "SUMO_HOME"):
+            os.environ['SUMO_HOME'] = sumo.SUMO_HOME
+    except ImportError:
+        pass
 if 'SUMO_HOME' in os.environ:
     sys.path += [os.path.join(os.environ['SUMO_HOME'], 'tools'),
                  os.path.join(os.environ['SUMO_HOME'], 'tools', 'net'),
