@@ -218,13 +218,15 @@ def run_oneshot(options, first_depart, last_depart, trip_file, weight_file, meso
         )
 
     oneshotcfg = abspath_in_dir(oneshot_dir, '%s.sumocfg' % suffix)
-    # oneshot_emissions = abspath_in_dir(oneshot_dir, 'emissions_%s.xml' % suffix)
+    if options.trip_emissions:
+        oneshot_emissions = abspath_in_dir(oneshot_dir, 'emissions_%s.xml.gz' % suffix)
     with working_dir(oneshot_dir):
         with open(additional[1], 'w') as f:
             f.write('<additional>\n    <edgeData id="dump" freq="%s" file="%s" excludeEmpty="true" minSamples="1"/>\n' %
                     (aggregation, oneshot_weights))
-#            f.write('    <edgeData type="emissions" id="dump_emission" freq="%s" file="%s" excludeEmpty="true" minSamples="1"/>\n' %
-#                    (aggregation, oneshot_emissions))
+            if options.trip_emissions:
+                f.write('    <edgeData type="emissions" id="dump_emission" freq="%s" file="%s" excludeEmpty="true" minSamples="1"/>\n' %
+                        (aggregation, oneshot_emissions))
             f.write('</additional>\n')
         subprocess.check_call(
             [sumolib.checkBinary('sumo'), "-c", tempcfg, "--save-configuration", oneshotcfg] + extra_opt)

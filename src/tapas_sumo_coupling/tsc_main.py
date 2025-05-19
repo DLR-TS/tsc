@@ -38,6 +38,14 @@ import subprocess
 import importlib
 from psycopg2 import ProgrammingError
 
+if 'SUMO_HOME' not in os.environ:
+    try:
+        import sumo
+        # If there is a directory "sumo" in the current path, the import will succeed, so we need to double check.
+        if hasattr(sumo, "SUMO_HOME"):
+            os.environ['SUMO_HOME'] = sumo.SUMO_HOME
+    except ImportError:
+        pass
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
     sys.path += [tools, os.path.join(tools, 'assign')]
