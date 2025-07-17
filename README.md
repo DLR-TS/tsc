@@ -38,7 +38,6 @@ python3 -m pip install eclipse-sumo
 You can also mix the two approaches for instance if you want to try different versions of SUMO or tsc
 but alway use the dependencies from the underlying system.
 
-
 ## Installing
 If you did not do it before start to clone this repo `git clone https://github.com/DLR-TS/tsc`.
 
@@ -46,12 +45,12 @@ For bleeding edge:
 
 1. Change the directory `cd tsc`.
 2. Upgrade pip `python3 -m pip install -U pip`.
-3. Run `python3 -m pip install --user .` (developers may want to use `python3 -m pip install -e --user .` here for an editable install).
+3. Run `python3 -m pip install .` (developers may want to use `python3 -m pip install -e .` here for an editable install). tsc_main and tsc_install should then be generated under ~/tsc_env/bin.
 
-Make sure you have the relevant bin directories in your PATH (you should be able to run `sumo` and `tsc_main`). Now install the scenarios:
+Make sure you have the relevant bin directories in your PATH (you should be able to run `sumo` and `tsc_main`). if You are in the virtual environment, i.e. after running '. tsc_env/bin/activate', there is no need to set the relevant bin directories in your PATH. Now install the scenarios:
 
 4. Copy postgres_template.tsccfg (e.g. to postgres.tsccfg) and enter the database connection details (server, user, passwd)
-5. Install scenarios for Berlin and Testfield Lower Saxony `git clone --recursive --depth 1 https://github.com/DLR-TS/sumo-scenarios` and `tsc_install -c postgres.tsccfg -p ../sumo-scenarios/`.
+5. Install scenarios for Berlin and Testfield Lower Saxony: the sumo scenarios are not all for tsc. Thus, you can go to the upper folder of the folder 'tsc' and then run `git clone --recursive --depth 1 https://github.com/DLR-TS/sumo-scenarios` . After that, you change the directory back to `cd tsc` and run `tsc_install -c postgres.tsccfg -p ../sumo-scenarios/`.
    This will try to install other scenarios as well but you can safely ignore the corresponding warnings. If you only want selected scenarios, you can use the -s option like `-s konstanz`.
 
 ### Optional old scenarios
