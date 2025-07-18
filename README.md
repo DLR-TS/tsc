@@ -38,8 +38,11 @@ python3 -m pip install eclipse-sumo
 You can also mix the two approaches for instance if you want to try different versions of SUMO or tsc
 but alway use the dependencies from the underlying system.
 
+## Cloning sumo scenarios
+If you did not do it before, go to the parent directory of the folder `tsc` and then run `git clone --recursive --depth 1 https://github.com/DLR-TS/sumo-scenarios` . The reason for navigating to the parent directory of the folder `tsc` is that the SUMO scenarios are not all specific to tsc. You are free to choose where you'd like to clone the repository.
+
 ## Installing tsc
-If you did not do it before start to clone this repo `git clone https://github.com/DLR-TS/tsc`.
+If you did not do it before, start to clone this repo `git clone https://github.com/DLR-TS/tsc`.
 
 For bleeding edge:
 
@@ -47,12 +50,12 @@ For bleeding edge:
 2. Upgrade pip `python3 -m pip install -U pip`.
 3. Run `python3 -m pip install .` (developers may want to use `python3 -m pip install -e .` here for an editable install). tsc_main and tsc_install should then be generated under ~/tsc_env/bin.
 
-Make sure you have the relevant bin directories in your PATH (you should be able to run `sumo` and `tsc_main`). if You are in the virtual environment, i.e. after running '. tsc_env/bin/activate', there is no need to set the relevant bin directories in your PATH. Now install the scenarios:
+Make sure you have the relevant bin directories in your PATH (you should be able to run `sumo` and `tsc_main`) using export PATH=/your_absolute_path_to_the folder_tsc/bin:$PATH. If you are in the virtual environment, i.e. after running '. tsc_env/bin/activate', there is no need to set the relevant bin directories in your PATH.
 
 ## Installing sumo scenarios
 1. Copy postgres_template.tsccfg (e.g. to postgres.tsccfg) and enter the database connection details (server, user, passwd)
-2. Install scenarios for Berlin and Testfield Lower Saxony: the sumo scenarios are not all for tsc. Thus, you can go to the upper folder of the folder 'tsc' and then run `git clone --recursive --depth 1 https://github.com/DLR-TS/sumo-scenarios` . After that, you change the directory back to `cd tsc` and run `tsc_install -c postgres.tsccfg -p ../sumo-scenarios/`. 
-   This will try to install other scenarios as well but you can safely ignore the corresponding warnings. If no net file is available, the respective installation will be skipped. If you only want selected scenarios, you can use the -s option like `-s konstanz`.
+2. Install scenarios for Berlin and Testfield Lower Saxony: if necessary, change back to the folder `tsc` using `cd tsc`, and then run `tsc_install -c postgres.tsccfg -p ../sumo-scenarios/`. If your folder `sumo-scenarios` is not located in the parent directory of the folder `tsc`, you will need to adjust the '-p' option in the command accordingly to point to the correct path.
+   This will attempt to install other scenarios as well, but you can safely ignore the corresponding warnings. If no net file is available, the respective installation will be skipped. If you only want selected scenarios, you can use the -s option like `-s konstanz`.
 
 ### Optional old scenarios
 1. Make sure you have git-lfs on your system (`sudo apt-get install git-lfs`) and activated for your user (`git lfs install`).
