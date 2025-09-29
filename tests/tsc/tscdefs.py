@@ -2,7 +2,7 @@ from __future__ import print_function
 import os
 import sys
 
-python = os.environ.get("PYTHON", "python")
+python = os.environ.get("PYTHON", sys.executable)
 sys.path.append(os.path.join(os.environ["SUMO_HOME"], 'tools'))
 tscRoot = os.environ.get("TSC_HOME", os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 testServer = os.path.join(tscRoot, os.environ.get("TSC_SERVER", "test_server.tsccfg"))
