@@ -7,15 +7,14 @@ Warning: Replacing loaded roundabout '153522299#3 28341062 30721656#0 30721656#1
 Warning: Lane '-100113767#1_0' is not connected from any incoming edge at junction '2494624950'.
 Warning: 55 total messages of type: Ambiguity in turnarounds computation at junction '%'.
 Warning: 3 total messages of type: Found angle of % degrees at edge '%', segment %.
-Warning: 22 total messages of type: Found sharp turn with radius % at the % of edge '%'.
+Warning: 17 total messages of type: Found sharp turn with radius % at the % of edge '%'.
 Warning: 1352 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
 Warning: 2 total messages of type: Shape for junction '%' has distance % to its given position.
 Warning: Traffic light type 'actuated' cannot be used in mesoscopic simulation. Using 'static' as fallback.
 Warning: Edge '-222328410' is shorter than 15.00m (10.41m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '-438496646#0' is shorter than 15.00m (5.48m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '-99729383#9' is shorter than 15.00m (11.94m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '150178893#12' is shorter than 15.00m (12.37m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '150178892#5' is shorter than 15.00m (14.02m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '150178893#12' is shorter than 15.00m (11.08m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '167893762#4' is shorter than 15.00m (10.37m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '155533124#4' is shorter than 15.00m (8.91m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '93628042#7' is shorter than 15.00m (14.83m) and will cause incorrect flow reduction with option --meso-tls-penalty
@@ -32,6 +31,6 @@ Warning: Edge '803025464#0' is shorter than 15.00m (8.40m) and will cause incorr
 Warning: Edge '4687140#9' is shorter than 15.00m (7.57m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '110862591#1' is shorter than 15.00m (6.44m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '288762492#1' is shorter than 15.00m (14.70m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '171867096#5' is shorter than 15.00m (8.59m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '314983832#3' is shorter than 15.00m (11.75m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '171867096#5' is shorter than 15.00m (8.55m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '314983832#3' is shorter than 15.00m (11.79m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '83146233#6' is shorter than 15.00m (6.57m) and will cause incorrect flow reduction with option --meso-tls-penalty
