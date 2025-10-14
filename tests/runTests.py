@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# Eclipse SUMO, Simulation of Urban MObility; see https://eclipse.dev/sumo
 # Copyright (C) 2008-2025 German Aerospace Center (DLR) and others.
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License 2.0 which is available at
@@ -23,7 +22,7 @@ import os
 import subprocess
 
 
-def run(args):
+def run(args, apps):
     if type(args) is list:
         args = " ".join(args)
     env = os.environ
@@ -42,7 +41,7 @@ def run(args):
 
     env["TEXTTEST_HOME"] = root
     env["TSC_HOME"] = os.path.join(root, "..")
-    apps = "tsc,tsc.sqlite3"
+
     process = subprocess.Popen("%s %s -a %s" % ("texttest", args, apps), env=env,
                                stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
     with process.stdout:
@@ -53,5 +52,6 @@ def run(args):
 
 if __name__ == "__main__":
     optParser = argparse.ArgumentParser()
+    optParser.add_argument("-a", "--apps", default="tsc,tsc.sqlite3", help="which apps / variants to run")
     options, args = optParser.parse_known_args()
-    run(["-" + a for a in args])
+    run(args, options.apps)
