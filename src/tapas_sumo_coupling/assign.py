@@ -76,7 +76,6 @@ def run_duaiterate(options, first_depart, last_depart, trip_file, weight_file, m
         '--inc-start', '0.40',   #
         # '--inc-max', str(scale),   # we scale on trip level now
         '--router-verbose',  #
-        '--zip',  #
         '--disable-tripinfos',
         '--vehroute-file', 'routesonly',
         # gawrons a (default 0.5): higher values increase route probability
