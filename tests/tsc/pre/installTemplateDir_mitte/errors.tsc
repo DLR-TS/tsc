@@ -5,15 +5,15 @@ Warning: Discarding unknown compound 'railway.abandoned' in type 'railway.abando
 Warning: Discarding unusable type 'railway.abandoned|service.siding' (first occurrence for edge '4741460').
 Warning: Ambiguous railway kilometrage direction for way '4741937' (assuming forward)
 Warning: Discarding unusable type 'railway.proposed' (first occurrence for edge '23707860').
+Warning: Discarding unknown compound 'psv' in type 'highway.service|psv' (first occurrence for edge '23817855').
 Warning: Ambiguous railway kilometrage direction for way '25005728' (assuming forward)
-Warning: Discarding unusable type 'highway.construction' (first occurrence for edge '25008069').
 Warning: Ambiguous railway kilometrage direction for way '25386365' (assuming forward)
 Warning: Ambiguous railway kilometrage direction for way '25946680' (assuming forward)
 Warning: Discarding unusable type 'waterway.stream' (first occurrence for edge '31112384').
 Warning: Discarding unusable type 'waterway.weir' (first occurrence for edge '31560876').
 Warning: Ambiguous railway kilometrage direction for way '32572620' (assuming forward)
-Warning: Discarding unknown compound 'railway.disused' in type 'railway.disused|service.yard' (first occurrence for edge '175479658').
-Warning: Discarding unknown compound 'railway.platform' in type 'highway.service|railway.platform' (first occurrence for edge '182275913').
+Warning: Discarding unusable type 'railway.platform' (first occurrence for edge '43185748').
+Warning: Discarding unknown compound 'bus' in type 'bus|railway.platform' (first occurrence for edge '85389834').
 Warning: Edge '339201210' already has a dedicated lane for bicycles. Not adding another one.
 Warning: Removing pt stop '1267954699' on non existing edge '422000256'.
 Warning: Removing pt stop '1877848265' on non existing edge '463841066'.
@@ -103,7 +103,6 @@ Warning: Cannot revise pt stop localization for pt line '2022133', which consist
 Warning: Cannot assign stop 247603398 on edge '207364191' to pt line '2076231'. Ignoring!
 Warning: Cannot assign stop 247603398 on edge '207364191' to pt line '2076232'. Ignoring!
 Warning: Cannot assign stop 6287386729 on edge '710761406' to pt line '2084829'. Ignoring!
-Warning: Removed 62 pt stops because they could not be assigned to the network
 Warning: No connection found between stops on edge '728838409#2' and edge '532727925#2'.
 Warning: First stop edge '728838409#2' is not part of the route of line '10753790'.
 Warning: Last stop edge '728838409#2' is not part of the route of line '10753790'.
@@ -140,30 +139,30 @@ Warning: Converting invalid rail_crossing to priority junction '1001364715'.
 Warning: Converting invalid rail_crossing to priority junction '1001364726'.
 Warning: Converting invalid rail_crossing to priority junction '1011319218'.
 Warning: Converting invalid rail_crossing to priority junction '1011319231'.
-Warning: Not joining junctions 1011319241,1011319291,12614600,1783286745,1783286747,1783286750,1783286751,1792333600,1792343134,1860618796,29270276,29270294,29270295,7169320573,7169320574,7169320575,7169320576,7169320577,7169320578,7169320579,8091460587,8091460628,8091460629,8091460630,8091460631,8091460632,8091460633,8091460634,8367626073,8367626074 (parallel incoming 29376346#2,458998067#2).
-Warning: Not joining junctions 1822620447,2670269991 (parallel incoming -371374810#0,371374807#2).
-Warning: Not joining junctions 1063817172,1860618618 (only 1 entry node).
-Warning: Reducing junction cluster 3101344339,3101344340,6795798241,967017840 (parallel incoming -163368988#3,47016365#1).
+Warning: Reducing junction cluster 1011319241,1011319291,12614600,1783286745,1783286747,1783286750,1783286751,1792333600,1792343134,1860618796,29270276,29270294,29270295,7169320573,7169320574,7169320575,7169320576,7169320577,7169320578,7169320579,8091460587,8091460628,8091460629,8091460630,8091460631,8091460632,8091460633,8091460634,8367626073,8367626074 (parallel incoming 29376346#2,458998067#2).
+Warning: Reducing junction cluster 1822620447,2670269991,8427877887 (parallel incoming -371374810#0,371374807#2).
+Warning: Not joining junctions 1822620447,2670269991,8427877887 (after reduction).
+Warning: Reducing junction cluster 1566942145,1566942204,3101344339,3101344340,6795798241,8280893010,8280893011,967017840 (parallel incoming -163368988#3,47016365#1).
 Warning: Not joining junctions 29207822,29207827 (parallel incoming -110786129#0,375311156#2).
 Warning: Not joining junctions 1349668349,1349673594 (parallel incoming -4773464#1,541763976).
 Warning: Reducing junction cluster 29785114,339654579,3517810419,3517810420,631457479,631457492,8270500313,8270500314 (parallel incoming -4068078#0,260235998#3).
+Warning: Not joining junctions 1472911017,697323164 (parallel incoming -541763974,54048862#3).
 Warning: Reducing junction cluster 1631354272,1862786432,1862786438,21432798,29123438,29221602,29221603,6795798214,6795798215,6795798216,6795798217,6795798218,6795798219,6795798220,6795798221,6795798222,6795798223,6795798224,6795798225,6795798226 (6 incoming edges).
-Warning: Reducing junction cluster 29785100,29785111,339654575,339654576,631457503,8270500315,8270500316 (parallel incoming -61737905#0,61737909#3).
-Warning: Reducing junction cluster 1827996421,1865536623,1865536624,2121324874,21487210,29221504,29221506,341340973,3792418629,3792418641,6795935364,6795935365 (6 incoming edges).
+Warning: Not joining junctions 1711812123,1711812137 (parallel incoming -36259518,48859718#0).
 Warning: Ambiguity in turnarounds computation at junction '1631101114'.
 Warning: Ambiguity in turnarounds computation at junction '1762976307'.
 Warning: Ambiguity in turnarounds computation at junction '1769589022'.
-Warning: Ambiguity in turnarounds computation at junction '1802788565'.
-Warning: Ambiguity in turnarounds computation at junction '1822518635'.
-Warning: Found sharp turn with radius 4.40 at the end of edge '-102773708#4'.
-Warning: Found sharp turn with radius 4.95 at the end of edge '-104590139#2'.
-Warning: Found sharp turn with radius 6.03 at the end of edge '-122820534#1'.
-Warning: Found sharp turn with radius 5.53 at the start of edge '-143201758#1'.
-Warning: Found sharp turn with radius 7.18 at the start of edge '-175916784#1'.
-Warning: Found angle of 111.05 degrees at edge '295627704#2', segment 3.
-Warning: Found angle of 111.05 degrees at edge '317183774#0', segment 16.
+Warning: Ambiguity in turnarounds computation at junction '1792333625'.
+Warning: Ambiguity in turnarounds computation at junction '1792333626'.
+Warning: Found sharp turn with radius 4.45 at the end of edge '-102773708#4'.
+Warning: Found sharp turn with radius 4.92 at the end of edge '-104590139#2'.
+Warning: Found sharp turn with radius 6.02 at the end of edge '-122820534#1'.
+Warning: Found sharp turn with radius 7.17 at the start of edge '-175916784#1'.
+Warning: Found sharp turn with radius 5.40 at the start of edge '-202156995#1'.
+Warning: Found angle of 111.04 degrees at edge '295627704#2', segment 3.
+Warning: Found angle of 111.04 degrees at edge '317183774#0', segment 16.
 Warning: Found angle of 130.49 degrees at edge '632065766#0', segment 3.
-Warning: Shape for junction '29215055' has distance 75.38 to its given position.
+Warning: Shape for junction '29215055' has distance 75.74 to its given position.
 Warning: Converting invalid rail_crossing to traffic_light at junction 'cluster_1822579868_1822579878_29271697_437377241_#3more'.
 Warning: Converting invalid rail_crossing to traffic_light at junction 'cluster_1882193210_29271700_30734491_8267500572'.
 Warning: Lane '-713731455_1' is not connected from any incoming edge at junction '295586470'.
@@ -173,7 +172,8 @@ Warning: Lane '167893762#0_0' is not connected from any incoming edge at junctio
 Warning: Lane '168253001#11_0' is not connected from any incoming edge at junction 'cluster_1663909297_1668033985_8305585912_8305611117_#1more'.
 Warning: The traffic light '4377814027' does not control any links; it will not be build.
 Warning: Could not build program '0' for traffic light '4377814027'
-Warning: 52 total messages of type: Ambiguity in turnarounds computation at junction '%'.
+Warning: Removed 62 pt stops because they could not be assigned to the network
+Warning: 59 total messages of type: Ambiguity in turnarounds computation at junction '%'.
 Warning: 31 total messages of type: Ambiguous railway kilometrage direction for way '%' (assuming forward)
 Warning: 10 total messages of type: Ambiguous tram edges '%' and '%' for lane '%'.
 Warning: 10 total messages of type: Cannot assign stop % on edge '%' to pt line '%'. Ignoring!
@@ -183,79 +183,47 @@ Warning: 12 total messages of type: Could not determine cross product for edge '
 Warning: 7 total messages of type: Could not find corresponding edge or compatible lane for free-floating pt stop '%' (%). Thus, it will be removed!
 Warning: 37 total messages of type: Could not find corresponding edge or compatible lane for pt stop '%' (%). Thus, it will be removed!
 Warning: 12 total messages of type: Could not re-assign PT stop '%', probably broken osm file.
-Warning: 11 total messages of type: Discarding unknown compound '%' in type '%' (first occurrence for edge '%').
-Warning: 20 total messages of type: Discarding unusable type '%' (first occurrence for edge '%').
+Warning: 20 total messages of type: Discarding unknown compound '%' in type '%' (first occurrence for edge '%').
+Warning: 19 total messages of type: Discarding unusable type '%' (first occurrence for edge '%').
 Warning: 16 total messages of type: Edge sequence is not consistent with stop sequence in line '%', not adding bidi edges.
 Warning: 12 total messages of type: First stop edge '%' is not part of the route of line '%'.
-Warning: 36 total messages of type: Found sharp turn with radius % at the % of edge '%'.
+Warning: 29 total messages of type: Found sharp turn with radius % at the % of edge '%'.
 Warning: 9 total messages of type: Ignoring restriction relation '%'.
-Warning: 11 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
+Warning: 10 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
 Warning: 14 total messages of type: Last stop edge '%' is not part of the route of line '%'.
 Warning: 21 total messages of type: No connection found between stops on edge '%' and edge '%'.
 Warning: 212 total messages of type: No way found for reference '%' in relation '%'
-Warning: 52 total messages of type: Not joining junctions % (%).
+Warning: 45 total messages of type: Not joining junctions % (%).
 Warning: 10 total messages of type: PT line '%' in relation % seems to be split, only keeping first part.
 Warning: 36 total messages of type: PT line in relation % with no stops ignored. Probably OSM file is incomplete.
 Warning: 45 total messages of type: PT stop '%' has been moved to edge '%'.
 Warning: 219 total messages of type: Platform '%' in relation: '%' is given as polygon, which currently is not supported.
-Warning: 18 total messages of type: Reducing junction cluster % (%).
+Warning: 27 total messages of type: Reducing junction cluster % (%).
 Warning: 198 total messages of type: Removed invalid stop '%' from line '%'.
 Warning: 109 total messages of type: Removing pt stop '%' on non existing edge '%'.
 Warning: 31 total messages of type: Stop on edge '%' can only be reached in reverse but edge has the wrong spreadType.
 Warning: Ambiguity in turnarounds computation at junction '1631101114'.
 Warning: Ambiguity in turnarounds computation at junction '1762976307'.
 Warning: Ambiguity in turnarounds computation at junction '1769589022'.
-Warning: Ambiguity in turnarounds computation at junction '1802788565'.
-Warning: Ambiguity in turnarounds computation at junction '1822518635'.
-Warning: Found sharp turn with radius 4.41 at the end of edge '-102773708#4'.
-Warning: Found sharp turn with radius 4.94 at the end of edge '-104590139#2'.
+Warning: Ambiguity in turnarounds computation at junction '1792333625'.
+Warning: Ambiguity in turnarounds computation at junction '1792333626'.
+Warning: Found sharp turn with radius 4.45 at the end of edge '-102773708#4'.
+Warning: Found sharp turn with radius 4.92 at the end of edge '-104590139#2'.
 Warning: Found sharp turn with radius 6.02 at the end of edge '-122820534#1'.
-Warning: Found sharp turn with radius 5.54 at the start of edge '-143201758#1'.
 Warning: Found sharp turn with radius 7.17 at the start of edge '-175916784#1'.
-Warning: Found angle of 104.28 degrees at edge '-301610520', segment 0.
+Warning: Found sharp turn with radius 5.40 at the start of edge '-202156995#1'.
 Warning: Found angle of 111.04 degrees at edge '295627704#2', segment 3.
 Warning: Found angle of 111.04 degrees at edge '317183774#0', segment 16.
 Warning: Found angle of 130.49 degrees at edge '632065766#0', segment 3.
 Warning: Shape for junction '29215055' has distance 75.74 to its given position.
 Warning: Lane '-163368988#2_2' is not connected from any incoming edge at junction '1566942145'.
+Warning: Lane '-284961748#3_1' is not connected from any incoming edge at junction '4879978632'.
 Warning: Lane '-291270698#1_1' is not connected from any incoming edge at junction '8245649281'.
 Warning: Lane '-46138135_1' is not connected from any incoming edge at junction '310350795'.
 Warning: Lane '-713731455_1' is not connected from any incoming edge at junction '295586470'.
-Warning: Lane '165409971#1_0' is not connected from any incoming edge at junction 'cluster_1769589042_8305578767_8305578768'.
-Warning: 52 total messages of type: Ambiguity in turnarounds computation at junction '%'.
-Warning: 36 total messages of type: Found sharp turn with radius % at the % of edge '%'.
+Warning: 59 total messages of type: Ambiguity in turnarounds computation at junction '%'.
+Warning: 29 total messages of type: Found sharp turn with radius % at the % of edge '%'.
 Warning: 16 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
-Warning: Ambiguity in turnarounds computation at junction '1631101114'.
-Warning: Found angle of 104.27 degrees at edge '-301610520', segment 0.
-Warning: Found sharp turn with radius 5.26 at the start of edge '-478432724'.
-Warning: Shape for junction '29215055' has distance 75.74 to its given position.
-Warning: Lane '-46138135_1' is not connected from any incoming edge at junction '310350795'.
-Warning: 52 total messages of type: Ambiguity in turnarounds computation at junction '%'.
-Warning: 4 total messages of type: Found angle of % degrees at edge '%', segment %.
-Warning: 36 total messages of type: Found sharp turn with radius % at the % of edge '%'.
-Warning: 16 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
-Warning: Ambiguity in turnarounds computation at junction '1762976307'.
-Warning: Found angle of 104.27 degrees at edge '-301610520', segment 0.
-Warning: Found sharp turn with radius 5.26 at the start of edge '-478432724'.
-Warning: Converting invalid rail_crossing to priority junction '1011319238'.
-Warning: Lane '-713731455_1' is not connected from any incoming edge at junction '295586470'.
-Warning: Non-static traffic light '1566942204' does not define variable phase length.
-Warning: 4 total messages of type: Ambiguity in turnarounds computation at junction '%'.
-Warning: 7 total messages of type: Converting invalid rail_crossing to priority junction '%'.
-Warning: 4 total messages of type: Found angle of % degrees at edge '%', segment %.
-Warning: 28 total messages of type: Found sharp turn with radius % at the % of edge '%'.
-Warning: 14 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
-Warning: 52 total messages of type: Non-static traffic light '%' does not define variable phase length.
-Warning: Ambiguity in turnarounds computation at junction '1631101114'.
-Warning: Converting invalid rail_crossing to priority junction '1011319238'.
-Warning: Edge '-4687155' is not connected to outgoing edges at junction '492025918'.
-Warning: Lane '941490799_1' is not connected from any incoming edge at junction '305233633'.
-Warning: Non-static traffic light '1412045005' does not define variable phase length.
-Warning: 4 total messages of type: Ambiguity in turnarounds computation at junction '%'.
-Warning: 16 total messages of type: Converting invalid rail_crossing to priority junction '%'.
-Warning: 4 total messages of type: Edge '%' is not connected to outgoing edges at junction '%'.
-Warning: 31 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
-Warning: 42 total messages of type: Non-static traffic light '%' does not define variable phase length.
 Warning! No mapping library found, falling back to tracemapper.
 Warning! Disconnected route '105575287' between '340606520#1' and '109804590#0', no path found. Keeping longer part.
 Warning! Disconnected route '105575296.trimmed' between '340606520#1' and '109804590#0', no path found. Keeping longer part.
@@ -266,6 +234,7 @@ Warning! Disconnected route '105877039' between '24214090#1' and '-4611886#5', n
 Warning! Disconnected route '105877046.trimmed' between '24214090#1' and '-4611886#5', no path found. Keeping longer part.
 Warning! Disconnected route '105877472' between '24214090#1' and '-39839435', no path found. Keeping longer part.
 Warning! Disconnected route '105918973' between '36259509#0' and '37289167#0', no path found. Keeping longer part.
+Warning! Disconnected route '105918974.trimmed' between '36259509#0' and '37289167#0', no path found. Keeping longer part.
 Warning! Disconnected route '106027988' between '-4611886#5' and '24806725#0', no path found. Keeping longer part.
 Warning! Disconnected route '106027999' between '6279972#0' and '-4611886#5', no path found. Keeping longer part.
 Warning! Disconnected route '106028424' between '369223459#0' and '24326506#0', no path found. Keeping longer part.
@@ -283,25 +252,22 @@ Warning! Disconnected route '112247573' between '230976795#0' and '230957297', n
 Warning! Disconnected route '112247620' between '230976795#0' and '230957297', no path found. Keeping longer part.
 Warning! Disconnected route '112250898' between '230976795#0' and '230957297', no path found. Keeping longer part.
 Warning! Disconnected route '112251060' between '230976795#0' and '230957297', no path found. Keeping longer part.
-Warning! No net /home/behr_mi/.texttest/tmp/tsc.sqlite3.python3.06Jan140647.3265995/tsc.sqlite3.python3/pre/installTemplateDir_mitte/scenario_templates/mitte_test/tmp_output/resources/subway.net.xml
+Warning! No net C:\Users\behr_mi\.texttest\tmp\tsc.sqlite3.17Oct094048.46852\tsc.sqlite3\pre\installTemplateDir_mitte\scenario_templates\mitte_test\tmp_output\resources\subway.net.xml
 Warning! Disconnected route '105361629' between '169953964#7' and '83146233#0#0', no path found. Keeping longer part.
 Warning! Disconnected route '105361771.trimmed' between '169953964#7' and '83146233#0#0', no path found. Keeping longer part.
 Warning! Disconnected route '105361830' between '-168253001#3' and '83146233#0#0', no path found. Keeping longer part.
 Warning! Disconnected route '105361830' between '83146233#0#0' and '317401282#0', no path found. Keeping longer part.
-Warning! Disconnected route '105361830' between '30122986#0' and '165409971#4', no path found. Keeping longer part.
-Warning! Disconnected route '105361830' between '165409971#4' and '144014237#1', no path found. Keeping longer part.
+Warning! Disconnected route '105361830' between '30122986#0' and '195411601#2', no path found. Keeping longer part.
+Warning! Disconnected route '105361830' between '195411601#2' and '144014237#1', no path found. Keeping longer part.
 Warning! Disconnected route '105361949.trimmed' between '-168253001#3' and '83146233#0#0', no path found. Keeping longer part.
 Warning! Disconnected route '105361949.trimmed' between '83146233#0#0' and '317401282#0', no path found. Keeping longer part.
-Warning! Disconnected route '105361949.trimmed' between '30122986#0' and '165409971#4', no path found. Keeping longer part.
-Warning! Disconnected route '105361949.trimmed' between '165409971#4' and '144014237#1', no path found. Keeping longer part.
+Warning! Disconnected route '105361949.trimmed' between '30122986#0' and '195411601#2', no path found. Keeping longer part.
+Warning! Disconnected route '105361949.trimmed' between '195411601#2' and '144014237#1', no path found. Keeping longer part.
 Warning! Disconnected route '105580686' between '-439025652#2' and '-154381206#2', no path found. Keeping longer part.
-Warning! Disconnected route '105794089' between '30122986#0' and '165409971#4', no path found. Keeping longer part.
-Warning! Disconnected route '105794274.trimmed' between '30122986#0' and '165409971#4', no path found. Keeping longer part.
+Warning! Disconnected route '105794089' between '30122986#0' and '195411601#2', no path found. Keeping longer part.
+Warning! Disconnected route '105794274.trimmed' between '30122986#0' and '195411601#2', no path found. Keeping longer part.
 Warning! Disconnected route '105801699' between '93628048#3' and '94351504#4', no path found. Keeping longer part.
 Warning! Disconnected route '105801790' between '93628048#3' and '94351504#4', no path found. Keeping longer part.
-Warning! Disconnected route '105801790' between '94351504#4' and '173149682#1', no path found. Keeping longer part.
-Warning! Disconnected route '105801790' between '173149682#1' and '291670885#0', no path found. Keeping longer part.
-Warning! Disconnected route '105801790' between '291670885#0' and '144529199#5', no path found. Keeping longer part.
 Warning! Disconnected route '105801823' between '93628048#3' and '94351504#4', no path found. Keeping longer part.
 Warning! Disconnected route '105801849' between '93628048#3' and '94351504#4', no path found. Keeping longer part.
 Warning! Disconnected route '105802105.trimmed' between '291670885#0' and '144529199#5', no path found. Keeping longer part.
@@ -309,22 +275,24 @@ Warning! Disconnected route '105802106.trimmed' between '94351504#4' and '173149
 Warning! Disconnected route '105802106.trimmed' between '173149682#1' and '291670885#0', no path found. Keeping longer part.
 Warning! Disconnected route '105802106.trimmed' between '291670885#0' and '144529199#5', no path found. Keeping longer part.
 Warning! Disconnected route '105802107.trimmed' between '93628048#3' and '94351504#4', no path found. Keeping longer part.
-Warning! Fixed connection 105802123 27
+Warning! Fixed connection 105802123 29
 Warning! Disconnected route '105802123' between '94351504#4' and '155533125#0', no path found. Keeping longer part.
-Warning! Fixed connection 105802139 27
+Warning! Fixed connection 105802139 29
 Warning! Disconnected route '105802139' between '94351504#4' and '155533125#0', no path found. Keeping longer part.
 Warning! Disconnected route '105802153' between '443401746#1' and '173149682#1', no path found. Keeping longer part.
-Warning! Fixed connection 105802157 27
+Warning! Fixed connection 105802153 29
+Warning! Disconnected route '105802153' between '94351504#4' and '155533125#0', no path found. Keeping longer part.
+Warning! Fixed connection 105802157 29
 Warning! Disconnected route '105802157' between '94351504#4' and '155533125#0', no path found. Keeping longer part.
 Warning! Disconnected route '105802160' between '443401746#1' and '173149682#1', no path found. Keeping longer part.
-Warning! Fixed connection 105802160 27
+Warning! Fixed connection 105802160 29
 Warning! Disconnected route '105802160' between '94351504#4' and '155533125#0', no path found. Keeping longer part.
-Warning! Fixed connection 105802235 27
+Warning! Fixed connection 105802235 29
 Warning! Disconnected route '105802235' between '94351504#4' and '155533125#0', no path found. Keeping longer part.
-Warning! Fixed connection 105802500.trimmed 27
+Warning! Fixed connection 105802500.trimmed 29
 Warning! Disconnected route '105802500.trimmed' between '94351504#4' and '155533125#0', no path found. Keeping longer part.
 Warning! Disconnected route '105802501.trimmed' between '291670885#0' and '173149682#1', no path found. Keeping longer part.
-Warning! Fixed connection 105802501.trimmed 27
+Warning! Fixed connection 105802501.trimmed 29
 Warning! Disconnected route '105802501.trimmed' between '94351504#4' and '155533125#0', no path found. Keeping longer part.
 Warning! Disconnected route '105850062' between '173193592#2' and '173149682#1', no path found. Keeping longer part.
 Warning! Disconnected route '105850072' between '173193592#2' and '173149682#1', no path found. Keeping longer part.
@@ -348,26 +316,30 @@ Warning! Disconnected route '106008336.trimmed' between '291670885#0' and '14452
 Warning: Ambiguity in turnarounds computation at junction '1631101114'.
 Warning: Ambiguity in turnarounds computation at junction '1762976307'.
 Warning: Ambiguity in turnarounds computation at junction '1769589022'.
-Warning: Ambiguity in turnarounds computation at junction '1802788565'.
-Warning: Ambiguity in turnarounds computation at junction '1822518635'.
-Warning: Found sharp turn with radius 4.41 at the end of edge '-102773708#4'.
-Warning: Found sharp turn with radius 4.94 at the end of edge '-104590139#2'.
+Warning: Ambiguity in turnarounds computation at junction '1792333625'.
+Warning: Ambiguity in turnarounds computation at junction '1792333626'.
+Warning: Found sharp turn with radius 4.45 at the end of edge '-102773708#4'.
+Warning: Found sharp turn with radius 4.92 at the end of edge '-104590139#2'.
 Warning: Found sharp turn with radius 6.02 at the end of edge '-122820534#1'.
-Warning: Found sharp turn with radius 5.54 at the start of edge '-143201758#1'.
 Warning: Found sharp turn with radius 7.17 at the start of edge '-175916784#1'.
-Warning: Found angle of 104.78 degrees at edge '-301610520', segment 0.
+Warning: Found sharp turn with radius 5.40 at the start of edge '-202156995#1'.
 Warning: Found angle of 111.04 degrees at edge '295627704#2', segment 3.
 Warning: Found angle of 111.04 degrees at edge '317183774#0', segment 16.
 Warning: Found angle of 130.49 degrees at edge '632065766#0', segment 3.
 Warning: Shape for junction '29215055' has distance 75.74 to its given position.
 Warning: Lane '-163368988#2_2' is not connected from any incoming edge at junction '1566942145'.
+Warning: Lane '-284961748#3_1' is not connected from any incoming edge at junction '4879978632'.
 Warning: Lane '-291270698#1_1' is not connected from any incoming edge at junction '8245649281'.
 Warning: Lane '-46138135_1' is not connected from any incoming edge at junction '310350795'.
 Warning: Lane '-713731455_1' is not connected from any incoming edge at junction '295586470'.
-Warning: Lane '165409971#1_0' is not connected from any incoming edge at junction 'cluster_1769589042_8305578767_8305578768'.
-Warning: 52 total messages of type: Ambiguity in turnarounds computation at junction '%'.
-Warning: 36 total messages of type: Found sharp turn with radius % at the % of edge '%'.
+Warning: 59 total messages of type: Ambiguity in turnarounds computation at junction '%'.
+Warning: 29 total messages of type: Found sharp turn with radius % at the % of edge '%'.
 Warning: 16 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
 Warning: Cannot derive file name for alternatives output, skipping it.
 Warning: No route input specified or all routes were invalid.
-Warning: Landmark 47016365#0 is not reachable from 798 edges and is unable to reach 770 out of 13503 total edges.
+Warning: Landmark 4611886#0 is not reachable from 778 edges and is unable to reach 750 out of 13374 total edges.
+Warning: Landmark 39839435 is not reachable from 778 edges and is unable to reach 750 out of 13374 total edges.
+Warning: Landmark 62276473#0 is not reachable from 778 edges and is unable to reach 750 out of 13374 total edges.
+Warning: Landmark 129285626#4 is not reachable from 778 edges and is unable to reach 750 out of 13374 total edges.
+Warning: Landmark -37226923#0 is not reachable from 778 edges and is unable to reach 750 out of 13374 total edges.
+Warning: 10 total messages of type: Landmark % is not reachable from % edges and is unable to reach % out of % total edges.

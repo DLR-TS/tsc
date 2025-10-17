@@ -3,7 +3,7 @@ batch_result_repository:$SCENARIO_BATCH_RESULT
 historical_report_location:$SCENARIO_REPORT
 kill_timeout:3600
 binary:runner.py
-config_module:default
+queue_system_max_capacity:1
 create_catalogues:true
 interpreter:python
 
@@ -46,13 +46,13 @@ output:DijkstraRouter spent .*
 output:parsing .*tsccfg{REPLACE parsing <tsccfg>}
 output:No module named scripts{REPLACE No module named 'scripts'}
 output:starting main.*{REPLACE starting main <cmd>}
-output:/[a-z_/]*/data/mitte_test/{REPLACE data/mitte_test/}
-output:/[a-z_/]*/data/berlin_net/{REPLACE data/berlin_net/}
+output:([A-Z]:)?/[A-Za-z_\./]*/data/mitte_test/{REPLACE data/mitte_test/}
+output:([A-Z]:)?/[A-Za-z_\./]*/data/berlin_net/{REPLACE data/berlin_net/}
+errors:(\\)+{REPLACE /}
 errors:Exception AttributeError: AttributeError("'NoneType' object has no attribute 'Error_GetErrorCount'",) in <bound method
 errors:Network contains internal links which are ignored.
 errors:Ran [0-9]+ tests in [0-9]+\.[0-9]+s{REPLACE Ran <COUNT> tests in <TIME>}
 errors:{INTERNAL writedir}{REPLACE <texttest sandbox>}
-errors:/[a-z_/]*/data/mitte_test/{REPLACE data/mitte_test/}
 catalogue:.pyc
 catalogue:__pycache__
 catalogue:----core.db

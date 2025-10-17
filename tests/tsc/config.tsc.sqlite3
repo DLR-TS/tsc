@@ -1,1 +1,1 @@
-config_module:queuesystem
+queue_system_max_capacity:100000
