@@ -69,6 +69,9 @@ def get_sim_params(conn, sim_key, overrides):
     sim_params = dict(SP.OPTIONAL)
     sim_params.update(dict(cursor_open.fetchall()))
     sim_params.update(overrides)
+    sim_params[SP.max_iteration] = int(float(sim_params[SP.max_iteration]))
+    sim_params[SP.iteration] = int(float(sim_params[SP.iteration]))
+
     if not database.table_exists(conn, sim_params[SP.od_slice_table], "core"):
         return None
     command_timeline = """SELECT "matrixMap_distribution" FROM core.%s WHERE "matrixMap_name" = '%s'""" % (
