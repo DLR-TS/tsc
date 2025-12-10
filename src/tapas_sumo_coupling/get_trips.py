@@ -74,7 +74,9 @@ def get_sim_params(conn, sim_key, overrides):
     command_timeline = """SELECT "matrixMap_distribution" FROM core.%s WHERE "matrixMap_name" = '%s'""" % (
         sim_params[SP.od_slice_table], sim_params[SP.od_slice_key])
     cursor_open.execute(command_timeline)
-    sim_params[SP.od_slices] = cursor_open.fetchone()[0]
+    slices = cursor_open.fetchone()
+    if slices:
+        sim_params[SP.od_slices] = slices[0]
     missing_params = param_keys.difference(set(sim_params.keys()))
     if len(missing_params) > 0:
         return None
