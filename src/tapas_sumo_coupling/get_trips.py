@@ -99,12 +99,15 @@ def get_active_sim_keys(server_options, overrides):
     command = """SELECT sim_key, CAST(CAST(param_value AS FLOAT) AS INT) AS iteration FROM public.simulation_parameters
                  WHERE param_key = '%s' ORDER BY sim_key, iteration""" % SP.iteration
     cursor_open.execute(command)
+    scenarios = (getattr(server_options, "scenarios") or "").split(",")
 
     for sim_key, iteration in cursor_open.fetchall():
         sim_params = get_sim_params(conn, sim_key, overrides)
         if sim_params is None:
             continue
         if iteration >= max_iterations[sim_key] and sim_params.get(SP.status) is not None:
+            continue
+        if scenarios and sim_key not in scenarios and sim_params.get(SP.template) not in scenarios:
             continue
         # check whether the iteration is or was already running
         if sim_params.get(SP.status):

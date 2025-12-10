@@ -77,6 +77,7 @@ def getOptions(args, argParser):
     argParser.add_argument("--daemon", action="store_true", default=False, help="run as daemon")
     argParser.add_argument("--daemon-run-time", type=int, default=-1,
                            help="limit the up time of the daemon in seconds - e.g. for debugging ")
+    argParser.add_argument("--scenarios", help="only process selected scenarios (sim_key or template dir)")
     argParser.add_argument('--iteration', help="iterations of faked simulation requests (ranges and ints are possible)")
     argParser.add_argument('--log', default="tsc.log", help="name of the overall log file")
     argParser.add_argument("--sim-key", help="sim_key to use when running only a single simulation")
