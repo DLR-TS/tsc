@@ -86,12 +86,12 @@ def get_active_sim_keys(server_options, overrides):
     conn = database.get_conn(server_options)
     # get any open combination of sim_key and iteration
     cursor_open = conn.cursor()
-    command = """SELECT sim_key, CAST(param_value AS INT) AS iteration FROM public.simulation_parameters
+    command = """SELECT sim_key, CAST(CAST(param_value AS FLOAT) AS INT) AS iteration FROM public.simulation_parameters
                  WHERE param_key = '%s' ORDER BY sim_key, iteration""" % SP.max_iteration
     cursor_open.execute(command)
     max_iterations = dict(cursor_open.fetchall())
 
-    command = """SELECT sim_key, CAST(param_value AS INT) AS iteration FROM public.simulation_parameters
+    command = """SELECT sim_key, CAST(CAST(param_value AS FLOAT) AS INT) AS iteration FROM public.simulation_parameters
                  WHERE param_key = '%s' ORDER BY sim_key, iteration""" % SP.iteration
     cursor_open.execute(command)
 
