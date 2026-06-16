@@ -1,51 +1,47 @@
 Warning: Traffic light type 'actuated' cannot be used in mesoscopic simulation. Using 'static' as fallback.
-Warning: Edge '-222328410' is shorter than 15.00m (10.41m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '44427219#0' is shorter than 15.00m (12.25m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '-44427219#1' is shorter than 15.00m (9.52m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '-438496646#0' is shorter than 15.00m (5.15m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '-99729383#9' is shorter than 15.00m (11.94m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '167893762#4' is shorter than 15.00m (10.37m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '155533124#4' is shorter than 15.00m (8.91m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '93628042#7' is shorter than 15.00m (14.83m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '167893762#4' is shorter than 15.00m (9.83m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '155533124#4' is shorter than 15.00m (9.73m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '93628042#9' is shorter than 15.00m (13.98m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '93628042#7' is shorter than 15.00m (14.89m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '-222328410' is shorter than 15.00m (10.53m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '165409971#0' is shorter than 15.00m (12.06m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '24864947#18' is shorter than 15.00m (8.05m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '4791641#2' is shorter than 15.00m (8.87m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '10596872#2' is shorter than 15.00m (2.40m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '144014237#0' is shorter than 15.00m (10.51m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '168253001#4' is shorter than 15.00m (13.31m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '168253001#6' is shorter than 15.00m (5.84m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '153427725#10' is shorter than 15.00m (11.07m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '26757071#4' is shorter than 15.00m (13.66m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '291696980#1' is shorter than 15.00m (14.43m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '4791641#2' is shorter than 15.00m (10.45m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '-359256839' is shorter than 15.00m (11.99m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '144014237#0' is shorter than 15.00m (13.00m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '168253001#4' is shorter than 15.00m (8.95m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '168253001#6' is shorter than 15.00m (1.70m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '153427725#10' is shorter than 15.00m (10.24m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '-168253001#5' is shorter than 15.00m (6.73m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '26757071#4' is shorter than 15.00m (9.52m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '291696980#1' is shorter than 15.00m (14.47m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '291670890#6' is shorter than 15.00m (14.41m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '803025464#0' is shorter than 15.00m (8.40m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '4687140#9' is shorter than 15.00m (7.57m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '110862591#1' is shorter than 15.00m (6.44m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '288762492#1' is shorter than 15.00m (14.70m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '171867096#5' is shorter than 15.00m (8.54m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '314983832#3' is shorter than 15.00m (8.68m) and will cause incorrect flow reduction with option --meso-tls-penalty
-Warning: Edge '83146233#6' is shorter than 15.00m (11.04m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '171867096#5' is shorter than 15.00m (11.61m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '380361910#2' is shorter than 15.00m (8.50m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '314983832#3' is shorter than 15.00m (9.43m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Edge '83146233#6' is shorter than 15.00m (11.92m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Device 'emissions_1000005_1000001_850_0' cannot save state
-Warning: At actuated tlLogic '1412045005', linkIndex 12,13,14,15,16 has no controlling detector.
 Warning: At actuated tlLogic 'GS_243993451', linkIndex 13,14 has no controlling detector.
-Warning: At actuated tlLogic 'GS_25662542', linkIndex 9,10,11,16 has no controlling detector.
-Warning: At actuated tlLogic 'GS_25663498', linkIndex 5,6 has no controlling detector.
+Warning: At actuated tlLogic 'GS_25662542', linkIndex 16 has no controlling detector.
+Warning: At actuated tlLogic 'GS_25663498', linkIndex 4,5,6 has no controlling detector.
 Warning: At actuated tlLogic 'GS_659394041', linkIndex 10,11 has no controlling detector.
-Warning: At actuated tlLogic 'GS_cluster_1631354272_1862786432_1862786438_21432798_#16more', linkIndex 32,33,35,36,37 has no controlling detector.
 Warning: At actuated tlLogic 'GS_cluster_1857304353_343372788_8286326771_8286326772', linkIndex 9,10 has no controlling detector.
-Warning: At actuated tlLogic 'GS_cluster_2054990097_29224722_29224724_3243911099_#4more', linkIndex 7,8,27,28 has no controlling detector.
-Warning: At actuated tlLogic 'GS_cluster_21432799_21432802_29221583_29221586', linkIndex 6,7 has no controlling detector.
+Warning: At actuated tlLogic 'GS_cluster_2054990097_29224722_29224724_3243911099_#4more', linkIndex 7,8,26,27,28 has no controlling detector.
 Warning: At actuated tlLogic 'GS_cluster_21432801_2938442114_735967920_735967926', linkIndex 14,15 has no controlling detector.
-Warning: At actuated tlLogic 'GS_cluster_262469034_29123671_29123672_6795935360_#4more', linkIndex 22,23,24 has no controlling detector.
 Warning: At actuated tlLogic 'GS_cluster_27195160_27195163_310764461_8329041689', linkIndex 4,5 has no controlling detector.
-Warning: At actuated tlLogic 'GS_cluster_28373650_29271390_29271391_29271392_#2more', linkIndex 6,7,16,17,31,32 has no controlling detector.
-Warning: At actuated tlLogic 'GS_cluster_29269804_29269805_29269807_3404805862_#6more', linkIndex 4,5,14,15,34,35,36,37 has no controlling detector.
-Warning: At actuated tlLogic 'GS_cluster_29271377_29271394_8383896032', linkIndex 24,25,26 has no controlling detector.
-Warning: At actuated tlLogic 'GS_cluster_29275853_3242035261_3242035262', linkIndex 8,9 has no controlling detector.
 Warning: At actuated tlLogic 'GS_cluster_29784946_29784947', linkIndex 13,14 has no controlling detector.
 Warning: At actuated tlLogic 'GS_cluster_964750391_971891590', linkIndex 10,11 has no controlling detector.
-Warning: At actuated tlLogic 'cluster_1011319241_1011319291_12614600_1783286745_#27more', linkIndex 22,26,31,43,44 has no controlling detector.
-Warning: At actuated tlLogic 'cluster_1822620447_2670269991_29271691_29271693_#7more', linkIndex 0,1,2,3,5,31 has no controlling detector.
 Warning: At actuated tlLogic 'cluster_1827996421_1865536623_1865536624_2121324874_#8more', linkIndex 3,4 has no controlling detector.
 Warning: At actuated tlLogic 'cluster_21487209_29219440_4566145593_4566145594_#2more', linkIndex 21,22,23 has no controlling detector.
-Warning: At actuated tlLogic 'cluster_262471375_30732015_343590422_3730313106_#1more', linkIndex 12,13 has no controlling detector.
-Warning: At actuated tlLogic 'cluster_262476527_2831135694_311718989_3836989061_#7more', linkIndex 19,20 has no controlling detector.
-Warning: At actuated tlLogic 'joinedS_3836987632_cluster_2524227970_3836987624_4913100485_4913100486_#1more', linkIndex 14,15 has no controlling detector.
+Warning: At actuated tlLogic 'cluster_262476527_2831135694_311718989_3836989061_#7more', linkIndex 21,22 has no controlling detector.
+Warning: At actuated tlLogic 'cluster_2871686225_7511737919', actuated phase 2 has no controlling detector.
+Warning: At actuated tlLogic 'cluster_2871686225_7511737919', linkIndex 5,6,7,9,10,11,12,13 has no controlling detector.
+Warning: At actuated tlLogic 'cluster_6711622876_7511737920', linkIndex 10,11 has no controlling detector.
 Warning: Traffic light type 'actuated' cannot be used in mesoscopic simulation. Using 'static' as fallback.
