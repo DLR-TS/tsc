@@ -163,15 +163,13 @@ def create_template_folder(scenario_pre_dir, options):
                 for idx, config in enumerate(configs):
                     netconvert_call = [netconvert, '-c', config,
                                        '--output-file', os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % idx),
-                                       '--log', os.path.join(log_dir, '%s.log' % os.path.basename(config)[:-8])]
-                    if options.osm_ptlines:
-                        netconvert_call += ['--ptstop-output', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % idx),
-                                            '--ptline-output', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % idx)]
+                                       '--log', os.path.join(log_dir, '%s.log' % os.path.basename(config)[:-8]),
+                                       '--ptstop-output', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % idx),
+                                       '--ptline-output', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % idx)]
                     if idx > 0:
-                        netconvert_call += ['--sumo-net-file', os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % (idx-1))]
-                        if options.osm_ptlines:
-                            netconvert_call += ['--ptstop-files', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % (idx-1)),
-                                                '--ptline-files', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % (idx-1))]
+                        netconvert_call += ['--sumo-net-file', os.path.join(tmp_output_dir, '%s_net.net.xml.gz' % (idx-1)),
+                                            '--ptstop-files', os.path.join(tmp_output_dir, '%s_stops.add.xml.gz' % (idx-1)),
+                                            '--ptline-files', os.path.join(tmp_output_dir, '%s_ptlines.xml.gz' % (idx-1))]
                     call(netconvert_call, options.verbose)
 
                 poly_config = os.path.join(scenario_pre_dir, 'template_gen.polycfg')
@@ -224,12 +222,17 @@ def build_gtfs(gtfs_dir, net_path, verbose):
                          '--fcd', os.path.join(tmp_output_dir, 'fcd'),
                          '--gpsdat', os.path.join(tmp_output_dir, 'gpsdat'),
                          '--vtype-output', os.path.join(tmp_output_dir, 'vType.xml')]
+            osm_stops = glob.glob(os.path.join(scenario_template_dir, 'stops*'))
+            if osm_stops:
+                gtfs_call += ['--stops', osm_stops[0]]
+            print(gtfs_call)
             if glob.glob(os.path.join(scenario_template_dir, 'ptlines*')):
                 # if routes from osm
-                osm_routes = glob.glob(os.path.join(scenario_template_dir, 'ptlines*'))[0]
-                gtfs_call += ['--osm-routes', osm_routes, '--repair',
-                              '--dua-repair-output', os.path.join(log_dir, 'repair_errors.txt'),
-                              '--warning-output',  os.path.join(log_dir, 'missing.xml')]
+                osm_lines = glob.glob(os.path.join(scenario_template_dir, 'ptlines*'))[0]
+#                gtfs_call += ['--osm-routes', osm_lines, '--repair',
+#                              '--dua-repair-output', os.path.join(log_dir, 'repair_errors.txt'),
+#                              '--warning-output',  os.path.join(log_dir, 'missing.xml')]
+                os.remove(osm_lines)
             gtfs2pt.main(gtfs2pt.get_options(gtfs_call))
             tmp_net = os.path.join(tmp_output_dir, os.path.basename(net_path))
             os.rename(os.path.abspath(net_path), tmp_net)
