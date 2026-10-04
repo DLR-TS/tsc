@@ -1,3 +1,5 @@
+Warning: Mismodelled capacity on edge '-241886108#2'. Not all lanes are usable by vClass 'tram'. Use option --meso-lane-queue or add unused class to option --meso-ignore-lanes-by-vclass.
+Warning: Mismodelled capacity on edge '4773464#1'. Not all lanes are usable by vClass 'private emergency authority army vip passenger hov taxi coach delivery truck trailer motorcycle moped evehicle container cable_car subway aircraft wheelchair scooter drone custom1 custom2'. Use option --meso-lane-queue or add unused class to option --meso-ignore-lanes-by-vclass.
 Warning: Edge '44427219#0' is shorter than 15.00m (12.25m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '-44427219#1' is shorter than 15.00m (9.52m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: At actuated tlLogic 'GS_243993451', linkIndex 13,14 has no controlling detector.
@@ -59,6 +61,8 @@ Warning: At actuated tlLogic 'cluster_262476527_2831135694_311718989_3836989061_
 Warning: At actuated tlLogic 'cluster_2871686225_7511737919', actuated phase 2 has no controlling detector.
 Warning: At actuated tlLogic 'cluster_2871686225_7511737919', linkIndex 5,6,7,9,10,11,12,13 has no controlling detector.
 Warning: At actuated tlLogic 'cluster_6711622876_7511737920', linkIndex 10,11 has no controlling detector.
+Warning: Mismodelled capacity on edge '-241886108#2'. Not all lanes are usable by vClass 'tram'. Use option --meso-lane-queue or add unused class to option --meso-ignore-lanes-by-vclass.
+Warning: Mismodelled capacity on edge '4773464#1'. Not all lanes are usable by vClass 'private emergency authority army vip passenger hov taxi coach delivery truck trailer motorcycle moped evehicle container cable_car subway aircraft wheelchair scooter drone custom1 custom2'. Use option --meso-lane-queue or add unused class to option --meso-ignore-lanes-by-vclass.
 Warning: At actuated tlLogic 'GS_243993451', linkIndex 13,14 has no controlling detector.
 Warning: At actuated tlLogic 'GS_25662542', linkIndex 16 has no controlling detector.
 Warning: At actuated tlLogic 'GS_25663498', linkIndex 4,5,6 has no controlling detector.

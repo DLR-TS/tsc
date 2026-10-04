@@ -1,3 +1,5 @@
+Warning: Mismodelled capacity on edge '-241886108#2'. Not all lanes are usable by vClass 'tram'. Use option --meso-lane-queue or add unused class to option --meso-ignore-lanes-by-vclass.
+Warning: Mismodelled capacity on edge '4773464#1'. Not all lanes are usable by vClass 'private emergency authority army vip passenger hov taxi coach delivery truck trailer motorcycle moped evehicle container cable_car subway aircraft wheelchair scooter drone custom1 custom2'. Use option --meso-lane-queue or add unused class to option --meso-ignore-lanes-by-vclass.
 Warning: Edge '44427219#0' is shorter than 15.00m (12.25m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '-44427219#1' is shorter than 15.00m (9.52m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: At actuated tlLogic 'GS_243993451', linkIndex 13,14 has no controlling detector.
@@ -42,6 +44,8 @@ Warning: Edge '171867096#5' is shorter than 15.00m (11.61m) and will cause incor
 Warning: Edge '380361910#2' is shorter than 15.00m (8.50m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '314983832#3' is shorter than 15.00m (9.43m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '83146233#6' is shorter than 15.00m (11.92m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Mismodelled capacity on edge '-241886108#2'. Not all lanes are usable by vClass 'tram'. Use option --meso-lane-queue or add unused class to option --meso-ignore-lanes-by-vclass.
+Warning: Mismodelled capacity on edge '4773464#1'. Not all lanes are usable by vClass 'private emergency authority army vip passenger hov taxi coach delivery truck trailer motorcycle moped evehicle container cable_car subway aircraft wheelchair scooter drone custom1 custom2'. Use option --meso-lane-queue or add unused class to option --meso-ignore-lanes-by-vclass.
 Warning: Edge '44427219#0' is shorter than 15.00m (12.25m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '-44427219#1' is shorter than 15.00m (9.52m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: At actuated tlLogic 'GS_243993451', linkIndex 13,14 has no controlling detector.
@@ -86,6 +90,8 @@ Warning: Edge '171867096#5' is shorter than 15.00m (11.61m) and will cause incor
 Warning: Edge '380361910#2' is shorter than 15.00m (8.50m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '314983832#3' is shorter than 15.00m (9.43m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '83146233#6' is shorter than 15.00m (11.92m) and will cause incorrect flow reduction with option --meso-tls-penalty
+Warning: Mismodelled capacity on edge '-241886108#2'. Not all lanes are usable by vClass 'tram'. Use option --meso-lane-queue or add unused class to option --meso-ignore-lanes-by-vclass.
+Warning: Mismodelled capacity on edge '4773464#1'. Not all lanes are usable by vClass 'private emergency authority army vip passenger hov taxi coach delivery truck trailer motorcycle moped evehicle container cable_car subway aircraft wheelchair scooter drone custom1 custom2'. Use option --meso-lane-queue or add unused class to option --meso-ignore-lanes-by-vclass.
 Warning: Edge '44427219#0' is shorter than 15.00m (12.25m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: Edge '-44427219#1' is shorter than 15.00m (9.52m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: At actuated tlLogic 'GS_243993451', linkIndex 13,14 has no controlling detector.

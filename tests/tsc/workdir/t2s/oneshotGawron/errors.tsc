@@ -1,3 +1,5 @@
+Warning: Mismodelled capacity on edge '-241886108#2'. Not all lanes are usable by vClass 'tram'. Use option --meso-lane-queue or add unused class to option --meso-ignore-lanes-by-vclass.
+Warning: Mismodelled capacity on edge '4773464#1'. Not all lanes are usable by vClass 'private emergency authority army vip passenger hov taxi coach delivery truck trailer motorcycle moped evehicle container aircraft wheelchair scooter drone custom1 custom2'. Use option --meso-lane-queue or add unused class to option --meso-ignore-lanes-by-vclass.
 Warning: At actuated tlLogic '1412045005', linkIndex 12,13,14,15,16 has no controlling detector.
 Warning: Edge '-222328410' is shorter than 15.00m (10.41m) and will cause incorrect flow reduction with option --meso-tls-penalty
 Warning: At actuated tlLogic 'GS_243993451', linkIndex 13,14 has no controlling detector.
